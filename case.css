@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+/* CSS Document by.shi */           
+
+/* Reset
+---------------------------------*/
+*{ margin:0; padding:0; border:none;}
+body{font-size:15px; max-width:1080px;margin:0 auto;background:#ccc;font-family:'STHeiti','Microsoft YaHei',Helvetica,Arial,sans-serif;color:#000;}
+a,a:active,a:hover,a:focus,a:visited{text-decoration:none}
+a,img{-webkit-touch-callout:none}
+img{max-width:100%;height:auto;width:auto\9;}
+ol,ul,li{list-style:none}
+.mt15{ margin:15px auto;}
+.clearfix:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.full_wrap{max-width:750px; min-width:320px; margin:0 auto; background:#FFF; overflow:hidden; padding-bottom:55px;}  
