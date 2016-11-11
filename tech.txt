@@ -120,3 +120,6 @@ PHP 5 新增了一个 final 关键字。如果父类中的方法被声明为 fin
 
 (PHP 5 >= 5.4.0, PHP 7)
 Closure::bindTo — 复制当前闭包对象，绑定指定的$this对象和类作用域。
+
+array_unshift() - 在数组开头插入一个或多个单元,
+array_shift — 将数组开头的单元移出数组
