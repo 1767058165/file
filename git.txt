@@ -131,3 +131,5 @@ git stash pop命令是恢复stash队列中的stash@{0}，然后从记录就删�
 删除
 stash存的不要过多，不然你也不知道哪个是哪个，最好随时清一清。
 把所有的记录都清空掉用git stash clear。
+
+本地要想clone远程github主机仓库，需要在github添加本地生成的SSH key
