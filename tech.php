@@ -154,3 +154,13 @@ $n = unserialize($n);
 其实php的use声明并不是将此类导入到当前工作区域，而是单单指明
 
 use Web\Tools;
+
+ 命名空间和自动加载初探
+参考资料：
+PHP手册-语言参考：http://php.net/manual/zh/language.namespaces.php
+ 
+概要：
+1. 声明了命名空间之后，下面的const, function, class都会划归到该命名空间。
+2. 只有声明过命名空间的PHP 文件才能加载有命名空间的PHP文件。
+3. PHP 5.3 及以上才能使用命名空间
+ 
