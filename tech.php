@@ -164,3 +164,34 @@ PHP手册-语言参考：http://php.net/manual/zh/language.namespaces.php
 2. 只有声明过命名空间的PHP 文件才能加载有命名空间的PHP文件。
 3. PHP 5.3 及以上才能使用命名空间
  
+php的闭包（Closure）也就是匿名函数。是PHP5.3引入的。
+
+闭包的语法很简单，需要注意的关键字就只有use，use意思是连接闭包和外界变量。
+
+$a = function() use($b) {
+ 
+}
+ 
+ 如果你需要延迟绑定use里面的变量，你就需要使用引用，否则在定义的时候就会做一份拷贝放到use中
+
+**********************************
+<?php
+$result = 0;
+ 
+$one = function()
+{ var_dump($result); };
+ 
+$two = function() use ($result)
+{ var_dump($result); };
+ 
+$three = function() use (&$result)
+{ var_dump($result); };
+ 
+$result++;
+ 
+$one();    // outputs NULL: $result is not in scope
+$two();    // outputs int(0): $result was copied
+$three();    // outputs int(1)
+ 
+
+使用引用和不使用引用就代表了是调用时赋值，还是申明时候赋值
