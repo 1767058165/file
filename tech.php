@@ -240,3 +240,12 @@ call_user_func(array(__NAMESPACE__ .'\Foo', 'test')); // As of PHP 5.3.0
 
 ?>
  *******************
+in_array
+
+(PHP 4, PHP 5, PHP 7)
+in_array — 检查数组中是否存在某个值
+ --------------------------------------
+ usort
+
+(PHP 4, PHP 5, PHP 7)
+usort — 使用用户自定义的比较函数对数组中的值进行排序
