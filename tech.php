@@ -198,3 +198,23 @@ $three();    // outputs int(1)
  *************************
 PHP不区分路径大小写而JSP区分大小写
  php反斜线\也能读取文件路径
+ **********************
+ /导入一个命名空间
+use Blog\Article;
+//导入命名空间后可使用限定名称调用元素
+$article_comment = new Article\Comment();
+
+//为命名空间使用别名
+use Blog\Article as Arte;
+//使用别名代替空间名
+$article_comment = new Arte\Comment();
+
+//导入一个类
+use Blog\Article\Comment;
+//导入类后可使用非限定名称调用元素
+$article_comment = new Comment();
+
+//为类使用别名
+use Blog\Article\Comment as Comt;
+//使用别名代替空间名
+$article_comment = new Comt();
