@@ -249,3 +249,14 @@ in_array — 检查数组中是否存在某个值
 
 (PHP 4, PHP 5, PHP 7)
 usort — 使用用户自定义的比较函数对数组中的值进行排序
+---------------------------------------
+ string dirname ( string $path )
+给出一个包含有指向一个文件的全路径的字符串，本函数返回去掉文件名后的目录名。
+ ____________________________________________________________________
+ substr
+string substr ( string $string , int $start [, int $length ] )
+(PHP 4, PHP 5, PHP 7)
+substr — 返回字符串的子串
+ 特殊用法：如果提供了负数的 length，那么 string 末尾处的许多字符将会被漏掉（若 start 是负数则从字符串尾部算起）。
+ 例如：$rest = substr("abcdef", 0,-1);    // 返回 "abcde"
+ $rest = substr("abcdef", -2);    // 返回 "abcd"
