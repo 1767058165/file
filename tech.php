@@ -13,7 +13,7 @@ PHP函数explode和split--这两个函数的作用很像，都是把字符串转
 
 CSS word-spacing 属性：指定断字之间的空间
 CSS letter-spacing 属性：设置字符间距 
-
+pHP 实现了一种代码复用的方法，称为 trait。
 Trait的使用方法也很简单，上面已经显示的很清楚明了，即使用use关键字。
 
 可能你已经注意到，命名空间和Trait使用的都是use关键字，不同之处在于导入位置，命名空间在类的定义体外导入，而Trait在类的定义体内导入。
@@ -222,3 +222,21 @@ $article_comment = new Comment();
 use Blog\Article\Comment as Comt;
 //使用别名代替空间名
 $article_comment = new Comt();
+ ***********************************
+call_user_func() 命名空间的使用
+  
+  <?php
+
+namespace Foobar;
+
+class Foo {
+    static public function test() {
+        print "Hello world!\n";
+    }
+}
+
+call_user_func(__NAMESPACE__ .'\Foo::test'); // As of PHP 5.3.0
+call_user_func(array(__NAMESPACE__ .'\Foo', 'test')); // As of PHP 5.3.0
+
+?>
+ *******************
