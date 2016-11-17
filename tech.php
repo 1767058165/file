@@ -260,3 +260,8 @@ substr — 返回字符串的子串
  特殊用法：如果提供了负数的 length，那么 string 末尾处的许多字符将会被漏掉（若 start 是负数则从字符串尾部算起）。
  例如：$rest = substr("abcdef", 0,-1);    // 返回 "abcde"
  $rest = substr("abcdef", -2);    // 返回 "abcd"
+***************************
+ filter_var
+
+(PHP 5 >= 5.2.0, PHP 7)
+filter_var — 使用特定的过滤器过滤一个变量
