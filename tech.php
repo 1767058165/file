@@ -277,3 +277,5 @@ filter_var — 使用特定的过滤器过滤一个变量
 注意提交表单按钮type属性为submit，post方式与$_POST依依对应
  *********
  get_magic_quotes_gpc（）判断是否开启魔术引用，即为单引号、双引号添加反斜杠
+ ************
+ $GLOBALS — 引用全局作用域中可用的全部变量，可以这样$GLOBALS['_POST']获取$_POST变量的值
