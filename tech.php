@@ -235,7 +235,8 @@ class Foo {
     }
 }
 
-call_user_func(__NAMESPACE__ .'\Foo::test'); // As of PHP 5.3.0
+
+ call_user_func(__NAMESPACE__ .'\Foo::test'); // As of PHP 5.3.0
 call_user_func(array(__NAMESPACE__ .'\Foo', 'test')); // As of PHP 5.3.0
 
 ?>
@@ -285,3 +286,8 @@ ini_get
 
 (PHP 4, PHP 5, PHP 7)
 ini_get(1个参数) — 获取一个配置选项的值,相对应的是ini_set(2个参数)
+register_globals的意思就是注册为全局变量，所以当On的时候，传递过来的值会被直接的注册为全局变量直接使用，而Off的时候，我们需要到特定的数组里去得到它。
+
+ get_class()
+(PHP 4, PHP 5, PHP 7)
+get_class — 返回对象的类名
