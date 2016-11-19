@@ -275,4 +275,5 @@ filter_var — 使用特定的过滤器过滤一个变量
 通常情况下，PHP $_SERVER['SCRIPT_FILENAME'] 与 __FILE__ 都会返回 PHP 文件的完整路径（绝对路径）与文件名，但还是有一些细微差别
  ******************
 注意提交表单按钮type属性为submit，post方式与$_POST依依对应
- 
+ *********
+ get_magic_quotes_gpc（）判断是否开启魔术引用，即为单引号、双引号添加反斜杠
