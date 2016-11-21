@@ -295,3 +295,7 @@ get_class — 返回对象的类名
  表单提交到自身时 action=”” 与 action=”currentPage.xxx” 的区别,获取当前页面 $_SERVER['PHP_SELF']
  传参格式："index.php?参数1=值1&参2=值2"
 cmd直接进入d盘，直接输入d:即可，不用输入cd ;cd ..回到上级；cd 文件夹名：进入此文件夹；cd /回到根目录
+ php_sapi_name
+
+(PHP 4 >= 4.0.1, PHP 5, PHP 7)
+php_sapi_name — 返回 web 服务器和 PHP 之间的接口类型
