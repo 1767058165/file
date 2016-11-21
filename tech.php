@@ -301,3 +301,13 @@ cmd直接进入d盘，直接输入d:即可，不用输入cd ;cd ..回到上级�
 php_sapi_name — 返回 web 服务器和 PHP 之间的接口类型
  *******
  php cli模式执行程序: php  php文件名
+*****
+ realpath
+
+(PHP 4, PHP 5, PHP 7)
+realpath — 返回规范化的绝对路径名
+
+说明
+
+string realpath ( string $path )
+realpath() 扩展所有的符号连接并且处理输入的 path 中的 '/./', '/../' 以及多余的 '/' 并返回规范化后的绝对路径名。返回的路径中没有符号连接，'/./' 或 '/../' 成分。
