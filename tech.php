@@ -316,3 +316,12 @@ array_keys
 
 (PHP 4, PHP 5, PHP 7)
 array_keys — 返回数组中部分的或所有的键名
+ **************
+list
+
+(PHP 4, PHP 5, PHP 7)
+list — 把数组中的值赋给一些变量
+ list($ns2)=array("56");
+ 例如：
+ var_dump($ns2);
+ array(2) { [0]=> string(1) "6" [1]=> string(1) "5" }
