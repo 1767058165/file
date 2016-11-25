@@ -8,3 +8,27 @@ p元素可以间接嵌套块元素，先嵌套流元素,同时p元素也要定�
  <a id="js"></a>
  *********
  for/in是js循环对象方法
+ 
+ 
+js中继承的几种用法总结(apply,call,prototype)
+javascript中的对象就是一个指向prototype的指针和一个自身的属性列表
+
+只有构造器才具有prototype属性，原型链继承就是创建一个新的指针，指向构造器的prototype属性。
+【prototype实现继承：Person.prototype = new Animal()；//，
+不采用Person.prototype  = Animal.prototype，原因Animal自身的this对象的属性没办法传递给Person】
+
+构造器包括: 
+1.Object
+2.Function
+3.Array
+4.Date
+5.String
+
+js创建数组：创建 Array 对象的语法：
+new Array();
+new Array(size);
+new Array(element0, element1, ..., elementn);
+
+js Array 对象属性
+属性	描述
+constructor	返回对创建此对象的数组函数的引用。
