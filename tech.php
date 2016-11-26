@@ -331,3 +331,108 @@ list — 把数组中的值赋给一些变量
 (PHP 4, PHP 5, PHP 7)
 base64_encode — 使用 MIME base64 对数据进行编码
  此编码方式可以让中文字或者图片也能在网络上顺利传输。在 BASE64 编码后的字符串只包含英文字母大小写、阿拉伯数字、加号与反斜线，共 64 个基本字符，不包含其它特殊的字符，因而才取名 BASE64。
+
+ 
+ // 时间无限制
+set_time_limit ( 0 );
+
+php使用openssl函数实现rsa非对称加密算法：形如（
+
+-----BEGIN PUBLIC KEY----- 
+X509 signature + PEM sig + modulus + 'ID' + exponent 
+-----END PUBLIC KEY----- ）
+
+header("Content-type: text/html; charset=utf-8");    
+
+
+number_format
+
+(PHP 4, PHP 5, PHP 7)
+number_format — 以千位分隔符方式格式化一个数字
+
+PHP 中的类型强制转换和 C 中的非常像：在要转换的变量之前加上用括号括起来的目标类型，通常不需要这么做。
+
+php加速引擎--zeng engine,php4引擎从php分离开，成独立软件。
+
+json_encode();json_encode — 对变量进行 JSON 编码,变量除了resource 类型之外，可以为任何数据类型
+
+php CURL是一个非常强大的开源库，支持很多协议，包括HTTP、FTP、TELNET等，我们使用它来发送HTTP请求。它给我 们带来的好处是可以通过灵活的选项设置不同的HTTP协议参数，并且支持HTTPS。CURL可以根据URL前缀是“HTTP” 还是“HTTPS”自动选择是否加密发送内容。
+
+，socket是一种数据结构，他可以用来在服务器和客户端进行对话。而curl是利用url语法规定来传输文件和数据的规定，支持很多协议，例如FTP,HTTP、TELNET等。
+
+list() 仅能用于数字索引的数组并假定数字索引从 0 开始。
+
+用each函数与list函数结合来遍历数组，可遍历索引数组如下例： 
+复制代码 代码如下: 
+1 <?php 
+2 $array14=array('a' => 'apple', 'b' => 'banana', 'c' => 'cranberry'); 
+3 while(list($key,$value) = each($array14)) 
+4 { 
+5 echo "$key => $value\n"; 
+6 } 
+
+echo"密码域为125","1%125";多个参数
+
+PHP取整函数，主要是：ceil，floor，round，intval
+
+采用mb_strlen函数可以较好地解决这个问题。mb_strlen的用法和 strlen类似，只不过它有第二个可选参数用于指定字符编码。
+
+%除数限制取值范围
+
+限制返回的行数
+使用TOP n [PERCENT]选项限制返回的数据行数，TOP n说明返回n行，而TOP n PERCENT时，说明n是
+表示一百分数，指定返回的行数等于总行数的百分之几。
+例如：
+SELECT TOP 2 * FROM `testtable`
+
+在FROM子句中可用以下两种格式为表或视图指定别名：
+表名 as 别名
+表名 别名
+
+如果你需要拷贝整个表，你可以使用SELECT INTO 语句
+
+TRUNCATE TABLE语句，删除表
+
+内连接、外连接和交叉连接，外连接分为左外连接(LEFT OUTER JOIN或LEFT JOIN)、右外连接(RIGHT OUTER JOIN或RIGHT JOIN)
+
+新增字段：
+ALTER TABLE [表名] ADD [字段名] NVARCHAR (50) NULL
+
+更新数据：
+UPDATE [表名] SET [字段1] = 1,[字段2] = 'ABC' WHERE [字段三] = 'what'
+
+JavaScript中的Object对象，是JS中所有对象的基类，也就是说JS中的所有对象都是由Object对象衍生的。Object对象主要用于将任意数据封装成对象形式。
+
+range
+
+(PHP 4, PHP 5, PHP 7)
+range — 建立一个包含指定范围单元的数组
+
+array_rand
+
+(PHP 4, PHP 5, PHP 7)
+array_rand — 从数组中随机取出一个或多个单元
+
+strtr
+
+(PHP 4, PHP 5, PHP 7)
+strtr — 转换指定字符，注意是单个字符
+协议--软件协议和传输协议
+封装协议---不同加密方式的协议
+
+命令行；php -v 查看php版本号
+
+header("Content-type: text/html; charset=utf-8");注意冒号与等号
+
+unlink — 删除文件
+
+ord
+
+(PHP 4, PHP 5, PHP 7)
+ord — 返回字符的 ASCII 码值
+ascii属于字节编码，utf-8属于字符编码
+
+chr
+
+(PHP 4, PHP 5, PHP 7)
+chr — 返回指定的字符，此函数与 ord() 是互补的。
