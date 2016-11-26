@@ -32,3 +32,11 @@ new Array(element0, element1, ..., elementn);
 js Array 对象属性
 属性	描述
 constructor	返回对创建此对象的数组函数的引用。
+****************
+js 创建对象
+person=new Object();
+person.firstname="Bill";
+person.lastname="Gates";
+person.age=56;
+person.eyecolor="blue";
+**************
