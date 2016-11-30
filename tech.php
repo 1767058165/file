@@ -438,3 +438,114 @@ chr
 chr — 返回指定的字符，此函数与 ord() 是互补的。
  
  wdcp管理系统,linux服务器管理系统/虚拟主机管理系统/管理面板-
+
+  php中array_merge和array+array的差别
+
+glob()和scandir() 一样，可以用来查找文件
+
+很多朋友都利用md5()来生成唯一的编号，但是md5()有几个缺点：1、无序，导致数据库中
+
+排序性能下降。2、太长，需要更多的存储空间。其实PHP中自带一个函数来生成唯一的id，
+
+这个函数就是uniqid()。
+
+echo
+
+(PHP 4, PHP 5, PHP 7)
+echo — 输出一个或多个字符串
+
+php_sapi_name
+
+(PHP 4 >= 4.0.1, PHP 5, PHP 7)
+php_sapi_name — 返回 web 服务器和 PHP 之间的接口类型
+
+PHP序列化功能大家可能用的比较多，也比较常见，当你需要把数据存到数据库或者文件中
+
+是，你可以利用PHP中的serialize() 和 unserialize()方法来实现序列化和反序列化。
+
+当我们说到压缩，我们可能会想到文件压缩，其实，字符串也是可以压缩的。PHP提供了 
+
+gzcompress() 和gzuncompress() 函数
+
+mbstring扩展库用于处理多字节字符串,对PHP来说很重要的.
+要获得以UTF-8编码的字符串的正确长度,必须使用mb_strlen($string, 'UTF-8'),而不是
+
+strlen($string).
+
+在某个项目中需要分析 PHP 代码，分离出对应的函数调用（以及源代码对应的位置）。虽
+
+然这使用正则也可以实现，但无论从效率还是代码复杂度方面考虑，这都不是最优的方式。
+查询了 PHP 手册，发现其实 PHP 已经内置解析器的接口，那就是 PHP Tokenizer ，这工
+
+具正是我想要的。使用 PHP Tokenizer 能简单、高效、准确的分析出 PHP 源代码的组成。
+
+中括号数组定义：$array1 = [[1,2,3],[1,2,3]];
+
+************************
+__invoke()
+
+mixed __invoke ([ $... ] )
+当尝试以调用函数的方式调用一个对象时，__invoke() 方法会被自动调用。
+***************************
+
+HTTP请求方法
+根据HTTP标准，HTTP请求可以使用多种请求方法。
+HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。
+HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+序号	方法	描述
+1	GET	请求指定的页面信息，并返回实体主体。
+2	HEAD	类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头
+3	POST	向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据
+
+被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。
+4	PUT	从客户端向服务器传送的数据取代指定的文档的内容。
+5	DELETE	请求服务器删除指定的页面。
+6	CONNECT	HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。
+7	OPTIONS	允许客户端查看服务器的性能。
+8	TRACE	回显服务器收到的请求，主要用于测试或诊断。
+
+查看网页头信息---浏览器调试-网络-all，选中文件，点击。
+
+function testClosure(Closure $callback)
+{
+    return $callback(13);
+}
+
+php函数名、方法名、类名不区分大小写,魔术方法不区分大小写
+
+Closure::bind — 复制一个闭包，绑定指定的$this对象和类作用域。与
+Closure::bindTo — 复制当前闭包对象，绑定指定的$this对象和类作用域。作用相似
+
+例如：$b = Closure::bind($f, new B , 'B');
+********************
+可以以closure为参数：
+$f=function($request){
+    return $request+=100;
+};
+
+function handle(Closure $next,$request)
+{
+    return $next($request);
+}
+
+$m=handle($f,2);
+echo "处理结果为：".$m;
+*************
+在类内部可以使用static访问静态属性和静态方法；例如：
+class B1 {
+
+   static   $base = 1000;
+
+
+    public static function get()
+    {
+        return static::$base;
+    }
+
+    public static function set(){
+
+        return static::get();
+    }
+
+}
+***********
