@@ -13,3 +13,15 @@ Windows 系统：
 
 composer -v 查看是否安装成功
 安装包--composer require 包名，例如composer require illuminate/support
+_______________________________
+
+安装依赖
+安装依赖非常简单，只需在项目目录下运行：
+
+composer install  
+____________________________
+自动加载
+Composer 提供了自动加载的特性，只需在你的代码的初始化部分中加入下面一行：
+
+require 'vendor/autoload.php'; 
+**************************
