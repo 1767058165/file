@@ -1,0 +1,2 @@
+phpstorm运行配php程序，需要配置：语言与框架--php-interpreter(注释器）
+phpstorm 按住Ctrl键，可显示函数用法
