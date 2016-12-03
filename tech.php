@@ -549,3 +549,123 @@ class B1 {
 
 }
 ***********
+ 魔术方法：
+在对象中调用一个不可访问方法时，__call() 会被调用。
+
+在静态上下文中调用一个不可访问方法时，__callStatic() 会被调用。
+*****************——————————
+...$args传递多个参数---
+public static function get(...$grgs)
+    {
+//        return static::$base;
+        print_r($grgs);
+    }
+——————————————————————————————
+——————————————————————————
+php禁止浏览器使用缓存页面的方法：
+
+// 设置此页面的过期时间(用格林威治时间表示)，只要是已经过去的日期即可。 
+header ( " Expires: Mon, 26 Jul 1970 05:00:00 GMT " );
+  // 设置此页面的最后更新日期(用格林威治时间表示)为当天，可以强制浏览器获取最新
+
+资料
+header ( " Last-Modified:" . gmdate ( " D, d M Y H:i:s " ). "GMT " );
+  
+ // 告诉客户端浏览器不使用缓存，HTTP 1.1 协议
+ header ( " Cache-Control: no-cache, must-revalidate " );
+  
+  // 告诉客户端浏览器不使用缓存，兼容HTTP 1.0 协议
+header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+————————————————————
+
+————————————————————
+导入类--use 命名空间+类名/
+导入函数--use func,例如：use func Namespace\functionName
+导入常量--可以使用use constant：例如use constant Namespace\CONST_NAME;
+
+全局命名空间
+
+如果引用的类、接口、函数和常量没有指定命名空间，PHP假定引用的类、接口、函数和常
+
+量在当前的命名空间中。如果要使用其他命名空间的类、接口、函数或常量，需要使用完全
+
+限定的PHP类名（命名空间+类名）。
+
+有些代码在全局命名空间中，没有命名空间，比如原生的Exception类就是这样。在命名空
+
+间中引用全局的代码时，需要在类、接口、函数或常量前加\符号：
+
+<?php
+namespace My\App;
+
+class Foo {
+    public function doSomething() {
+        throw new \Exception();
+    }
+}
+
+——————————————————
+PSR-7 定义了一套标准，来标准化使用PHP来进行HTTP通信，替换PHP本身提供的那些超全局
+
+变量，因为他们略显拙劣。
+
+array_replace() 函数使用后面数组元素相同 key 的值替换 array1 数组的值。
+
+parse_url()本函数解析一个 URL 并返回一个关联数组，包含在 URL 中出现的各种组成部
+
+分。
+
+http_build_query — 生成 URL-encode 之后的请求字符串,例如：
+
+foo=bar&baz=boom&cow=milk&php=hypertext+processor
+
+——————————————————————
+$a = htmlentities($orig);
+
+$b = html_entity_decode($a);
+
+str_split — 将字符串转换为数组
+array_map — 为数组的每个元素应用回调函数
+————————————————————
+array_multisort — 对多个数组或多维数组进行排序
+rawurldecode() - 对已编码的 URL 字符串进行解码
+urldecode() - 解码已编码的 URL 字符串
+urlencode() - 编码 URL 字符串
+get_parent_class — 返回对象或类的父类名
+————————————————————
+创建trait :trait 名称{代码块}
+
+这里还需要声明的一点是调用方法的优先级：调用类>Trait>父类（如果有的话），方法可
+
+以覆盖，但属性不行，如果Trait中定义了一个属性，如果调用类中也定义这个属性则会报
+
+错。
+__TRAIT__返回 trait name
+
+我们能使用 insteadof 以及 as 操作符解决 Trait 之间的冲突
+
+调用trait方法
+虽然不很明显，但是如果Trait的方法可以被定义为在普通类的静态方法，就可以被调用
+
+定义命名空间的trait，也需要use关键字导入
+
+实例如下
+
+复制代码
+<?php 
+trait Foo { 
+    function bar() { 
+        return 'baz'; 
+    } 
+} 
+
+echo Foo::bar(),"\\n"; 
+?>
+————————————
+array_keys — 返回数组中部分的或所有的键名
+array_values — 返回数组中所有的值
+
+在PHP5中，接口是可以继承自另外一个接口的。这样代码的重用更有效了。要注意只有接口
+
+和接口之间使用 继承关键字 extends
