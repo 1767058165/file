@@ -25,3 +25,6 @@ Composer 提供了自动加载的特性，只需在你的代码的初始化部�
 
 require 'vendor/autoload.php'; 
 **************************
+只想更新某个特定的库，不想更新它的所有依赖，很简单：
+
+composer update foo/bar 
