@@ -45,3 +45,11 @@ person.eyecolor="blue";
 gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。
 
 package.json 位于模块的目录下，用于定义包的属性。接下来让我们来看下 express 包的 package.json 文件
+
+使用 npm 命令安装模块
+npm 安装 Node.js 模块语法格式如下：
+$ npm install <Module Name>
+以下实例，我们使用 npm 命令安装常用的 Node.js web框架模块 express:
+$ npm install express
+安装好之后，express 包就放在了工程目录下的 node_modules 目录中，因此在代码中只需要通过 require('express') 的方式就好，无需指定第三方包路径。
+var express = require('express');
