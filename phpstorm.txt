@@ -2,3 +2,5 @@ phpstorm运行配php程序，需要配置：语言与框架--php-interpreter(注
 phpstorm 按住Ctrl键，可显示函数用法
 
 鼠标放在右边可查看前面或者后面代码
+
+方便之处可以根据类名，查找类文件所在路径
