@@ -28,3 +28,15 @@ require 'vendor/autoload.php';
 只想更新某个特定的库，不想更新它的所有依赖，很简单：
 
 composer update foo/bar 
+
+例如想安装 yiisoft/yii2-imagine 扩展，可按如下示例修改你的 composer.json 文件：
+
+{
+    // ...
+
+    "require": {
+        // ... other dependencies
+
+        "yiisoft/yii2-imagine": "*"
+    }
+}
