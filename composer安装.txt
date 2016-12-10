@@ -60,3 +60,5 @@ php composer.phar install
 
 composer install
 继续 上面的例子，这里将下载 monolog 到 vendor/monolog/monolog 目录。
+
+安装成功会出现composer.json
