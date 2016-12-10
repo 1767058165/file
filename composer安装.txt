@@ -40,3 +40,23 @@ composer update foo/bar
         "yiisoft/yii2-imagine": "*"
     }
 }
+_____________________________________
+Composer 安装工具以及执行 composer self-update 指令都会默认安装最新的 Composer 稳定版本。
+————————————————————————————
+安装依赖
+安装依赖非常简单，只需在项目目录下运行：composer install  
+
+
+composer.json--声明依赖关系
+——————————————————
+使用 Composer
+
+现在我们将使用 Composer 来安装项目的依赖。如果在当前目录下没有一个 composer.json 文件，请查看基本用法章节。
+
+要解决和下载依赖，请执行 install 命令：
+
+php composer.phar install
+如果你进行了全局安装，并且没有 phar 文件在当前目录，请使用下面的命令代替：
+
+composer install
+继续 上面的例子，这里将下载 monolog 到 vendor/monolog/monolog 目录。
