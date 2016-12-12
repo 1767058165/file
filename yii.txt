@@ -1,0 +1,427 @@
+2.0 版框架是完全重写的，在 1.1 和 2.0 两个版本之间存在相当多差异。
+
+Yii 非常易于扩展。你可以自定义或替换几乎任何一处核心代码。
+
+intl Yii 2.0 使用 PHP 扩展 intl 来支持国际化的相关功能。
+
+路径别名（Path Alias）
+Yii 2.0 将路径别名的应用扩大至文件/目录路径和 URL。Yii 2.0 中路径别名必须以 @ 符号开头，以区别于普通文件目录路径或 URL。例如 @yii 就是指向 Yii 安装目录的别名。
+
+除了使用 PHP 作为主要的模板语言，Yii 2.0 也装备了两种流行模板引擎的官方支持：Smarty 和 Twig。过去的 Prado 模板引擎不再被支持。要使用这些模板引擎，你需要配置 view 应用组件，给它设置 [[yii\base\View::$renderers|View::$renderers]] 属性。
+
+Yii 2.0 使用 [[yii\base\Widget]] 作为小部件基类
+
+一个资源包是一个目录下的资源文件集合（如 JavaScript 文件、CSS 文件、图片文件等）
+
+Yii 2.0 引进了表单栏（field）的概念，用来创建一个基于 [[yii\widgets\ActiveForm]]的表单。一个表单栏是一个由标签、输入框、错误消息（可能还有提示文字）组成的容器，被表示为 [[yii\widgets\ActiveField|ActiveField]] 对象。
+
+
+http 500有可能是程序错误
+————————————————————
+你可以通过两种方式来安装Yii框架：
+
+通过Composer
+通过下载一个所需文件以及Yii框架文件的应用模板（需要cookieValidationKey 配置项添加一个密钥）
+——————————————————————————
+你可以创建 SQLite，MySQL，PostregSQL，MSSQL 或 Oracle 数据库，Yii 内置多种数据库支持。
+一般来说，应用中的文件可被分为两类：在 basic/web 下的和在其它目录下的。
+
+每个应用都有一个入口脚本 web/index.php，这是整个应用中唯一可以访问的 PHP 脚本。入口脚本接受一个 Web 请求并创建应用实例去处理它。 应用在它的组建辅助下解析请求，并分派请求至 MVC 元素。视图使用小部件去创建复杂和动态的用户界面。
+
+——————————————————
+动作是最终用户可以直接访问并执行的对象。动作被组织在控制器中。一个动作的执行结果就是最终用户收到的响应内容。
+
+——————————
+Yii 使用action前缀区分普通方法和动作。action前缀后面的名称被映射为动作的 ID，控制器 ID和动作 ID使用同样的命名规则。
+
+——————————————
+通常在控制器创建动作
+——————————】
+http://hostname/index.php?r=site/say&message=Hello+World：
+
+上面 URL 中的参数r需要更多解释。它代表路由，是整个应用级的，指向特定动作的独立 ID。路由格式是 控制器 ID/动作 ID。应用接受请求的时候会检查参数，使用控制器 ID 去确定哪个控制器应该被用来处理请求。然后相应控制器将使用动作 ID 去确定哪个动作方法将被用来做具体工作。上述例子中，路由site/say将被解析至SiteController控制器和其中的say动作。因此SiteController::actionSay()方法将被调用处理请求。
+
+——————————————————————————————————
+动作通过render()方法进行视图渲染输出
+——————————————————
+#!/usr/bin/env php
+
+npm导入包使用
+——————————————————————
+表达式 Yii::$app 代表应用实例，它是一个全局可访问的单例。同时它也是一个服务定位器，能提供request，response，db 等等特定功能的组件。
+
+——————————————————
+活动记录是面向对象、功能强大的访问和动作数据库数据的方式。你可以在活动记录章节了解更多信息。除此之外你还可以使用另一种更原生的称做数据访问对象的方法动作数据库数据
+——————————————————————
+分页的OFFSET，用于定义起始获取位置
+
+——）——
+控制器命名-大小写规则
+——————————————
+为了使用数据库，你将会配置一个数据库连接，创建一个活动记录类，并且创建一个动作及一个视图。
+
+————————————————————
+使用 Gii 去自动生成 Web 站点常用功能的代码。使用 Gii 生成代码非常简单，只要按照 Gii 页面上的介绍输入正确的信息即可。
+
+——————————
+yii 应用遵循 模型-视图-控制器（model-view-controller (MVC)）设计模式。
+
+————————————————————————————
+Applications are objects that govern the overall structure and lifecycle of Yii application systems. Each Yii application system contains a single application object which is created in the entry script and is globally accessible through the expression----- \Yii::$app.
+
+______——————————————————————
+控制台应用的入口脚本文件命名：#!/usr/bin/env php
+——————————————————
+Yii有两种应用主体: yii\web\Application and yii\console\Application， 如名称所示，前者主要处理网页请求，后者处理控制台请求。
+——————————————————
+应用主体是管理 Yii 应用系统整体结构和生命周期的对象。 每个Yii应用系统只能包含一个应用主体， 应用主体在 入口脚本 中创建并能通过表达式 \Yii::$app 全局范围内访问
+
+——————————————————————————
+在一个应用中，至少要配置2个属性: yii\base\Application::id 和 yii\base\Application::basePath。
+
+注意 模块 和 控制器 都会触发 beforeAction 事件。
+_____________——————————————————————
+操作ID应仅包含英文小写字母、数字、下划线和中横杠，操作ID中的中横杠用来分隔单词。
+
+——————————————————————————
+操作方法的名字是根据操作ID遵循如下规则衍生：
+
+将每个单词的第一个字母转为大写;
+去掉中横杠;
+增加action前缀.
+
+——————————
+捕获所有请求
+有时使用一个简单的控制器动作处理所有请求是有用的。如，当网站维护时显示一条布告。动态或通过应用配置文件配置 web 应用的 catchAll 属性可以实现该目的：
+
+return [
+    'id' => 'basic',
+    'basePath' => dirname(__DIR__),
+    // ...
+    'catchAll' => [ // <-- 这里配置
+        'offline/notice',
+        'param1' => 'value1',
+        'param2' => 'value2',
+    ],
+]
+上面 offline/notice 指向 OfflineController::actionNotice() 。 param1 和 param2 是传递给动作方法的参数。
+
+控制器操作--内联操作、独立操作（即独立操作类--如果动作非常通用，最好用单独的类实现以便重用。）
+————————————————————
+因为多场景的使用通常发生在Active Record 类中.
+
+通过覆盖 yii\base\Model::rules() 方法指定 模型属性应该满足的规则来申明模型相关验证规则
+
+默认情况下，模型支持的场景由模型中申明的 验证规则 来决定， 但你可以通过覆盖yii\base\Model::scenarios()方法来自定义行为
+
+model 类也是更多高级模型如Active Record 活动记录的基类
+
+模型并不强制一定要继承yii\base\Model，但是由于很多组件支持yii\base\Model， 最好使用它做为模型基类。
+
+默认情况下，属性标签通过yii\base\Model::generateAttributeLabel()方法自动从属性名生成. 它会自动将驼峰式大小写变量名转换为多个首字母大写的单词
+
+
+可调用 yii\base\Model::validate() 来验证接收到的数据， 该方法使用yii\base\Model::rules()申明的验证规则来验证每个相关属性， 如果没有找到错误，会返回 true， 否则它会将错误保存在 yii\base\Model::errors 属性中并返回false.
+
+通过覆盖 yii\base\Model::rules() 方法指定 模型属性应该满足的规则来申明模型相关验证规则。
+
+有时你想一条规则只在某个 场景 下应用， 为此你可以指定规则的 on 属性
+
+块赋值只用一行代码将用户所有输入填充到一个模型，非常方便， 它直接将输入数据对应填充到 yii\base\Model::attributes 属性。
+
+——————————————————————————————
+安全属性和不安全属性
+
+数据导出
+
+模型通常要导出成不同格式，例如，你可能想将模型的一个集合转成JSON或Excel格式， 导出过程可分解为两个步骤， 第一步，模型转换成数组；第二步，数组转换成所需要的格式。 你只需要关注第一步，因为第二步可被通用的 数据转换器如yii\web\JsonResponseFormatter来完成。
+
+————————————————————
+将模型转换为数组最简单的方式是使用 yii\base\Model::attributes 属性，更灵活和强大的将模型转换为数组的方式是使用 yii\base\Model::toArray() 方法
+
+——————————
+应用组件概念
+
+应用主体是服务定位器， 它部署一组提供各种不同功能的 应用组件 来处理请求。 例如，urlManager组件负责处理网页请求路由到对应的控制器。 db组件提供数据库相关服务等等
+————————————————————————
+应用组件可以是任意对象，可以在 应用主体配置配置 yii\base\Application::components 属性 。
+
+——————————————————————
+预定义的核心应用组件列表，可以和普通应用组件一样配置和自定义它们
+
+应用事件
+
+应用在处理请求过程中会触发事件， 可以在配置文件配置事件处理代码
+——————————————
+模型是代表业务数据、规则和逻辑的中心地方，通常在很多地方重用， 在一个设计良好的应用中， 模型通常比控制器代码多。
+
+————————————————————
+视图有其他预定义变量如 $model
+
+在 控制器 中，可调用以下控制器方法来渲染视图：
+
+yii\base\Controller::render(): 渲染一个 视图名 并使用一个 布局 返回到渲染结果。
+yii\base\Controller::renderPartial(): 渲染一个 视图名 并且不使用布局。
+等方法。
+——————————————————————————
+在 小部件 中，可调用以下小部件方法来渲染视图：
+
+yii\base\Widget::render(): 渲染一个 视图名.
+yii\base\Widget::renderFile(): 渲染一个视图文件目录或 别名下的视图文件。
+
+@app?
+
+视图名以双斜杠 // 开头，对应的视图文件路径为 @app/views/ViewName， 也就是说视图文件在 yii\base\Application::viewPath 路径下找， 例如 //site/about 对应到 @app/views/site/about.php。
+
+可以在视图中渲染另一个视图
+
+在视图中，可访问 $this 指向 yii\web\View 来管理和渲染这个视图文件
+
+有时候你想嵌套一个布局到另一个
+————————————————————————————————————————
+视图组件提供如下实用的视图相关特性，每项详情会在独立章节中介绍：
+
+主题: 允许为你的Web站点开发和修改主题；
+片段缓存: 允许你在Web页面中缓存片段；
+客户脚本处理: 支持CSS 和 JavaScript 注册和渲染；
+资源包处理: 支持 资源包的注册和渲染；
+模板引擎: 允许你使用其他模板引擎，如 Twig, Smarty。
+
+——————————————————
+视图文件默认使用main布局文件
+
+内容视图定义的标题会覆盖布局视图标题
+——————————
+框架基类文件路径--ventor-yiisoft-yii2
+————————————————————————
+如果想在内容视图中生成元标签，可在内容视图中调用yii\web\View::registerMetaTag()方法
+
+注册链接标签link---调用yii\web\View::registerLinkTag()
+__________——————————————————————
+模块是独立的软件单元，由模型, 视图, 控制器和其他支持组件组成， 终端用户可以访问在应用主体中已安装的模块的控制器， 模块被当成小应用主体来看待，和应用主体不同的是， 模块不能单独部署，必须属于某个应用主体。
+
+——————————————————————
+使用模块---模块对应有相应属性
+
+要在应用中使用模块，只需要将模块加入到应用主体配置的yii\base\Application::modules属性的列表中
+
+过滤器本质上是一类特殊的 行为，所以使用过滤器和 使用 行为一样。 可以在控制器类中覆盖它的 yii\base\Controller::behaviors() 方法来申明过滤器
+————————————————————————
+use yii\filters\auth\HttpBasicAuth;
+
+public function behaviors()
+{
+    return [
+        'basicAuth' => [
+            'class' => HttpBasicAuth::className(),
+        ],
+    ];
+}中className()？
+
+——————————————————————————————
+小部件是面向对象方式来重用视图代码。
+
+————————————————————
+创建小部件---需继承 yii\base\Widget 类并覆盖 yii\base\Widget::init() 和/或 yii\base\Widget::run() 方法可创建小部件。通常init() 方法处理小部件属性， run() 方法包含小部件生成渲染结果的代码。 
+
+当一个小部件只包含视图代码，它和视图很相似， 实际上，在这种情况下，唯一的区别是小部件是可以重用类， 视图只是应用中使用的普通PHP脚本。
+————————————————————
+Yii中的资源是和Web页面相关的文件，可为CSS文件，JavaScript文件，图片或视频等， 资源放在Web可访问的目录下，直接被Web服务器调用。
+
+——————————————————
+几乎每个 Yii 框架的核心类都继承自 yii\base\Object 或其子类。 这意味着只要在核心类中见到 getter 或 setter 方法，就可以像调用属性一样调用它。
+
+getter 方法是名称以 get 开头的方法，而 setter 方法名以 set 开头。
+
+附加事件处理器
+
+调用 yii\base\Component::on() 方法来附加处理器到事件上。
+移除事件的全部处理器，简单调用 yii\base\Component::off() 即可
+
+事件通过调用 yii\base\Component::trigger() 方法触发
+
+推荐使用类常量来表示事件名。上例中，常量 EVENT_HELLO 用来表示 hello 
+
+事件可以将自定义代码“注入”到现有代码中的特定执行点。附加自定义代码到某个事件，当这个事件被触发时，这些代码就会自动执行。
+
+————————————
+资源包指定为继承yii\web\AssetBundle的PHP类， 包名为可自动加载的PHP类名， 在资源包类中，要指定资源所在位置， 包含哪些CSS和JavaScript文件以及和其他包的依赖关系。
+——————————————
+Yii在资源包中管理资源，资源包简单的说就是放在一个目录下的资源集合， 当在视图中注册一个资源包， 在渲染Web页面时会包含包中的CSS和JavaScript文件。
+————————————————————————————
+绝对URL地址表示为外部JavaScript文件，如 http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js 或 //ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js.
+
+————
+，如果资源包放在Web不能访问的目录， 当视图注册资源时资源会被拷贝到一个Web可访问的目录中， 这个过程称为资源发布，yii\web\AssetManager会自动处理该过程。
+
+
+
+除了拷贝文件方式发布资源，如果操作系统和Web服务器允许可以使用符号链接，该功能可以通过设置 yii\web\AssetManager::linkAssets 为 true 来启用。
+
+符号链接？
+
+资源转换--当在视图中注册一个这样的资源包，yii\web\AssetManager资源管理器会自动运行预处理工具将使用扩展语法 的资源转换成CSS/JavaScript，当视图最终渲染页面时， 在页面中包含的是CSS/Javascipt文件， 而不是原始的扩展语法代码文件。
+————————————————————————
+Yii默认使用Closure Compiler来合并JavaScript文件， 使用YUI Compressor来合并CSS文件， 你应手工安装这些工具或修改选项使用你喜欢的工具。
+
+扩展是专门设计的在 Yii 应用中随时可拿来使用的， 并可重发布的软件包。例如， yiisoft/yii2-debug 扩展在你的应用的每个页面底部添加一个方便用于调试的工具栏， 帮助你简单地抓取页面生成的情况。 你可以使用扩展来加速你的开发过程。
+
+如果扩展为终端用户显示信息，这些信息应该用 Yii::t() 包装起来，以便可以进行翻译。
+
+————————————
+一些大型应用都包含有非常复杂的应用配置， 它们会被分割到许多更小的配置文件中。
+
+因为响应格式默认为yii\web\Response::FORMAT_HTML, 只需要在操作方法中返回一个字符串， 如果想使用其他响应格式，应在返回数据前先设置格式
+
+——————————————————————
+一些浏览器提供特殊的名为X-Sendfile的文件发送功能， 原理为将请求跳转到服务器上的文件， Web应用可在服务器发送文件前结束，为使用该功能， 可调用yii\web\Response::xSendFile()
+
+————————————
+当应用完成处理一个请求后, 会生成一个yii\web\Response响应对象并发送给终端用户 响应对象包含的信息有HTTP状态码，HTTP头和主体内容等, 网页应用开发的最终目的本质上就是根据不同的请求构建这些响应对象。
+
+可在 response 组件中操控yii\web\Response::headers来发送HTTP头部信息， 例如：
+
+$headers = Yii::$app->response->headers;
+
+————————————————————————
+如果已有格式化好的主体字符串，可赋值到响应的yii\web\Response::content属性， 例如：
+
+Yii::$app->response->content = 'hello world!';
+——————————————————
+如果在发送给终端用户之前需要格式化，应设置 yii\web\Response::format 和 yii\web\Response::data 属性，yii\web\Response::format 属性指定yii\web\Response::data中数据格式化后的样式，例如：
+
+$response = Yii::$app->response;
+$response->format = \yii\web\Response::FORMAT_JSON;
+$response->data = ['message' => 'hello world'];
+
+——————————————————————
+为更好的性能和可读性，推荐// 使用带通用前缀的键来存储数组
+$session['captcha.number'] = 5;
+$session['captcha.lifetime'] = 3600;
+
+Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库
+
+ＳＥＳＳＩＯＮID长度---注意: 根据php.ini 设置的 session.hash_function，你需要调整id列的长度， 例如，如果 session.hash_function=sha256 ， 应使用长度为64而不是40的char类型
+————————————————————————
+Flash 数据
+
+Flash数据是一种特别的session数据，它一旦在某个请求中设置后， 只会在下次请求中有效，然后该数据就会自动被删除。 常用于实现只需显示给终端用户一次的信息， 如用户提交一个表单后显示确认信息。
+
+Yii将session和cookie封装成对象并增加一些功能， 可通过面向对象方式访问它们。
+
+Yii使用 yii\web\Cookie对象来代表每个cookie，yii\web\Request 和 yii\web\Response 通过名为'cookies'的属性维护一个cookie集合， 前者的cookie 集合代表请求提交的cookies， 后者的cookie集合表示发送给用户的cookies。
+
+————————————————
+Cookie验证
+
+在上两节中，当通过request 和 response 组件读取和发送cookie时， 你会喜欢扩展的cookie验证的保障安全功能，它能 使cookie不被客户端修改。该功能通过给每个cookie签发一个 哈希字符串来告知服务端cookie是否在客户端被修改， 如果被修改，通过request组件的yii\web\Request::cookiescookie集合访问不到该cookie。
+
+yii2组件配置？
+
+
+
+事件处理器是一个PHP 回调函数，当它所附加到的事件被触发时它就会执行。可以使用以下回调函数之一：
+
+字符串形式指定的 PHP 全局函数，如 'trim' ；
+对象名和方法名数组形式指定的对象方法，如 [$object, $method] ；
+类名和方法名数组形式指定的静态类方法，如 [$class, $method] ；
+匿名函数，如 function ($event) { ... } 。
+
+事件
+
+。 行为，也称为 mixins
+
+关键概念理解？
+
+刷新缓存--ob_implicit_flush()将打开或关闭绝对（隐式）刷送。绝对（隐式）刷送将导致在每次输出调用后有一次刷送操作，以便不再需要对 flush() 的显式调用。
+————————
+别名用来表示文件路径和 URL，这样就避免了在代码中硬编码一些绝对路径 和 URL。
+Yii 预定义了大量可用的别名。
+
+我们把通过 Yii::setAlias() 定义的别名称为根别名，而用他们衍生出去的别名成为衍生别名。
+——————————————————
+你可以调用 Yii::getAlias() 命令来解析根别名到对应的文件路径或 URL。
+
+别名在 Yii 的很多地方都会被正确识别，无需调用 Yii::getAlias() 来把它们转换为路径/URL。
+
+$aliases定义在BaseYii.php里面
+——————————————————————————
+当你同时使用其他自动加载器和 Yii 自动加载器时，应该在其他自动加载器安装成功之后，再包含 Yii.php 文件。
+
+你也可以只使用 Composer 的自动加载，而不用 Yii 的自动加载。 不过这样做的话，类的加载效率会下降，且你必须遵循 Composer 所设定的规则， 从而让你的类满足可以被自动加载的要求。
+
+
+在你不使用 Yii 的自动加载器时，Composer 的自动加载器仍然可以帮你自动加载扩展内的类。
+
+t()方法？
+
+开发环境--3个,开启生产环境
+
+初始化，主文件加载总的配置文件web.php返回$config配置变量，配置应用并注册组件。
+
+————————————————————————————
+服务定位器
+
+服务定位器是一个了解如何提供各种应用所需的服务（或组件）的对象。 在服务定位器中，每个组件都只有一个单独的实例，并通过ID 唯一地标识。 用这个 ID 就能从服务定位器中得到这个组件。
+
+在 Yii 中，服务定位器是 yii\di\ServiceLocator 或其子类的一个实例。
+
+最常用的服务定位器是application（应用）对象，可以通过 \Yii::$app 访问。 它所提供的服务被称为application components（应用组件），比如：request、response、urlManager 组件。 可以通过服务定位器所提供的功能，非常容易地配置这些组件， 或甚至是用你自己的实现替换掉他们。
+
+除了 application 对象，每个模块对象本身也是一个服务定位器。
+——————————————————。
+
+要使用服务定位器，第一步是要注册相关组件。 组件可以通过 yii\di\ServiceLocator::set() 方法进行注册。
+————————————————————————————————
+当你第一次访问某组件时， yii\di\ServiceLocator 会通过该组件的注册信息创建一个该组件的实例，并返回它。 之后，如果再次访问，则服务定位器会返回同一个实例。
+——————————————————
+
+一旦组件被注册成功，你可以任选以下两种方式之一，通过它的 ID 访问它：
+
+$cache = $locator->get('cache');
+// 或者
+$cache = $locator->cache;
+————————————
+依赖注入（Dependency Injection，DI）容器就是一个对象，它知道怎样初始化并配置对象及其依赖的所有对象。
+
+依赖注入和服务定位器都是流行的设计模式，它们使你可以用充分解耦且更利于测试的风格构建软件。
+
+什么时候注册依赖关系
+
+由于依赖关系在创建新对象时需要解决，因此它们的注册应该尽早完成。如下是推荐的实践：
+
+如果你是一个应用程序的开发者，你可以在应用程序的入口脚本或者被入口脚本引入的脚本中注册依赖关系。
+如果你是一个可再分发扩展的开发者，你可以将依赖关系注册到扩展的引导类中。
+
+Yii 通过 yii\di\Container 类提供 DI 容器特性。它支持如下几种类型的依赖注入：
+
+构造方法注入;
+Setter 和属性注入;
+PHP 回调注入.
+
+组件注册set()用法？
+
+yii 包含了一个建立在 PHP PDO 之上的数据访问层 (DAO)。DAO为不同的数据库提供了一套统一的API。 其中`ActiveRecord` 提供了数据库与模型(MVC 中的 M,Model) 的交互，`QueryBuilder` 用于创建动态的查询语句。
+
+数据库4中隔离级别
+
+数据执行后定义事件---'db' => [
+    // ...
+    'on afterOpen' => function($event) {
+        // $event->sender refers to the DB connection
+        $event->sender->createCommand("SET time_zone = 'UTC'")->execute();
+    }
+],
+
+
+Yii::$app->db->createCommand('UPDATE post SET status=1 WHERE id=1')
+   ->execute();
+execute()执行不返回数据，其他返回数据
+
+Yii::$app->db->transaction(function ($db) {
+    // outer transaction
+    
+    $db->transaction(function ($db) {
+        // inner transaction
+    });
+});
