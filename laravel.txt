@@ -1,0 +1,157 @@
+安装最好用通过命令
+【composer create-project --prefer-dist laravel/laravel blog】
+
+你还可以在终端中通过 Composer 的 create-project 命令来安装 Laravel 应用：
+
+composer create-project --prefer-dist laravel/laravel blog
+注：如果要下载其他版本，比如5.2版本，可以使用这个命令：composer create-project --prefer-dist laravel/laravel blog 5.2.*。】
+
+
+基于驱动
+
+闭包转化为一个类
+
+php多线程
+
+window/linux目录可读写性设置
+
+.env.example文件重命名为.env需要输入键名？
+
+维护模式
+
+理解服务容器
+**********************
+make方法
+
+有很多方式可以从容器中解析对象，首先，你可以使用 make 方法，该方法接收你想要解析的类名或接口名作为参数：
+
+$fooBar = $this->app->make('HelpSpot\API');
+如果你所在的代码位置访问不了$app变量，可以使用辅助函数app：
+
+$api = app('HelpSpot\API');
+************************
+服务提供者是Laravel应用启动的中心，你自己的应用以及所有Laravel的核心服务都是通过服务提供者启动。
+
+但是，我们所谓的“启动”指的是什么？通常，这意味着注册事物，包括注册服务容器绑定、事件监听器、中间件甚至路由。服务提供者是应用配置的中心。
+*********************
+Laravel 使用服务容器解析所有的 Laravel 控制器，因此，可以在控制器的构造函数中类型声明任何依赖，这些依赖会被自动解析并注入到控制器实例中
+*************
+
+许多初学者都会困惑Laravel为什么没有models目录，我可以负责任的告诉大家，这是故意的。因为models这个词对不同人而言有不同的含义，容易造成歧义，有些开发者认为应用的模型指的是业务逻辑，另外一些人则认为模型指的是与关联数据库的交互。
+
+正是因为这个原因，我们默认将Eloquent的模型直接放置到app目录下，从而允许开发者自行选择放置的位置。
+
+想要延迟加载一个提供者，设置defer属性为true
+
+根目录--Vendor目录
+
+vendor目录包含Composer依赖。
+
+Laravel基于强大的Monolog库提供了简单的日志抽象层
+
+集成环境包，如果你使用的是Windows，需要开启系统的硬件虚拟化（VT-x），这通常可以通过BIOS来开启
+
+契约与门面
+**************
+门面为应用的服务容器中的绑定类提供了一个“静态”接口
+
+在 Laravel 应用中，门面就是一个为容器中对象提供访问方式的类。
+****************
+Laravel中的契约是指框架提供的一系列定义核心服务的接口。
+————————————————————————
+只要你保持类的职责单一，你会发现使用契约和门面并没有什么实质性的差别
+契约保存路径--Illuminate\Contracts
+
+————————————————————————————
+CSRF 保护
+——————
+Blade 模板
+——————————|
+使用 cookie 方法将一个cookie附加到输出的 Illuminate\Http\Response 实例
+————————————————————————————
+默认情况下，Laravel自带的gulpfile.js将会编译SASS和resources/assets/js/app.js文件
+
+
+通常控制器存放在 app/Http/Controllers 目录中。
+
+
+资源控制器
+Laravel 的资源控制器使得构建围绕资源的 RESTful 控制器变得毫无痛苦
+
+造表单方法
+
+由于HTML表单不能发起PUT、PATCH和DELETE请求，需要添加一个隐藏的 _method 字段来伪造HTTP请求方式，辅助函数 method_field 可以帮我们做这件事
+中间件
+
+Eloquent 模型/Eloquent 模型 App\User
+
+Eloquent集合
+————————————————————————————————
+要通过依赖注入获取当前 HTTP 请求实例，需要在控制器的构造函数或方法中对 Illuminate\Http\Request 类进行类型提示，这样当前请求实例会被服务容器自动注入
+
+HTTP 中间件为过滤进入应用的 HTTP 请求提供了一套便利的机制
+
+理解中间件的最好方式就是将中间件看做 HTTP 请求到达目标动作之前必须经过的“层”，每一层都会检查请求并且可以完全拒绝它。
+
+注册中间件-- \Illuminate\Routing\Middleware\ThrottleRequests::class/::class
+
+补充资源控制器
+
+如果有必要在默认资源路由之外添加额外的路由到资源控制器，应该在调用 Route::resource 之前定义这些路由；否则，通过 resource 方法定义的路由可能无意中优先于补充的额外路由：
+
+Route::get('photos/popular', 'PhotoController@method');
+Route::resource('photos', 'PhotoController');
+注：注意保持控制器的单一职责，如果你发现指向控制器动作的路由超过默认提供的资源控制器动作集合了，考虑将你的控制器分割成更多、更小的控制器。
+
+——————————
+
+门面（Facades）
+契约（Contracts）
+
+由于HTTP驱动的应用是无状态的，所以我们使用Session来存储用户请求信息。Laravel通过干净、统一的API处理后端各种Session驱动，目前支持的流行后端驱动包括Memcached、Redis和数据库。
+————————————————————
+Session配置文件位于config/session.php。默认情况下，Laravel使用的session驱动为文件驱动，这对许多应用而言是没有什么问题的。在生产环境中，你可能考虑使用memcached或者redis驱动以便获取更快的session性能。
+
+session驱动定义请求的Session数据存放在哪里，Laravel可以处理多种类型的驱动：
+
+file – session数据存储在 storage/framework/sessions目录下；
+cookie – session数据存储在经过加密的安全的cookie中；
+database – session数据存储在数据库中
+memcached / redis – session数据存储在memcached/redis中；
+array – session数据存储在简单PHP数组中，在多个请求之间是非持久化的。
+
+【服务容器文件地址？Illuminate\Contracts\Container】
+
+laravel基于Illuminate子包类创建实例
+
+Laravel提供了多种有用的验证规则
+
+视图包含应用的 HTML 代码并将应用的控制器逻辑和表现逻辑进行分离。视图文件存放在 resources/views 目录。
+
+如果要求即使为空时也要验证属性，则必须要暗示属性是必须的，要创建一个隐式扩展
+
+视图还可以嵌套在 resources/views 的子目录中，用“.”号来引用嵌套视图，比如，如果视图存放路径是resources/views/admin/profile.php，那我们可以这样引用它：
+
+return view('admin.profile', $data);
+
+视图 Composer 是当视图被渲染时的回调或类方法;如果你有一些数据要在视图每次渲染时都做绑定，可以使用视图 Composer 将逻辑组织到一个单独的地方。
+
+通过数组方式将数据传递到视图
+
+服务提供者注册（boot（）和register()）
+
+如果创建一个新的服务提供者来包含视图 Composer 注册，需要添加该服务提供者到配置文件 config/app.php 的providers 数组中。
+
+创建provider文件后，需要在config--app.php ,providers配置项添加配置信息
+
+视图创建器?
+
+默认情况下，Blade 的 {{ }} 语句已经通过 PHP 的 htmlentities 函数处理以避免
+
+ XSS 攻击
+
+由于很多 JavaScript 框架也是用花括号来表示要显示在浏览器中的表达式，可以使用 @ 符号来告诉 Blade 渲染引擎该表达式应该保持原生格式不作改动。
+
+如果你在模板中很大一部分显示JavaScript变量，那么可以将这部分HTML封装在@verbatim指令中，这样就不需要在每个Blade输出表达式前加上@前缀
+
+Laravel 的本地化特性允许你在应用中轻松实现多种语言支持。
