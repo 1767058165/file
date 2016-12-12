@@ -669,3 +669,94 @@ array_values — 返回数组中所有的值
 在PHP5中，接口是可以继承自另外一个接口的。这样代码的重用更有效了。要注意只有接口
 
 和接口之间使用 继承关键字 extends
+
+ 
+ !== PHP 数组运算符，不恒等
+
+echo App\Http\Kernel::class语法：导入命名空间App\Http下的包含类名为kernel的
+
+kernel.php文件，输出为字符串
+
+text/html的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文
+
+件时会自动调用html的解析器对文件进行相应的处理。
+
+text/plain的意思是将文件设置为纯文本的形式，浏览器在获取到这种文件时并不会对其进
+
+行处理。
+
+如果你要检查一个变量是否存在，请使用 isset()。 defined() 函数仅对 constants 有效
+
+。如果你要检测一个函数是否存在，使用 function_exists()。
+
+例如：define('YII_ENV_TEST', YII_ENV === 'test');
+——————————————————————
+——————————
+协议版本：HTTP/1.1、 HTTP/1.0 协议
+————————————
+defined() — 检查某个名称的常量是否存在
+self调用const类常量
+
+1.非限定名称，或不包含前缀的类名称，例如 $comment = new Comment();。如果当前命名
+
+空间是Blog\Article，Comment将被解析为Blog\Article\Comment。如果使用Comment的代码
+
+不包含在任何命名空间中的代码（全局空间中），则Comment会被解析为Comment。
+
+2.限定名称，或包含前缀的名称，例如 $comment = new Article\Comment();。如果当前的
+
+命名空间是Blog，则Comment会被解析为Blog\Article\Comment。如果使用Comment的代码不
+
+包含在任何命名空间中的代码（全局空间中），则Comment会被解析为Comment。
+
+3.完全限定名称，或包含了全局前缀操作符的名称，例如 $comment = new \Article
+
+\Comment();。在这种情况下，Comment总是被解析为代码中的文字名(literal name)
+
+Article\Comment。
+ 
+
+其实可以把这三种名称类比为文件名（例如 comment.php）、相对路径名（例如 
+
+./article/comment.php）、绝对路径名（例如 /blog/article/comment.php），这样可能
+
+会更容易理解。
+
+命名空间\yii\site--第一个杠，完全限定名称
+
+ PHP 方法名是不区分大小写的
+
+
+匿名函数（闭包函数）是一个独立的命名空间，你不能访问这个命名空间之外的变量，使用
+
+use关键字可以把外部的变量 带到这个命名空间中。可以通过使用 & 符号来声明指针变量
+
+。
+
+匿名函数不会自动从父作用域中继承变量，注意从父作用域继承变量和使用全局变量是不同
+
+的。如果父作用域本身就是全局的 情况下就不存在从父作用域继承变量了，如果不是全局
+
+的话，想要使用父作用域中的变量，必须在声明匿名函数时候使用use换键字 来定义继承父
+
+作用域的变量。
+
+使用依赖注入的思路是应用程序用到Foo类，Foo类需要Bar类，Bar类需要Bim类，那么先创
+
+建Bim类，再创建Bar类并把Bim注入，再创建Foo类，并把Bar类注入，再调用Foo方法，Foo
+
+调用Bar方法，接着做些其它工作。
+
+类当中使用new static()/new self()，代表调用此类构造函数
+
+可以把在类中始终保持不变的值定义为常量。在定义和使用常量的时候不需要使用 $ 符号
+
+。
+
+类调用静态属性，需要加$符号---MyClass::$b;
+
+由于静态方法不需要通过对象即可调用，所以伪变量 $this 在静态方法中不可用。$this-
+
+只能在方法中使用。
+
+类属性--定义需要添加访问修饰符，或者var定义，默认为public
