@@ -68,3 +68,6 @@ composer install
 因为 Composer 自动加载用于加载大多数第三方类文件， 应考虑对其进行优化，通过执行以下命令：
 
 composer dumpautoload -o
+
+
+ composer update --prefer-dist 命令来安装扩展
