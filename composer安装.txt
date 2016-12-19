@@ -62,3 +62,9 @@ composer install
 继续 上面的例子，这里将下载 monolog 到 vendor/monolog/monolog 目录。
 
 安装成功会出现composer.json
+
+优化 Composer 自动加载
+*************************************
+因为 Composer 自动加载用于加载大多数第三方类文件， 应考虑对其进行优化，通过执行以下命令：
+
+composer dumpautoload -o
