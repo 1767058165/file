@@ -760,3 +760,90 @@ use关键字可以把外部的变量 带到这个命名空间中。可以通过�
 只能在方法中使用。
 
 类属性--定义需要添加访问修饰符，或者var定义，默认为public
+ 
+ 
+callable 类型指定回调类型 callback
+
+compact() 在当前的符号表中查找该变量名并将它添加到输出的数组中，变量名成为键名而变量的内容成为该键的值。简单说，它做的事和 extract() 正好相反。返回将所有变量添加进去后的数组。
+
+
+booll  ctype_alnum（）
+
+(PHP 4 >= 4.0.4, PHP 5, PHP 7)
+ctype_alnum — 做字母和数字字符检测,检查提供的string,text 是否全部为字母和(或)数字字符。
+————————————————————————————————————————
+ucwords
+
+(PHP 4, PHP 5, PHP 7)
+ucwords — 将字符串中每个单词的首字母转换为大写
+
+SplFileObject类为文件提供了一个面向对象接口.
+
+fgetcsv — 从文件指针中读入一行并解析 CSV 字段
+
+
+方法重载简化参数写法
+【
+public function init(){
+    {
+        parent::init();}
+】
+
+crypt（参数1，参数2）函数用法--参数1被加密字符串，参数2加密字符--单向字符串散列
+
+sleep()延迟执行
+
+Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。实际上Cache-Control: no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。 
+
+
+
+Cache-Control: no-store：这个才是响应不被缓存的意思。
+
+session_cache_limiter() — 读取/设置缓存限制器(设置客户端Cache-Control 头信息)
+——————————————————————————————————
+restful风格--用来构建web service系统的原则
+REST是一种设计风格而不是标准，如果一个架构符合REST原则，我们就称它为RESTful架构。
+
+ii 提供了一整套用来简化实现 RESTful 风格的 Web Service 服务的 API。 
+
+HATEOAS,缩写为超媒体应用程序状态的引擎,是一个REST应用程序体系结构的约束
+
+你可以使用 yii\rest\UrlRule 简化路由到你的 API 末端。
+——————————————————————————————
+格式化日期：面向对象风格
+
+<?php
+$date = DateTime::createFromFormat('j-M-Y', '15-Feb-2009');
+echo $date->format('Y-m-d');
+?>
+过程化风格
+
+<?php
+$date = date_create_from_format('j-M-Y', '15-Feb-2009');
+echo date_format($date, 'Y-m-d');
+?>
+————————————————————
+array_merge() 将一个或多个数组的单元合并起来，一个数组中的值附加在前一个数组的后面。返回作为结果的数组。
+
+如果输入的数组中有相同的字符串键名，则该键名后面的值将覆盖前一个值。然而，如果数组包含数字键名，后面的值将不会覆盖原来的值，而是附加到后面。
+
+icu扩展安装
+
+foreach as
+
+js --for in
+
+php datetimezone--一般设置为上海Asia/Shanghai
+
+ReflectionClass 类报告了一个类的有关信息。通过其构造方法 生成对象调用getFileName()返回类定义的文件名。
+
+realpath
+
+(PHP 4, PHP 5, PHP 7)
+realpath — 返回规范化的绝对路径名
+
+DIRECTORY_SEPARATOR是一个PHP常量，代表反斜杠
+
+dirname(__DIR__)返回当前目录的上级目录
+
+ReflectionClass::newInstanceArgs — 从给出的参数创建一个新的类实例。利用反射类创建类实例。
