@@ -8,3 +8,5 @@ phpstorm 按住Ctrl键，可显示函数用法
 调试php文件老出问题，尽量用其他服务器集成包
 
 选中类名--出现show diagram(类继承图表)
+
+ctrl+shift+f项目文件查找--打开路径查找
