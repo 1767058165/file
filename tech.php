@@ -847,3 +847,49 @@ DIRECTORY_SEPARATOR是一个PHP常量，代表反斜杠
 dirname(__DIR__)返回当前目录的上级目录
 
 ReflectionClass::newInstanceArgs — 从给出的参数创建一个新的类实例。利用反射类创建类实例。
+ 
+ php <?= 内容 ?>等价于<?php echo 内容 ?>
+
+ＰＥＡＲ是ＰＨＰ扩展与应用库（the PHP Extension and Application Repository）的缩
+
+写。它是一个ＰＨＰ扩展及应用的一个代码仓库，简单地说，ＰＥＡＲ就是ＰＨＰ的ＣＰＡ
+
+Ｎ。
+
+ArrayObject-This class allows objects to work as arrays.
+
+【session需要开启，。默认存储在服务器tmp目录下】
+
+
+逻辑运算符
+例子	名称	结果
+$a and $b	And（逻辑与）	TRUE，如果 $a 和 $b 都为 TRUE。
+$a or $b	Or（逻辑或）	TRUE，如果 $a 或 $b 任一为 TRUE。
+$a xor $b	Xor（逻辑异或）	TRUE，如果 $a 或 $b 任一为 TRUE，但不同时是。
+! $a	Not（逻辑非）	TRUE，如果 $a 不为 TRUE。
+$a && $b	And（逻辑与）	TRUE，如果 $a 和 $b 都为 TRUE。
+$a || $b	Or（逻辑或）	TRUE，如果 $a 或 $b 任一为 TRUE。
+“与”和“或”有两种不同形式运算符的原因是它们运算的优先级不同（见运算符优先级）
+
+。
+
+数据库事务4中指定隔离级别
+
+实现了Iterator 接口的对象，可以用在 foreach 结构当中使用。
+
+compact
+
+(PHP 4, PHP 5, PHP 7)
+compact — 建立一个数组，包括变量名和它们的值
+
+说明
+
+————————————————————————————
+什么是RESTful风格的API
+对于各种客户端设备与服务端的通信，我们往往都通过API为客户端提供数据，提供某种资
+
+源。关于RESTful的概念，一查一大推，一两句也解释不清，姑且先按照我们通俗的理解：
+
+在众多风格、众多原则的API中，RESTful就是一套比较优秀的接口调用方式。可以理解为其
+
+他网站通过ＡＰＩ可以调用本网站资源，例如天气信息。
