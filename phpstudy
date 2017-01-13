@@ -1,1 +1,3 @@
 升级phpmyadmin ,访问phpmyadmin2路径，内容替换为最新版本
+
+ phpstudy集成包虽然phpinfo()没有输出intl扩展，但不用开启此扩展也能用。
