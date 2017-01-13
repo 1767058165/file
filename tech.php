@@ -893,3 +893,237 @@ compact — 建立一个数组，包括变量名和它们的值
 在众多风格、众多原则的API中，RESTful就是一套比较优秀的接口调用方式。可以理解为其
 
 他网站通过ＡＰＩ可以调用本网站资源，例如天气信息。
+ 
+ 
+ phpstudy集成包虽然phpinfo()没有输出intl扩展，但不用开启此扩展也能用。
+
+【任务标记：
+
+TODO -用来提醒该标识处的代码有待返回继续编写、更新或者添加。该标签通常在注释块的
+
+源文件顶部。
+
+FIXME -该标签用来提醒你代码中存在稍后某个时间需要修改的部分
+
+XXX -需要改进的功能】
+
+
+【无状态请求：Server不保存任何请求状态信息，Client的每一个请求都具有User 
+
+credentials等所需要的全部信息，所以能被任意可用的Server应答。 
+
+有状态请求：Server保存了Client的请求状态，Server会通过Client传递的SessionID在
+
+Server中的Session作用域找到之前交互的信息，并以此来实现应答。所以Client只能由某
+
+一个Server来应答。】
+
+strtotime（） — 将任何英文文本的日期时间描述解析为 Unix 时间戳，利用date()格式
+
+化时间戳。
+
+截取字符串substr()
+
+PHP默认的时区设置是 UTC 时间，而北京正好位于时区的东八区，领先 UTC 八个小时。
+
+
+cookie的存活期：默认为-1
+
+上传图片重命名用时间戳time()
+
+references 翻译为:引用
+
+注意：类方法使用类属性，不要忘了用$this关键字访问
+
+【变量t数组赋值：例如
+
+class t{
+/**
+ *
+ * 
+ */
+
+public $t;
+public function t2(){
+$this->t['t2']=123;
+}
+
+}
+$k=new t();
+$k->t2();
+var_dump($k->t);
+】
+         会话Cookie：把Cookie保存到浏览器上，当存活期为负数  
+         持久Cookie：把Cookie保存到文件中，当存活期为正数  
+         设置存活期：c.setMaxAge();
+
+
+array_combine（） — 创建一个数组，用一个数组的值作为其键名，另一个数组的值作为
+
+其值
+
+——————————————————————
+get_class（）
+
+(PHP 4, PHP 5, PHP 7)
+get_class — 返回对象的类名
+
+【接口使用关键字 interface 来定义，并使用关键字 implements 来实现接口中的方法，
+
+且必须完全实现。
+例子：
+<?php
+//定义接口
+interface User{
+    function getDiscount();
+    function getUserType();
+}
+//VIP用户 接口实现
+class VipUser implements User{
+    // VIP 用户折扣系数
+    private $discount = 0.8;
+    function getDiscount() {
+        return $this->discount;
+    }
+    function getUserType() {
+        return "VIP用户";
+    }
+}
+class Goods{
+    var $price = 100;
+    var $vc;
+    //定义 User 接口类型参数，这时并不知道是什么用户
+    function run(User $vc){
+        $this->vc = $vc;
+        $discount = $this->vc->getDiscount();
+	$usertype = $this->vc->getUserType();
+        echo $usertype."商品价格：".$this->price*$discount;
+    }
+}
+
+$display = new Goods();
+$display ->run(new VipUser);	//可以是更多其他用户类型
+?>
+运行该例子，输出：
+VIP用户商品价格：80 元 
+该例子演示了一个 PHP 接口的简单应用。该例子中，User 接口实现用户的折扣，而在 
+
+VipUser 类里面实现了具体的折扣系数。最后商品类 Goods 根据 User 接口来实现不同的
+
+用户报价。】
+
+【服务定位器模式---例如
+
+<?php
+
+namespace DesignPatterns\More\ServiceLocator;
+
+class ServiceLocator implements ServiceLocatorInterface
+{
+    /**
+     * All services.
+     *
+     * @var array
+     */
+    private $services;
+
+    /**
+     * The services which have an instance.
+     *
+     * @var array
+     */
+    private $instantiated;
+
+    /**
+     * True if a service can be shared.
+     *
+     * @var array
+     */
+    private $shared;
+
+    public function __construct()
+    {
+        $this->services     = array();
+        $this->instantiated = array();
+        $this->shared       = array();
+    }
+
+    /**
+     * Registers a service with specific interface.
+     *
+     * @param string $interface
+     * @param string|object $service
+     * @param bool $share
+     */
+    public function add($interface, $service, $share = true)
+    {
+        /**
+         * When you add a service, you should register it
+         * with its interface or with a string that you can use
+         * in the future even if you will change the service implementation.
+         */
+
+        if (is_object($service) && $share) {
+            $this->instantiated[$interface] = $service;
+        }
+        $this->services[$interface] = (is_object($service) ? get_class($service) 
+
+: $service);
+        $this->shared[$interface]   = $share;
+    }
+
+    /**
+     * Checks if a service is registered.
+     *
+     * @param string $interface
+     *
+     * @return bool
+     */
+    public function has($interface)
+    {
+        return (isset($this->services[$interface]) || isset($this->instantiated
+
+[$interface]));
+    }
+
+    /**
+     * Gets the service registered for the interface.
+     *
+     * @param string $interface
+     *
+     * @return mixed
+     */
+    public function get($interface)
+    {
+        // Retrieves the instance if it exists and it is shared
+        if (isset($this->instantiated[$interface]) && $this->shared[$interface]) 
+
+{
+            return $this->instantiated[$interface];
+        }
+
+        // otherwise gets the service registered.
+        $service = $this->services[$interface];
+
+        // You should check if the service class exists and
+        // the class is instantiable.
+
+        // This example is a simple implementation, but
+        // when you create a service, you can decide
+        // if $service is a factory or a class.
+        // By registering a factory you can create your services
+        // using the DependencyInjection pattern.
+
+        // ...
+
+        // Creates the service object
+        $object = new $service();
+
+        // and saves it if the service must be shared.
+        if ($this->shared[$interface]) {
+            $this->instantiated[$interface] = $object;
+        }
+        return $object;
+    }
+}
+】
