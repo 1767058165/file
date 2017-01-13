@@ -12,7 +12,9 @@ phpstorm 按住Ctrl键，可显示函数用法
 ctrl+shift+f项目文件查找--打开路径查找
 
 
-phpstorm ctrl+N查找类
+ctrl+N查找类
+ 
+ctrl+shift+N查找文件
 
 alt+向下箭头，循环显示类中方法。
 
