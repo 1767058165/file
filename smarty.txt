@@ -1,4 +1,9 @@
-smartyģ�尲װ�̳����yii2����smarty;
-���°�smartyĬ����ģ���в���ʹ��phpԭ����������ģ���ļ��л��������Ĳ��㣬�鿴�ĵ���֪���Ҫʹ��phpԭ����������SmartyBC�࣬���������
+smarty模板安装教程详见yii2集成smarty;
+最新版smarty默认在模板中不能使用php原生函数，在模板文件中会产生许多的不便，查看文档得知如果要使用php原生语句必须用SmartyBC类，解决方案：
 
-��/vender/yiisoft/yii2-smarty/ViewRenderer.php���ҵ�use Smarty;��Ϊuse SmartyBC as Smarty;;
+在/vender/yiisoft/yii2-smarty/ViewRenderer.php中找到use Smarty;改为use SmartyBC as Smarty;
+
+
+对于选取数组特定键值元素，使用{section}。{foreach}可以做{section}能做的所有事，而且语法更简单、更容易。它通常是循环数组的首选。
+
+安装yii-smarty后，可以使用  return $this->render（）渲染模板代替，而不使用assign()变量赋值，与display()显示模板。
