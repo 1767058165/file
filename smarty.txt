@@ -7,3 +7,6 @@ smarty模板安装教程详见yii2集成smarty;
 对于选取数组特定键值元素，使用{section}。{foreach}可以做{section}能做的所有事，而且语法更简单、更容易。它通常是循环数组的首选。
 
 安装yii-smarty后，可以使用  return $this->render（）渲染模板代替，而不使用assign()变量赋值，与display()显示模板。
+
+
+date_format:'%Y-%m-%d'日期格式化
