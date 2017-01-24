@@ -62,3 +62,18 @@ list1 li:nth-of-type(odd){ background:#00ccff;}奇数行
 
 
 html 元素设置disabled属性，其值post不会提交
+
+
+返回到上一页的html代码：
+1、超链接返回上一页。
+
+<a href=”#” onClick=”javascript :history.back(-1);”>返回上一页</a>
+<a href=”#” onClick=”javascript :history.go(-1);”>返回上一页</a>
+
+2、按钮返回上一页。
+
+1
+<input type=”button” name=”Submit” onclick=”javascript:history.back(-1);” value=”返回上一页”>
+
+————————————————————————————
+html5  data-*属性
