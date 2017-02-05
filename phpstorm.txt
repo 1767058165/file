@@ -9,8 +9,7 @@ phpstorm 按住Ctrl键，可显示函数用法
 
 选中类名--出现show diagram(类继承图表)
 
-ctrl+shift+f项目文件查找--打开路径查找
-
+ctrl+shift+f项目文件查找--打开路径查找,在en输入法下
 
 ctrl+N查找类
  
