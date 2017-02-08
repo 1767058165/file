@@ -1,3 +1,0 @@
-利用wamp集成包，
-将php里面的icu文件拷贝到apache的bin目录下，
-只需在Apache里面的php.ini ,添加 extension=php_intl.dll，即可
