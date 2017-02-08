@@ -14,4 +14,6 @@ phpsdudy 打开配置文件-》vhosts-conf文件
 
  border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -o-border-radius:50%; margin:5px auto;
 
- 两边对齐：text-align:justify; }
+ 两边对齐：text-align:justify; 
+ 
+ @media (max-width: 450px)--包括450px
