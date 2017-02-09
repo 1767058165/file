@@ -17,3 +17,11 @@ phpsdudy 打开配置文件-》vhosts-conf文件
  两边对齐：text-align:justify; 
  
  @media (max-width: 450px)--包括450px
+ 
+ 左右浮动，定义某一方宽度
+
+图像占比不能取整，浮点值尽量四舍五入取值
+
+元素占比，相对于最近父元素，而不是祖先元素
+
+元素居中，使用inline-block
