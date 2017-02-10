@@ -25,3 +25,5 @@ phpsdudy 打开配置文件-》vhosts-conf文件
 元素占比，相对于最近父元素，而不是祖先元素
 
 元素居中，使用inline-block
+
+为手机网站nav元素添加固定height，防止横竖切换走形
