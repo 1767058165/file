@@ -22,3 +22,19 @@ diagram窗口，按住alt键显示放大镜
 窗口切换alt+ctrl+[
 
 tab闭合网页标签，！+tab生成HTML代码
+
+Ctrl+shift+N  查找文件
+
+文件红线多为有错误--多为不小心碰到键盘
+
+Shift + F6  Rename
+
+编辑->查找->路径查找
+
+Ctrl+shift+A执行软件操作
+
+添加TODO注释
+
+win7最小化当前窗口--先按Alt+space,然后按N
+
+win7 最小化全部窗口：win+d/win+m
