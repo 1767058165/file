@@ -77,3 +77,7 @@ html 元素设置disabled属性，其值post不会提交
 
 ————————————————————————————
 html5  data-*属性
+
+ @media all and (orientation : landscape){/*屏幕垂直*/}
+
+ @media screen and (orientation:portrait){ /*屏幕水平*/ }
