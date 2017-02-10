@@ -20,3 +20,5 @@ alt+向下箭头，循环显示类中方法。
 diagram窗口，按住alt键显示放大镜
 
 窗口切换alt+ctrl+[
+
+tab闭合网页标签，！+tab生成HTML代码
