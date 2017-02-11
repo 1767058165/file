@@ -27,3 +27,16 @@ phpsdudy 打开配置文件-》vhosts-conf文件
 元素居中，使用inline-block
 
 为手机网站nav元素添加固定height，防止横竖切换走形
+
+【-webkit-touch-callout 是一个 不规范的属性（unsupported WebKit property），它没有出现在 CSS 规范草案中。
+当你触摸并按住触摸目标时候，禁止或显示系统默认菜单。在iOS上，当你触摸并按住触摸的目标，比如一个链接，Safari浏览器将显示链接有关的系统默认菜单。这个属性可以让你禁用系统默认菜单。
+兼容性：
+iOS 2.0及更高版本的Safari浏览器可用
+用法：a,img{-webkit-touch-callout:none}
+】
+
+【CSS里width: auto\9 是什么意思？
+ 这是专门针对ie的hack写法
+ “\9″    在IE6/IE7/IE8/IE9/IE10下生效
+ “\0”    在 IE8/IE9/IE10下生效
+ “\9\0” 在IE9/IE10下生效】
