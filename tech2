@@ -178,5 +178,5 @@ magic_quotes_runtime
 
 magic_quotes_gpc的设定值将会影响通过GET、POST 和 COOKIE获得的数据
 
-magic_quotes_runtime的设定值将会影响从文件中读取的数据或从数据库查询得到的数据
+magic_quotes_runtime的设定值将会影响从文件中读取的数据或从数据库查询得到的数据,php7已弃用
 ——————————————————————————————
