@@ -1,0 +1,182 @@
+gettype（） — 获取变量的类型
+
+
+【定义$k=[]; 在$k赋值时，注意添加[]，即 $k[]= array_merge($date2,$t2);】
+
+【静态类可用类实例及类名调用】
+
+substr_count
+
+(PHP 4, PHP 5, PHP 7)
+substr_count — 计算字串出现的次数
+
+str_pad
+
+(PHP 4 >= 4.0.1, PHP 5, PHP 7)
+str_pad — 使用另一个字符串填充字符串为指定长度。
+
+【理解无限极分类--我们来看返回数组格式的函数，一样要使用递归：
+function get_array($id=0){ 
+    $sql = "select id,title from class where pid= $id"; 
+    $result = mysql_query($sql);//查询子类 
+    $arr = array(); 
+    if($result && mysql_affected_rows()){//如果有子类 
+        while($rows=mysql_fetch_assoc($result)){ //循环记录集 
+            $rows['list'] = get_array($rows['id']); //调用函数，传入参数，继续查询下级 
+            $arr[] = $rows; //组合数组 
+        } 
+        return $arr; 
+    } 
+} 】
+
+【foreach (array_expression as $key => $value)
+    statement】
+
+【遍历对象，$key如果取消，变量$value直接获取键值---
+foreach($class as $key => $value) {
+    print "$key => $value\n";
+}】
+
+【打印键名与键值一一对应，最好用var_dump(),而不是print_r()】
+【a标签href属性提交表单】
+
+【服务器图片多级存储】
+
+【框架环境文件，遵循框架路由规则】
+
+file_exists() 是个原生的 PHP 函数，PHP7包括Sphinx扩展
+
+————————————————————
+权限控制需要用户表和权限表
+
+
+PHP一维数组转化为单个变量相互转换(extract--转换为变量 与 compact-转换为数组)
+
+Sphinx除了支持检索，还支持文档摘要生成。
+——————————————————
+【defined('BASEPATH') OR exit('No direct script access allowed');里面or为运算符链接defined(）和
+
+exit（）】
+
+【define（）定义常量与defined（）检查常量是否定义】
+
+【php继承父类所有的公有的属性和方法，PHP不会在子类的构造方法中自动的调用父类的构造方法。要执行父
+
+类的构造方法，需要在子类的构造方法中调用 parent::__construct() 。】
+
+————————————————————
+获取php版本--phpversion()
+——————————
+password_hash（ string $password , integer $algo [, array $options ]）
+
+(PHP 5 >= 5.5.0, PHP 7)
+password_hash — 创建密码的哈希（hash）
+
+参数
+
+password
+用户的密码。
+
+Caution
+使用PASSWORD_BCRYPT 做算法，将使 password 参数最长为72个字符，超过会被截断。
+algo
+一个用来在散列密码时指示算法的密码算法常量。
+
+options
+一个包含有选项的关联数组。目前支持两个选项：salt，在散列密码时加的盐（干扰字符串），以及cost，用
+
+来指明算法递归的层数。这两个值的例子可在 crypt() 页面找到。
+
+省略后，将使用随机盐值与默认 cost
+————————————————
+password_verify
+
+(PHP 5 >= 5.5.0, PHP 7)
+password_verify — 验证密码是否和哈希匹配
+
+————————————————————
+crypt
+
+(PHP 4, PHP 5, PHP 7)
+crypt — 单向字符串散列
+
+说明：string crypt ( string $str [, string $salt ] )
+
+————————————————
+hash
+
+(PHP 5 >= 5.1.2, PHP 7, PECL hash >= 1.1)
+hash — 生成哈希值 （消息摘要）
+——————————————
+hash_pbkdf2
+
+(PHP 5 >= 5.5.0, PHP 7)
+hash_pbkdf2 — 生成所提供密码的 PBKDF2 密钥导出；输出类似：120fb6cffcf8b32c43e7
+————————————————————————
+hex2bin() — 转换十六进制字符串为二进制字符串
+————————————————
+array_column（）
+
+(PHP 5 >= 5.5.0, PHP 7)
+array_column — 返回数组中指定的一列，解决：从多维数组中返回单列数组
+——————————————————
+php进制0x开头16进制，与0开头8进制，出现在常量中，不能出现在字符串中
+
+————————————————
+正则表达式一个最重要的特性就是将匹配成功的模式的某部分进行存储供以后使用这一能力。 
+对一个正则表达式模式或部分模式两边添加圆括号()可以把这部分表达式存储到一个临时缓冲区中。 
+
+所捕获的每个子匹配都按照在正则表达式模式中从左至右所遇到的内容按顺序存储。 
+存储子匹配的缓冲区编号从1开始，连续编号至最大99个子表达式。 
+每个缓冲区都可以使用'\n'(或用'$n')访问，其中n为1至99的阿拉伯数字，用来按顺序标识特定缓冲区(子表
+
+达式)。 
+
+————————————————
+preg_replace（）中$1,$2,$3用法
+
+(PHP 4, PHP 5, PHP 7)
+preg_replace — 执行一个正则表达式的搜索和替换
+
+例如：<?php
+$string = 'April 15, 2003';
+$pattern = '/(\w+) (\d+), (\d+)/i';
+$replacement = '${1}1,$3';
+echo preg_replace($pattern, $replacement, $string);
+?>
+
+
+正则表达式的逆向引用指的是($0-99或\\0-99)和子模式以(/()/)开始。
+
+$str = preg_replace($pattern, "\\1", $string); //这里的\\1可以使用\$1或$1，引用第一个子匹配 
+————————————————————————————
+ini_set('display_errors', 1);设置php.ini显示错误信息，还有error_reporting();
+
+// 关闭所有PHP错误报告
+error_reporting(0);
+
+// Report simple running errors
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+// 报告所有 PHP 错误
+error_reporting(-1);
+
+——————————————————————————————
+$ php index.php tools message "John Smith"--$代表命令行模式
+——————————————————
+php中数据的魔法引用函数 magic_quotes_gpc  或 magic_quotes_runtime 
+
+agic_quotes_gpc  和 magic_quotes_runtime二者的区别：
+magic_quotes_gpc
+作用范围是：WEB客户服务端；
+作用时间：请求开始的时候，例如当脚本运行时。
+
+magic_quotes_runtime
+此函数是该函数的别名： set_magic_quotes_runtime() 
+作用范围：从文件中读取的数据或执行exec()的结果或是从SQL查询中得到的；
+作用时间：每次当脚本访问运行状态中产生的数据。
+
+magic_quotes_gpc的设定值将会影响通过GET、POST 和 COOKIE获得的数据
+
+magic_quotes_runtime的设定值将会影响从文件中读取的数据或从数据库查询得到的数据
+——————————————————————————————
