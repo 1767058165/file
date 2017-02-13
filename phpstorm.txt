@@ -38,3 +38,5 @@ Ctrl+shift+A执行软件操作
 win7最小化当前窗口--先按Alt+space,然后按N
 
 win7 最小化全部窗口：win+d/win+m
+
+运行->切换行断点   ctrl+F8
