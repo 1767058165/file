@@ -43,3 +43,21 @@ win7 最小化全部窗口：win+d/win+m
 
 tab     代码增加缩进
 tab+shift  代码减少缩进
+
+hex 十六进制
+
+Octal八进制
+
+F5复制文件 
+
+ctrl+shift+J 将多行合并到一行
+
+Ctrl+G 跳转到代码行
+
+ctrl+H 打开继承关系
+
+Ctrl+R 打开替换对话框
+
+文件夹右键->标记目录
+
+phpstorm窗口，右边黄色快代表有警告错误     
