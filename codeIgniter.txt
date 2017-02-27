@@ -1,0 +1,2392 @@
+﻿**生成技术文档**/output.php生成缓存步骤
+/使用 cron 定时运行任务/省略看购物车类/省略js类
+/$mailpath(服务器上 Sendmail 的实际路径--Path to the Sendmail binary.)
+/规则使用匿名函数/xml-prc使用
+/集成第三方类库/mysql索引/index索引/sesssion保存位置
+/robots\.txt
+/框架index.php配置项全局运行
+/自动加载实现/$this->db->escape()方法调用
+/保证文件上传的安全/保护标识符(保护表和字段)
+/AJAX POST 请求/使用查询构造器会自动保护标识符
+验证码/分页使用
+/自动定时计时/记录日志/segments
+
+
+
+它是一个老框架
+
+【框架文件--包含3个目录：
+
+/applition应用程序目录，自动加载--实现条件，需在autoload.php定义相关配置。
+
+/system 框架系统文件
+
+/user_guide用户指导目录
+】
+
+【配置类config.php在core目录下】
+
+【某些类的自动加载0是通过core/codeigniter.php里面的& load_class()赋值属性得到的;例如：	$URI =& load_class('URI', 'core');】
+
+【框架根目录下index.php也可以进行全局配置，视图文件夹配置$view_folder = '';】
+
+
+使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL，如果你想使用加密或会话，在这里设置上你的加密密钥；
+
+
+【安装说明：
+
+通过下面四步来安装 CodeIgniter：
+
+1、解压缩安装包；
+2、将 CodeIgniter 文件夹及里面的文件上传到服务器，通常 index.php 文件将位于网站的根目录；
+3、使用文本编辑器打开 application/config/config.php 文件设置你网站的根 URL，如果你想使用加密或会话，在这里设置上你的加密密钥；
+
+4、如果你打算使用数据库，打开 application/config/database.php 文件设置数据库参数。
+
+如果你想通过隐藏 CodeIgniter 的文件位置来增加安全性，你可以将 system 和 application 目录修改为其他的名字，然后打开主目录下的 index.php 文件将 $system_path 和 $application_folder 两个变量设置为你修改的名字。】
+
+
+CodeIgniter 是一个应用程序框架
+CodeIgniter 是为 PHP 开发人员提供的一套 Web 应用程序工具包。 它的目标是能够让你比从零开始更加快速的完成项目，它提供了一套 丰富的的类库来满足我们日常的任务需求，并且提供了一个简单的 接口和逻辑结构来调用这些库。CodeIgniter 通过最小化你需要的代码量， 让你把更多的精力放到项目的创造性开发上。
+
+
+CodeIgniter 是轻量级的
+真正的轻量级。我们的核心系统只需要一些非常小的库，这和那些 需要大量资源的框架完全相反。而且，库都是根据请求动态加载， 你需要什么才加载什么，所以核心系统是个非常轻快的系统。
+
+CodeIgniter 是快速的
+真正的快速。我们保证你很难找到一个比 CodeIgniter 性能更好的框架。
+
+CodeIgniter 使用 M-V-C 架构（模板在view文件夹）
+
+【CodeIgniter 生成干净的 URL
+CodeIgniter 生成的 URL 非常干净，而且对搜索引擎友好。不同于标准的 “查询字符串” 方法， CodeIgniter 使用了基于段的方法:
+
+example.com/news/article/345】
+
+【默认 URL 中会包含 index.php 文件，但是可以通过更改 .htaccess 文件来去掉它。】
+
+【CodeIgniter 功能强大
+CodeIgniter 拥有全面的类库，能满足大多数 Web 开发任务的需要， 例如：访问数据库，发送邮件，验证表单数据，会话管理，处理图像， 处理 XML-RPC 数据，等等等等。
+
+CodeIgniter 是可扩展的
+系统可以非常简单的通过你自己的类库和辅助函数来扩展，也可以通过 类扩展或系统钩子来实现。
+
+CodeIgniter 不需要模板引擎
+尽管 CodeIgniter 自带了一个非常简单的可选的模板解析器，但并不强制你 使用模板。模板引擎的性能无法和原生的 PHP 代码相比，另外使用模板引擎 还需要学习一种新的语法，而使用原生 PHP 代码只需要你掌握基本的 PHP 语法即可。】
+
+
+CodeIgniter 拥有全面的文档
+
+程序员们都喜欢写代码而讨厌写文档，当然，我们也不例外。 但是由于文档和代码是一样重要的，所以我们尽力来做好它。 我们的代码非常简洁并且注释也非常全面。
+
+――――――――――――――――――――――――――――――――――――
+Codeigniter特性：
+
+日历类
+User-Agent 类
+Zip 编码类
+模板引擎类
+Trackback 类
+XML-RPC 类
+单元测试类
+搜索引擎友好的 URL
+灵活的 URL 路由
+支持钩子和类扩展
+大量的辅助函数
+――――――――――――――――――――――――――――――――――――
+松耦合。 耦合是指一个系统中组件之间的依赖程度。组件之间的依赖程度越低， 系统的重用性和灵活性就越好。我们的目标就是打造一个松耦合的系统。
+――――――――――――――――――――
+控制器将会成为你的 Web 应用程序中的处理请求的核心，在关于 CodeIgniter 的技术讨论中，这控制器有时候被称作 超级对象 。和其他的 PHP 类一样，可以在 你的控制器中使用 $this 来访问它，通过 $this 你就可以加载类库、 视图、以及针对框架的一般性操作。
+
+在 MVC 模式里，你会经常看到下面 格式的 URL ：
+
+http://example.com/[controller-class]/[controller-method]/[arguments]
+
+――――――――――――――――――――――――――
+修改默认路由：
+
+打开文件 application/config/routes.php 然后添加如下两行代码， 并删除掉其他对 $route 数组赋值的代码。
+
+$route['default_controller'] = 'pages/view';
+$route['(:any)'] = 'pages/view/$1';
+――――――――――――――――
+模板文件后缀为：.php
+――――――――――――――――――――――――
+本地开发，配置config/config.php里面的$config['base_url']为网站域名,注意添加http://
+
+――――――――――――――――――――
+编写 CodeIgniter 的文档，使用sphinx生成多种不同格式的文档
+
+――――――――――――――――――――――――
+CodeIgniter URL使用基于段的方法:
+
+example.com/news/article/my_article
+――――――――――――――――――――――――――
+URI 分段
+如果遵循模型-视图-控制器模式，那么 URI 中的每一段通常表示下面的含义:
+
+example.com/class/function/ID
+第一段表示要调用的控制器 类 ；
+第二段表示要调用的类中的 函数 或 方法 ；
+第三段以及后面的段代表传给控制器的参数，如 ID 或其他任何变量；
+――――――――――――――――――――――
+添加 URL 后缀：配置config.php里面的$config['url_suffix']，注意类型名不要忘了加点，$config['url_suffix']='.htl'
+
+你可以添加一个后缀，如：.html ，这样页面看起来就是这个样子:
+
+example.com/index.php/products/view/shoes.html
+
+――――――――――――――――――――――
+启用查询字符串
+有些时候，你可能更喜欢使用查询字符串格式的 URL:
+
+配置config.php里面的$config['enable_query_strings'] = true;
+
+index.php?c=products&m=view&id=345
+――――――――――――――――――――――――――
+如果你使用查询字符串格式的 URL，你就必须自己手工构造 URL 而不能使用 URL 辅助函数了（以及其他生成 URL 相关的库，例如表单辅助函数），这是由于这些库只能处理 分段格式的 URL 。
+
+――――――――――――――――――
+可在application/config.php配置$config['language']= 'cn';中文
+————————————
+默认路由配置：
+$route['default_controller'] = 'news/index';
+
+――――――――――――――――――――――
+可将config.php里面的$config['index_page']值设置为空，以便隐藏index.php，配合一下代码
+
+――――――――――――――――――――――――
+移除 URL 中的 index.php:
+
+网站根目录新建.htaccess，添加如下代码：
+
+#自定义添加移除index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]  #此处去除在线文档/$1
+
+――――――――――――――――――――――――――
+控制器
+
+注意：不要忘了，在每一个控制器前面，添加如下代码：
+defined('BASEPATH') OR exit('No direct script access allowed');
+——————————————————
+
+
+一个控制器就是一个类文件，是以一种能够和 URI 关联在一起的方式来命名的，
+
+注意：类名及文件名首字母大写
+
+【如果你的 URI 多于两个段，多余的段将作为参数传递到你的方法中，可传递多个参数。例如，假设你的 URI 是这样:
+
+example.com/index.php/products/shoes/sandals/123
+你的方法将会收到第三段和第四段两个参数（"sandals" 和 "123"）:
+
+<?php
+class Products extends CI_Controller {
+
+    public function shoes($sandals, $id)
+    {
+        echo $sandals;
+        echo $id;
+    }
+}】
+
+"index" 方法总是在 URI 的 第二段 为空时被调用
+
+
+控制器路由在routes.php文件中定义，注意$route['(:any)'] = 'news/view/$1'中:any规则的顺序。
+
+控制器方法视图输出： $this->load->view('news/customer');
+
+【可定义'控制器路'由及'控制器/方法'路由,
+$route['news'] = 'news';
+$route['news/create'] = 'news/create';
+$route['news/(:any)'] = 'news/view/$1';】
+
+【控制器路由定义原则：普通的控制器方法，在没有定义“$route['控制器名/(:any)'] ”路由的情况下，控制器所有方法，都可以直接访问，不需要定义“$route['控制器名/方法名'] ”路由】
+
+
+【CodeIgniter 允许你使用 _remap() 方法来重写uri该规则,会破坏已在routes.php中定义的路由规则。
+
+方法名之后的所有其他段将作为 _remap() 方法的第二个参数，它是可选的。这个参数可以使用 PHP 的 call_user_func_array() 函数来模拟 CodeIgniter 的默认行为。】
+
+如果你的控制器含有一个 _output() 方法，输出类将会调用该方法来显示数据， 而不是直接显示数据，同时，禁止调用控制器其他任何方法。（只能用echo输出内容，$this->load->view（）不能正常输出）
+――――――――――――――――――――――――――――――――――――――――――――――
+可在application文件夹添加vendor文件夹，加载composer包，设置$config['composer_autoload'] = true;
+
+【私有方法
+有时候你可能希望某些方法不能被公开访问，要实现这点，只要简单的将方法声明为 private 或 protected ， 这样这个方法就不能被 URL 访问到了。例如，如果你有一个下面这个方法:
+
+private function _utility()
+{
+    // some code
+}】
+
+控制器方法不能以下划线开头
+
+――――――――――――――
+将控制器放入子目录中
+如果你正在构建一个比较大的应用，那么将控制器放到子目录下进行组织可能会方便一点。CodeIgniter 也可以实现这一点。
+
+你只需要简单的在 application/controllers/ 目录下创建新的目录，并将控制器文件放到子目录下。
+
+当使用该功能时，URI 的第一段必须制定目录，例如，假设你在如下位置有一个控制器:
+
+application/controllers/products/Shoes.php
+为了调用该控制器，你的 URI 应该像下面这样:
+
+example.com/index.php/products/shoes/show/123
+――――――――――――――――
+构造函数
+如果你打算在你的控制器中使用构造函数，你 必须 将下面这行代码放在里面:
+
+parent::__construct();
+――――――――――――――――――――――――
+如果你需要在你的类被初始化时设置一些默认值，或者进行一些默认处理，构造函数将很有用。 构造函数没有返回值，但是可以执行一些默认操作。
+――――――――
+保留方法名
+为了便于编程，CodeIgniter 使用了一些函数、方法、类 和 变量名来实现。 因此，这些名称不能被开发者所使用，因为你的控制器将继承主程序的控制器，在新建方法时你必须要小心不要使用和父类一样的方法名， 要不然你的方法将覆盖它们，参见 保留名称 。
+――――――――――――――――――――――
+在application文件夹下，控制器controllers、视图在views、模型在models文件夹
+――――――――――――――――――――――
+加载视图
+使用下面的方法来加载指定的视图:
+
+$this->load->view('name');
+name 参数为你的视图文件名。
+
+注解
+
+视图文件的扩展名 .php 可以省略，除非你使用了其他的扩展名。
+
+【加载多个视图-----CodeIgniter 可以智能的处理在控制器中多次调用 $this->load->view() 方法。 如果出现了多次调用，视图会被合并到一起。】
+
+
+在子目录中存储视图
+如果你喜欢的话，你的视图文件可以放到子目录下组织存储，当你这样做， 加载视图时需要包含子目录的名字。
+
+【向视图添加动态数据--例如：$this->load->view('templates/header', $data);
+
+【传递到视图的数组元素，通过$数组键名，直接输出数据】
+
+通过视图加载方法的第二个参数可以从控制器中动态的向视图传入数据， 这个参数可以是一个 数组 或者一个 对象 。】
+
+view（参数1，参数2，参数3）；参2只能是数组
+
+即view($view, $vars = array(), $return = FALSE)
+
+【将视图作为数据返回
+加载视图方法有一个可选的第三个参数可以让你修改它的默认行为，它让视图作为字符串返回 而不是显示到浏览器中，这在你想对视图数据做某些处理时很有用。如果你将该参数设置为 TRUE ， 该方法返回字符串，默认情况下为 FALSE ，视图将显示到浏览器。如果你需要返回的数据， 记住将它赋值给一个变量:例如：$string = $this->load->view('myfile', '', TRUE);】
+
+view()方法在core/loader.php中
+————————————————————————
+
+common.php保存的是公共函数位于system/core/下，用来Loads the base classes and executes the request.
+
+――――――――――――――――――――――――――
+模型对于那些想使用更传统的 MVC 模式的人来说是可选的。
+
+CI_Controller控制器类定义在controller.php中
+
+模型是专门用来和数据库打交道的PHP 类。为了保证简单，我们在这个例子模型中直接使用了 $_POST 数据，这其实是个不好的实践， 一个更通用的做法是使用 输入库 的 $this->input->post('title')。
+
+
+模型类位于你的 application/models/ 目录下，如果你愿意，也可以在里面创建子目录。，类名的第一个字母 必须 大写，其余部分小写。确保你的类 继承 CI_Model 基类。文件名和类名应该一致。
+
+【加载模型、视图、辅助函数分别为：
+
+$this->load->model();
+
+$this->load->view();
+
+$this->load->helper();】
+
+
+【加载模型
+你的模型一般会在你的 控制器 的方法中加载并调用， 你可以使用下面的方法来加载模型:
+
+$this->load->model('model_name');
+如果你的模型位于一个子目录下，那么加载时要带上你的模型所在目录的相对路径， 例如，如果你的模型位于 application/models/blog/Queries.php ， 你可以这样加载它:
+
+$this->load->model('blog/queries');
+加载之后，你就可以通过一个和你的类同名的对象访问模型中的方法。
+
+$this->load->model('model_name');
+
+$this->model_name->method();
+如果你想将你的模型对象赋值给一个不同名字的对象，你可以使用 $this->load->model() 方法的第二个参数:
+
+$this->load->model('model_name', 'foobar');
+
+$this->foobar->method();】
+
+
+模型的自动加载
+如果你发现你有一个模型需要在整个应用程序中使用，你可以让 CodeIgniter 在系统初始化时自动加载它。打开 application/config/autoload.php 文件， 并将该模型添加到 autoload 数组中。
+例如：$autoload['model'] = array();
+
+――――――――――――――――――――――――――――――――――――――――――
+连接数据库
+当模型加载之后，它 并不会 自动去连接你的数据库，下面是一些关于 数据库连接的选项：
+
+你可以在控制器或模型中使用 标准的数据库方法 连接数据库。
+你可以设置第三个参数为 TRUE 让模型在加载时自动连接数据库，会使用你的数据库配置文件中的配置:
+
+$this->load->model('model_name', '', TRUE);
+你还可以通过第三个参数传一个数据库连接配置:
+
+$config['hostname'] = 'localhost';
+$config['username'] = 'myusername';
+$config['password'] = 'mypassword';
+$config['database'] = 'mydatabase';
+$config['dbdriver'] = 'mysqli';
+$config['dbprefix'] = '';
+$config['pconnect'] = FALSE;
+$config['db_debug'] = TRUE;
+
+$this->load->model('model_name', '', $config);
+
+――――――――――――――――――――――――
+system目录和application目录的子目录有很多是相同的
+
+――――――――――――――――――――――――――――――――――――――――
+每个辅助函数文件都是某一类 函数的集合。
+
+同于 CodeIgniter 中的大多数系统，辅助函数没有使用面向对象的方式来实现的。 它们是简单的过程式函数，每个函数处理一个特定的任务，不依赖于其他的函数。
+
+CodeIgniter 默认不会自己加载辅助函数，所以使用辅助函数的第一步就是加载它。 一旦加载了，它就可以在你的 控制器 和 视图 中全局访问了。
+
+——————————————————————————————
+使用辅助函数
+一旦你想要使用的辅助函数被加载，你就可以像使用标准的 PHP 函数一样使用它们。
+————————————————————————————————————————
+一般情况下，辅助函数位于 system/helpers 或者 application/helpers 目录 目录下。文件名包含_helper字符，CodeIgniter 首先会查找 application/helpers 目录，如果该目录不存在， 或者你加载的辅助函数没有在该目录下找到，CodeIgniter 就会去 system/helpers/ 目录查找。
+――――――――――――――――――――――――――
+可以使用下面的方法简单的加载辅助函数:
+
+$this->load->helper('name');name 参数为辅助函数的文件名，去掉 .php 文件后缀以及 _helper 部分。
+――――――――――――――――――――————————————————————————————
+辅助函数可以在你的控制器方法的任何地方加载（甚至可以在你的视图文件中加载，尽管这不是个好的实践），只要确保在使用之前加载它就可以了。你可以在你的控制器的构造函数中加载它， 这样就可以在该控制器的任何方法中使用它，你也可以在某个需要它的函数中单独加载它。
+――――――――――――――――――――――――――――――――――――――
+自动加载某类需要在config/autoload.php配置
+――――――――――――――――――――――
+扩展辅助函数
+为了扩展辅助函数，你需要在 application/helpers/ 目录下新建一个文件， 文件名和已存在的辅助函数文件名一样，但是要加上 MY_ 前缀，
+————————————
+设置自定义前缀
+用于扩展辅助函数的文件名前缀和扩展类库和核心类是一样的。要自定义这个前缀，你可以打开 application/config/config.php 文件然后找到这项:
+
+$config['subclass_prefix'] = 'MY_';
+请注意所有原始的 CodeIgniter 类库都以 CI_ 开头，所以请不要使用这个 作为你的自定义前缀。
+
+――――――――――――――――――――
+使用 CodeIgniter 类库
+所有的系统类库都位于 system/libraries/ 目录下，大多数情况下，在使用之前， 你要先在 控制器 中初始化它，使用下面的方法:
+
+$this->load->library('class_name');
+
+――――――――――――――――――
+另外，多个类库可以通过一个数组来同时加载。
+
+例如:
+
+$this->load->library(array('email', 'table'));
+——————————————————————————
+
+$config['subclass_prefix'] = 'MY_';可同时设置辅助函数和类前缀，及核心扩展类。
+
+——————————————————
+创建类库---总结起来：
+
+你可以创建一个全新的类库，
+你可以扩展原生的类库，
+你可以替换掉原生的类库。
+
+注解：除了数据库类不能被扩展或被你的类替换外，其他的类都可以。
+——————————————————
+类文件名首字母必须大写，例如：Myclass.php
+类名定义首字母必须大写，例如：class Myclass
+类名和类文件名必须一致
+————————————————————————————
+类应该定义成如下原型:
+
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Someclass {
+
+    public function some_method()
+    {
+    }
+}
+————————————————————————
+
+在你的 控制器 的任何方法中使用如下代码初始化你的类:
+
+$this->load->library('someclass');
+其中，someclass 为文件名，不包括 .php 文件扩展名。文件名可以写成首字母大写， 也可以写成全小写，CodeIgniter 都可以识别。
+
+一旦加载，你就可以使用小写字母名称来访问你的类及方法:
+
+$this->someclass->some_method();
+
+——————————————————————
+在加载类库的时候，你可以通过library()的第二个参数动态的传递一个数组数据，该数组将被传到 你的类的构造函数中:
+
+$params = array('type' => 'large', 'color' => 'red');
+
+$this->load->library('someclass', $params);
+
+
+【如果你使用了该功能，你必须在定义类的构造函数时加上参数:
+
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Someclass {
+
+    public function __construct($params)
+    {
+        // Do something with $params
+    }
+}
+你也可以将参数保存在配置文件中来传递，只需简单的创建一个和类文件同名的配置文件， 并保存到你的 application/config/ 目录下。要注意的是，如果你使用了上面介绍的方法 动态的传递参数，配置文件将不可用。】
+
+——————————
+创建类库分为替换类库和扩展类库。
+————————————————————
+在你的类库中使用 CodeIgniter 资源----在你的类库中使用 get_instance() 函数来访问 CodeIgniter 的原生资源，这个函数返回 CodeIgniter 超级对象。
+
+通常情况下，在你的控制器方法中你会使用 $this 来调用所有可用的 CodeIgniter 方法。
+
+
+【但是 $this 只能在你的控制器、模型或视图中直接使用，如果你想在你自己的类中使用 CodeIgniter 类，你可以像下面这样做：
+
+首先，将 CodeIgniter 对象赋值给一个变量:
+
+$CI =& get_instance();
+
+一旦你把 CodeIgniter 对象赋值给一个变量之后，你就可以使用这个变量来 代替 $this
+
+$CI =& get_instance();
+
+$CI->load->helper('url');
+$CI->load->library('session');
+$CI->config->item('base_url');
+
+】
+
+
+【为了让类中的所有方法都能使用 CodeIgniter 超级对象，建议在类构造函数中将其赋值给一个类属性，例如：
+
+ public function __construct()
+    {
+        // Assign the CodeIgniter super-object
+        $this->CI =& get_instance();
+    }
+】
+
+【使用你自己的类库替换原生类库，类定义以CI_开头】
+
+【扩展类注意事项--类在定义时必须继承自父类。
+你的新类名和文件名必须以 MY_ 为前缀
+
+注解：并不是所有的类库构造函数的参数都是一样的，在对类库扩展之前 先看看它是怎么实现的。
+】
+
+【驱动器是一种特殊类型的类库，它有一个父类和任意多个子类。子类可以访问父类， 但不能访问兄弟类。驱动器位于 system/libraries/ 目录，每个驱动器都有一个独立的目录，目录名和 驱动器父类的类名一致，在该目录下还有一个子目录，命名为 drivers，用于存放所有子类的文件。】
+
+【CI原始类名以CI_开头，文件名没有CI_前缀，
+
+注解：由于驱动器的架构是子驱动器并不继承主驱动器，因此在子驱动器里 无法访问主驱动器中的属性或方法。】
+
+【系统类库与核心系统类】   
+
+【所有的系统类库都位于 system/libraries/ 目录，核心系统类位于 system/core/ 目录】
+
+【创建系统核心类---大多数用户一般不会有这种需求，但对于那些想较大幅度的改变 CodeIgniter 的人来说，我们依然提供了替换和扩展核心类的选择
+
+替换核心类
+要使用你自己的系统类替换默认的系统类只需简单的将你自己的文件放入目录 application/core 下】
+
+【系统类清单
+以下是系统核心文件的清单，它们在每次 CodeIgniter 启动时被调用：
+
+Benchmark
+Config
+Controller
+Exceptions
+Hooks
+Input
+Language
+Loader
+Log
+Output
+Router
+Security
+URI
+Utf8】
+
+【扩展核心类--注解
+
+如果在你的类中需要使用构造函数，记得要调用父类的构造函数：
+
+class MY_Input extends CI_Input {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+}】
+
+【如果你扩展了控制器核心类，那么记得在你的应用程序控制器里继承你扩展的新类。】
+
+【 get_instance() 函数--返回CI_Controller控制器对象，& get_instance()方法在CodeIgniter.php中】
+
+【CodeIgniter 的钩子特性提供了一种方法来修改框架的内部运作流程，而无需修改 核心文件。CodeIgniter 的运行遵循着一个特定的流程，你可以参考这个页面的 应用程序流程图 。但是，有些时候你可能希望在 执行流程中的某些阶段添加一些动作，例如在控制器加载之前或之后执行一段脚本， 或者在其他的某些位置触发你的脚本。】
+
+【钩子是在 application/config/hooks.php 文件中被定义的，每个钩子可以定义为下面这样的数组格式:
+
+$hook['pre_controller'] = array(
+    'class'    => 'MyClass',
+    'function' => 'Myfunction',
+    'filename' => 'Myclass.php',
+    'filepath' => 'hooks',
+    'params'   => array('beer', 'wine', 'snacks')
+);】
+
+【你也可以使用 lambda 表达式/匿名函数(或闭包)作为钩子，这样写起来更简单:
+
+$hook['post_controller'] = function()
+{
+    /* do something here */
+};】
+
+【多次调用同一个挂钩点
+如果你想在同一个挂钩点处添加多个脚本，只需要将钩子数组变成二维数组即可，像这样:
+
+$hook['pre_controller'][] = array(
+    'class'    => 'MyClass',
+    'function' => 'MyMethod',
+    'filename' => 'Myclass.php',
+    'filepath' => 'hooks',
+    'params'   => array('beer', 'wine', 'snacks')
+);
+】
+
+——————————————
+ 配置$config['composer_autoload'] = TRUE;可在application/根目录新建Vendor目录，vendor/autoload.php.
+————————————————————————
+CodeIgniter 的"自动加载"特性可以允许系统每次运行时自动初始化类库、辅助函数和模型。
+
+支持自动加载的有下面这些：
+
+libraries/ 目录下的系统 类
+helpers/ 目录下的辅助函数
+config/ 目录下的用户自定义配置文件
+system/language/ 目录下的语言文件
+models/ 目录下的模型类
+
+————————————————————
+要实现自动加载资源，你可以打开 application/config/autoload.php 文件，然后将 你需要自动加载的项添加到 autoload 数组中。你可以在该文件中的每种类型的 autoload 数组的注释中找到相应的提示。
+
+注解--添加 autoload 数组时不用包含文件扩展名（.php）
+
+另外，如果你想让 CodeIgniter 使用 Composer 的自动加载， 只需将 application/config/config.php 配置文件中的 $config['composer_autoload'] 设置为 TRUE。
+
+————————————————————————
+公共函数
+CodeIgniter 定义了一些全局的函数，你可以在任何地方使用它们，并且不需要加载任何 类库或辅助函数。
+例如：is_php()等
+————————————————————
+CodeIgniter 提供了一系列兼容性函数可以让你使用，它们只有在高版本的 PHP 中才有， 或者需要依赖其他的扩展才有。
+
+由于是自己实现的，这些函数本身也可能有它自己的依赖性，但如果你的 PHP 中不提供这些函数时， 这些函数还是有用的。
+
+注解：和 公共函数 一样，兼容性函数也一直可以访问，只要满足了他们的依赖条件。
+————————————————————————————
+URI 路由
+设置你自己的路由规则---你可以使用通配符或正则表达式
+
+你可以使用纯字符串匹配，或者使用下面两种通配符：
+
+(:num) 匹配只含有数字的一段。 (:any) 匹配含有任意字符的一段。
+
+注解：通配符实际上是正则表达式的别名，:any 会被转换为 [^/]+ ， :num 会被转换为 [0-9]+ 。
+
+注解：路由规则将按照它们定义的顺序执行，前面的规则优先级高于后面的规则。
+
+正则表达式
+如果你喜欢，你可以在路由规则中使用正则表达式。任何有效的正则表达式都是 允许的，包括逆向引用。
+
+注解：如果你使用逆向引用，你需要使用美元符号代替双斜线语法。
+
+一个典型的使用正则表达式的路由规则看起来像下面这样:
+
+$route['products/([a-z]+)/(\d+)'] = '$1/id_$2';
+上例中，一个类似于 products/shirts/123 这样的 URL 将会重定向到 "shirts" 控制器的 "id_123" 方法。
+
+
+注解：你也可以在你的路由规则中混用通配符和正则表达式。
+——————————————————————
+回调函数
+你可以在路由规则中使用回调函数来处理逆向引用。例如:
+
+$route['products/([a-zA-Z]+)/edit/(\d+)'] = function ($product_type, $id)
+{
+    return 'catalog/product_edit/' . strtolower($product_type) . '/' . $id;
+};
+————————————————————————————
+在路由中使用 HTTP 动词
+
+还可以在你的路由规则中使用 HTTP 动词（请求方法），当你在创建 RESTful 应用时特别有用。 你可以使用标准的 HTTP 动词（GET、PUT、POST、DELETE、PATCH），也可以使用自定义的动词 （例如：PURGE），不区分大小写。你需要做的就是在路由数组后面再加一个键，键名为 HTTP 动词。例如:
+
+$route['products']['put'] = 'product/insert';
+上例中，当发送 PUT 请求到 "products" 这个 URI 时，将会调用 Product::insert() 方法。
+
+————————————————————————————
+保留路由
+有下面三个保留路由:
+$route['default_controller'] = 'welcome';
+
+$route['404_override'] = '';
+这个路由表示当用户请求了一个不存在的页面时该加载哪个控制器，它将会覆盖默认的 404 错误页面。
+
+$route['translate_uri_dashes'] = FALSE;
+从它的布尔值就能看出来这其实并不是一个路由，这个选项可以自动的将 URL 中的控制器和方法中的连字符（'-'）转换为下划线（'_'），当你需要这样时， 它可以让你少写很多路由规则。由于连字符不是一个有效的类名或方法名， 如果你不使用它的话，将会引起一个严重错误。
+
+重要：保留的路由规则必须位于任何一般的通配符或正则路由的前面。
+————————————————————————————————————————
+错误处理：
+
+和 CodeIgniter 中的大多数系统不同，错误函数是一个可以在整个应用程序中 使用的简单接口，这让你在使用该函数时不用担心类或方法的作用域的问题。
+
+当任何一处核心代码调用 exit() 时，CodeIgniter 会返回一个状态码。 这个状态码和 HTTP 状态码不同，是用来通知其他程序 PHP 脚本是否成功运行的， 如果运行不成功，又是什么原因导致了脚本退出。状态码的值被定义在 application/config/constants.php 文件中。状态码在 CLI 形式下非常有用， 可以帮助你的服务器跟踪并监控你的脚本。
+
+{用于生成错误信息：
+
+show_error()/show_404()
+
+【log_message($level, $message)
+参数:	
+$level (string) -- Log level: 'error', 'debug' or 'info'
+$message (string) -- Message to log
+返回类型:	
+void
+
+该函数用于向你的日志文件中写入信息，第一个参数你必须提供 三个信息级别中的一个，用于指定记录的是什么类型的信息（调试， 错误和一般信息），第二个参数为信息本身。】}
+
+——————————————————————
+有三种错误信息类型：
+
+错误信息。这些是真正的错误，例如 PHP 错误或用户错误。
+调试信息。这些信息帮助你调试程序，例如，你可以在一个类 初始化的地方记录下来作为调试信息。
+一般信息。这些是最低级别的信息，简单的给出程序运行过程中的一些信息。
+
+注解：为了保证日志文件被正确写入，logs/ 目录必须设置为可写的。 此外，你必须要设置 application/config/config.php 文件中的 "threshold" 参数，举个例子，例如你只想记录错误信息，而不想 记录另外两种类型的信息，可以通过这个参数来控制。如果你将 该参数设置为 0 ，日志就相当于被禁用了。
+
+默认日志不写入，需在config.php中修改$config['log_threshold'] = 4;开启日志记录功能，日志默认后缀为.php
+——————————————————————————
+可在控制器定义私有的错误页面，除了公共的错误处理。
+
+——————————————————
+网页缓存
+CodeIgniter 可以让你通过缓存页面来达到更好的性能。
+
+尽管 CodeIgniter 已经相当高效了，但是网页中的动态内容、主机的内存 CPU 和数据库读取速度等因素直接影响了网页的加载速度。 依靠网页缓存， 你的网页可以达到近乎静态网页的加载速度，因为程序的输出结果 已经保存下来了。
+
+——————————————
+缓存是如何工作的？
+可以针对到每个独立的页面进行缓存，并且你可以设置每个页面缓存的更新时间。 当页面第一次加载时，缓存将被写入到 application/cache 目录下的文件中去。 之后请求这个页面时，就可以直接从缓存文件中读取内容并输出到用户的浏览器。 如果缓存过期，会在输出之前被删除并重新刷新。
+——————————————
+开启缓存
+将下面的代码放到任何一个控制器的方法内，你就可以开启缓存了:
+
+$this->output->cache($n);
+其中 $n 是缓存更新的时间（单位分钟）。
+
+缓存文件名：例如：e235b29096e0f8cf01691c59243b4f98，没有后缀。
+
+上面的代码可以放在方法的任何位置，它出现的顺序对缓存没有影响， 所以你可以把它放到任何你认为合理的地方。一旦该代码被放在方法内， 你的页面就开始被缓存了。
+
+重要：由于 CodeIgniter 存储缓存的方式，只有通过 view 输出的页面才能缓存；
+如果你修改了可能影响页面输出的配置，你需要手工删除掉 你的缓存文件。
+————————————————————————
+删除缓存
+如果你不再需要缓存某个页面，你可以删除掉该页面上的缓存代码， 这样它在过期之后就不会刷新了。
+
+注解--删除缓存代码之后并不是立即生效，必须等到缓存过期才会生效。
+——————————————————————————————————————————
+如果你需要手工删除缓存，你可以使用 delete_cache() 方法:
+
+// Deletes cache for the currently requested URI
+$this->output->delete_cache();
+
+————————————————————————
+启用分析器属于--输出类output内容
+
+启用和禁用分析器中的字段;
+
+1、分析器中的每个字段都可以通过设置相应的控制变量为 TRUE 或 FALSE 来启用或禁用。有两种方法来实现，其中的一种方法是： 在 application/config/profiler.php 文件里设置全局的默认值。
+
+例如:
+
+$config['config']          = FALSE;
+$config['queries']         = FALSE;
+
+2、另一种方法是：在你的控制器里通过调用 输出类 的 set_profiler_sections() 函数来覆盖全局设置和默认设置:
+
+$sections = array(
+    'config'  => TRUE,
+    'queries' => TRUE
+);
+
+$this->output->set_profiler_sections($sections);
+
+注解：在你的数据库配置文件中禁用 save_queries 参数 也可以禁用数据库查询相关的分析器，上面说的 'queries' 字段就没用了。 你可以通过 $this->db->save_queries = TRUE; 来覆写该设置。 另外，禁用这个设置也会导致你无法查看查询语句以及 last_query <database/helpers> 。
+
+要禁用分析器，你可以这样:
+
+$this->output->enable_profiler(FALSE);
+
+——————————————————————————————
+什么是 CLI ？
+CLI （命令行界面）是一种基于文本的和计算机交互的方式。 
+——————————————————————
+为什么使用命令行？
+虽然不是很明显，但是有很多情况下我们需要使用命令行来运行 CodeIgniter。
+
+使用 cron 定时运行任务，而不需要使用 wget 或 curl
+通过函数 is_cli() 的返回值来让你的 cron 页面不能通过 URL 访问到
+制作交互式的任务，例如：设置权限，清除缓存，备份等等
+与其他语言进行集成，例如可以通过 C++ 调用一条指令来运行你模型中的代码。
+——————————————————
+让我们试一试：Hello World！
+让我们先创建一个简单的控制器，打开你的文本编辑器，新建一个文件并命名为 Tools.php，然后输入如下的代码:
+
+<?php
+class Tools extends CI_Controller {
+
+    public function message($to = 'World')
+    {
+        echo "Hello {$to}!".PHP_EOL;
+    }
+}
+然后将文件保存到 application/controllers/ 目录下。
+——————————————————————
+我们可以通过 CLI 来访问。在 Mac/Linux 下你可以打开一个终端，在 Windows 下你可以打开 “运行”，然后输入 "cmd"，进入 CodeIgniter 项目所在的目录。
+
+$ cd /path/to/project;
+$ php index.php tools message
+如果你操作正确，你应该会看到 Hello World! 。
+——————————————————————————————————————————————
+查看codeigniter版本-----system/core/codeigniter.php里面的const CI_VERSION = '3.1.3';
+
+————————————————————————————————————————————————
+管理你的应用程序
+默认情况下，CodeIgniter 假设你只有一个应用程序，被放置在 application/ 目录下。但是，你完全可以拥有多个程序并让 它们共享一份 CodeIgniter 。你甚至也可以对你的应用程序目录 改名，或将其移到其他的位置。
+——————————
+重命名应用程序目录
+如果你想重命名应用程序目录，你只需在重命名之后打开 index.php 文件将 $application_folder 变量改成新的名字:
+
+$application_folder = 'application';
+——————————————————
+移动应用程序目录
+你可以将你的应用程序目录移动到除 Web 根目录之外的其他位置， 移到之后你需要打开 index.php 文件将 $application_folder 变量改成新的位置（使用 绝对路径 ）:
+
+$application_folder = '/path/to/your/application';
+————————————————————————————
+在一个 CodeIgniter 下运行多个应用程序
+如果你希望在一个 CodeIgniter 下管理多个不同的应用程序，只需简单的 将 application 目录下的所有文件放置到每个应用程序独立的子目录下即可。
+
+测试中新建应用程序需要的文件夹有：配置文件夹、MVC3个文件夹
+
+要选择使用某个应用程序时，你需要打开 index.php 文件然后设置 $application_folder 变量。例如，选择使用 "foo" 这个应用，你可以这样:
+
+$application_folder = 'applications/foo';
+————————————————————————————————
+3种开发环境：
+ *     development
+ *     testing
+ *     production  
+
+# By default development will show errors but testing and live will hide them.#
+——————————
+处理多环境
+开发者常常希望当系统运行在开发环境或生产环境中时能有不同的行为， 例如，在开发环境如果程序能输出详细的错误信息将非常有用，但是在 生产环境这将造成一些安全问题。
+——————————
+ENVIRONMENT 常量
+CodeIgniter 默认使用 $_SERVER['CI_ENV'] 的值作为 ENVIRONMENT 常量， 如果 $_SERVER['CI_ENV'] 的值没有设置，则设置为 'development'。在 index.php 文件的顶部，你可以看到:
+
+define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+$_SERVER['CI_ENV'] 的值可以在 .htaccess 文件或 Apache 的配置文件中 使用 SetEnv 命令进行设置，Nginx 或其他 Web 服务器也有类似的设置方法。 或者你可以直接删掉这个逻辑，根据服务器的 IP 地址来设置该常量。
+
+——————————
+错误报告
+如果将 ENVIRONMENT 常量设置为 'development' ，当发生 PHP 错误时错误信息会显示到浏览器上。与之相对的，如果将常量设置为 'production' 错误输出则会被禁用。在生产环境禁用错误输出是个 不错的安全实践。
+——————————————————————
+在视图文件中使用 PHP 替代语法
+如果你不使用 CodeIgniter 的 模板引擎， 那么你就只能在视图文件中使用纯 PHP 语法了。为了精简视图文件， 使其更可读，建议你在写控制结构或 echo 语句时使用 PHP 的替代语法。 如果你还不熟悉这个语法，下面将介绍如何通过这个语法来消灭你代码 中的大括号和 echo 语句。
+————————————————————————
+自动短标记支持-- 这个特性可以在 config/config.php 文件中启用$config['rewrite_short_tags']，但好像该配置开启与否并不影响使用短标记;
+——————————————————
+Echo 替代语法
+通常情况，你会使用下面的方法来打印一个变量:
+
+<?php echo $variable; ?>
+使用替代语法，你可以写成这样:
+
+<?=$variable?>
+——————————————————————
+像 if、for、foreach、while 这样的控制结构也可以写成精简的格式。 下面以 foreach 举例:
+
+<ul>
+
+<?php foreach ($todo as $item): ?>
+
+    <li><?=$item?></li>
+
+<?php endforeach; ?>
+
+</ul>
+——————————————————————————--
+注意这里没有任何括号。所有的结束括号被替换成了 endforeach 。 上面说的那些控制结构也都有这相似的结束标志：endif 、 endfor 、 endforeach 和 endwhile 。
+
+另外要注意的一点是，每个分支结构的后面都要跟一个冒号，而不是分号 （除最后一个），这是非常重要的一点！
+————————————————————————————
+在系统初始化期间，如果发现任何 $_GET、$_POST、$_REQUEST 和 $_COOKIE 数组中的键值变成了全局变量，则删除该变量。
+————————————————————————————
+数据处理：
+
+1、验证数据类型是否正确，以及长度、大小等等
+2、过滤不良数据
+3、在提交到数据库或者显示到浏览器之前对数据进行转义
+————————————————————
+XSS 过滤
+CodeIgniter 自带有一个 XSS 过滤器，这个过滤器可以查找一些 XSS 的常用技术
+
+注解：XSS 过滤 只应该在输出数据时使用 。 对输入的数据进行过滤可能会 在无意中对数据造成修改，例如过滤密码中的特殊字符，这样会降低安全性， 而不是提高安全性。
+
+——————————————————
+CSRF保护
+
+CodeIgniter 提供了对 CSRF 的保护，会在每个非 GET HTTP 请求时自动触发， 当然前提是你要使用某种方式来创建表单，这在 安全类 文档中有进一步的解释。
+——————————————————————
+密码处理
+在你的应用程序中正确处理密码是非常关键的。
+
+绝不要以明文存储密码。
+
+永远使用 哈希算法 来处理密码。
+
+绝不要使用 Base64 或其他编码方式来存储密码。
+
+这和以明文存储密码是一样的，使用 哈希 ，而不要使用 编码 。
+
+绝不要使用弱哈希或已被破解的哈希算法，像 MD5 或 SHA1 。
+只使用强密码哈希算法，例如 BCrypt ，在 PHP 自己的 密码哈希 函数中也是使用它。
+————————————————————————————————
+
+验证输入数据
+CodeIgniter 有一个 表单验证类 用于帮助你验证、 过滤以及预处理你的数据。
+
+记住，不仅要验证 $_POST 和 $_GET 变量，而且也不要放过 cookie 、user-agent 以及 其他所有的不是直接由你的代码生成的数据 。
+
+永远不要不做转义就将数据插入到数据库！
+————————————————————————
+【php开发规范：
+——
+变量的命名
+变量的命名规则和类方法的命名规则非常接近，使用全小写，使用下划线分割， 并且应该明确指出该变量的用途。非常短的无意义的变量只应该在 for 循环中作为迭代器使用。
+————
+TRUE、FALSE 和 NULL
+TRUE 、 FALSE 和 NULL 这几个关键字全部使用大写。
+————
+逻辑操作符
+不要使用 || 操作符，它在一些设备上看不清（可能看起来像是数字 11）， 使用 && 操作符比使用 AND 要好一点，但是两者都可以接受。 另外，在 ! 操作符的前后都应该加一个空格。
+————
+调试代码
+不要在你的提交中包含调试代码，就算是注释掉了也不行。 像 var_dump() 、 print_r() 、 die() 和 exit() 这样的函数，都不应该包含在你的代码里， 除非它们用于除调试之外的其他特殊用途。
+——————
+换行
+
+文件必须使用 Unix 的换行格式保存。这对于那些在 Windows 环境下的开发者可能是个问题， 但是不管在什么环境下，你都应该确认下你的文本编辑器已经配置好使用 Unix 换行符了。
+————————
+本地化文本
+CodeIgniter 的类库应该尽可能的使用相应的语言文件。
+——————————————————
+PHP 错误
+运行代码时不应该出现任何错误信息，并不是把警告和提示信息关掉来满足这一点。 例如，绝不要直接访问一个你没设置过的变量（例如，$_POST 数组）， 你应该先使用 isset() 函数判断下。
+
+注解：使用 ini_set() 函数在运行时设置 display_errors 参数和通过 php.ini 配置文件来设置是不一样的，换句话说，当出现致命错误（fatal errors）时，这种方法没用。】
+——————————————————
+
+PHP 5.4 下 <?= 标记是永远可用的。
+
+——————————————
+
+字符串
+字符串使用单引号引起来，当字符串中有变量时使用双引号，并且使用大括号将变量包起来。 另外，当字符串中有单引号时，也应该使用双引号，这样就不用使用转义符。
+
+————————————————————————————————————————————————
+类库参考：
+
+基准测试类
+CodeIgniter 有一个一直都是启用状态的基准测试类，用于计算两个标记点之间的时间差。
+
+注解：该类是由系统自动加载，无需手动加载。
+————————————————————
+另外，基准测试总是在框架被调用的那一刻开始，在输出类向浏览器发送最终的视图之前结束。 这样可以显示出整个系统执行的精确时间。
+
+使用基准测试类
+基准测试类可以在你的 控制器、视图 以及 模型 中使用。
+
+注解：用于标记的单词你可以任意使用其他你想使用的单词
+——————————————————
+探索到时区可设置在根目录的index.php的switch  case语句中：
+/**
+ * 自定义时区设置
+*/
+ini_set('date.timezone', 'Asia/Shanghai');
+
+例如：
+switch (ENVIRONMENT)
+{
+	case 'development':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+
+		/**
+	 * 自定义时区设置
+	 */
+		ini_set('date.timezone', 'Asia/Shanghai');
+	break;
+当然，还有一个方法，包含初始化文件；
+——————————————————————————
+网页缓存output类和cache类区别（和输出类的缓存不同的是，支持只缓存视图的某一部分）
+
+缓存驱动器(cache类)
+CodeIgniter 提供了几种最常用的快速缓存的封装，除了基于文件的缓存， 其他的缓存都需要对服务器进行特殊的配置，如果配置不正确，将会抛出 一个致命错误异常（Fatal Exception）。
+
+————————————————
+使用示例
+下面的示例代码用于加载缓存驱动器，使用 APC 作为缓存，如果 APC 在服务器环境下不可用，将降级到基于文件的缓存。
+
+$this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+
+if ( ! $foo = $this->cache->get('foo'))
+{
+    echo 'Saving to the cache!<br />';
+    $foo = 'foobarbaz!';
+
+    // Save into the cache for 5 minutes
+    $this->cache->save('foo', $foo, 300);
+}
+
+echo $foo;
+————————————————————————
+你也可以设置 key_prefix 参数来给缓存名添加前缀，当你在同一个环境下运行多个应用时，它可以避免冲突。
+
+$this->load->driver('cache',
+    array('adapter' => 'apc', 'backup' => 'file', 'key_prefix' => 'my_')
+);
+
+$this->cache->get('foo'); // Will get the cache entry named 'my_foo'
+————————————————
+自定义显示上月与下月链接
+
+1、构造函数添加代码：
+
+        $prefs = array(
+            'show_next_prev'  => TRUE,
+            'next_prev_url'   => 'http://www.codeigniter2.com/index.php/news/time/'
+        );
+
+        $this->load->library('calendar', $prefs);
+
+
+2、定义显示上月与下月链接方法:
+
+    public function time($k,$t){
+    $this->load->library('calendar');
+    echo $this->calendar->generate($k,$t);
+    }
+
+    public function time2()
+    {
+        echo $this->calendar->generate($this->uri->segment(3), $this->uri->segment(4));
+    }
+——————————————————————————————————
+日历类
+使用日历类可以让你动态的创建日历，并且可以使用日历模板来格式化显示你的日历， 允许你 100% 的控制它设计的每个方面。另外，你还可以向日历的单元格传递数据。
+——————————————————————
+使用日历类
+初始化类
+显示一个日历
+传数据到单元格
+设置显示参数
+显示下一月/上一月链接
+创建一个日历模板
+——————————————————————————————————
+calendar->generate(参1, 参2,参3)，参1为年，参2为月，参3为传递到日历函数的数据
+——————————————————————
+配置文件分全局配置文件与自定义配置文件，自定义配置需手动加载，全局不需要
+
+——————————————
+配置类
+
+配置类用于获取配置参数，这些参数可以来自于默认的配置文件（application/config/config.php）， 也可以来自你自定义的配置文件。 
+
+注解：该类由系统自动初始化，你无需手工加载。
+——————————————————
+配置文件剖析
+CodeIgniter 默认有一个主要的配置文件，位于 application/config/config.php 。 如果你使用文本编辑器打开它的话，你会看到配置项都存储在一个叫做 $config 的数组中。
+
+注解：如果你要创建你自己的配置文件，使用和主配置文件相同的格式，将配置项保存到名为 $config 的数组中。
+
+
+ CodeIgniter 会智能的管理这些文件，所以就算数组名都一样也不会冲突（假设数组的索引没有相同的）。
+
+你可以往这个文件中添加你自己的配置项，或者你喜欢将你的配置项和系统的分开的话， 你也可以创建你自己的配置文件并保存到配置目录下。
+
+————————————————————
+手工加载
+要加载你自定义的配置文件，你需要在 控制器 中使用下面的方法:
+
+$this->config->load('filename');
+其中，filename 是你的配置文件的名称，无需 .php 扩展名。
+
+如果你需要加载多个配置文件，它们会被合并成一个大的 config 数组里。尽管你是在不同的配置文件中定义的， 但是，如果有两个数组索引名称一样的话还是会发生名称冲突。为了避免冲突，你可以将第二个参数设置为 TRUE ， 这样每个配置文件中的配置会被存储到以该配置文件名为索引的数组中去。例如:
+
+// Stored in an array with this prototype: $this->config['blog_settings'] = $config
+$this->config->load('blog_settings', TRUE);
+请阅读下面的 “获取配置项” 一节，学习如何获取通过这种方式加载的配置。
+
+第三个参数用于抑制错误信息，当配置文件不存在时，不会报错:
+
+$this->config->load('blog_settings', FALSE, TRUE);
+————————————————————————————
+autoload.php内容为$autoload['数组名']形式的数组
+
+——————————————————————
+自动加载
+如果你发现有一个配置文件你需要在全局范围内使用，你可以让系统自动加载它。 要实现这点，打开位于 application/config/ 目录下的 autoload.php 文件， 将你的配置文件添加到
+数组中。
+
+获取配置项
+要从你的配置文件中获取某个配置项，使用如下方法:
+
+$this->config->item('item_name');
+其中 item_name 是你希望获取的 $config 数组的索引名，例如，要获取语言选项， 你可以这样:
+
+$lang = $this->config->item('language');
+如果你要获取的配置项不存在，方法返回 NULL 。
+
+————————————————————————————
+如果你在使用 $this->config->load 方法时使用了第二个参数，每个配置文件中的配置 被存储到以该配置文件名为索引的数组中，要获取该配置项，你可以将 $this->config->item() 方法的第二个参数设置为这个索引名（也就是配置文件名）。
+
+————————————————————
+设置配置项
+如果你想动态的设置一个配置项，或修改某个已存在的配置项，你可以这样:
+
+$this->config->set_item('item_name', 'item_value');
+————————————————————————
+多环境
+你可以根据当前的环境来加载不同的配置文件，index.php 文件中定义了 ENVIRONMENT 常量，在 处理多环境 中有更详细的介绍。
+
+要创建特定环境的配置文件，新建或复制一个配置文件到 application/config/{ENVIRONMENT}/{FILENAME}.php 。
+
+多环境配置文件会自动加载
+
+注解：CodeIgniter 总是先加载全局配置文件（例如，application/config/ 目录下的配置文件）， 然后再去尝试加载当前环境的配置文件。这意味着你没必要将所有的配置文件都放到特定环境的配置目录下， 只需要放那些在每个环境下不一样的配置文件就可以了。另外，你也不用拷贝所有的配置文件内容到 特定环境的配置文件中，只需要将那些在每个环境下不一样的配置项拷进去就行了。定义在环境目录下的配置项， 会覆盖掉全局的配置。
+——————————————————
+Email 类
+CodeIgniter 拥有强大的 Email 类支持以下特性：
+
+//多协议：Mail、Sendmail 和 SMTP
+//SMTP 协议支持 TLS 和 SSL 加密
+//多个收件人
+//抄送（CC）和密送（BCC）
+//HTML 格式邮件 或 纯文本邮件
+//附件
+//自动换行
+//优先级
+//密送批处理模式（BCC Batch Mode），大邮件列表将被分成小批次密送
+//Email 调试工具
+
+————————————————————
+发送 Email
+发送邮件不仅很简单，而且你可以通过参数或通过配置文件设置发送邮件的不同选项。
+
+下面是个简单的例子，用于演示如何发送邮件。注意：这个例子假设你是在某个 控制器 里面发送邮件。
+
+$this->load->library('email');
+
+$this->email->from('your@example.com', 'Your Name');
+$this->email->to('someone@example.com');
+$this->email->cc('another@another-example.com');
+$this->email->bcc('them@their-example.com');
+
+$this->email->subject('Email Test');
+$this->email->message('Testing the email class.');
+
+$this->email->send();
+
+还可以添加附件，例如
+
+添加附件，第一个参数为文件的路径。要添加多个附件，可以调用该方法多次。例如:
+
+$this->email->attach('/path/to/photo1.jpg');
+$this->email->attach('/path/to/photo2.jpg');
+$this->email->attach('/path/to/photo3.jpg');
+
+添加本地附件 $this->email->attach('http://127.0.0.1/images/product.jpg');
+————————————————————————————
+设置 Email 参数：
+1、使用初始化函数（）
+通过向邮件初始化函数传递一个包含参数的数组来设置参数，下面是个如何设置参数的例子:
+
+$config['protocol'] = 'sendmail';
+$config['mailpath'] = '/usr/sbin/sendmail';
+$config['charset'] = 'iso-8859-1';
+$config['wordwrap'] = TRUE;
+
+$this->email->initialize($config);  
+
+注解：如果你不设置，大多数参数将使用默认值。
+
+2、建立配置文件
+
+在配置文件中设置 Email 参数
+如果你不喜欢使用上面的方法来设置参数，你可以将它们放到配置文件中。你只需要简单的创建一个新文件 email.php ，将 $config 数组放到该文件，然后保存到 config/email.php ，这样它将会自动被加载。 如果你使用配置文件的方式来设置参数，你就不需要使用 $this->email->initialize() 方法了。
+
+当然，还不能发送邮件，需配置email类属性$protocol 、$smtp_host、$smtp_user、$smtp_pass、$mailtype。
+——————————————————————————————————————————————
+
+加密类
+
+加密类提供了双向数据加密的方式，它依赖于 PHP 的 Mcrypt 扩展，所以要有 Mcrypt 扩展才能运行。
+————————————————————————————
+使用加密类
+
+初始化类
+正如 CodeIgniter 中的其他类一样，在你的控制器中使用 $this->load->library() 方法来初始化加密类:
+
+$this->load->library('encryption');
+初始化之后，加密类的对象就可以这样访问:
+
+$this->encryption
+————————————————————
+加密模式
+加密算法的不同模式有着不同的特性，它们有着不同的目的，有的可能比另一些更强壮，有的可能速度更快， 有的可能提供了额外的功能。
+
+——————————————————————
+文件上传类
+CodeIgniter 的文件上传类用于上传文件，你可以设置参数限制上传文件的类型和大小。
+
+上传参数设置：
+
+1、encrypt_name  如果设置为 TRUE ，文件名将会转换为一个随机的字符串 如果你不希望上传文件的人知道保存后的文件名，这个参数会很有用
+
+————————————————————
+验证规则可以是模型方法、匿名函数、控制器方法
+
+
+域的人性化名称
+
+————————————————
+在你的验证规则配置文件中，使用 member/signup 来给这组规则集命名:
+
+$config = array(
+    'member/signup' => array(
+        array(
+            'field' => 'username',
+            'label' => 'Username',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'passconf',
+            'label' => 'PasswordConfirmation',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required'
+        )
+    )
+);
+当一组规则的名称和控制器类/方法名称完全一样时，它会在该控制器类/方法中自动被 run() 方法调用。
+——————————————————
+表单验证类
+CodeIgniter 提供了一个全面的表单验证和数据预处理类可以帮你少写很多代码。
+————————
+概述
+在解释 CodeIgniter 的数据验证处理之前，让我们先描述一下一般的情况：
+
+显示一个表单。
+你填写并提交了它。
+如果你提交了一些无效的信息，或者可能漏掉了一个必填项， 表单将会重新显示你的数据，并提示一个错误信息。
+这个过程将继续，直到你提交了一个有效的表单。
+
+————————————————————————————————————————
+在接收端，脚本必须：
+
+检查必填的数据。
+验证数据类型是否为正确，条件是否满足。例如，如果提交一个用户名， 必须验证它是否只包含了允许的字符，必须有一个最小长度，不能超过最大长度。 用户名不能和已存在的其他人名字相同，或者不能是某个保留字，等等。
+为确保安全性对数据进行过滤。
+如果需要，预格式化数据（数据需要清除空白吗？需要 HTML 编码？等等）
+准备数据，插入数据库。
+——————————————————————
+设置验证规则
+CodeIgniter 允许你为单个表单域创建多个验证规则，按顺序层叠在一起， 你也可以同时对表单域的数据进行预处理。要设置验证规则， 可以使用 set_rules() 方法:
+
+$this->form_validation->set_rules();
+上面的方法有 三个 参数：
+
+表单域名 - 就是你给表单域取的那个名字。
+//表单域的 "人性化" 名字，它将被插入到错误信息中。例如， 如果你有一个表单域叫做 “user” ，你可能///会给它一个人性化的名字叫做 “用户名” 。
+//为此表单域设置的验证规则。
+//（可选的）当此表单域设置自定义的错误信息，如果没有设置该参数，将使用默认的。
+
+————————————————————
+使用数组来设置验证规则
+在继续之前请注意，如果你更喜欢通过一个操作设置所有规则的话， 你也可以使用一个数组来设置验证规则。
+————————————————————
+级联规则（Cascading Rules）
+CodeIgniter 允许你将多个规则连接在一起。让我们试一试，修改规则设置函数中的第三个参数，
+如下：
+$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+
+——————————————————————————
+预处理数据
+除了上面我们使用的那些验证函数，你还可以以多种方式来预处理你的数据。 例如，你可以设置像这样的规则:
+
+$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
+
+注意：验证规则与预处理数据的区别，可以写在一起
+
+预处理参考
+下表列出了所有可用的预处理方法：
+
+   名称	       参数	          描述
+prep_for_form	No	DEPRECATED: 将特殊字符的转换，以便可以在表单域中显示 HTML 数据，而不会破坏它
+prep_url	No	当 URL 丢失 "http://" 时，添加 "http://"
+strip_image_tags	No	移除 HTML 中的 image 标签，只保留 URL
+encode_php_tags	No	将 PHP 标签转成实体
+————————————————————
+重新填充表单
+
+目前为止我们只是在处理错误，是时候用提交的数据重新填充表单了。 CodeIgniter 为此提供了几个辅助函数，你最常用到的一个是:
+
+set_value('field name')--作用为表单赋值
+——————————————————————————————
+回调：你自己的验证函数
+验证系统支持设置你自己的验证函数，这样你可以扩展验证类以适应你自己的需求。 例如，如果你需要查询数据库来检查用户名是否唯一，你可以创建一个回调函数， 让我们来新建一个例子。
+
+在你的控制器中，将用户名的规则修改为:
+
+$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+然后在你的控制器中添加一个新的方法 username_check() 。
+————————————————
+使用任何可调用的方法作为验证规则--规则不只限于使用模型的方法，你可以使用任何对象和方法来接受域值作为第一个参数。
+
+————————————
+如果你要为某个域的某个规则设置你的自定义信息，可以使用 set_rules() 方法:
+
+$this->form_validation->set_rules('field_name', 'Field Label', 'rule1|rule2|rule3',
+    array('rule2' => 'Error Message on rule2 for this field_name')
+);
+
+如果你希望在错误信息中包含域的人性化名称，
+或者某些规则设置的一个可选参数 （例如：max_length），你可以在消息中使用 {field} 和 {param} 标签:
+
+$this->form_validation->set_message('min_length', '{field} must have at least {param} characters.');
+——————————————————————
+翻译表单域名称
+如果你希望将传递给 set_rules() 方法的人性化名称存储在一个语言文件中， 使他们能被翻译成其他语言，你可以这么做：
+
+首先，给人性化名称添加一个前缀：lang:，如下：
+
+$this->form_validation->set_rules('first_name', 'lang:first_name', 'required');
+然后，将该名称保存到你的某个语言文件数组中（不带前缀）:
+
+$lang['first_name'] = 'First Name';
+————————————————————————
+
+在默认情况下，表单验证类会使用 <p> 标签来分割每条错误信息。 你可以通过全局的，单独的，或者通过配置文件对其进行自定义。
+
+1、全局的修改定界符 要在全局范围内修改错误定界符，你可以在控制器方法中加载表单验证类之后，使用下面的代码:
+
+$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+在这个例子中，我们改成使用 <div> 标签来作为定界符。
+
+2、单独的修改定界符 有两个错误生成方法可以用于设置它们自己的定界符，如下:
+
+<?php echo form_error('field name', '<div class="error">', '</div>'); ?>
+
+3、在配置文件中设置定界符 你还可以在配置文件 application/config/form_validation.php 中定义错误定界符，如下:
+
+$config['error_prefix'] = '<div class="error_prefix">';
+$config['error_suffix'] = '</div>';
+
+————————————————————
+单独显示错误
+如果你喜欢紧挨着每个表单域显示错误信息而不是显示为一个列表， 你可以使用 form_error() 方法。
+
+尝试一下！修改你的表单如下:
+
+<h5>Username</h5>
+<?php echo form_error('username'); ?>
+<input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
+
+<h5>Password</h5>
+<?php echo form_error('password'); ?>
+<input type="text" name="password" value="<?php echo set_value('password'); ?>" size="50" />
+
+<h5>Password Confirm</h5>
+<?php echo form_error('passconf'); ?>
+<input type="text" name="passconf" value="<?php echo set_value('passconf'); ?>" size="50" />
+
+<h5>Email Address</h5>
+<?php echo form_error('email'); ?>
+<input type="text" name="email" value="<?php echo set_value('email'); ?>" size="50" />
+如果没有错误信息，将不会显示。如果有错误信息，将会在输入框的旁边单独显示。
+——————————————————————————————
+重要！--如果你使用一个数组作为一个表单域的名字，那么函数的参数也应该是一个数组。例如:
+
+<?php echo form_error('options[size]'); ?>
+<input type="text" name="options[size]" value="<?php echo set_value("options[size]"); ?>" size="50" />
+———————————————————————————————
+将一系列验证规则保存到一个配置文件
+表单验证类的一个不错的特性是，它允许你将整个应用的所有验证规则存储到一个配置文件中去。 你可以对这些规则进行分组，这些组既可以在匹配控制器和方法时自动加载，也可以在需要时手动调用。
+
+验证规则也可以使用php原生函数
+——————————————————————
+注解：这些规则也可以作为独立的函数被调用，例如:
+
+$this->form_validation->required($string);
+——————————————————————————
+使用数组作为域名称
+表单验证类支持使用数组作为域名称，比如:
+
+<input type="text" name="options[]" value="" size="50" />
+如果你将域名称定义为数组，那么在使用域名称作为参数的 辅助函数函数 时， 你必须传递给他们与域名称完全一样的数组名，对这个域名称的验证规则也一样。
+
+例如，为上面的域设置验证规则:
+
+$this->form_validation->set_rules('options[]', 'Options', 'required');
+或者，为上面的域显示错误信息:
+
+<?php echo form_error('options[]'); ?>
+或者，重新填充该域的值:
+
+<input type="text" name="options[]" value="<?php echo set_value('options[]'); ?>" size="50" />
+————————————————————————————
+创建规则集
+为了将你的多个规则组织成规则集，你需要将它们放置到子数组中。 
+
+————————————————————
+FTP 类
+CodeIgniter 的 FTP 类允许你传输文件至远程服务器，也可以对远程文件进行移动、重命名或删除操作。 FTP 类还提供了一个 "镜像" 功能，允许你将你本地的一个目录通过 FTP 整个的同步到远程服务器上。
+
+注解
+
+只支持标准的 FTP 协议，不支持 SFTP 和 SSL FTP 。
+——————————————————
+图像处理类image_lib.php
+
+CodeIgniter 的图像处理类可以使你完成以下的操作：
+
+调整图像大小
+创建缩略图
+图像裁剪
+图像旋转
+添加图像水印
+可以很好的支持三个主流的图像库：GD/GD2、NetPBM 和 ImageMagick 。
+————————————————————
+注解：添加水印操作仅仅在使用 GD/GD2 时可用。另外，即使支持其他的图像处理库， 但是为了计算图像的属性，GD 仍是必需的。然而在进行图像处理操作时， 还是会使用你指定的库。
+
+————————————————
+【初始化类
+跟 CodeIgniter 中的其他类一样，可以在你的控制器中使用 $this->load->library() 方法加载图像处理类:
+
+$this->load->library('image_lib');
+一旦加载，图像处理类就可以像下面这样使用:
+
+$this->image_lib】
+
+————————
+注解：图像处理的某些操作可能需要大量的服务器内存。如果在处理图像时， 你遇到了内存不足错误，您可能需要限制图像大小的最大值， 和/或调整 PHP 的内存限制。
+————————————————
+处理函数
+有五个处理函数可以调用：
+
+$this->image_lib->resize()
+$this->image_lib->crop()
+$this->image_lib->rotate()
+$this->image_lib->watermark()
+当调用成功时，这些函数会返回 TRUE ，否则会返回 FALSE 。 如果调用失败时，用以下函数可以获取错误信息:
+
+echo $this->image_lib->display_errors();
+————————————
+添加图像水印
+水印处理功能需要 GD/GD2 库的支持。
+
+水印的两种类型
+你可以使用以下两种图像水印处理方式：
+
+Text：水印信息将以文字方式生成，要么使用你所指定的 TrueType 字体， 要么使用 GD 库所支持的内部字体。如果你要使用 TrueType 版本， 那么你安装的 GD 库必须是以支持 TrueType 的形式编译的（大多数都是，但不是所有）。
+Overlay：水印信息将以图像方式生成，新生成的水印图像 （通常是透明的 PNG 或者 GIF）将覆盖在原图像上。
+
+————————————————
+输入类
+输入类有两个用途：
+
+1、为了安全性，对输入数据进行预处理/
+
+2、提供了一些辅助方法来获取输入数据并处理
+
+注解：该类由系统自动加载，你无需手工加载
+————————————————————————
+对输入进行过滤
+安全性过滤
+当访问 控制器 时，安全过滤方法会自动被调用
+——————————
+访问表单数据：
+
+使用 POST、GET、COOKIE 和 SERVER 数据
+CodeIgniter 提供了几个辅助方法来从 POST、GET、COOKIE 和 SERVER 数组中获取数据。 使用这些方法来获取数据而不是直接访问数组（$_POST['something']）的最大的好处是， 这些方法会检查获取的数据是否存在，如果不存在则返回 NULL 。这使用起来将很方便， 你不再需要去检查数据是否存在。换句话说，通常你需要像下面这样做:
+
+$something = isset($_POST['something']) ? $_POST['something'] : NULL;
+使用 CodeIgniter 的方法，你可以简单的写成:
+
+$something = $this->input->post('something');
+
+主要有下面几个方法：
+
+$this->input->post()
+$this->input->get()
+$this->input->cookie()
+$this->input->server()
+
+另外，如果输入流的格式和 $_POST 数组一样，你也可以通过 input_stream() 方法来访问post的值:
+
+$this->input->input_stream('key');
+————————————————————————
+语言类
+
+CodeIgniter 框架自带了一套 "英语" 语言文件，
+
+当 CodeIgniter 加载语言文件时，它会先加载 system/language/ 目录下的，然后再加载 你的 application/language/ 目录下的来覆盖它。
+
+注解：每个语言都有它自己的目录，例如，英语语言文件位于：system/language/english
+
+——————————————————————————
+切换语言
+$idiom = $this->session->get_userdata('language');
+$this->lang->load('error_messages', $idiom);
+$oops = $this->lang->line('message_key');
+————————————————————
+
+语言国际化--使用国际标准的缩写名字
+
+创建语言文件--注解：在每个文件中使用一个通用的前缀来避免和其他文件中的相似名称冲突是个好方法。 例如，如果你在创建错误消息你可以使用 error_ 前缀。
+$lang['error_email_missing'] = 'You must submit an email address';
+
+
+读取语言文本
+当你的语言文件已经加载，你就可以通过下面的方法来访问任何一行语言文本:
+
+$this->lang->line('language_key');
+
+——————————————
+自动加载语言文件
+
+如果你发现你需要在整个应用程序中使用某个语言文件，你可以让 CodeIgniter 在系统初始化的时候 自动加载 该语言文件。 可以打开 application/config/autoload.php 文件，把语言放在 autoload 数组中。
+_________________________________________________________________________________
+加载器类，顾名思义，是用于加载元素的，加载的元素可以是库（类），视图文件 ， 驱动器 ，辅助函数 ， 模型 或其他你自己的文件。
+
+注解：该类由系统自动加载，你无需手工加载。
+
+index.php里面的$application_folder = 'application';定义应用程序文件夹
+
+third_party用来存放系统中引入的第三方类库
+
+加载器类var()方法可实现数据缓存，获取其值get_var()
+————————————————————————————
+包的视图文件
+
+默认情况下，当调用 add_package_path() 方法时，包的视图文件路径就设置好了。不需要再添加完整路径名， 视图文件的路径是通过一个循环来查找的，一旦找到第一个匹配的即加载该视图。
+
+在这种情况下，它可能在包内产生视图命名冲突，并可能导致加载错误的包。 为了确保不会发生此类问题，在调用 add_package_path() 方法时， 可以将可选的第二个参数设置为 FALSE 。
+
+add_package_path() 方法--添加一个包路径，用于告诉加载器类使用给定的路径来加载后续请求的资源。
+
+形如：
+//set things
+$this->load->add_package_path(APPPATH.'my_app', FALSE);
+// Reset things
+$this->load->remove_package_path(APPPATH.'my_app');
+————————
+注解：我们有时候说 "类" ，有时候说 "库" ，这两个词不做区分。
+——————
+$this->load->library（参1，参2，，参3）--load即loader类，参1为加载的类名，参2为配置项，参3为类别
+名。
+————————————
+APPPATH为application/
+————————————————————————
+迁移是一种非常方便的途径来组织和管理你的数据库变更，当你编写了一小段 SQL 对数据库做了修改之后，你就需要告诉其他的开发者他们也需要运行这段 SQL ， 而且当你将应用程序部署到生产环境时，你还需要记得对数据库已经做了哪些修改， 需要执行哪些 SQL 。
+
+在 CodeIgniter 中，migration 表记录了当前已经执行了哪些迁移，所以 你需要做的就是，修改你的应用程序文件然后调用 $this->migration->current() 方法迁移到当前版本，当前版本可以在 application/config/migration.php 文件中进行设置。
+
+迁移文件命令规则
+每个迁移都是根据文件名中的数字顺序向前或向后运行，有两种不同的数字格式：
+
+序列格式： 每个迁移文件以数字序列格式递增命名，从 001 开始，每个数字都需要占三位， 序列之间不能有间隙。（这是 CodeIgniter 3.0 版本之前的命令方式）
+时间戳格式： 每个迁移文件以创建时间的时间戳来命名，格式为：YYYYMMDDHHIISS （例如： 20121031100537），这种方式可以避免在团队环境下以序列命名可能造成的冲突，而且也是 CodeIgniter 3.0 之后版本中推荐的命名方式。
+
+可以在 application/config/migration.php 文件中的 $config['migration_type'] 参数设置命名规则。
+
+无论你选择了哪种规则，将这个数字格式作为迁移文件的前缀，并在后面添加一个下划线， 再加上一个描述性的名字。如下所示：
+
+001_add_blog.php (sequential numbering)
+20121031100537_add_blog.php (timestamp numbering)
+——————————————————————————————
+分页类
+CodeIgniter 的分页类非常容易使用，而且它 100% 可定制，可以通过动态的参数， 也可以通过保存在配置文件中的参数。
+
+————————
+分页例子：
+
+例子：
+
+下面是一个简单的例子，如何在你的 控制器 方法中创建分页:
+
+$this->load->library('pagination');
+
+$config['base_url'] = 'http://example.com/index.php/test/page/';
+$config['total_rows'] = 200;
+$config['per_page'] = 20;
+
+$this->pagination->initialize($config);
+
+echo $this->pagination->create_links();
+——————————————————————————————
+模板解析类
+模板解析类可以对你视图文件中的伪变量进行简单的替换，它可以解析简单的变量和变量标签对。
+
+
+如果你从没使用过模板引擎，下面是个例子，伪变量名称使用大括号括起来:
+
+<html>
+    <head>
+        <title>{blog_title}</title>
+    </head>
+    <body>
+        <h3>{blog_heading}</h3>
+
+    {blog_entries}
+        <h5>{title}</h5>
+        <p>{body}</p>
+    {/blog_entries}
+
+    </body>
+</html>
+这些变量并不是真正的 PHP 变量，只是普通的文本，这样能让你的模板（视图文件）中没有任何 PHP 代码。
+
+
+解析模板
+你可以使用 parse() 方法来解析（或显示）简单的模板，如下所示:
+
+$data = array(
+    'blog_title' => 'My Blog Title',
+    'blog_heading' => 'My Blog Heading'
+);
+
+$this->parser->parse('blog_template', $data);
+
+使用说明
+如果你传入的某些参数在模板中没用到，它们将被忽略
+
+该方法和 parse() 方法一样，只是它接受一个字符串作为模板，而不是去加载视图文件。
+——————————————————————————
+安全类--Security
+安全类包含了一些方法，用于安全的处理输入数据，帮助你创建一个安全的应用。
+
+XSS 过滤
+跨站请求伪造（CSRF）
+
+
+使用 XSS 过滤器过滤数据可以使用 xss_clean() 方法:
+
+$data = $this->security->xss_clean($data);
+它还有一个可选的第二个参数 is_image ，允许此函数对图片进行检测以发现那些潜在的 XSS 攻击, 这对于保证文件上传的安全非常有用。当此参数被设置为 TRUE 时， 函数的返回值将是一个布尔值，而不是一个修改过的字符串。如果图片是安全的则返回 TRUE ， 相反, 如果图片中包含有潜在的、可能会被浏览器尝试运行的恶意信息，函数将返回 FALSE 。
+
+if ($this->security->xss_clean($file, TRUE) === FALSE)
+{
+    // file failed the XSS test
+}
+
+
+
+跨站请求伪造（CSRF）
+打开你的 application/config/config.php 文件，进行如下设置，即可启用 CSRF 保护:
+
+$config['csrf_protection'] = TRUE;
+如果你使用 表单辅助函数 ，form_open() 函数将会自动地在你的表单中插入一个隐藏的 CSRF 字段。
+
+令牌（tokens）默认会在每一次提交时重新生成，或者你也可以设置成在 CSRF cookie 的生命周期内一直有效。默认情况下令牌重新生成提供了更严格的安全机制，但可能会对 可用性带来一定的影响，因为令牌很可能会变得失效（例如使用浏览器的返回前进按钮、 使用多窗口或多标签页浏览、异步调用等等）。你可以修改下面这个参数来改变这一点。
+
+$config['csrf_regenerate'] = TRUE;
+另外，你可以添加一个 URI 的白名单，跳过 CSRF 保护（例如某个 API 接口希望接受 原始的 POST 数据），将这些 URI 添加到 'csrf_exclude_uris' 配置参数中:
+
+$config['csrf_exclude_uris'] = array('api/person/add');
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+系统初始化，系统核心文件全部被调用，例如controller类等
+
+input类可以进行xss攻击防御，安全类可以进行xss攻击防御、csrf攻击防御
+
+input类post（参1，参2），参1为数据，参2设置为true，也可以开启xss过滤
+
+——————————————————
+子控制器使用构造函数，必须调用父类构造函数： parent::__construct();
+——————————————
+_____________________________________________________________
+session类
+
+CodeIgniter 自带了几个存储 session 的驱动：
+
+文件（默认的，基于文件系统）
+数据库
+Redis
+Memcached
+另外，你也可以基于其他的存储机制来创建你自己的自定义 session 存储驱动， 使用自定义的驱动，同样也可以使用 Session 类提供的那些功能。
+
+——————————
+初始化 Session 类
+
+要手动初始化 Session 类，你可以在控制器的构造函数中使用 $this->load->library() 方法:
+
+$this->load->library('session');
+初始化之后，就可以使用下面的方法来访问 Session 对象了:
+
+$this->session
+——————————————————
+Session 是如何工作的？
+当页面载入后，Session 类就会检查用户的 cookie 中是否存在有效的 session 数据。 如果 session 数据不存在（或者与服务端不匹配，或者已经过期）， 那么就会创建一个新的 session 并保存起来。
+
+如果 session 数据存在并且有效，那么就会更新 session 的信息。 根据你的配置，每一次更新都会生成一个新的 Session ID 。
+————————————
+关于并发
+
+在 CodeIgniter 之前的版本中，Session 类并没有实现锁机制，这也就意味着， 两个 HTTP 请求可能会同时使用同一个 session 。说的更专业点就是， 请求是非阻塞的。（requests were non-blocking）
+
+为什么要告诉你这些呢？这是因为在你查找性能问题的原因时， 可能会发现加锁机制正是导致性能问题的罪魁祸首，因此就想着如何去掉锁 ...
+
+新session类实现加锁机制---请不要这样做！ 去掉加锁机制是完全错误的，它会给你带来更多的问题！
+
+锁并不是问题，它是一种解决方案。你的问题是当 session 已经处理完毕不再需要时， 你还将 session 保持是打开的状态。所以，你需要做的其实是，当结束当前请求时， 将不再需要的 session 关闭掉。
+
+简单来说就是：当你不再需要使用某个 session 变量时，就使用 session_write_close() 方法来关闭它
+
+
+什么是 Session 数据？
+Session 数据是个简单的数组，带有一个特定的 session ID （cookie）。
+
+CodeIgniter 使用了相同的方式来访问 session 数据，同时使用了 PHP 自带的 session 处理机制， 使用 session 数据和操作 $_SESSION 数组一样简单（包括读取，设置，取消设置）。
+
+另外，CodeIgniter 还提供了两种特殊类型的 session 数据：flashdata 和 tempdata 。
+
+注解：在之前的 CodeIgniter 版本中，常规的 session 数据被称之为 'userdata' ，当文档中出现这个词时请记住这一点。
+————————————————
+获取 Session 数据
+session 数组中的任何信息都可以通过 $_SESSION 全局变量获取:
+
+$_SESSION['item']
+或使用下面的方法（magic getter）:
+
+$this->session->item
+同时，为了和之前的版本兼容，也可以使用 userdata() 方法:
+
+$this->session->userdata('item');  注解：如果你访问的项不存在，userdata() 方法返回 NULL 。
+其中，item 是你想获取的数组的键值。
+————————
+如果你想获取所有已存在的 userdata ，你可以忽略 item 参数:
+
+$_SESSION
+
+// or:
+
+$this->session->userdata();
+——————————————
+添加 Session 数据
+
+你可以简单的将数据赋值给 $_SESSION 数组，或赋值给 $this->session 的某个属性。
+
+同时，老版本中的通过 "userdata" 来赋值的方法也还可以用，只不过是需要传递一个包含你的数据的数组 给 set_userdata() 方法:
+
+$this->session->set_userdata($array);
+
+
+如果你想一次只添加一个值，set_userdata() 也支持这种语法:
+
+$this->session->set_userdata('some_name', 'some_value');
+如果你想检查某个 session 值是否存在，可以使用 isset():
+
+// returns FALSE if the 'some_name' item doesn't exist or is NULL,
+// TRUE otherwise:
+isset($_SESSION['some_name'])
+或者，你也可以使用 has_userdata():
+
+$this->session->has_userdata('some_name');
+————————————————
+删除 Session 数据
+
+和其他的变量一样，可以使用 unset() 方法来删除 $_SESSION 数组中的某个值
+unset_userdata() 方法可用于删除指定键值的数据。例如，如果你想从你的 session 数组中删除 'some_name':
+
+$this->session->unset_userdata('some_name');
+这个方法也可以使用一个数组来同时删除多个值:
+
+$array_items = array('username', 'email');
+
+$this->session->unset_userdata($array_items);
+————————————————————
+CodeIgniter 支持 "flashdata" ，它指的是一种只对下一次请求有效的 session 数据， 之后将会自动被清除。
+
+这用于一次性的信息时特别有用，例如错误或状态信息
+
+要注意的是，flashdata 就是常规的 session 变量，只不过以特殊的方式保存在 '__ci_vars' 键下 （警告：请不要乱动这个值）。
+
+将已有的值标记为 "flashdata"即可:
+
+$this->session->mark_as_flash('item');
+
+通过传一个数组，同时标记多个值为 flashdata:
+
+$this->session->mark_as_flash(array('item', 'item2'));
+
+或者，也可以使用 set_flashdata() 方法:
+
+$this->session->set_flashdata('item', 'value');
+你还可以传一个数组给 set_flashdata() 方法，和 set_userdata() 方法一样。
+
+读取 flashdata 和读取常规的 session 数据一样，通过 $_SESSION 数组:
+
+$_SESSION['item']
+————————————————
+如果你要确保你读取的就是 "flashdata" 数据，而不是其他类型的数据，可以使用 flashdata() 方法:
+
+$this->session->flashdata('item');
+————————————
+如果你需要在另一个请求中还继续保持 flashdata 变量，你可以使用 keep_flashdata() 方法。 可以传一个值，或包含多个值的一个数组。
+
+$this->session->keep_flashdata('item');
+$this->session->keep_flashdata(array('item1', 'item2', 'item3'));
+————————————
+CodeIgniter 还支持 "tempdata" ，它指的是一种带有有效时间的 session 数据， 当它的有效时间已过期，或在有效时间内被删除，都会自动被清除。
+
+将已有的值标记为 "tempdata" ，只需简单的将要标记的键值和过期时间（单位为秒）传给 mark_as_temp() 方法即可:
+
+// 'item' will be erased after 300 seconds
+$this->session->mark_as_temp('item', 300); 注意：该类型数据有生存时间
+
+————————————————
+如果你需要在某个 tempdata 过期之前删除它，你可以直接通过 $_SESSION 数组来删除:
+
+unset($_SESSION['item']);
+但是，这不会删除这个值的 tempdata 标记（会在下一次 HTTP 请求时失效），所以， 如果你打算在相同的请求中重用这个值，你可以使用 unset_tempdata():
+
+$this->session->unset_tempdata('item');
+——————————
+销毁 Session
+要清除当前的 session（例如：退出登录时），你可以简单的使用 PHP 自带的 session_destroy() 函数或者 sess_destroy() 方法。 两种方式效果完全一样:
+
+session_destroy();
+
+// or
+
+$this->session->sess_destroy();
+————————————————
+session驱动修改：但是，你也可以通过 application/config/config.php 配置文件中的 $config['sess_driver'] 参数来使用任何其他的驱动。
+
+另外，如果默认提供的这些不能满足你的需求，你也可以创建和使用自定义驱动 。
+
+执行一些简单的测试可能会让你真的相信 SQL 数据库更快一点，但是在 99% 的情况下，这只是当你的 session 并发非常少的时候是对的。当 session 的并发数越来越大，服务器的负载越来越高， 这时就不一样了，文件系统将会胜过几乎所有的关系型数据库。
+
+另外，如果性能是你唯一关心的，你可以看下 tmpfs （注意：外部资源），它可以让你的 session 非常快。
+——————————
+数据库驱动
+
+为了使用数据库驱动，你还需要创建一个我们刚刚已经提到的数据表，然后将 $config['sess_save_path'] 参数设置为表名。例如，如果你想使用 'ci_sessions' 这个表名，你可以这样:
+
+$config['sess_driver'] = 'database';
+$config['sess_save_path'] = 'ci_sessions';
+——————————————————
+重要：只有 MySQL 和 PostgreSQL 数据库是被正式支持的，因为其他数据库平台都缺乏合适的锁机制。 在没锁的情况下使用 session 可能会导致大量的问题，特别是使用了大量的 AJAX ， 所以我们并不打算支持这种情况。如果你遇到了性能问题，请你在完成 session 数据的处理之后， 调用 session_write_close() 方法。
+
+______________________________________________________
+表格类
+
+使用表格类
+初始化类
+跟 CodeIgniter 中的其他类一样，可以在你的控制器中使用 $this->load->library() 方法加载表格类:
+
+$this->load->library('table');
+一旦加载，表格类就可以像下面这样使用:
+
+$this->table
+_______________________
+“引用通告”简单的说，就是如果你写的文章是根据其他人Blog中的文章而做出的延伸或评论，你可以通知对方你针对他的文章写了东西，这就需要用到引用通告。
+______________________________
+用户代理类
+用户代理（User Agent）类提供了一些方法来帮助你识别正在访问你的站点的浏览器、 移动设备或机器人的信息。
+
+例子
+当用户代理类初始化之后，它会尝试判断正在访问你的站点的是 Web 浏览器，还是移动设备， 或者是机器人。它还可以获取平台的相关信息。
+
+$this->load->library('user_agent');
+
+if ($this->agent->is_browser())
+{
+    $agent = $this->agent->browser().' '.$this->agent->version();
+}
+elseif ($this->agent->is_robot())
+{
+    $agent = $this->agent->robot();
+}
+elseif ($this->agent->is_mobile())
+{
+    $agent = $this->agent->mobile();
+}
+else
+{
+    $agent = 'Unidentified User Agent';
+}
+
+echo $agent;
+
+echo $this->agent->platform(); 
+
+_________________________________________________________
+XML-RPC 与 XML-RPC 服务器类
+CodeIgniter 的 XML-RPC 类允许你向另一个服务器发送请求， 或者建立一个你自己的 XML-RPC 服务器来接受请求。
+
+————————————
+什么是 XML-RPC ？
+这是一种在两台计算机之间使用 XML 通过互联网进行通信的简单方法。 一台计算机 , 我们称之为客户端 , 发送一个 XML-RPC 请求给另外一台计算机， 我们称之为服务器，当服务器收到请求时，对其进行处理然后将结果返回给客户端。
+
+——————————————————————
+使用 XML-RPC 类
+初始化类
+跟 CodeIgniter 中的其他类一样，可以在你的控制器中使用 $this->load->library() 方法加载 XML-RPC 类和 XML-RPC 服务器类。
+_____________________________________
+CodeIgniter 的 Zip 编码类允许你创建 Zip 压缩文档，文档可以被下载到你的桌面 或者 保存到某个文件夹里。
+
+
+
+
+使用 Zip 编码类
+初始化类
+正如 CodeIgniter 中的其他类一样，在你的控制器中使用 $this->load->library() 方法来初始化 Zip 编码类:
+
+$this->load->library('zip');
+初始化之后，Zip 编码类的对象就可以这样访问:
+
+$this->zip
+
+使用示例:
+下面这个例子演示了如何压缩一个文件，将其保存到服务器上的一个目录下，并下载到你的桌面上。
+
+$name = 'mydata1.txt';
+$data = 'A Data String!';
+
+$this->zip->add_data($name, $data);
+
+// Write the zip file to a folder on your server. Name it "my_backup.zip"
+$this->zip->archive('/path/to/directory/my_backup.zip');
+
+// Download the file to your desktop. Name it "my_backup.zip"
+$this->zip->download('my_backup.zip');
+__________________________________________
+
+CodeIgniter 内置了一个快速强大的数据库抽象类，支持传统的查询架构以及查询构造器模式。 数据库方法的语法简单明了。
+————————————————————
+连接你的数据库
+有两种方法连接数据库：自动连接/手动连接
+
+对于 PDO 驱动，你应该使用 $config['dsn'] 取代 'hostname' 和 'database' 参数：
+
+
+$config['dsn'] = 'mysql:host=localhost;dbname=mydatabase';
+或者你可以使用数据源名称（DSN，Data Source Name）作为参数，DSN 的格式必须类似于下面这样:
+
+$dsn = 'dbdriver://username:password@hostname/database';
+$this->load->database($dsn);
+
+如果你只是需要切换到同一个连接的另一个不同的数据库，你没必要创建 独立的数据库配置，你可以像下面这样切换到另一个数据库：
+
+$this->db->db_select($database2_name);
+重新连接 / 保持连接有效
+当你在处理一些重量级的 PHP 操作时（例如处理图片），如果超过了数据库的超时值， 你应该考虑在执行后续查询之前先调用 reconnect() 方法向数据库发送 ping 命令， 这样可以优雅的保持连接有效或者重新建立起连接。
+
+$this->db->reconnect();
+手动关闭连接
+虽然 CodeIgniter 可以智能的管理并自动关闭数据库连接，你仍可以用下面的方法显式的关闭连接：
+
+$this->db->close();
+——————————————————————
+
+常规查询
+要提交一个查询，使用 query 函数:
+
+$this->db->query('YOUR QUERY HERE');
+
+————————————
+指定数据库前缀
+如果你配置了一个数据库前缀参数，想把它加上你的 SQL 语句里的表名前面， 你可以调用下面的方法:
+
+$this->db->dbprefix('tablename'); // outputs prefix_tablename
+如果你想动态的修改这个前缀，而又不希望创建一个新的数据库连接，可以使用这个方法:
+
+$this->db->set_dbprefix('newprefix');
+$this->db->dbprefix('tablename'); // outputs newprefix_tablename
+——————————
+转义查询
+在提交数据到你的数据库之前，确保先对其进行转义是个非常不错的做法。 CodeIgniter 有三个方法来帮你做到这一点：
+
+$this->db->escape() 这个函数会检测数据类型，仅转义字符串类型的数据。 它会自动用单引号将你的数据括起来，你不用手动添加：
+
+$sql = "INSERT INTO table (title) VALUES(".$this->db->escape($title).")";
+————————————————————
+错误处理
+$this->db->error();
+————————————————————
+有几种不同方法可以生成查询结果：
+
+1、结果数组
+2、结果行
+3、自定义结果对象
+4、结果辅助方法
+
+
+结果数组
+result() 方法
+
+该方法以**对象数组**形式返回查询结果，如果查询失败返回**空数组**。 一般情况下，你会像下面这样在一个 foreach 循环中使用它:
+
+$query = $this->db->query("YOUR QUERY");
+
+foreach ($query->result() as $row)
+{
+    echo $row->title;
+    echo $row->name;
+    echo $row->body;
+}
+该方法是 result_object() 方法的别名。
+
+你还可以传一个字符串参数给 result() 方法，这个字符串参数代表你想要把每个结果转换成某个类的类名（这个类必须已经加载）
+
+$query = $this->db->query("SELECT * FROM users;");
+
+foreach ($query->result('User') as $user)
+{
+    echo $user->name; // access attributes
+    echo $user->reverse_name(); // or methods defined on the 'User' class
+}
+result_array() 方法
+
+这个方法以 一个纯粹的数组 形式返回查询结果，如果无结果，则返回一个空数组。一般情况下，你会像下面这样在一个 foreach 循环中使用它:
+
+$query = $this->db->query("YOUR QUERY");
+
+foreach ($query->result_array() as $row)
+{
+    echo $row['title'];
+    echo $row['name'];
+    echo $row['body'];
+}
+————————————
+结果行
+row() 方法
+
+这个方法返回单独一行结果。如果你的查询不止一行结果，它只返回第一行。返回的结果是 对象 形式，这里是用例:
+
+$query = $this->db->query("YOUR QUERY");
+
+
+
+$row = $query->row();
+
+if (isset($row))
+{
+    echo $row->title;
+    echo $row->name;
+    echo $row->body;
+}
+如果你要返回特定行的数据，你可以将行号作为第一个参数传给这个方法:
+
+$row = $query->row(5);
+你还可以加上第二个参数，该参数为字符串类型，代表你想要把结果转换成某个类的类名:
+
+$query = $this->db->query("SELECT * FROM users LIMIT 1;");
+$row = $query->row(0, 'User');
+
+echo $row->name; // access attributes
+echo $row->reverse_name(); // or methods defined on the 'User' class
+row_array() 方法
+
+这个方法除了返回结果是一个数组而不是一个对象之外，其他的和上面的 row() 方法完全一样。举例:
+
+$query = $this->db->query("YOUR QUERY");
+
+$row = $query->row_array();
+
+if (isset($row))
+{
+    echo $row['title'];
+    echo $row['name'];
+    echo $row['body'];
+}
+如果你要返回特定行的数据，你可以将行号作为第一个参数传给这个方法:
+
+$row = $query->row_array(5);
+
+注解：上面所有的这些方法都会把所有的结果加载到内存里（预读取）， 当处理大结果集时最好使用 unbuffered_row() 方法。
+unbuffered_row() 方法
+
+这个方法和 row() 方法一样返回单独一行结果，但是它不会预读取所有的结果数据到内存中。 如果你的查询结果不止一行，它将返回当前一行，并通过内部实现的指针来移动到下一行。
+
+$query = $this->db->query("YOUR QUERY");
+
+while ($row = $query->unbuffered_row())
+{
+    echo $row->title;
+    echo $row->name;
+    echo $row->body;
+}
+为了指定返回值的类型，可以传一个字符串参数 'object'（默认值） 或者 'array' 给这个方法:
+
+$query->unbuffered_row();       // object
+$query->unbuffered_row('object');   // object
+$query->unbuffered_row('array');    // associative array
+
+——————————————————————
+结果辅助方法
+num_rows() 方法
+
+该方法返回查询结果的行数。
+
+————————————————
+num_fields() 方法
+
+该方法返回查询结果的字段数（列数）。在你的查询结果对象上调用该方法:
+
+$query = $this->db->query('SELECT * FROM my_table');
+
+echo $query->num_fields();
+——————
+free_result() 方法
+
+该方法释放掉查询结果所占的内存，并删除结果的资源标识。
+——————————
+data_seek() 方法
+
+这个方法用来设置下一个结果行的内部指针，它只有在和 unbuffered_row() 方法一起使用才有效果。
+
+它接受一个正整数参数（默认值为0）表示想要读取的下一行，返回值为 TRUE 或 FALSE 表示成功或失败。
+————————————
+查询辅助函数：
+
+$this->db->insert_id()
+$this->db->affected_rows()
+
+$this->db->count_all()
+该方法用于获取数据表的总行数，第一个参数为表名，例如:echo $this->db->count_all('my_table');
+
+$this->db->platform()-该方法输出你正在使用的数据库平台（MySQL，MS SQL，Postgres 等）
+
+$this->db->version()--该方法输出你正在使用的数据库版本
+
+————————
+让你的查询更简单
+$this->db->insert_string()及$this->db->update_string()用法类似
+
+这个方法简化了 INSERT 语句的书写，它返回一个正确格式化的 INSERT 语句。 举例:
+
+$data = array('name' => $name, 'email' => $email, 'url' => $url);
+
+$str = $this->db->insert_string('table_name', $data);
+第一个参数为表名，第二个参数是一个关联数组，表示待插入的数据。 上面的例子生成的 SQL 语句如下:
+
+INSERT INTO table_name (name, email, url) VALUES ('Rick', 'rick@example.com', 'example.com')
+
+注解：所有的值自动被转义，生成安全的查询语句。
+————————————————————————————————
+查询构造器类--能会自动对数据进行转义，所以它还能提供更安全的查询。：
+
+$this->db->get()，注意区别常规函数query()
+
+该方法执行 SELECT 语句并返回查询结果，可以得到一个表的所有数据，作用同get_where()
+————————————————————————
+$this->db->get_where()
+
+这个方法基本上和上面的方法一样，但它提供了第二个参数可以让你添加一个 WHERE 子句， 而不是使用 db->where() 方法:
+
+$query = $this->db->get_where('mytable', array('id' => $id), $limit, $offset);
+——————————
+数据库配置文件database.php位于application/config/
+————————————
+使用$this->db->dbprefix('tablename');将配置了一个数据库前缀参数，想把它加上你的 SQL 语句里的表名前面。
+
+或者使用$this->db->protect_identifiers('table_name', TRUE)--这个函数也可以为你的表名添加一个前缀，如果你在数据库配置文件中定义了 dbprefix 参数，通过将这个函数的第二个参数设置为 TRUE 来启用前缀;
+————————————————
+查询绑定
+查询绑定可以简化你的查询语法，它通过系统自动的为你将各个查询组装在一起。 参考下面的例子:
+
+$sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?";
+$this->db->query($sql, array(3, 'live', 'Rick'));
+查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。
+
+也可以使用数组的数组进行绑定，里面的数组会被转换成 IN 语句的集合:
+
+$sql = "SELECT * FROM some_table WHERE id IN ? AND status = ? AND author = ?";
+$this->db->query($sql, array(array(3, 6), 'live', 'Rick'));
+
+使用查询绑定的第二个好处是：所有的值会被自动转义，生成安全的查询语句。 你不再需要手工进行转义，系统会自动进行。
+_________________________
+错误处理
+$this->db->error();
+
+要获取最近一次发生的错误，使用 error() 方法可以得到一个包含错误代码和错误消息的数组。 
+——————————————————————
+类似$this->db->get_compiled_delete()生成sql语句
+————————————
+链式方法
+通过将多个方法连接在一起，链式方法可以大大的简化你的语法。感受一下这个例子:
+
+$query = $this->db->select('title')
+        ->where('id', $id) //where 'id'=$id
+        ->limit(10, 20)
+        ->get('mytable');
+——————————
+查询构造器缓存
+尽管不是 "真正的" 缓存，查询构造器允许你将查询的某个特定部分保存（或 "缓存"）起来， 以便在你的脚本执行之后重用。一般情况下，当查询构造器的一次调用结束后，所有已存储的信息 都会被重置，以便下一次调用。如果开启缓存，你就可以使信息避免被重置，方便你进行重用。
+
+支持缓存的语句有: select, from, join, where, like, group_by, having, order_by
+————————————————
+$this->db->get_compiled_select(，参数2)--参数2是否重置查询
+
+————————————
+事务
+
+CodeIgniter 默认使用严格模式运行所有的事务，在严格模式下，如果你正在 运行多组事务，只要有一组失败，所有组都会被回滚。如果禁用严格模式，那么 每一组都被视为独立的组，这意味着其中一组失败不会影响其他的组。
+————————————————
+数据库元数据--描述数据库基本信息的数据
+————————————————————
+自定义函数调用
+$this->db->call_function();
+这个方法用于执行一些 CodeIgniter 中没有定义的 PHP 数据库函数，而且 使用了一种平台独立的方式。举个例子，假设你要调用 mysql_get_client_info() 函数，这个函数 CodeIgniter 并不是原生支持的，你可以这样做:
+
+$this->db->call_function('get_client_info');
+————————————————
+启用缓存需要三步：
+
+在服务器上创建一个可写的目录以便保存缓存文件；
+通过文件 application/config/database.php 中的 cachedir 参数设置其目录路径；
+通过将文件 application/config/database.php 中的 cache_on 参数设置为 TRUE， 也可以用下面的方法手动配置。
+——————————————————
+只有读类型（SELECT）的查询可以被缓存，因为只有这类查询才会产生结果。 写类型的查询（INSERT、UPDATE 等）并不会生成结果，所以不会被缓存。
+
+缓存文件永不过期，所有的查询只要缓存下来以后除非你删除它们否则将一直可用。 你可以针对特定的页面来删除缓存，或者也可以清空掉所有的缓存。一般来说， 你可以在某些事件发生时（如数据库中添加了数据）用下面的函数来清除缓存。
+
+——————————————
+数据库工厂类提供了一些方法来帮助你管理你的数据库。
+
+Table of Contents
+
+数据库工厂类
+初始化数据库工厂类
+创建和删除数据库
+创建和删除数据表
+添加字段
+添加键
+创建表
+删除表
+重命名表
+修改表
+给表添加列
+从表中删除列
+修改表中的某个列
+————————————————
+数据库工具类
+数据库工具类提供了一些方法用于帮助你管理你的数据库。
+
+初始化工具类
+使用数据库工具类
+获取数据库名称列表
+判断一个数据库是否存在
+优化表
+修复表
+优化数据库
+将查询结果导出到 CSV 文档
+将查询结果导出到 XML 文档
+备份你的数据库
+————————————————————
+辅助函数参考：
+
+验证码辅助函数
+
+下载辅助函数
+
+文件辅助函数
+————————————
+数组辅助函数：
+
+random_element($array)---传入一个数组，并返回数组中随机的一个元素。
+
+elements($items, $array[, $default = NULL])---该函数通过多个索引获取数组中的多个元素。
+
+——————————————
+查询绑定
+查询绑定可以简化你的查询语法，它通过系统自动的为你将各个查询组装在一起。 参考下面的例子:
+
+$sql = "SELECT * FROM some_table WHERE id = ? AND status = ? AND author = ?";
+$this->db->query($sql, array(3, 'live', 'Rick'));
+查询语句中的问号将会自动被第二个参数位置的数组的相应的值替代。
+
+使用查询绑定的第二个好处是：所有的值会被自动转义，生成安全的查询语句。 你不再需要手工进行转义，系统会自动进行。
+——————————
+验证码辅助函数
+验证码辅助函数文件包含了一些帮助你创建验证码图片的函数。
+
+特别提示：将验证码信息保存到数据库
+——————————
+unix_to_human([$time = ''[, $seconds = FALSE[, $fmt = 'us']]])
+参数:	
+$time (int) -- UNIX timestamp
+$seconds (bool) -- Whether to show seconds
+$fmt (string) -- format (us or euro)
+返回:	
+Formatted date
+
+返回类型:	
+string
+
+将 UNIX 时间戳转换为方便人类阅读的格式
+————
+human_to_unix([$datestr = ''])--将一个方便人类阅读的时间格式转换为 UNIX 时间戳。
+
+注意区分邮件辅助函数与email类
+
+涉及到转义的地方，大部分函数可以自动转义。
+_______________________________________________________________
+
+辅助函数参考：
+
+使用通用函数 html_escape() 函数可以对 HTML 的特殊字符进行转义，从而可以安全的在域值中使用字符串:
+
+<input type="text" name="myfield" value="<?php echo html_escape($string); ?>" />
+——————————————————————
+表单辅助函数：可添加添加隐藏域
+
+可以通过第三个参数传递一个关联数组来添加隐藏域，例如:
+
+$hidden = array('username' => 'Joe', 'member_id' => '234');
+echo form_open('email/send', '', $hidden);
+——————————————
+form_open_multipart([$action = ''[, $attributes = array()[, $hidden = array()]]])
+
+这个函数和上面的 form_open() 函数完全一样， 只是它会给表单添加一个 multipart 属性，在你使用表单上传文件时必须使用它。
+——————————
+form_close()--关闭form表单
+
+form_error()--从 表单验证类 返回验证错误消息， 并附上验证出错的域的名称，你可以设置错误消息的起始和结束标签。
+
+validation_error()--和 form_error() 函数类似，返回所有 表单验证类 生成的错误信息，你可以为为每个错误消息设置起始和结束标签。
+
+
+HTML 辅助函数文件包含了用于处理 HTML 的一些函数,生成HTML除表单以外元素。 
+
+encode_php_tags()--该安全函数将 PHP 标签转换为实体对象。
+————————————————————
+字符串辅助函数:
+
+random_string()--根据你所指定的类型和长度产生一个随机字符串。可用于生成密码或随机字符串。
+
+increment_string()--自增字符串是指向字符串尾部添加一个数字，或者对这个数字进行自增。
+
+alternator()--当执行一个循环时，让两个或两个以上的条目轮流使用。
+————————————————————
+文件辅助函数：
+
+highlight_code($str)--
+
+该函数使用了 PHP 的 highlight_string() 函数，所以着色的颜色是在 php.ini 文件中设置的。
+
+——————————
+类库与辅助函数区别--类库某些功能函数，辅助函数调用类库完成。
+——————————————————————————
+url辅助函数 ：
+
+base_url()实现创建URL，搭配redirect();例如：redirect(base_url());
+
+current_url返回当前正在浏览的页面的完整 URL （包括分段）。
+
+uri_string()返回包含该函数的页面的 URI 分段。
+
+anchor()根据你提供的 URL 生成一个标准的 HTML 链接。
+
+auto_link将一个字符串中的 URL 和 e-mail 地址自动转换为链接
+________________________________________________________________
+library/form_validation表单验证类里面的run()运行验证程序
+
+$this->db->join()
+
+该方法用于编写查询语句中的 JOIN 子句:
+
+$this->db->select('*');
+$this->db->from('blogs');
+$this->db->join('comments', 'comments.id = blogs.id');
+$query = $this->db->get();
+
+// Produces:
+// SELECT * FROM blogs JOIN comments ON comments.id = blogs.id
+如果你的查询中有多个连接，你可以多次调用这个方法。
+
+——————————————
+在每一个视图文件添加如下代码：
+defined('BASEPATH') OR exit('No direct script access allowed');判断是否是通过入口文件是否运行
+——————————————
+BASEPATH--定义框架system文件夹
+
+模型--将一些数据库逻辑定义在里面。
+
+可在config.php自定义配置项，格式:$config['变量名']';
+——————————————————
+在autoload.php定义自动加载自定义配置文件
+————————————
+文件自动加载由autoloader类实现，input类由系统自动加载，不用手动加载。
+————————————————————
+框架有一个重要文件--CodeIgniter.php,位于core核心目录下
+————————————
+获取输入数据：
+
+$this->input->get(）
+$this->input->post()
+————————————————————
+删除session——$this->session->unset_userdata('some_name');
+
+销毁session---$this->session->sess_destroy();
+——————————————————
+控制器$this->uri->segment(1)，获取uri段1--控制器名
+
+ecshop权限实现--建立权限表id,action_code，会员表存在权限字段actino_id，会员登录后，首先将从数据库查询到的action_code赋给session.,从session中获取会员是否有权限。
