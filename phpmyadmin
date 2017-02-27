@@ -1,0 +1,1 @@
+修改想要的背景色：themes\pmahomme\css\common.css.php里面的 background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>;
