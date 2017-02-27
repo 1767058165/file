@@ -279,7 +279,7 @@ filter_var — 使用特定的过滤器过滤一个变量
  *********
  get_magic_quotes_gpc（）判断是否开启魔术引用，即为单引号、双引号添加反斜杠
  ************
- $GLOBALS — 引用全局作用域中可用的全部变量，可以这样$GLOBALS['_POST']获取$_POST变量的值
+ $GLOBALS — 引用全局作用域中可用的全部变量，可以这样$GLOBALS['_POST']获取$_POST变量的值及自定义变量的值
  ********
  Edit Report a Bug
 ini_get
