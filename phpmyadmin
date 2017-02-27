@@ -1,3 +1,4 @@
 配置数据库用户名和密码：phpMyAdmin\libraries\config.default.php里面的$cfg['Servers'][$i]['user'] 
 
-修改想要的背景色：phpMyAdmin\themes\pmahomme\css\common.css.php里面的 background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>;
+修改想要的背景色：phpMyAdmin\themes\pmahomme\css\common.css.php里面的 background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>
+及navigation.css.php删除#pma_navigation背景色属性;
