@@ -43,6 +43,6 @@ iOS 2.0及更高版本的Safari浏览器可用
  
  windos+r打开运行框
 
-alt+space+x窗口最大化
+alt+space+x窗口最大化,需在英语输入法
 
 手机网页左右宽度百分比定义，垂直em
