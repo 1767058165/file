@@ -63,3 +63,9 @@ Ctrl+R 打开替换对话框
 phpstorm窗口，右边黄色快代表有警告错误     
 
 ctrl+c 复制光标所在代码行
+
+alt+ctrl+]切换phpstorm窗口
+
+ctrl+tab打开切换窗口
+
+ALT+方向键tab窗口切换
