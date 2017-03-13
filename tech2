@@ -180,3 +180,235 @@ magic_quotes_gpc的设定值将会影响通过GET、POST 和 COOKIE获得的数�
 
 magic_quotes_runtime的设定值将会影响从文件中读取的数据或从数据库查询得到的数据,php7已弃用
 ——————————————————————————————
+保证数据插入数据时正常 通常会使用 addslashes 这个来处理， 数据读出时多用 stripslashes 来去掉加的反斜杠
+——————————————
+【自定义时区设置
+ini_set('date.timezone', 'Asia/Shanghai');
+date_default_timezone_set("Asia/Shanghai");
+时区定义在框架首文件首行】
+
+输出日期：date('Y-m-d H:i:s');
+
+PHP 5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP 5.5以下版本的，需要使用APC加速，这里不说明，可以自行上网搜索PHP APC加速的方法。
+
+php -v命令行输出版本
+
+一些缓存存储位置，把数据存在内存缓存中，如 memcached或redis，还有php APC
+
+APC只能在php5.4及以下版本使用
+
+password_hash
+
+(PHP 5 >= 5.5.0, PHP 7)
+password_hash — 创建密码的哈希（hash）
+
+——————————————
+php发送邮件----使用PHP内置的mail()函数
+
+使用mail()函数发送邮件就必须要有一台无需SMTP验证就可以发信的邮件服务器。但现在的SMTP邮件服务器基本上都是需要验证的。
+————————————————————
+date('Y-m-d H:i:s')
+————————————————
+命令模式下转到d:盘，不用输入cd
+————————
+使用pear安装扩展方式;pear install 扩展名，默认安装在php.exe文件夹下
+
+——————————————————————
+644、755、777权限相对于Linux系统
+——————————
+php.ini 全局变量配置register_globals已在 PHP 5.4.0 中移除该选项。
+————————————
+filter_var（）
+
+(PHP 5 >= 5.2.0, PHP 7)
+filter_var — 使用特定的过滤器过滤一个变量
+
+——————————————
+获取post数据，还可以使用 php://input 流，形式：file_get_contents('php://input');
+——————————————
+php://
+
+php:// — 访问各个输入/输出流（I/O streams）
+
+说明
+
+PHP 提供了一些杂项输入/输出（IO）流，允许访问 PHP 的输入输出流、标准输入输出和错误描述符， 内存中、磁盘备份的临时文件流以及可以操作其他读取写入文件资源的过滤器。
+——————————————
+
+return用法：
+
+例子：配置文件-- config.php:
+
+<?php
+return [
+  'site' => 123,
+  'settings' => 'asd'
+];
+
+Reading:
+
+<?php
+$config = (require 'config.php');
+————————————————————————
+$_SERVER['HTTP_HOST']---
+当前请求头中 Host: 项的内容，如果存在的话。可以是域名或者IP地址
+
+————————————————
+记得使用完session,
+
+使用session_write_close()来保存会话数据并释放文件锁。
+
+最后：session_destroy
+
+(PHP 4, PHP 5, PHP 7)
+session_destroy — 销毁一个会话中的全部数据
+——————————————
+session_id
+
+(PHP 4, PHP 5, PHP 7)
+session_id — 获取/设置当前会话 ID，需在之前使用session_start()
+
+除某个session值可以使用PHP的unset函数，删除后就会从全局变量$_SESSION中去除，无法访问。
+
+如果要删除所有的session，可以使用session_destroy函数销毁当前session，session_destroy会删除所有数据，但是session_id仍然存在。
+
+值得注意的是，session_destroy并不会立即的销毁全局变量$_SESSION中的值，只有当下次再访问的时候，$_SESSION才为空，因此如果需要立即销毁$_SESSION，可以使用unset函数。
+
+————————————————————
+
+事实上，每一次SESSION会话都有一个SESSION ID，用来识别不同的会话，保存在浏览器Cookie之中，也就是这个名为PHPSESSID的Cookie（当然，这个名称是可以更改的）。
+
+在调用 session_start() 之后都会向客户端发送新的 cookie， 无论当前的会话 ID 和新指定的会话 ID 是否相同。
+
+php.ini默认session.name设置为PHPSESSID，该值将传递给cookie保存。  
+; Name of the session (used as cookie name).
+session.name = PHPSESSID   
+
+——————————————
+nl2br（） — 在字符串所有新行之前插入 HTML 换行标记
+
+PHP自带ZIP压缩、解压缩类ZipArchiv
+————————————
+以下2值共同控制MySQL链接超时值：
+
+interactive_timeout：服务器关闭交互式连接前等待活动的秒数。
+ wait_timeout:服务器关闭非交互连接之前等待活动的秒数。
+————————————
+默认windows文件访问路径为\\
+
+../../../不能访问，定义根目录才可访问网站根目录以外文件夹，根目录/../，
+
+var_export() — 输出或返回一个变量的字符串表示,可输出window双路径
+
+单引号、 双引号，反引号（``）
+
+stdclass对象基类
+——————————————
+linux的绝对路径是指从根目录说起的. 例如 /dev/somedir/..
+而相对路径则是从当前目录说起: 即 ./
+
+
+一般通过$_SERVER['HTTP_HOST']来活得URL中网站的域名或者ip地址。
+
+last_ip	   bigint(20)
+status	   tinyint(1)
+content	    text
+
+字段索引添加原则--查询用到的字段需要加
+
+时间戳字段用int(11)因为速度快
+
+ceil()进一法取整
+
+time() — 返回当前的 Unix 时间戳
+
+ip2long() — 将一个IPV4的字符串互联网协议转换成int数字格式
+
+sha1()、MD5（）生成散列值
+
+php $_SERVER中的SERVER_NAME 和HTTP_HOST的区别，尽量使用HTTP_HOST
+
+分页类：获取当前网页地址函数--
+        public function curPageURL()
+        {
+            $pageURL = 'http://';
+            if ($_SERVER["SERVER_PORT"] != "80")
+            {
+                $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+            }
+            else
+            {
+                $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+            }
+            return $pageURL;
+        }
+		
+——————————————————————————————————————————————
+linux权限：
+0755->即用户具有读/写/执行权限，组用户和其它用户具有读写权限；
+0644->即用户具有读写权限，组用户和其它用户具有只读权限；
+
+一般赋予目录0755权限，文件0644权限。
+————————————————————————
+pathinfo() 返回一个关联数组包含有 path 的信息。返回关联数组还是字符串取决于 options。
+——————————————————————————————
+——————————————————————————
+Apache服务器index.html默认优先index.php访问
+
+网站根目录下的子目录禁止浏览器URL访问，其下文件可以访问
+realpath()-返回规范化的绝对路径
+basename() - 返回路径中的文件名部分
+dirname() - 返回路径中的目录部分
+pathinfo() - 返回文件路径的信息
+
+$_SERVER["REQUEST_URI"]--'REQUEST_URI'， URI 用来指定要访问的页面。例如 “/index.html”。
+echo "当前IP".$_SERVER['SERVER_ADDR']."<br>";
+echo "地址转换".ip2long($_SERVER['SERVER_ADDR'])."<br>";
+
+对于程序调试最好有正式域名
+
+对于需要控制器的框架不同入口文件，添加.htaccess文件隐藏index.php
+
+日志表可以采用Json字符串的形式记录具体的操作内容，例如：{“查询类型”:“值”, “查询名称”:“值”, “公司”:“值”,……….}
+
+limit 20,10---限制20条记录
+
+对于程序中使用die和exit，有时会影响前端网页输出，后端输出没问题，最好使用return。
+ajax只能获取php页面echo数据。
+
+对于登陆成功等提示信息，不一定使用ajax,可以使用session,js中输出php获取session脚本。
+
+【ajax异步获取php数据。 一般php会在后台处理请求，并返回结果给前端。 必须是echo的方式，不然ajax获取不到。
+返回的类型包括，字符串，数字，json。 最常用的就是json。 返回后，前端会处理json成对象，然后使用。】
+
+alert()参数使用\n换行，连字符串使用+，php使用点号
+
+js使用JSON.parse()解析json数据;
+
+——————————————————————————————————————
+******************************************************
+jquery插件函数,最好放在文档就绪ready函数之中
+
+限制同一用户只能登陆一次,可以使用每次生成的session_id保存到数据库
+
+全局模式下，命令行模式下执行文件：php 文件名
+
+图片可base64编码后保存数据库
+
+后台一些布局，不一定使用框架，使用div即可，利用绝对定位。
+
+ｓｅｓｓｉｏｎ可保存在浏览器ｃｏｏｋｉｅ中
+——————————————————————————————
+session.use_cookies 指定是否在客户端用 cookie 来存放会话 ID。默认为 1（启用），ｓｅｓｓｉｏｎ可保存在ｃｏｏｋｉｅ中。
+
+session.gc_maxlifetime 指定过了多少秒之后数据就会被视为“垃圾”并被清除。
+
+session.cookie_lifetime 以秒数指定了发送到浏览器的 cookie 的生命周期。值为 0 表示“直到关闭浏览器”。默认为 0。
+
+int session_status() 被用于返回当前会话状态。分别为0、1、2，PHP_SESSION_DISABLED 会话是被禁用的。PHP_SESSION_NONE 会话是启用的，但不存在当前会话。 PHP_SESSION_ACTIVE 会话是启用的，而且存在当前会话。
+
+session_regenerate_id() — 使用新生成的会话 ID 更新现有会话 ID.
+
+session_encode — 将当前会话数据编码为一个字符串
+
+session_destroy() 销毁当前会话中的全部数据， 但是不会重置当前会话所关联的全局变量， 也不会重置会话 cookie。
