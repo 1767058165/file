@@ -1,3 +1,5 @@
 升级phpmyadmin ,访问phpmyadmin2路径，内容替换为最新版本
 
  phpstudy集成包虽然phpinfo()没有输出intl扩展，但不用开启此扩展也能用。
+
+phpstudy本地路径添加域名，需添加http://,才能访问到
