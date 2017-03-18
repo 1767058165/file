@@ -1,8 +1,0 @@
-wamp数据库默认无密码，登录出现不允许空密码登录解决办法：
-
-设置phpmyadmin/librarise/config.default.php:
-
-$cfg['Servers'][$i]['AllowNoPassword']='true'开启无密码登录
-
-**********************************
-wamp启动失败--需停止phpstudy
