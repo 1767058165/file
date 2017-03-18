@@ -1,0 +1,8 @@
+所有的类都放在i标签调用
+————————————
+动态加载--<i class="icon-spinner icon-spin"></i> 
+ 注：CSS3 animations aren't supported in IE7 - IE9.
+——————————————————
+font-awesome最好使用4.7.0，图标以.fa类开头，以fa-3x的形式可改变大小，2.*或者3.*版本使用icon开头，通过font-size改变大小。
+——————————————————————————
+注意版本

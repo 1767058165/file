@@ -1,0 +1,7 @@
+调整图标大小--调整font-size
+
+Font Awesome, 为 Bootstrap 而创造的图标字体。
+
+addon--解释：插件
+
+.row设置行，.col设置列，例如：.col-xs-6
