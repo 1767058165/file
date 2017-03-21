@@ -1,0 +1,20 @@
+js中replace(/[ ]/g,"")删除字符串内空格/使用+号连接字符/浏览器命令输出console.log()/扩展使用protype/刷新网页--location.reload();
+
+
+
+************************************************************************************************
+jquery里面的submit(）方法作用表单form
+
+jquery里面的ajax提交地址，服务器get方式获取，函数内使用$(this)
+
+jquery中trim() 用法：$.trim(c)/$(this).attr('href')
+
+jQuery.extend(object)--扩展jQuery对象本身。调用添加jQuery，例如：jQuery.min(2,3);
+
+jQuery.fn.extend(object)--扩展 jQuery 元素集来提供新的方法（通常用来制作插件）调用形式：对象/$(this).方法()。
+
+ $("input:hidden")--选择隐藏表单
+
+.val()获取表单数据
+
+
