@@ -1,4 +1,78 @@
-raid��
-window server 2012
-hyper-v
-window server 2012Զ�̹���
+——————————————————————————
+Math.random()-实现浏览器验证码点击刷新的JS方法核心
+
+代码：
+
+onclick="this.src='control/test.php?time='+Math.random()"
+1
+Math.random()会返回一个0到1之间的随机数。 
+time=一个随机数后，链接地址src每次打开后就会是一个随机的src地址。 
+在url中添加无效的变量time后一般浏览器会忽略该变量，但有一个浏览器不一般，就是IE！ 
+——————————————————————————————————
+unlink（） — 删除文件
+array_unshift（） — 在数组开头插入一个或多个单元
+array_shift() - 将数组开头的单元移出数组
+array_push() - 将一个或多个单元压入数组的末尾（入栈）
+array_pop() - 弹出数组最后一个单元（出栈）
+
+illegal错误多为语法错误
+
+for/foreach用法多写调用
+
+public function edit_addon($datas = array())--数组参数形式
+
+chrome系统提示“确认重新提交表单?“错误--可能是浏览器的问题
+
+isset($a, $b)--支持多个参数
+
+$_REQUEST---默认情况下包含了 $_GET，$_POST 和 $_COOKIE 的数组。
+
+$GLOBALS — 引用全局作用域中可用的全部变量，不要与$_REQUEST搞混
+
+die()/exit()/exit/die作用相似--中止脚本执行
+
+MIME type的缩写为(Multipurpose Internet Mail Extensions)代表互联网媒体类型(Internet media type)，MIME使用一个简单的字符串组成，最初是为了标识邮件Email附件的类型，在html文件中可以使用content-type属性表示，描述了文件类型的互联网标准。
+
+dirname()- 返回路径中的路径部分
+basename() - 返回路径中的文件名部分
+pathinfo() - 返回文件路径的信息
+
+Web服务器和浏览器（包括操作系统）中，缺省都设置了标准的和常见的MIME类型，只有对于不常见的 MIME类型，才需要同时设置服务器和客户浏览器，以进行识别。 
+
+imagecreatetruecolor（） — 新建一个真彩色图像
+
+imagecreatefromjpeg（） — 由文件或 URL 创建一个新图象。
+——————————————————————————————————————
+imagecopyresampled ( resource dstimage,resourcesrc_image , int dstx,intdst_y , int srcx,intsrc_y , int dstw,intdst_h , int srcw,intsrc_h )
+
+$dst_image：新建的图片
+
+$src_image：需要载入的图片
+
+$dst_x：设定需要载入的图片在新图中的x坐标
+
+$dst_y：设定需要载入的图片在新图中的y坐标
+
+$src_x：设定载入图片要载入的区域x坐标
+
+$src_y：设定载入图片要载入的区域y坐标
+
+$dst_w：设定载入的原图的宽度（在此设置缩放）
+
+$dst_h：设定载入的原图的高度（在此设置缩放）
+
+$src_w：原图要载入的宽度
+
+$src_h：原图要载入的高度
+————————————————————————————————————
+intval（） — 获取变量的整数值
+*****************************************
+下载弹出下载框---
+        $filename="b.jpg";
+        header("Content-Type: application/force-download");
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        $img = readfile($filename);
+        echo $img;
+***********************************************************************************
+对于在php代码中的js代码，并不会在网页查看源代码出现。
+——————————————————————————
