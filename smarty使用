@@ -21,3 +21,38 @@ display()--调用模板，指定文件名后缀
 is_array()等等。
 ——————————————————————————————————————————
 数组可以这样调用--{$data.exit}或者{$data['exit']}
+
+
+在$cache_dir下的文件，文件名与模板名称相似。 虽然这些文件也有.php后缀，但它们不会被直接执行。请
+
+不要编辑这些文件！
+每个缓存页面都有一个缓存过期时间$cache_lifetime。 默认是3600秒，也就是一小时。 当超过了此时间，
+
+缓存将被重新生成。 当设置$caching为Smarty::CACHING_LIFETIME_SAVED时，可以给每个缓存设置其单独的
+
+缓存时间。 参见$cache_lifetime。
+——————————————————————————————————
+继承是从面向对象编程而来的概念，模板继承可以让你定义一个或多个父模板，提供给子模板来进行扩展。 
+
+扩展继承意味着子模板可以覆盖部分或全部父模板的块区域。块区域使用name进行区分，{block 
+
+name="content"}{/block}
+——————————————————————————
+从配置文件获取的变量
+从配置文件获取的变量，可以通过 井号引用起来访问如#hash_marks#， 或者通过Smarty变量 
+
+$smarty.config来访问。 后者在使用其他属性或者是访问别的变量值时比较有用，如$smarty.config.$foo。
+
+{config_load} 载入段落配置变量--{config_load file='example.conf' section='Customer'}
+
+————————————————————————
+循环对象--
+{foreach $data.grade as $t }
+
+<option value="{$t->id}">{$t->grade_name}</option>
+
+{/foreach}
+——————————————————————————————————
+
+
+
