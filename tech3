@@ -1,0 +1,35 @@
+1、php中函数前加&符号的作用--得到函数的引用返回.
+
+2、input type="radio"使用name定义只能选择一个,jquery使用 $(":radio:first-child").attr('checked')==‘checked’来判断是否被选中，通过value判断其值;
+
+3、对网页跳转最好用重定向
+
+4、子类构造方法，可以调用父类普通方法
+
+5、(PHP 4, PHP 5, PHP 7)
+exec — 执行一个外部程序，可以调用windows cmd命令,
+例如：<?php
+      exec("mkdir d:\\test",$out);
+      print_r($out);
+      ?>
+      
+6、输出图片头部--header('Content-type: image/jpg');在 Windows 中，斜线（/）和反斜线（\）都可以用作目录分隔符。在其它环境下是斜线（/）。
+
+7、imagejpeg（） — 输出jpg/jpeg图象到浏览器或文件。
+
+8、imagecopyresampled() — 重采样拷贝部分图像并调整大小,常用语缩略图
+
+9、is_uploaded_file()
+
+  (PHP 4 >= 4.0.3, PHP 5, PHP 7)
+  is_uploaded_file — 判断文件是否是通过 HTTP POST 上传的
+
+10、uniqid（） — 生成一个唯一ID，获取一个带前缀、基于当前时间微秒数的唯一ID。例如：md5(uniqid(mt_rand()))
+
+11、http 500内部服务器（HTTP-Internal Server Error）错误说明服务器无法解析程序代码
+
+12、网页js程序错误必须解决，否则影响后面程序执行
+
+13、ini_set()只能临时修改时区，作用域当前脚本，date_default_timezone_set("Asia/Shanghai")--永久修改时区，最好用后者。
+
+14、下载路径需正确，使用框架时，不能带有控制器及其他字符
