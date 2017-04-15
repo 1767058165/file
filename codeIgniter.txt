@@ -1,16 +1,16 @@
-﻿**生成技术文档**/output.php生成缓存步骤
+**生成技术文档**/output.php生成缓存步骤
 /使用 cron 定时运行任务/省略看购物车类/省略js类
 /$mailpath(服务器上 Sendmail 的实际路径--Path to the Sendmail binary.)
 /规则使用匿名函数/xml-prc使用
 /集成第三方类库/mysql索引/index索引/sesssion保存位置
-/robots\.txt
 /框架index.php配置项全局运行
 /自动加载实现/$this->db->escape()方法调用
 /保证文件上传的安全/保护标识符(保护表和字段)
 /AJAX POST 请求/使用查询构造器会自动保护标识符
-验证码/分页使用
-/自动定时计时/记录日志/segments
-
+验证码/分页使用/index索引
+/自动定时计时/记录日志/segments/
+/权限表与日志表
+/多表删除
 
 
 它是一个老框架
@@ -1189,6 +1189,8 @@ CodeIgniter 的文件上传类用于上传文件，你可以设置参数限制�
 上传参数设置：
 
 1、encrypt_name  如果设置为 TRUE ，文件名将会转换为一个随机的字符串 如果你不希望上传文件的人知道保存后的文件名，这个参数会很有用
+
+上传方法$this->upload->do_upload('参数')---参数为传递的文件表单名
 
 ————————————————————
 验证规则可以是模型方法、匿名函数、控制器方法
@@ -2390,3 +2392,427 @@ $this->input->post()
 控制器$this->uri->segment(1)，获取uri段1--控制器名
 
 ecshop权限实现--建立权限表id,action_code，会员表存在权限字段actino_id，会员登录后，首先将从数据库查询到的action_code赋给session.,从session中获取会员是否有权限。
+————————————————————————————————
+记录日志函数log_message（），例如log_message('info', 'Input Class Initialized');，调用log类write_log（）方法。
+————————————
+核心类MY_开头继承类，定义与原类同名覆盖类
+————————————
+————library文件夹为类库文件
+————core为核心类文件夹
+
+辅助函数只能以MY_开头来扩展辅助函数，例如：MY_captcha_helper.php
+
+自定义配置和类库 函数，需在autoload.php定义配置，实现自动加载。
+
+$config['encryption_key']用来使用加密类。
+
+要设置你自己的类的前缀，你可以打开 application/config/config.php 文件， 找到下面这项:
+
+$config['subclass_prefix'] = 'MY_';
+
+load加载类库，通俗就是实例类对象--使用控制器加载Loader类的_ci_init_library（）函数，注意最后一句。
+————————————————————————————————————————————————————
+$category_id = $this->input->get('category_id', TRUE)?$this->input->get('category_id', TRUE):0;为$category_id设置默认值为0
+——————————————
+可在libraries文件夹添加自定义类，如分页类及设置类
+————————————————————————————————————————————————
+查询条件组可以让你生成用括号括起来的一组 WHERE 条件，这能创造出非常复杂的 WHERE 子句， 支持嵌套的条件组。
+注解：条件组必须要配对，确保每个 group_start() 方法都有一个 group_end() 方法与之配对。
+例如:
+
+ $this->db->group_start();
+            $this->db->like('a.title', $keywords);
+            $this->db->or_like('a.article_id', $keywords);
+            $this->db->or_like('a.keywords', $keywords);
+            $this->db->group_end();
+————————————————————————————————————————————————
+要提交一个查询，使用 query 函数:
+
+$this->db->query('YOUR QUERY HERE');
+————————————————————
+结果数组
+result() 方法
+
+该方法以**对象数组**形式返回查询结果，如果查询失败返回**空数组**。 一般情况下，你会像下面这样在一个 foreach 循环中使用它:
+
+$query = $this->db->query("YOUR QUERY");
+————————————————————————————————
+注意公共函数的使用--common.php
+
+foreach ($query->result() as $row)
+{
+    echo $row->title;
+    echo $row->name;
+    echo $row->body;
+}
+————————————————————
+result_array() 方法
+
+这个方法以 一个纯粹的数组 形式返回查询结果，如果无结果，则返回一个空数组。一般情况下，你会像下面这样在一个 foreach 循环中使用它:
+
+$query = $this->db->query("YOUR QUERY");
+
+foreach ($query->result_array() as $row)
+{
+    echo $row['title'];
+    echo $row['name'];
+    echo $row['body'];
+————————
+结果行
+row() 方法
+
+这个方法返回单独一行结果。如果你的查询不止一行结果，它只返回第一行。返回的结果是 对象 形式，这里是用例:
+
+$query = $this->db->query("YOUR QUERY");
+
+$row = $query->row();
+
+if (isset($row))
+{
+    echo $row->title;
+    echo $row->name;
+    echo $row->body;
+}——————————————————
+
+}
+————————————————————————————————————
+row_array() 方法
+
+这个方法除了返回结果是一个数组而不是一个对象之外，其他的和上面的 row() 方法完全一样。举例:
+
+$query = $this->db->query("YOUR QUERY");
+
+$row = $query->row_array();
+
+if (isset($row))
+{
+    echo $row['title'];
+    echo $row['name'];
+    echo $row['body'];
+}
+——————————————————————————————————
+unbuffered_row() 方法
+
+这个方法和 row() 方法一样返回单独一行结果，但是它不会预读取所有的结果数据到内存中。 如果你的查询结果不止一行，它将返回当前一行，并通过内部实现的指针来移动到下一行。
+
+input核心类ip_address()获取访问者IP
+
+使用$this->form_validation->run()，需开启rule验证.
+——————————————————————————
+CI框架，配置文件用于初始化类文件，在类文件的构造函数，加载配置文件，对类属性进行配置。
+
+框架system/fonts文件夹字体主要用于验证码类与图像处理类.
+
+CI框架在重新定义应用程序目录情况下，需先在index.php修改$application_folder其值。
+————————————————————————————————————
+辅助函数，顾名思义，是帮助我们完成特定任务的函数。每个辅助函数文件都是某一类 函数的集合。
+
+CodeIgniter 默认不会自己加载辅助函数，所以使用辅助函数的第一步就是加载它。 一旦加载了，它就可以在你的 控制器 和 视图 中全局访问了。
+
+例如：$this->load->helper('url');可以全局使用其中函数，example： echo base_url("form/index");
+————————————————————————————————————
+应用程序文件夹、视图文件夹在入口文件定义，config/目录定义类库所用到的配置
+
+config.php里面的$config['base_url'] 作用：类库用来生成URL时有用。
+
+注意应用程序目录在有2级目录时，应设置$config['base_url'] 为域名加文件夹
+
+——————————————————————————————————————————————
+切换数据库：
+
+我们使用多维数组的原因是为了让你随意的存储多个连接值的设置，例如：如果你有多个环境（开发、生产、测试 等等），你能为每个环境建立独立的连接组，并在组之间进行切换。举个例子，如果要设置一个“test”环境，你可以这样做:
+
+$db['test'] = array(
+    'dsn'   => '',
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'database_name',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => TRUE,
+    'db_debug' => TRUE,
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'compress' => FALSE,
+    'encrypt' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array()
+);
+
+注解：分组的名称“test”是任意的，你可以取任意的名字。默认情况下，主连接使用“default”这个名称。当然，您可以基于您的项目为它起一个更有意义的名字。
+
+连接到多个数据库
+
+如果你需要同时连接到多个不同的数据库，可以这样:
+
+$DB1 = $this->load->database('group_one', TRUE);
+$DB2 = $this->load->database('group_two', TRUE);
+注意：将 "group_one" 和 "group_two" 修改为你要连接的组名称 （或者像上面介绍的那样传入连接值数组）
+
+第二个参数 TRUE 表示函数将返回数据库对象。
+
+注解
+
+当你使用这种方式连接数据库时，你将通过你的对象名来执行数据库命令， 而不再是通过这份指南中通篇介绍的，就像下面这样的语法了：
+
+
+$this->db->query();
+$this->db->result();
+etc...
+
+取而代之的，你将这样执行数据库命令：
+
+$DB1->query();
+$DB1->result();
+etc...
+——————————————————————————————————————————————
+另一种切换数据库：
+
+如果你只是需要切换到同一个连接的另一个不同的数据库，你没必要创建 独立的数据库配置，你可以像下面这样切换到另一个数据库：
+
+$this->db->db_select($database2_name);
+
+对于已在database.php定义的表前缀的可以使用： $this->db->set_dbprefix("");将其置为空
+——————————————————————————————————————————
+CodeIgniter 的 XML-RPC 类允许你向另一个服务器发送请求， 或者建立一个你自己的 XML-RPC 服务器来接受请求。
+
+什么是 XML-RPC ？
+这是一种在两台计算机之间使用 XML 通过互联网进行通信的简单方法。 一台计算机 , 我们称之为客户端 , 发送一个 XML-RPC 请求给另外一台计算机， 我们称之为服务器，当服务器收到请求时，对其进行处理然后将结果返回给客户端。
+————————————————————————————————————
+加载多个模型-- $this->load->model(array('news_model'))，model（参数）为模型数组。
+——————————————————
+CI使用Smarty模板，library加载smarty文件，将smarty配置文件放在config文件夹下，不要使用smarty作为控制器名：
+
+$this->load->library('Ci_Smarty');
+		//示例分类列表
+$cat_2 = $this->article_model->get_cat_top_list(2, '', 4);
+$this->assign('cat2_list',$cat_2);
+$this->display('index.hacy');
+
+————————————————————————————————————————————
+CI将视图输出分为头部、内容区和底部。js/css文件夹通过base_url（）寻址路径
+——————————————————
+get()与query(),需调用result（）或者row（）获取结果
+
+result（）返回为数组 与result_array() 返回批量数据
+
+row（）返回单行数据，二者返回为对象，通过->访问
+
+row_array() 二者返回为数组对象，通过[]访问
+——————————————————————————————————
+$this->session->set_userdata()设置session
+
+$this->session->userdata()获取session
+
+session在libraries下
+——————————————————————
+CI可以使用自带模板解析类parser,当然，也可以在视图文件中使用 PHP 替代语法，简化php源码。
+
+1、echo使用替代语法，你可以写成这样:
+
+<?=$variable?>
+
+2、控制结构的替代语法
+像 if、for、foreach、while 这样的控制结构也可以写成精简的格式。 下面以 foreach 举例:
+
+<ul>
+
+<?php foreach ($todo as $item): ?>
+
+    <li><?=$item?></li>
+
+<?php endforeach; ?>
+
+</ul>
+注意这里没有任何括号。所有的结束括号被替换成了 endforeach 。 
+
+另外要注意的一点是，每个分支结构的后面都要跟一个冒号，而不是分号 （除最后一个），这是非常重要的一点！
+——————————————————————————
+
+Session 是如何工作的？
+当页面载入后，Session 类就会检查用户的 cookie 中是否存在有效的 session 数据。 如果 session 数据不存在（或者与服务端不匹配，或者已经过期）， 那么就会创建一个新的 session 并保存起来。
+
+如果 session 数据存在并且有效，那么就会更新 session 的信息。 根据你的配置，每一次更新都会生成一个新的 Session ID 。
+
+有一点非常重要，你需要了解一下，Session 类一旦被初始化，它就会自动运行。 上面所说的那些，你完全不用做任何操作。正如接下来你将看到的那样， 你可以正常的使用 session 数据，至于读、写和更新 session 的操作都是自动完成的。
+——————————————————————————————————————
+CodeIgniter 支持 "flashdata" ，它指的是一种只对下一次请求有效的 session 数据， 之后将会自动被清除。
+
+这用于一次性的信息时特别有用，例如错误或状态信息（诸如 "第二条记录删除成功" 这样的信息）。
+————————————————————————————————————
+CodeIgniter 还支持 "tempdata" ，它指的是一种带有有效时间的 session 数据， 当它的有效时间已过期，或在有效时间内被删除，都会自动被清除。
+——————————————————————————————————
+用户登陆后，将不需要的session删除
+——————————————————————
+timespan（）这个函数最常见的用途是，显示从过去某间点到当前时间经过了多少时间。
+——————————————————
+$this->db->update()用法如下：
+
+$data = array(
+    'title' => $title,
+    'name' => $name,
+    'date' => $date
+);
+
+
+$this->db->where('id', $id);
+$this->db->update('mytable', $data);
+
+或者：
+
+$this->db->update('mytable', $data, "id = 4");
+或者使用一个数组:
+
+$this->db->update('mytable', $data, array('id' => $id));
+————————————————————————————————————————
+alpha_dash(表单验证规则)--如果表单元素值包含除字母/数字/下划线/破折号以外的其他字符，返回 FALSE
+
+尽量少用select(*)
+
+——————————————————
+回调：你自己的验证函数：
+在你的控制器中，将用户名的规则修改为:
+
+$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+然后在你的控制器中添加一个新的方法 username_check() 。
+——————————————————————————————————
+human_to_unix（）该函数和 unix_to_human() 函数相反，将一个方便人类阅读的时间格式转换为 UNIX 时间戳。 这在当你需要在一个表单字段中显示日期时很有用。
+——————————————————————
+$this->session可以直接在模板使用
+
+url_title（）--将字符串转换为对人类友好的 URL 字符串格式。
+————————————————————————————————
+表单辅助函数form_validation---form_open(，参数2)：参数2为键值对数组，例如：array('class' => 'form-horizontal', 'id' => 'tab');
+————————————————————————
+
+$this->db->insert()返回布尔值
+
+$this->uri->segment(参数)从编号1开始获取URL分段值
+
+
+删除/修改传递ID--通过 $this->input->get('id', TRUE);获取。
+————————————————————————————————————
+注意区分form_helper.php辅助类与表单验证类form_validation.php
+——————————————
+CI里面的 $this 可以在你的控制器、模型或视图中直接使用
+————————————————————
+排序
+
+$this->db->order_by()
+
+搜索id/名字--使用or_like()链接
+——————————————————————
+重新填充表单
+目前为止我们只是在处理错误，是时候用提交的数据重新填充表单了。 CodeIgniter 为此提供了几个辅助函数，你最常用到的一个是:
+
+set_value('field name')
+————————————————————————————————————————————————
+Chrome开发中回退出现ERR_CACHE_MISS，好像不影响使用
+
+CI验证码--创建验证码控制器生成图像，将图像内容保存到session用于判断，创建前端页面，js调用图像
+
+查询条件组可以让你生成用括号括起来的一组 WHERE 条件，这能创造出非常复杂的 WHERE 子句， 支持嵌套的条件组。注解：条件组必须要配对，确保每个 group_start() 方法都有一个 group_end() 方法与之配对。
+
+select("`id`, `username`, `last_time`,`last_ip`,")--字段可以使用``
+————————————————————————————————————————————
+
+扩展原控制器，定义MY_Controller.php根控制器，其它控制器继承该控制器，实现访问权限控制，在用户删除情况下，直接返回登录。登录控制器--可以不用，否则会有ERR_TOO_MANY_REDIRECTS问题。
+
+——————————————————————————————————————————
+$this->db->join()
+
+该方法用于编写查询语句中的 JOIN 子句:
+
+$this->db->select('*');
+$this->db->from('blogs');
+$this->db->join('comments', 'comments.id = blogs.id');
+$query = $this->db->get();
+
+// Produces:
+// SELECT * FROM blogs JOIN comments ON comments.id = blogs.id
+如果你的查询中有多个连接，你可以多次调用这个方法。
+
+你可以传入第三个参数指定连接的类型，有这样几种选择：left，right，outer，inner，left outer 和 right outer 。
+
+————————————————————
+ ->join($this->db_table." AS c", 'c.category_id = a.category_id', 'left')使用AS别名
+————————————————————————————————————————————————
+this->db->affected_rows()判断是否删除、修改、添加成功
+
+当执行 INSERT、UPDATE 等写类型的语句时，这个方法返回受影响的行数。
+
+insert/update通过返回值是否等于TRUE，也可以判断是否成功。
+
+delete(）执行删除操作
+————————————————————————————————————————————————
+图像处理类---创建的缩略图将被命名为类似 mypic_thumb.jpg 的形式，并保存在 原图像的同级目录中。
+
+图像添加水印--有2个版本图像版本和文本版本
+
+处理函数
+有五个处理函数可以调用：
+
+$this->image_lib->resize()
+$this->image_lib->crop()
+$this->image_lib->rotate()
+$this->image_lib->watermark()
+
+当调用成功时，这些函数会返回 TRUE ，否则会返回 FALSE 。 
+
+图像参数配置：
+
+参数    	默认值	      选项	                    描 述	
+image_library	GD2	GD, GD2, ImageMagick, NetPBM	设置要使用的图像库	
+library_path	None	None	设置 ImageMagick 或 NetPBM 库在服务器上的路径。 要使用它们中的其中任何一个，你都需要设置它们的路径。
+
+GD2, ImageMagick, NetPBM---为设置要使用的图像库	
+
+对图像添加缩略图--需要用到原图像路径地址。
+————————————————————————————————————————————————
+由于服务器是linux环境与本机window环境不同，windows字母不区分大小写，上传到服务器路由错误---可能是控制器名没有大写，当然，还有文件名也必须大写。
+
+多表连接--可能存在有些字段在关联表不存在，会出现查询数据缺失不足的情况。join(参1，参2，参3)--参3添加连接类型
+————————————————————————————
+$route['404_override'] = '控制器名';定义404错误页面
+
+————————————————————
+加载完类库，使用小写调用：例如$this->captcha类库
+ $this->load->library('Captcha');         
+ $captcha= $this->captcha->getCaptcha();  
+————————————————————————————————
+The action you have requested is not allowed.错误--由于开启csrf造成的
+————————————————————————
+如果你访问的项不存在，$this->session->userdata() 方法返回 NULL 。
+
+——————————————————————
+不要在控制器方法直接调用另一个方法，最好使用重定向，会出现页面点不动情况
+————————————————————————
+使用下载辅助函数，下载文件--
+
+$this->load->helper('download');
+force_download($filesrc, null);
+————————————————————————
+if条件判断所有的都要考虑进去，对其作出处理。
+————————————————————
+$this->load->model('depart_model');与$this->depart_model模型名大小写要相同。
+————————————————————————————————————————
+upload类对上传exe文件，进行了处理，会出现空白页面。
+————————————————————
+文件上传文件大小设置--$config['max_size']=2048;
+————————————————————
+config/mimes.php保存有文件上传用到的mime类型
+
+上传多种类型--最好设置为*$config['allowed_types']    ='*';其他形式或有些上传问题
+
+   $config['max_size'] 单位为kb
+——————————————————————
+日志默认保存为文件形式
+————————————————
+数据删除---
+1、$this->db->delete($this->depart_table, array('id' => $id));
+2、$this->db->where('id', $id);
+   $this->db->delete('mytable');
