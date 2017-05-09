@@ -109,3 +109,22 @@ F6移动文件
 
 
  /*ctrl+F12打开文件结构对话框，可以跳转到相应方法*/
+ 
+ 不使用日志记录--关闭其log类调用，生成txt日志文件，否则会很庞大，甚至几G。
+
+
+/*F11添加书签，F11+shift打开书签窗口*/
+
+
+/*insert键改变光标样式*/
+
+/*调试php程序有2种显示形式：在浏览器显示结果和在phpstorm显示结果，运行-编辑结构，选择不同文件进
+
+行调试，在浏览器调试，文件图标有小地球图标*/
+
+/*phpstorm调试框架程序，在其他服务器等内容配置好后，需要chrome安装Xdebug helper，phpstorm需要不
+
+断监听“运行-start listening for php debug connections*/
+
+
+/*CTRL+F11添加书签，F11取消书签*/
