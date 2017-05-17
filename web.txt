@@ -81,3 +81,107 @@ html5  data-*属性
  @media all and (orientation : landscape){/*屏幕垂直*/}
 
  @media screen and (orientation:portrait){ /*屏幕水平*/ }
+ 
+ logo尺寸比例121*75
+导航用h2
+内容页用h3
+
+js cookie过期设置为过去时间
+
+<a> 标签的 rel 属性用于指定当前文档与被链接文档的关系。
+用于 <a> 标签的可选属性 rel 和 rev 分别表示源文档与目标文档之间正式的关系和方向。
+
+a标签去除下划线---text-decoration: none;
+
+background-image/background: -webkit-gradient(linear, left bottom, left top, color-stop(0, 
+
+#afd9ee), color-stop(1, #d9edf7));
+
+重置按钮-- <button type="reset" class="btn btn-primary">添加</button>
+
+form onSubmit()事件--s大写
+
+radio按钮,post其value值
+
+复选框提交值获取--通过post获取其value值
+
+cxcalendar.js日期jquery插件
+——————————————————————————————————————————————
+
+为form表单添加id属性，在表单外控件添加form属性等于表单id，提交数据。
+
+ajax调试--chrome，network->开启preserve log查看ajax提交的数据。
+
+/*input定义背景色影响输入，可以定义透明色background-color: transparent;也不要定义背景图，会遇到
+
+兼容性*/
+	                                
+ /* chrome输入框input默认为黄色*/
+————————————————————————————————
+<form id="myForm"><input type="text" name="d" id="d" required/></form><input type="submit" 
+
+value="提交" form="myForm"/>
+提交按钮在form外面，但提交的时候会验证form里面的text的required，当然你把文本框放外面然后加form属
+
+性也可以
+——————————————
+alert()内容换行，使用\\n
+————————————————
+js重定向--location.assign("http://www.baidu.com");或
+
+window.location="http://www.baidu.com";或
+
+location.href="http://www.baidu.com";
+————————————————————————
+   location.reload();刷新
+ window.history.go(-2);后退2页
+history.back();后退一页
+——————————————————————————
+/*js中php变量，对其--或者++，会影响变量下次出现的值*/
+
+/*js跳转location.href失误，检查地址是否有误，转向地址默认添加域名*/
+
+/* 注意id与类选择器写法select#role、 select.role*/
+
+;/*location.href获取当前URL*/
+
+   $('#role option[value="<?=$p?>"]').attr("selected","selected");/*选中option*/
+————————————————————————————————————————
+阻止a标签默认跳转事件
+1：<a href="####"></a>
+
+2：<a href="javascript:void(0)"></a>
+
+3：<a href="javascript:void(null)"></a>
+
+4：<a href="#" onclick="return false"></a>
+
+点击链接后，页面会向上滚到页首，# 默认锚点为 #TOP（实际测试发现 滚动条会滚到顶端）而以上四种方法
+
+仅仅表示一个死链接都表示是一个死链接不会跳转也不会返回到顶部.
+——————————————————
+<input type="value">
+属性值
+值	描述
+button	定义可点击按钮（多数情况下，用于通过 JavaScript 启动脚本）。
+checkbox	定义复选框。
+file	定义输入字段和 "浏览"按钮，供文件上传。
+hidden	定义隐藏的输入字段。
+image	定义图像形式的提交按钮。
+password	定义密码字段。该字段中的字符被掩码。
+radio	定义单选按钮。
+reset	定义重置按钮。重置按钮会清除表单中的所有数据。
+submit	定义提交按钮。提交按钮会把表单数据发送到服务器。
+text	定义单行的输入字段，用户可在其中输入文本。默认宽度为 20 个字符。
+————————————————————————————————————————————
+{*有时定义的一个js函数，函数一直undefined not function,多是函数名与系统函数冲突*}
+
+前端分页需要一次性获取所有数据，根据页面截取显示，对于大数据量获取会比较慢，而后端相反
+
+
+Chart.js是一个简单、面向对象、为设计者和开发者准备的图表绘制工具库。
+——————————————————————————
+location.reload()
+
+下拉列表选中--selected  复选框/单选选中--checked
+
