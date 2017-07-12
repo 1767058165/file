@@ -63,3 +63,30 @@ Ctrl+R 打开替换对话框
 phpstorm窗口，右边黄色快代表有警告错误     
 
 ctrl+c 复制光标所在代码行
+
+/*alt+shift拖拽代码到相应位置*/
+
+/*错误提示：没有足够内存操作数据，可能忘了关闭日志，导致日志文件大量剧增*/
+
+
+/*CTRl+P显示函数/方法参数用法*/
+
+
+/*Ctrl+E打开最近的访问文件列表*/
+
+
+ctrl+shift+v打开粘贴板
+
+/*将文档设为只读，点击右下角锁标志*/
+
+
+ctrl+shift+j合并到同一行
+
+<!--使用过程中，C盘内存有时会大量消耗，其根源是C:\Program Files (x86)\JetBrains\PhpStorm 
+
+10.0.4\jre\jre\bin\java_pid10976.hprof文件，可删除该文件-->
+
+/*alt+crtl+→返回下一个位置*/
+/*alt+crtl+←返回上一个位置*/
+
+ctrl+F12打开类结构框
