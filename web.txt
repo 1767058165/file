@@ -185,3 +185,163 @@ location.reload()
 
 下拉列表选中--selected  复选框/单选选中--checked
 
+/*disable表单元素属性，使其提交表单时，不会提交数据，readonly=readonly可以*/
+
+chrome按住刷新按钮，停留几秒，可选择“正常加载/硬性加载/清空缓存并硬性加载”
+
+————————————————————————————————————————————
+// 将当前时间换成时间格式字符串
+var timestamp3 = 1403058804;
+var newDate = new Date();
+newDate.setTime(timestamp3 * 1000);
+
+console.log(newDate.toLocaleDateString())
+————————————————————————————————————————————————	
+使用ajax获取公告数据，$.each(）遍历数据 ，append()/after()/before()
+————————————————————————————
+/*对于$.ajax()返回类型为json时，js使用.号访问对象元素，使用[]访问数组元素*/
+
+
+<!-- <a> 标签的 target 属性规定在何处打开链接文档,定义_blank在新窗口打开-->
+
+
+边框阴影--box-shadow: h-shadow v-shadow blur spread（宽度） color inset;
+
+
+/*SEO优化：1、网页关键词定义<meta name="keywords" content="">；2、网页描述<meta name="description" content="">*/
+
+
+React native 是用React的方式开发mobileApp。
+
+React.js主要用于构建UI。
+
+ <meta name="keywords" content="{$data['key']}" />
+ <meta name="description" content="{$data['des']}"/>
+
+
+why？call,apply,bind干什么的？为什么要学这个？---一般用来指定this的环境
+
+　　————————————————————————————————————————————
+AngularJS[1]  诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架，已经被用于Google的多款产品当中。AngularJS有着诸多特性，最为核心的是：MVC、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。
+
+
+TypeScript是一种由微软开发的自由和开源的编程语言。它是JavaScript的一个超集，生成的js可以兼容大部分浏览器
+
+<!--node运行需要服务器先开启noode服务器，-->
+
+————————————————————————
+************文字图片垂直居中*****************
+.wz li{margin-bottom: 40px;text-align: right;}
+ .wz img{vertical-align: middle;}
+ .wz p{display: inline-block;text-align: justify;vertical-align: middle;}
+
+
+  <ul class="wz">
+          <li >
+            <img src="http://www.baidiqing.com/src/free_01.jpg" alt="背景">
+            <p style="width:585px">
+              佰迪清小巧的外形设计，不管是背包、抽屉或口袋，都能轻松收藏，随时取用，再
+也不用为临时的约会和紧张的洽谈而手中无措。人性化的喷雾式设计，只需轻轻一
+按，即可均匀覆盖，快速渗透起效，令腋下清爽留香。
+            </p>
+          </li>
+          <li>
+            <img src="http://www.baidiqing.com/src/free_02.jpg" alt="背景">
+            <p  style="width:401px">
+              佰迪清小巧的外形设计，不管是背包、抽屉或口袋，都能轻松收藏，随时取用，再
+也不用为临时的约会和紧张的洽谈而手中无措。人性化的喷雾式设计，只需轻轻一
+按，即可均匀覆盖，快速渗透起效，令腋下清爽留香。
+            </p>
+          </li>
+          <li>
+            <img src="http://www.baidiqing.com/src/free_03.jpg" alt="背景">
+            <p  style="width:365px">
+              佰迪清小巧的外形设计，不管是背包、抽屉或口袋，都能轻松收藏，随时取用，再
+也不用为临时的约会和紧张的洽谈而手中无措。人性化的喷雾式设计，只需轻轻一
+按，即可均匀覆盖，快速渗透起效，令腋下清爽留香。
+            </p>
+          </li>
+          <li>
+            <img src="http://www.baidiqing.com/src/free_04.jpg" alt="背景">
+            <p  style="width:401px">
+              佰迪清小巧的外形设计，不管是背包、抽屉或口袋，都能轻松收藏，随时取用，再
+也不用为临时的约会和紧张的洽谈而手中无措。人性化的喷雾式设计，只需轻轻一
+按，即可均匀覆盖，快速渗透起效，令腋下清爽留香。
+            </p>
+          </li>
+        </ul>
+*****************************************************************************
+  <img style="vertical-align:text-bottom" src="http://www.baidiqing.com/src/num_01.jpg" alt="图片" > --text-bottom	把元素的底端与父元素字体的底端对齐。
+——————————————————————————
+/*button文本定义在标签之间*/
+
+/*img浮动与img同级div内容会围绕img排列*/
+
+// jquery判断设备垂直或水平旋转时
+	$(window).bind( 'orientationchange', function(e){
+	  
+  });
+——————————————————————————————
+font: 700 12px/17px Arial;17px为行高
+
+line-height: 取值--倍数、百分比、px值
+
+/*-webkit-transition: transform .2s ease-in; transition使用transform作为其属性值*/
+
+visibility: hidden
+——————————————————————
+display: inline-block;/*文字垂直居中*/
+	vertical-align: middle;
+————————————————————
+用线性渐变创建图像。
+如果想创建以对角线方式渐变的图像，可以使用 to top left 这样的多关键字方式来实现。
+用默认的渐变方向绘制一个最简单的线性渐变
+示例代码：
+
+（图一）
+linear-gradient(#fff, #333);
+linear-gradient(to bottom, #fff, #333);
+linear-gradient(to top, #333, #fff);
+linear-gradient(180deg, #fff, #333);
+linear-gradient(to bottom, #fff 0%, #333 100%);
+——————————————————————————————————————
+<!-- figure为块元素 -->
+————————————————————————
+vertical-align取值：<!-- vertical-align该属性应用于行内元素 -->
+
+baseline	默认。元素放置在父元素的基线上。
+sub	垂直对齐文本的下标。
+super	垂直对齐文本的上标
+top	把元素的顶端与行中最高元素的顶端对齐
+text-top	把元素的顶端与父元素字体的顶端对齐
+middle	把此元素放置在父元素的中部。
+bottom	把元素的顶端与行中最低的元素的顶端对齐。
+text-bottom	把元素的底端与父元素字体的底端对齐。
+length	 
+%	使用 "line-height" 属性的百分比值来排列此元素。允许使用负值。
+inherit	规定应该从父元素继承 vertical-align 属性的值。
+————————————————————————————————————
+white-space:nowrap;不换行
+
+/* google调试窗口选中元素右键可复制copy-copy-selector */
+
+ <!-- <i>、<b>、<em>、<label>标签使用 -->
+————————————————————————————————
+form 属性的值必须是其所属表单的 id。
+
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<form action="/example/html5/demo_form.asp" method="get" id="form1">
+First name: <input type="text" name="fname" /><br />
+<input type="submit" value="提交" />
+</form>
+
+<p>下面的 "Last name" 字段位于 form 元素之外，但仍然是表单的一部分。</p>
+
+Last name: <input type="text" name="lname" form="form1" />
+
+</body>
+</html>
+————————————————————————————————————————
