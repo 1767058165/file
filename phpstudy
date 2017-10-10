@@ -3,3 +3,5 @@
  phpstudy集成包虽然phpinfo()没有输出intl扩展，但不用开启此扩展也能用。
 
 phpstudy本地路径添加域名，需添加http://,才能访问到
+
+定义登录 cookie 的有效期--修改library/config.default.php ,默认$cfg['LoginCookieValidity'] = 1440;
