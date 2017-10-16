@@ -1,7 +1,48 @@
-����ͼ���С--����font-size
+调整图标大小--调整font-size
 
-Font Awesome, Ϊ Bootstrap �������ͼ�����塣
+Font Awesome, 为 Bootstrap 而创造的图标字体。
 
-addon--���ͣ����
+addon--解释：插件
 
-.row�����У�.col�����У����磺.col-xs-6
+.row设置行，.col设置列，例如：.col-xs-6
+
+bootstrap2.0/3.0不同版本之间样式会有区别 
+***********************************************
+使用时加载css还有js文件
+——————————————————
+
+以下为：bootstrap2 样式
+
+.inline元素水平排列
+
+.pull-right向右浮动
+
+.span定义宽
+
+.table .span定义表宽
+
+CSS3选择器：a[src*="abc"]	选择其 src 属性中包含 "abc" 子串的每个 <a> 元素。
+
+.text-warning {
+  color: #c09853;
+}
+.text-error {
+  color: #b94a48;
+}
+.text-info {
+  color: #3a87ad;
+}
+.text-success {
+  color: #468847;
+}
+
+disable="true"变单元素提交数据为空
+
+bootstrap.js包含js调用的组件代码和插件代码
+
+关闭图标-- <button type="button" class="close" data-dismiss="alert">×</button>
+
+
+btn-small 按钮小一号
+
+javascript插件直接引入bootstrap.js即可
