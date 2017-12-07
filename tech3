@@ -39,3 +39,167 @@ for($i=0;$i<count($params);$i++ ){
 }
 11、php在用header重定向的时候，可以设置下延时跳转，代码如下：
 header("Refresh:5;url=index.php");
+
+sort() — 对数组排序,
+注释：本函数为数组中的单元赋予新的键名。原有的键名将被删除。
+
+sort() - 以升序对数组排序
+rsort() - 以降序对数组排序
+asort() - 根据值，以升序对关联数组进行排序
+ksort() - 根据键，以升序对关联数组进行排序
+arsort() - 根据值，以降序对关联数组进行排序
+krsort() - 根据键，以降序对关联数组进行排序
+——————————————————————————————————————————————
+array_intersect() — 计算数组的交集
+array_diff() — 计算数组的差集
+
+implode（） — 将一个一维数组的值转化为字符串
+
+array_map()：返回数组，是为 array1 每个元素应用 callback函数之后的数组。 callback 函数形参的数量和传给 array_map() 数组数量，两者必须一样。
+——————————————————————————————————————
+strstr()返回字符串的一部分或者 FALSE（如果未发现 needle）。
+
+/*stristr()返回匹配的子字符串。如果 needle 未找到，返回 FALSE。*/
+
+strpos() — 查找字符串首次出现的位置--使用时注意：
+例如：
+<?php
+$mystring = 'abc';
+$findme   = 'a';
+$pos = strpos($mystring, $findme);
+
+// 注意这里使用的是 ===。简单的 == 不能像我们期待的那样工作，
+// 因为 'a' 是第 0 位置上的（第一个）字符。
+if ($pos === false) {
+    echo "The string '$findme' was not found in the string '$mystring'";
+} else {
+    echo "The string '$findme' was found in the string '$mystring'";
+    echo " and exists at position $pos";
+}
+?>
+————————————————————————————————————
+in_array（） — 检查数组中是否存在某个值，如果找到 needle 则返回 TRUE，否则返回 FALSE。
+
+
+/*子类访问父类方法，可以使用$this->父类方法（）或者parent::父类方法（）*/
+
+
+——————————————————————————
+/*子类调用父类属性，使用$this->属性---------方法的调用：$this->方法名();如果子类中有该方法则调用
+
+的是子类中的方法，若没有则是调用父类中的 parent::则始终调用的是父类中的方法。 变量的调用：
+
+$this->变量名；如果子类中有该变量则调用的是子类中的，若没有则调用的是父类中的*/
+——————————————————————————————
+$ar=explode("/","depart/add");/*注意将explode()函数结果赋值给$ar,而不是$ar[]=explode("/","depart/add");*/
+
+——————————————————————
+array_unique（） — 移除数组中重复的值，返回过滤数组。
+
+<!--if多个条件可加（）小括号括起来-->
+
+
+程序中变量定义重复，造成意想不到程序错误，不易发现
+
+mysql_free_result（） — 释放结果内存
+
+imagecopyresampled() — 重采样拷贝部分图像并调整大小，可用于生成缩略图
+——————————————————————————————
+getimagesize() — 取得图像大小，返回数组
+
+getimagesize() 函数将测定任何 GIF，JPG，PNG，SWF，SWC，PSD，TIFF，BMP，IFF，JP2，JPX，JB2，JPC，XBM 或 WBMP 图像文件的大小并返回图像的尺寸以及文件类型和一个可以用于普通 HTML 文件中 IMG 标记中的 height/width 文本字符串。
+
+imagecreatefromjpeg() — 由文件或 URL 创建一个新图象。
+——————————————————————————————
+call_user_func_array（）
+
+(PHP 4 >= 4.0.4, PHP 5, PHP 7)
+call_user_func_array — 调用回调函数，并把一个数组参数作为回调函数的参数
+——————————————————————————————————
+/*使用is_file（）检查文件是否存在*/
+
+krsort() — 对数组按照键名逆向排序
+——————————————————————————
+.htaccess:
+
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Deny from all
+</IfModule>
+可能禁止文件夹文件访问
+————————————————————————————
+对于no files inputed本地调试.htaccess文件中index.php后添加问号?
+————————————————————————————————
+ 复杂sql使用反引号： $sql = "SELECT `article_id`,`title`,`name_style` FROM `". $this->article_table ."` WHERE `article_id` = (SELECT MAX(`article_id`) FROM `".$this->article_table."` WHERE `article_id` < ? AND `is_open` = 1 AND `category_id` = ?) LIMIT 1"
+
+————————————————————————————————
+数据表属性加1，例如：click_count` = `click_count` + 1：
+ "UPDATE ".$this->article_table." SET `click_count` = `click_count` + 1 WHERE `article_id` = ".$article_id;
+————————————————————————————
+Request.Cookies 是客户端通过 Cookie 标头形式由客户端传输到服务器的 Cookie；
+
+Response.Cookies 在服务器上创建并以 Set-Cookie 标头的形式传输到客户端。也就是说，一个是客户端向服务器端发送的来的，一个是服务器发送到客户端的。
+————————————————————————————————————————
+mysql group_concat()：
+
+假设两个表a,b，b中通过字段id与a表关联，a表与b表为一对多的关系。假设b表中存在一字段name，现需要查询a表中的记录，同时获取存储在b表中的name信息，按照常规查询，b表中有多少记录，则会显示多少行，如果需要只显示a表记录行数，则需要把查询name字段得到的多行记录进行合并，可以通过程序实现，但也可直接在sql层完成。
+
+方法：
+
+利用group_concat()方法，参数为需要合并的字段，合并的字段分隔符默认为逗号，可通过参数separator指定，该方法往往配合group by 一起使用。
+
+例子：
+ 
+select a.*,group_concat(b.name separator '-') as name from a left join b ...
+————————————————————————————
+ rsort()数组降序排列
+ /*对于有分页搜索框的数据，需要用js传递搜索值*/
+
+使用finfo_file()函数检测上传图片的类型
+
+iconv() — 字符串按要求的字符编码来转换
+****************************************************
+遍历数组：
+foreach ($p as  $key=>$value){
+            if(!is_null($value)){
+                $data2[]=$p[$key];
+            }
+        }
+		
+————————————————————————
+ceil()向上取整  
+floor()向下取整
+is_callable（） — 检测参数是否为合法的可调用结构
+array_fill_keys（） — 使用指定的键和值填充数组
+array_slice() — 从数组中取出一段,返回数组
+————————————————————————
+str_replace（$search ,  $replace ,$object）search 和 replace 可以是数组。
+
+$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+$healthy = array("fruits", "vegetables", "fiber");
+$yummy   = array("pizza", "beer", "ice cream");
+
+$newphrase = str_replace($healthy, $yummy, $phrase);
+——————————————————————————————
+sscanf（） — 根据指定格式解析输入的字符
+
+$mandate = "January 01 2000";
+list($month, $day, $year) = sscanf($mandate, "%s %d %d");
+echo "Item $serial was manufactured on: $year-" . substr($month, 0, 3) . "-$day\n";
+?>
+**************************************
+serialize （）— 产生一个可存储的值的表示
+chmod （）— 改变文件模式
+http_build_query（） — 生成 URL-encode 之后的请求字符串 ；例如 <?php $data = array('foo'=>'bar', 'baz'=>'boom', 'cow'=>'milk', 'php'=>'hypertext processor'); echo http_build_query($data) . "\n"; echo http_build_query($data, '', '&amp;'); ?>
+——————————————————————————
+parse_url（）
+parse_str()
+getenv() — 获取一个环境变量的值
+array_slice（）
+call_user_func /call_user_func_array/
+strcmp（）--返回值如果 str1 小于 str2 返回 < 0； 如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。 
+extract（）将数组转变量
+eval() — 把字符串作为PHP代码执行
+get_object_vars() — 返回由对象属性组成的关联数组
