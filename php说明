@@ -1,0 +1,66 @@
+file_get_contents（） — 将整个文件读入一个字符串
+array_diff （）— 计算数组的差集
+array_intersect_key（） — 使用键名比较计算数组的交集
+array_flip（） — 交换数组中的键和值
+microtime （） 	— 返回当前 Unix 时间戳和微秒数，例如0.68547700 1513070556
+*************************************
+header ( string $string [, bool $replace = true [, int $http_response_code ]] )
+
+。第一种以“HTTP/”开头的 (case is not significant)，将会被用来计算出将要发送的HTTP状态码。 例如在 Apache 服务器上用 PHP 脚本来处理不存在文件的请求（使用 ErrorDocument 指令）， 就会希望脚本响应了正确的状态码。
+
+<?php
+header("HTTP/1.0 404 Not Found");
+?>
+第二种特殊情况是“Location:”的头信息。它不仅把报文发送给浏览器，而且还将返回给浏览器一个 REDIRECT（302）的状态码，除非状态码已经事先被设置为了201或者3xx。
+
+<?php
+header("Location: http://www.example.com/"); /* Redirect browser */
+
+/* Make sure that code below does not get executed when we redirect. */
+exit;
+?>
+****************************************************************
+getcwd() — 取得当前工作目录
+chmod ()— 改变文件模式
+date("Y-m-d H:i:s",$last_modified)----date ( string $format [, int $timestamp ] )
+
+move_uploaded_file（） — 将上传的文件移动到新位置
+
+flock($fp, LOCK_SH);flock($fp, LOCK_UN);成对出现
+ob_gzhandler() 需要 zlib 扩展。
+http_build_query（）-使用给出的关联（或下标）数组生成一个经过 URL-encode 的请求字符串。
+$_SERVER['QUERY_STRING'];获取查询字符串
+php SPL是用于解决典型问题(standard problems)的一组接口与类的集合。
+
+class_exists （）— 检查类是否已定义
+
+print — 输出字符串
+————————————————————————————————
+sscanf（） — 根据指定格式解析输入的字符，返回值：如果仅传入了两个参数给这个函数，解析后将返回一个数组，否则，如果可选参数被传入，这个函数将返回被设置了值的个数
+————————————————————————————————————————
+//www.codeigniter2.com/back/login/index?k=123
+//["SCRIPT_NAME"]=> string(15) "/back/index.php"
+//["REQUEST_URI"]=>string(23) "/back/login/index?k=123"
+//["QUERY_STRING"]=> string(5) "k=123"
+//$_SERVER[*]:
+//'QUERY_STRING'-query string（查询字符串），如果有的话，通过它进行页面访问。
+//'SCRIPT_NAME'-包含当前脚本的路径。
+//'REQUEST_URI'-URI 用来指定要访问的页面。例如 “/index.html”。
+$_SERVER['REQUEST_METHOD']'REQUEST_METHOD'--访问页面使用的请求方法；例如，“GET”, “HEAD”，“POST”，“PUT”。
+————————————————————————————
+/* 类属性在没有定义类型情况下，其值为null*/
+array_change_key_case — 将数组中的所有键名修改为全大写或小写
+
+mysqli_init();返回mysqli对象
+
+rawurldecode ()— 对已编码的 URL 字符串进行解码
+
+&&连接语句例如：empty($this->validation_data) && $this->_reset_post_array();
+compact ()— 建立一个数组，包括变量名和它们的值
+key() — 从关联数组中取得键名
+
+current() — 返回数组中的当前单元
+
+range ()— 根据范围创建数组，包含指定的元素
+
+number_format（） — 以千位分隔符方式格式化一个数字，例如：// 1,235
