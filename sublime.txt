@@ -10,3 +10,12 @@ ctrl+] 增加缩进
 <!-- 取消缩进ctrl+[，使用缩进ctrl+] -->
 
 按住右键+shift ：竖直选择多个
+
+
+Ctrl+L 选择整行（按住-继续选择下行
+
+<!-- alt+.闭合标签 -->
+
+tab/shift+tab增加/减少缩进
+
+div.类名按tab直接生成tab类的div
