@@ -1,0 +1,80 @@
+// 报告所有 PHP 错误报告级别
+error_reporting(-1);
+
+// 关闭所有PHP错误报告级别
+error_reporting(0);
+
+
+  ini_set('display_errors', 0);  /*取值0/1,  0关闭错误信息，1为开启*/
+error_reporting(0);/*限制错误级别*/
+
+
+PHP 7 开始支持匿名类。 匿名类很有用，可以创建一次性的简单对象。
+
+ /*Model.php定义namespace yii\base;命名空间下，使用use yii\base\Model;*/
+ 
+ *********************************************
+ “后期静态绑定”----“后期绑定”的意思是说，static:: 不再被解析为定义当前方法所在的类，而是在实际运行时计算的。也可以称之为“静态绑定”，因为它可以用于（但不限于）静态方法的调用。 
+ 
+ *********************************************
+ /*static除了可调用静态属性，在后期静态绑定也可调用非静态方法*/
+ 
+ ArrayAccess（数组式访问）接口  (No version information available, might only be in Git) 简介  提供像访问数组一样访问对象的能力的接口。
+ 
+ 控制台执行程序--php+入口文件
+ 
+ static/self访问静态属性
+ 
+ <!--    完全限定名称Fully qualified name
+    名称中包含命名空间分隔符，并以命名空间分隔符开始的标识符，例如 \Foo\Bar。 namespace\Foo 也是一个完全限定名称。
+	
+	如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间
+    
+为了引用全局命名空间中的全局类，必须使用完全限定名称 new \C()。
+    -->
+	
+	*****************************************************
+session.cookie_lifetime integer
+session.cookie_lifetime 以秒数指定了发送到浏览器的 cookie 的生命周期。值为 0 表示“直到关闭浏览器”。默认为 0。
+*****************************************************
+str_pad （）-返回填充字符串
+
+date_default_timezone_get()
+
+验证码输出内容之前不能有任何输出
+
+session_reset（）-用原始值重新初始化会话数组
+
+session_regenerate_id() 在不修改当前会话中数据的前提下使用新的 ID 替换原有会话 ID。
+
+框架中session处理，通常包含session类与session驱动与接口文件
+
+使用PDO，不仅有数据库配置则么简单，还需要 PDO 扩展和你所使用的数据库的 PDO 驱动支持（例如 MySQL 的 pdo_mysql）
+
+框架日志可以记录程序运行error/exception错误信息
+
+ob_get_level() 缓冲机制的嵌套级别，值以整数1递增，例如if(ob_get_level() >ob_get_level() + 1)，用来判断 缓冲机制的嵌套级别不超过3
+********************************************************************************************
+不中断程序运行，使用try{}catch{};有些函数可以抛吃异常，通常写的函数没有，需自己定义抛出异常，
+****************************************************************************************
+preg_replace_callback() — 执行一个正则表达式搜索并且使用一个回调进行替换
+
+/*json_encode()后可加return、exit*/
+
+ 打印多个变量var_dump($p,$limit);
+ 
+ 
+  /**
+     * Returns a human readable filesize  取得文件大小
+     */
+    function HumanReadableFilesize($size) {
+        $mod = 1024;
+        $units = explode(' ','B KB MB GB TB PB');
+        for ($i = 0; $size > $mod; $i++) {
+            $size /= $mod;
+        }
+        return round($size, 2) . ' ' . $units[$i];
+    }
+	
+	
+	
