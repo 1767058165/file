@@ -1,0 +1,115 @@
+{block}
+{block}可在模板上定义一块区域，以进行模板继承。
+——————————————————————————
+{foreach as}foreach没有括号
+————————————————————
+对于变量未设置使用，可以使用default,变量设置一个默认值。当变量未设置或为空字符串时，将由给定的默认值替代其输出。
+——————————————————————
+可在基模板--使用{$var=...} 变量赋值
+这是{assign}函数的简写版，你可以直接赋值给模版，也可以为数组元素赋值，值为字符串类型，记得带‘’
+只能在当前模板使用，变量不能继承。
+————————————————————————————
+Smarty不能使用三元运算符，if语句条件可以不加括号
+
+{*為了使变量能在多个模板使用，可以使用变量范围，建立数据对象和模板对象*}
+
+/*Smarty.class.php查看类属性，可查看smarty版本*/
+——————————————————————————————————
+
+用户可以使用Smarty自带的一组自定义函数.
+
+
+自定义函数{html_table}将数组中的数据填充到HTML表格中。 
+————————————————————
+{textformat}用于格式化文本。该函数主要清理空格和特殊字符，对段落按单词边界换行和行缩进等段落格式化处理。
+
+
+registerPlugin()自定义函数;
+
+
+/*smarty模板js函数里面的中括号{}，不包括函数{}，需要添加{literal}让其不解析*/
+
+————————————————————————————————————————
+ 在Smarty模板函数里面有这样一个方法:fetch("template.htm"),他和display("template.htm");
+
+最大的不同就是fetch()是把变量传给模板文件，然后将生成的静态页面返回给一个变量,
+
+而display()是把变量传给模板文件，然后将生成的静态页面输出给浏览器。
+————————————————————————
+smarty模板--流程：编译（执行文件）--缓存--输出，
+
+{continue}
+{continue} 中止当前迭代而开始下一个迭代/循环。
+——————————————————————
+{break}
+{break} 停止/终止数组迭代。
+————————————————
+@index
+
+包含当前数组的下标，开始时为0。
+
+
+对于Smarty模板session不能输出，可能需要删除模板编译文件重新生成
+
+——————————————————————————————————————
+或者设置模板系统变量强制重新编译： $this -> force_compile = true;
+——————————————————————
+CI smarty赋值：
+
+        $t['reply']=$this->Request_reply_model->get_data($this->session->userdata('id'));
+        $t['count']=$m;
+
+        $this->ci_smarty->assign('data',$t);
+        $this->ci_smarty->display('smarty/audit.tpl');
+——————————————————————
+CI smarty取值：
+      {if (count($data.data) > 0)}
+          {foreach $data.data as $item}
+            <tr class="table-hover">
+            <td class="center">{$item->id}</td>...
+————————————————————————————————————
+smarty没有switch内置函数，可if函数代替，smarty可以使用三元运算符
+
+/*smarty没有重定向相应方法*/
+
+/*对于page_header可以使用assign()赋值，display()输出之前，可以有多个aasign()*/
+——————————————————————————————————————————————
+{foreach} 
+
+{foreachelse} 
+
+{/foreach}当数组变量无值时执行{foreachelse}； 
+
+eq关键字
+——————————————————————————————
+输出键名--<ul>
+{foreach $myPeople as $value}
+<li>{$value@key}: {$value}</li>
+{/foreach}
+</ul>
+——————————————————————
+{$themes}在home/MY_controller定义
+
+'title' , 'keywords','description' 除了cart/goods直接定义，其他从配置中获取
+
+/*$debugging = true;开启模板调试，模板添加{debug}---模板调试，可查看传递给模板变量*/
+
+{* 如果启用$compile_check，将会检查缓存文件的原模板、配置文件是否经过修改。在缓存产生后，如果原文件有任何改动，其缓存文件也立即随着更新。默认为true*}
+
+mb_substr用法--{$item->name|mb_substr:0:30:'utf-8'} 
+————————————————————————
+{$smarty.version}
+Returns the version of Smarty the template was compiled with.
+返回编译模板的Smarty版本号。
+
+
+{$smarty.now}
+可以通过{$smarty.now}取得当前时间戳
+
+
+{$smarty.const}
+你可以直接访问php常量
+
+<{$time|date_format:'%Y-%m-%d %H:%M:%S'}> 
+
+smarty没有switch结构，使用if代替
