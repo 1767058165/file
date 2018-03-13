@@ -345,3 +345,53 @@ Last name: <input type="text" name="lname" form="form1" />
 </body>
 </html>
 ————————————————————————————————————————
+list-style-type:circle;
+——————————————————————————
+:nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+n 可以是数字、关键词或公式。
+
+实例 1
+Odd 和 even 是可用于匹配下标是奇数或偶数的子元素的关键词（第一个子元素的下标是 1）。
+在这里，我们为奇数和偶数 p 元素指定两种不同的背景色：
+p:nth-child(odd)
+{
+background:#ff0000;
+}
+p:nth-child(even)
+{
+background:#0000ff;
+}
+亲自试一试
+实例 2
+使用公式 (an + b)。描述：表示周期的长度，n 是计数器（从 0 开始），b 是偏移值。
+在这里，我们指定了下标是 3 的倍数的所有 p 元素的背景色：
+p:nth-child(3n+0)
+{
+background:#ff0000;
+}
+————————————————————————————————————————————————
+ 使用相对定位realtive及z-index实现覆盖，不局限于绝对定位
+ 
+ 去掉之间的间隔空隙，在<table align='center' style="border-collapse:collapse;"></table>
+ 可以去掉td之间的间隔。
+ 
+ div包含图片与文字，定义ver-ticall
+ 
+ inline-block可嵌套block
+ 
+ ——————————————————————————————
+ 用于图片文字列表
+ <figure>
+  <figcaption>黄浦江上的的卢浦大桥</figcaption>
+  <img src="shanghai_lupu_bridge.jpg" width="350" height="234" />
+</figure>
+——————————————————————————
+图片水平居中：
+.part1_header .zmd_banner{overflow: hidden; position:relative;}
+.part1_header .zmd_banner ul{position:absolute;left:50%;}
+.part1_header .zmd_banner img{max-width:1920px;text-align:center;margin-left:-960px;;}
+
+
+表单元素 form="form2"，指向id="form2  <form>表单
+
+网络请求最后的时间在下方
