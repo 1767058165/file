@@ -1,0 +1,368 @@
+config_item() 公共函数来访问单个配置项
+
+
+& load_class()默认加载libray文件夹下类文件
+
+
+可以在application/libraries 目录下创建你自己的类库，
+
+————————————————————————————————————
+通过 URI 分段向你的方法传递参数
+如果你的 URI 多于两个段，多余的段将作为参数传递到你的方法中。
+
+例如，假设你的 URI 是这样:
+
+example.com/index.php/products/shoes/sandals/123
+你的方法将会收到第三段和第四段两个参数（"sandals" 和 "123"）:
+
+<?php
+class Products extends CI_Controller {
+
+    public function shoes($sandals, $id)
+    {
+        echo $sandals;
+        echo $id;
+    }
+}
+————————————————————————————————————————
+上传错误信息--$this->upload->display_errors()$this->upload->display_errors()
+
+——————————————————————————————————
+ 判断 $d=$this->input->post('c', TRUE)是否存在，如果strlen($d)==0则不存在
+——————————————————  
+/*session为空发现由于权限控制ajax调用造成的*/
+
+config.php修改$config['log_threshold'] = 0;关闭日志功能
+
+——————————————————————
+权限：限制用户进行菜单某项操作，执行操作前进行验证2个方面
+
+分别建立：
+             1、角色表（id 、角色名【管理员、部门领导】、权限id【为整数数组,例如形式1-2，2-1等】）
+             2、权限表（id、权限操作说明【对于控制器有各种方法，可以定义父pid,】、父id【子id归属父id，子id为相应方法名，通过树形结构完美显示之间关系】）
+             ，使用T-tree进行权限树形结构展示 （内容添加那些？）
+             3、对之前admin表、depart表添加角色id
+             4、角色菜单权限控制，根据角色表中权限id，将1--2字符串装换为数组，根据数组条件获取权限操作说明，显示相应菜单及菜单项）
+             5、如何控制验证（构造函数rbac，执行终结在构造函数，建立权限验证类，通过用户表-》角色表来验证是否有权限执行方法，否则没有权限，直接转向）**
+             6、构造函数权限检查，构造函数定义角色应该有那些权限，即角色权限关系与yii行为相似，定义权限验证类，根据当前用户检查用户权限，是否在构造函数定义的角色权限关系中。
+             7、如何获取当前路由：控制器/路由,使用$this->uri->segment(1)
+
+             8、   public $con=array('assignment','config');/*在权限认证时，可以定义一些不需要验证的控制器，避免再次验证*/
+————————————————————————————
+使用自己验证函数---添加参数：要调用一个回调函数只需把函数名加一个 "callback_" 前缀 并放在验证规
+
+则里。 如果你需要在你的回调函数中调用一个额外的参数，你只需要在回调函数后面用[]把参数 （这个参数
+
+只能是字符串类型）括起来，例如：callback_foo[bar] ， 其中 bar 将成为你的回调函数中的第二个参数。
+——————————————————————————————————————————
+方法传参--href="<?php echo base_url("role_action/alter_access"); ?>/<?=$item->id?>"
+
+/*CI加载多个视图，顺序不能变，跟随div代码会跟着改变*/
+————————————————————————————————
+
+控制结构的替代语法
+像 if、for、foreach、while 这样的控制结构也可以写成精简的格式。 下面以 foreach 举例:
+
+<ul>
+
+<?php foreach ($todo as $item): ?>
+
+    <li><?=$item?></li>
+
+<?php endforeach; ?>
+
+</ul>
+注意这里没有任何括号。所有的结束括号被替换成了 endforeach 。 上面说的那些控制结构也都有这相似的结束标志：endif 、 endfor 、 endforeach 和 endwhile 。
+
+另外要注意的一点是，每个分支结构的后面都要跟一个冒号，而不是分号 （除最后一个），这是非常重要的一点！
+————————————————————————————————————
+join（）默认使用内连接，验证result()返回值，可使用empty()
+
+
+/*加载分页类时注意加载顺序*/
+
+/*CI登录逻辑要书写完整，否则会出现登录错误*/
+
+where_in()
+————————————————————————————
+对get()->result()结果数组对象，可以使用array_merge($p1,$p2)
+————————————————————
+count_all_results()每次需要$this->db->where('d.id',$this->session->userdata('id'));
+            $this->db->where('d.id',$this->session->userdata('id'));
+            $p=$this->common()->count_all_results();
+            $this->db->where('d.id',$this->session->userdata('id'));
+            $p2=$this->common2()->count_all_results();
+————————————————————
+ 上传参数$config['max_size']         = '2048';
+
+描述：允许上传文件大小的最大值（单位 KB），设置为 0 表示无限制 注意：大多数 PHP 会有它们自己的限制值，定义在 php.ini 文件中 通常是默认的 2 MB （2048 KB）。
+————————————————————————————————
+/*where()字句可以在->get()->result()前面;*/
+
+
+/*从数据库获得的数据对象，可以转化为数组，通过数组函数分页*/
+
+——————————————————————
+<?php foreach($data as $item): ?><?php endforeach; ?>对于循环变量$item->status,不一定放在foreach中间，可以放在其外
+——————————————————————    
+/*order_by（）默认以升序排列*/
+————————————————————————————
+select()与get()可以分开写：
+
+$this->db->select('title, content, date');  
+$query = $this->db->get('mytable');
+————————————————————————————————————
+/*语言包放置在应用程序language文件夹下，会覆盖system/language文件夹*/
+
+
+CI控制器名不能为system
+————————————————————
+根据条件更新数据：
+$data = array(
+    'title' => $title,
+    'name' => $name,
+    'date' => $date
+);
+
+$this->db->where('id', $id);
+$this->db->update('mytable', $data);
+————————————————————————————————————
+ $this->db->limit($k1,($k2-1)*$k1);注意写法
+
+视图文件夹$view_folder = '';在index.php定义
+
+site_url()与base_url作用相似，但 site_url() 函数相同，只是会在 URL 的后面加上 index_page 或 url_suffix 。
+
+config.php 设置$config['url_suffix'] = '.html';
+——————————————————————————————
+$this->db->query($sql,  array($article_id, $category_id))【如果$sql有占位符?,array($article_id, $category_id)将赋值给占位符】
+————————————————————————
+默认分步加载视图：
+        $this->load->view('header');
+        $this->load->view('menu');
+        $this->load->view('content', $data);
+        $this->load->view('footer');
+————————————————————————————
+cookie设置与获取：  
+     set_cookie("name2","spc2",1200);
+    $h=get_cookie("name2");
+——————————————————————————————
+$this->db->simple_query($up_sql)--
+————————————————————————————
+result_array() 方法
+
+这个方法以 一个纯粹的数组 形式返回查询结果，如果无结果，则返回一个空数组。一般情况下，你会像下面这样在一个 foreach 循环中使用它:
+
+$query = $this->db->query("YOUR QUERY");
+
+foreach ($query->result_array() as $row)
+{
+    echo $row['title'];
+    echo $row['name'];
+    echo $row['body'];
+}
+——————————————————————————————————————————————
+/*select()使用empty()，add()使用返回值是否为TRUE判断结果集*/
+
+$this->db->affected_rows()>0判断是否影响数据库表行数
+
+$this->db->from($this->table)->where('id<>',$k)->get()->result();
+
+************************
+判断
+      $table = $this->db->dbprefix('transform');
+        $sql="delete from $table where assignment_id=$p";
+        $query = $this->db->query($sql);
+    执行成功$query返回 TRUE
+************************
+join类型--array('LEFT', 'RIGHT', 'OUTER', 'INNER', 'LEFT OUTER', 'RIGHT OUTER')
+模型get（）->row()返回对象数组，键值为字符串
+
+————————————————————————
+  $this ->CI=&get_instance();----&get_instance()用来获取CI_Controller类对象
+ $this ->CI->load->model('Log_integral_model');---load作为CI_Controller类对象属性，其值为CI_Loader类对象
+&load_class（）--返回加载类对象
+
+
+codeigniter.php文件中以下程序顺序执行：
+
+function &get_instance()
+  {
+    return CI_Controller::get_instance();
+  }
+  
+  返回CI_Controller实例
+  
+  
+  
+  $RTR =& load_class('Router', 'core', isset($routing) ? $routing : NULL);加载config/routes.php
+    加载默认控制器文件
+  
+  
+  *****************************************
+  CI超级对象，可以实现加载类、加载模型及加载其他文件功能。
+  
+  开启验证--可以使用钩子
+  
+  $config['base_url']用于转向
+  
+  ******************************
+  codeigniter.php调用缓存
+    if ($EXT->call_hook('display_override') === FALSE)
+  {
+    $OUT->_display();
+  }
+  *******************************
+    $this->load为CI_Loader类对象
+    ************************
+    程序初始化$URI获取地址栏地址赋值给$segments，$RTR将$URI->$segments赋值给$URI->$rsegments
+    
+    缓存实现--view()获得缓存赋值给output类final_output属性，CodeIgniter.php中输出$OUT->_display();并缓存
+    
+     CodeIgniter分析器类
+********************************
+profiler 这个类允许您显示基准、查询和其他数据
+*为了帮助调试和优化。
+
+CI菜单展开<?php if($this->uri->segment(1) == 'singlepage'):?> in<?php endif; ?>
+
+配置文件routes.php在Router.php 的$this->_set_routing();被加载
+****************************************************************************
+uri有下面三个保留路由,$route['404_override'] = '';
+这个路由表示当用户请求了一个不存在的页面时该加载哪个控制器，它将会覆盖默认的 404 错误页面。Same per-directory rules as with 'default_controller' apply here as well. show_404() 函数不会受影响，它还是会继续加载 application/views/errors/ 目录下的默认的 error_404.php 文件。
+***********************************************************
+对象方法调用--- call_user_func_array(array(&$CI, $method), $params);
+
+$route['default_controller']默认路由不能为空
+
+————————————————————————
+Router.php中
+  if ($this->uri->uri_string !== '')
+    {
+      $this->_parse_routes();
+
+    }
+    else
+    {
+      $this->_set_default_controller();
+    }
+————————————————————————————————
+ URL.php将获到的url请求赋值给$this->segments
+ ________________________________
+ codeigniter.php中
+ $class = ucfirst($RTR->class);
+$method = $RTR->method;
+  类与 方法设定在：
+  Router.php的 _set_request（）方法
+  *************************************
+  /*路由类解析uri类字符串，将其解析的类名与方法名，赋值给路由类的class与method属性，并且将其值赋予URI类的$this->uri->rsegments属性             
+  
+  /* show_error()显示错误信息*/
+********************************************
+  更新数据---$this->db->set('field', 'field+1', FALSE);
+$this->db->where('id', 2);
+$this->db->update('mytable'); // gives UPDATE mytable SET field = field+1 WHERE id = 2
+
+$this->db->set('field', 'field+1');
+$this->db->where('id', 2);
+$this->db->update('mytable'); // gives UPDATE `mytable` SET `field` = 'field+1' WHERE `id` = 2
+*************************************************
+推荐在任何时候都使用这种方法来生成你的 URL ，这样在你的 URL 变动时你的代码将具有可移植性
+
+辅助类函数还是调用类库函数，例如：cookie辅助函数使用input库set_cookie
+
+输出错误信息show_error()/show_404() --404错误
+
+通过加载类加载数据库DB.php  返回$DB，不同数据库驱动都继承2个类文件DB_query_builder.php、DB_driver.php,；$DB->initialize()--建立一个 MySQL 服务器连接，
+
+ 直接使用的set_value()定义在form_helper.php，
+  
+set_rule将数据规则保存到Form_validation.php里面的$this->_field_data[$field]属性中，$this->_field_data[$field]['postdata'] 存储提交数据
+
+set_value()从Form_validation.php里面的$this->_field_data[$field]['postdata']获取数据或者是$CI->input->post($field, FALSE);
+
+$autoload['packages']-即应用程序包都包含了属于自己的配置文件、 辅助函数、语言包、类库和模型。
+******************************************
+library($library[, $params = NULL[, $object_name = NULL]])：
+
+给类库分配不同的对象名：
+
+第三个参数也是可选的，如果为空，类库通常就会被赋值给一个与类库同名的对象。 例如，如果类库名为 Calendar ，它将会被赋值给一个名为 $this->calendar 的变量。
+
+如果你希望使用你的自定义名称，你可以通过第三个参数把它传递过去:
+
+$this->load->library('calendar', NULL, 'my_calendar');
+
+// Calendar class is now accessed using:
+$this->my_calendar
+请注意，当第一个参数使用数组来同时载入多个类时，第三个参数将不起作用。
+***************************************************************************
+loader先于控制器运行
+
+钩子只能添加一些动作处理，不能添加函数
+
+ helper文件夹可自定义辅助函数，命名为 xx_helper
+ 
+  自定义配置放在$config[]数组
+  ********************************************************************
+  钩子的一般定义格式：
+  $hook['pre_system']=
+    array(
+//    'class'    => ' ',
+    'function' => 't2',
+    'filename' => 'auth.php',
+    'filepath' => 'hooks',  
+//    'params'   => array('beer', 'wine', 'snacks')
+    );
+    ********************************************************************
+      /*compooser vendor文件夹应该放在当前应用程序文件夹下*/
+    
+    show_404()参数1记录请求URL，可以没有
+    *************************************************
+     在CodeIgniter.php文件中：
+    // Load the base controller class
+  require_once BASEPATH.'core/Controller.php';
+  
+  在控制器构造函数加载Loader.php类
+  ************************************************
+  
+  $config['sess_time_to_update'] -- 该选项用于控制过多久将重新生成一个新 session ID 设置为 0 将禁用 session ID 的重新生成
+  
+  ******************************************
+  获取配置文件$config元素，只能 $this->config->item('item_name');
+*****************************************************************
+如果你要创建你自己的配置文件，使用和主配置文件相同的格式，将配置项保存到名为 $config 的数组中。 CodeIgniter 会智能的管理这些文件，所以就算数组名都一样也不会冲突（假设数组的索引没有相同的）。
+
+
+设置配置项
+如果你想动态的设置一个配置项，或修改某个已存在的配置项，你可以这样:
+
+$this->config->set_item('item_name', 'item_value');
+
+********************
+相应错误有不同的模板（404，db，exception）
+
+动态配置自定义配置项--index.php定义$assign_to_config变量，该变量为一维数组
+
+ $this->db->distinct();
+ 
+ order_by()默认升序
+ 
+ delete()返回值不能用来判定查询是否成功
+ 
+ join($this->table2." AS c", 'a.id = c.attach_id','LEFT')--理解左连接获取数据异同
+ **********************************************************************
+ $this->db->count_all_results()
+
+该方法用于获取特定查询返回结果的数量，
+***********************************************************
+$this->db->count_all()
+
+该方法用于获取某个表的总行数，第一个参数为表名:
+
+添加、修改使用逻辑值，删除适用affected_rows()，多个删除适用query()
+例如：
+      $table =$this->db_table2 ;
+            $sql1="delete from $table where id=$k->attach_id";
+            $pro1=$this->db->query($sql1);
+**********************************************************
