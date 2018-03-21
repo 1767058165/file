@@ -174,3 +174,5 @@ ALT+U--关闭编辑器标签，即当前编辑文件
 ctrl+~切换方案
 
 ctrl+e打开最近文件
+
+搜索everywhere--double shift
