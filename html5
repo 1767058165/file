@@ -1,0 +1,10 @@
+我们会利用Web Worker做这些事情
+
+复杂数学计算
+复杂数据排序
+数据处理（压缩、图像处理…）
+高流量网络通信
+worker对象，它拥有一套API：postMessage和onmessage,通过postMessage方法可以向worker脚本（上文worker.js）发送数据， 通过onmessage方法可以从worker脚本接收数据
+
+拖放用于排序
+*****************************
