@@ -1,18 +1,20 @@
-vim filename ��vim��������Ϊfilename���ļ�
-u ������Undo��
+vim filename 打开vim并创建名为filename的文件
+u 撤销（Undo）
 
-vim��ģʽ
+vim的模式
 
-����ģʽ����Esc��Ctrl+[���룩 ���½���ʾ�ļ�����Ϊ��
-����ģʽ����i�����룩 ���½���ʾ--INSERT--
-����ģʽ����֪����ν��룩 ���½���ʾ--VISUAL--
+正常模式（按Esc或Ctrl+[进入） 左下角显示文件名或为空
+插入模式（按i键进入） 左下角显示--INSERT--
+可视模式（不知道如何进入） 左下角显示--VISUAL--
 
-�˳�����
+退出命令
 
-:wq ���沢�˳�
+:wq 保存并退出
 
-:q! ǿ���˳����������и���
+:q! 强制退出并忽略所有更改
 
-:e! ���������޸ģ�����ԭ���ļ���
+:e! 放弃所有修改，并打开原来文件。
 
-��esc�ص�����ģʽ
+按esc回到命令模式
+
+vim输入命令注意输入法为英文
