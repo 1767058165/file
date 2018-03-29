@@ -178,3 +178,5 @@ ctrl+e打开最近文件
 搜索everywhere--double shift
 
 提示处，右键禁用参数名提示
+
+ 自动选择单词 ctrl+w
