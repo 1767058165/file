@@ -5,3 +5,7 @@ win10运行docker需关闭hyper-v
 win+Q 打开搜索栏
 
 显示模糊，安装360驱动大师
+
+
+遇到2503错误，win10安装程序：例如
+msiexec /package "C:\Users\Administrator\Desktop\InstallDocker.msi"
