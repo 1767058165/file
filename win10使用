@@ -9,3 +9,6 @@ win+Q 打开搜索栏
 
 遇到2503错误，win10安装程序：例如
 msiexec /package "C:\Users\Administrator\Desktop\InstallDocker.msi"
+
+
+在“运行”(Win+R)中输入“services.msc”，打开服务管理
