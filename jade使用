@@ -33,3 +33,40 @@ script(type="text/javascript").
 
          console.log('hello jade');
          };
+***************************************
+嵌入的Javascript代码必须以“-”开头： - var blClosed = true;
+
+实现高度复用的另一种方式就是将代码片段保存到不同文件中，然后在需要的地方导入这些片段，为此，Jade 提供了 include 指令
+
+******************
+for in 遍历 如果前边加上 - 则可以使用 (var key in obj) 与 javascript 中一致；如果不加则不能有 () 并且可以使用 else 定义 数组或者对象为空时的显示
+
+*******************
+doctype html 5
+html
+    head
+        link(rel='stylesheet', href='bootstrap.css')
+        title=pageTitle
+    body
+        h3  标题3
+        p 这是一个Jade模板引擎的使用示例
+        p.k2 类3
+        p#k2 id3
+        ul
+            li 列表1
+                li 列表1
+                    li 列表1
+                        li 列表1
+        p(style="width:60px;height:100px;background:#ddd")
+        p
+            a(href="/add") 添加
+            a(href="/delete") 删除
+
+         mixin list
+             ul
+             li foo
+             li bar
+             li baz
+        +list
+        +list
+        include footer.jade
