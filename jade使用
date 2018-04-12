@@ -1,0 +1,35 @@
+注意缩进
+*********************
+在父模板中，用关键字“block”定义可在子模板中替换的块，每个“block”有一个名字，在子模板中，同样用关键字“block”跟上该名字定义需在该“block”中填充的内容。
+************************
+嵌入js:
+script(type="text/javascript").
+    window.onload = function(){
+
+    console.log('hello jade');
+    };
+    ****************************
+     标签添加属性，使用标签（属性）
+     *****************************
+     doctype html 5
+     html
+         head
+             link(rel='stylesheet', href='bootstrap.css')
+             title=pageTitle
+         body
+             h3  标题3
+             p 这是一个Jade模板引擎的使用示例
+             p.k2 类3
+             p#k2 id3
+             ul
+                 li 列表1
+                     li 列表1
+                         li 列表1
+                             li 列表1
+             p(style="width:60px;height:100px;background:#ddd")
+
+     script(type="text/javascript").
+         window.onload = function(){
+
+         console.log('hello jade');
+         };
