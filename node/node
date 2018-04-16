@@ -1,0 +1,84 @@
+npm 资源库
+
+Linux上安装Node.js需要安装Python 2.6 或 2.7
+
+本地前端访问 http://127.0.0.1:8080/  (listen(8080))
+
+NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问
+
+npm 的包安装如果出现以下错误： npm err! Error: connect ECONNREFUSED 127.0.0.1:8087 解决办法为： $ npm config set proxy null
+
+你可以使用以下命令来查看所有全局安装的模块： $ npm list -g
+
+如果要查看某个模块的版本号，可以使用命令如下： $ npm list grunt
+
+Node.js 自带的 http 模块
+
+require('模块')  会自动加载node_modules模块位置
+
+卸载 Node.js 模块。 $ npm uninstall express
+更新模块： $ npm update express
+搜索模块： $ npm search express
+
+Node.js REPL(Read Eval Print Loop:交互式解释器) 表示一个电脑的环境，类似 Window 系统的终端或 Unix/Linux shell，我们可以在终端中输入命令，并接收系统的响应。环境“>”
+
+Node.js 异步编程的直接体现就是回调。
+异步编程依托于回调来实现，但不能说使用了回调后程序就异步化了。
+回调函数在完成任务后就会被调用，Node 使用了大量的回调函数，Node 所有 API 都支持回调函数。
+
+Node.js 是单进程单线程应用程序，但是通过事件和回调支持并发，所以性能非常高。
+
+EventEmitter 定义了一个特殊的事件 error，它包含了错误的语义，我们在遇到 异常的时候通常会触发 error 事件。
+
+JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。
+但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。
+
+所有的 Stream 对象都是 EventEmitter 的实例。常用的事件有：
+data - 当有数据可读时触发。
+end - 没有更多的数据可读时触发。
+error - 在接收和写入过程中发生错误时触发。
+finish - 所有数据已被写入到底层系统时触发。
+************************
+为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。
+模块是Node.js 应用程序的基本组成部分，文件和模块是一一对应的。换言之，一个 Node.js 文件就是一个模块，这个文件可能是JavaScript 代码、JSON 或者编译过的C/C++ 扩展。
+
+Node.js 提供了 exports 和 require 两个对象，其中 exports 是模块公开的接口，require 用于从外部获取一个模块的接口，即所获取模块的 exports 对象。
+
+
+Node.js 中自带了一个叫做 http 的模块，我们在我们的代码中请求它并把返回值赋给一个本地变量。
+**********************
+require方法接受以下几种参数的传递：
+http、fs、path等，原生模块。
+./mod或../mod，相对路径的文件模块。
+/pathtomodule/mod，绝对路径的文件模块。
+mod，非原生模块的文件模块。
+
+JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。
+在浏览器 JavaScript 中，通常 window 是全局对象， 而 Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global 对象的属性
+
+process 是一个全局变量，即 global 对象的属性。
+它用于描述当前Node.js 进程状态的对象，提供了一个与操作系统的简单接口。通常在你写本地命令行程序的时候，少不了要 和它打交道。
+
+util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心JavaScript 的功能 过于精简的不足。
+
+util.inherits(constructor, superConstructor)是一个实现对象间原型继承 的函数。
+JavaScript 的面向对象特性是基于原型的，与常见的基于类的不同。JavaScript 没有 提供对象继承的语言级别特性，而是通过原型复制来实现的。
+
+__dirname 表示当前执行脚本所在的目录。
+
+util.inspect(object,[showHidden],[depth],[colors])是一个将任意对象转换 为字符串的方法，通常用于调试和错误输出。
+
+Node.js 提供一组类似 UNIX（POSIX）标准的文件操作API。 Node 导入文件系统模块(fs)语法如下所示： var fs = require("fs")
+
+Express 提供了内置的中间件 express.static 来设置静态文件
+
+node 连接mysql
+
+使用中间件向 Node.js 服务器发送 cookie 信息
+
+dependencies与devDependencies的区别：devDependencies下列出的模块，是我们开发时用的依赖项，像一些进行单元测试之类的包，比如grunt-contrib-uglify，我们用它混淆js文件，它们不会被部署到生产环境。dependencies下的模块，则是我们生产环境中需要的依赖，即正常运行该包时所需要的依赖项。 如果你将包下载下来在包的根目录里运行,执行如下命令,默认会安装两种依赖 npm install
+
+npm list 包名    --查看包版本
+Node 提供了 child_process 模块来创建子进程
+
+

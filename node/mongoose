@@ -1,0 +1,43 @@
+*****************************************
+mongoose Methods 实例方法 Statics 静态方法使用：
+var kittySchema = mongoose.Schema({
+    name : { type:String },
+
+    age  : { type:Number, default:0 },
+
+    email: { type:String },
+
+    time : { type:Date, default:Date.now }
+})
+
+
+
+// 添加 mongoose 实例方法
+kittySchema.methods.findbyusername = function() {
+    console.log('methods')
+    // return this.model('mongoose').find({username: username}, callback);
+}
+// 添加 mongoose 静态方法，静态方法在Model层就能使用
+kittySchema.statics.findbytitle = function() {
+    console.log('statics')
+    // return this.model('mongoose').find({title: title}, callback);
+}
+
+
+
+var Kitten = mongoose.model('test2', kittySchema)
+
+app.post('/add_action', function(req,res) {
+
+    // 插入数据到内存中的test1集合
+
+    var TestEntity = new  Kitten({
+        name : req.body.wz,
+        age  : req.body.age,
+        email: "helloworld2@qq.com"
+    });
+
+    TestEntity.findbyusername();  todo//重点
+    Kitten.findbytitle();      todo//重点
+    }
+    ****************************************
