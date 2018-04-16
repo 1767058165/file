@@ -102,3 +102,5 @@ app.use('/birds', birds);
 next()用于app.use()当中
 
 注意区分app.route() 与router
+
+morgan模块记录系统日志
