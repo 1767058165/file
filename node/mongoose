@@ -41,3 +41,14 @@ app.post('/add_action', function(req,res) {
     Kitten.findbytitle();      todo//重点
     }
     ****************************************
+    
+1当程序只需要连接一个数据库时可使用这种方式connect（）
+2.当我们使用createConnection()链接上两个数据库
+
+var db = mongoose.createConnection('mongodb://localhost:12345/xx_xx');
+module.exports = db;
+var db_uid = mongoose.createConnection('mongodb://localhost:12345/xx_xx');
+module.exports = db_uid;
+//注意db 和db_uid 都是一个 a Connection。
+
+**************
