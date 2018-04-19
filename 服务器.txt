@@ -1,4 +1,6 @@
-raid��
+raid¿¨
 window server 2012
 hyper-v
-window server 2012Զ�̹���
+window server 2012Ô¶³Ì¹¤¾ß
+
+域名添加在web服务器配置文件
