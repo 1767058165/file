@@ -72,3 +72,5 @@ html
         include footer.jade
         ************************************
         label 姓名 --加空行
+        
+        安装jade-cli实时编译jade模板;jade -P  views/index.jade
