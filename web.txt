@@ -395,3 +395,6 @@ background:#ff0000;
 表单元素 form="form2"，指向id="form2  <form>表单
 
 网络请求最后的时间在下方
+
+
+    框架：<a href="users.php?act=list" target="main-frame">框架跳转使用target=“框架名”
