@@ -52,3 +52,9 @@ module.exports = db_uid;
 //注意db 和db_uid 都是一个 a Connection。
 
 **************
+ mongoose：
+ mongoose.connect('mongodb://127.0.0.1/admin');连接admin数据库
+
+
+var Mixed = mongoose.Schema.Types.Mixed;
+new mongoose.Schema({ _user: Mixed })
