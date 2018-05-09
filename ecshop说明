@@ -1,0 +1,170 @@
+ check_authz_json('goods_manage'); 添加商品注释掉
+
+ admin_priv\(.*\)  替换权限验证为true
+
+ 前端页面后缀为.dwt
+ 后端页面后缀为.htm
+
+ <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+  使用自定义模板G:\PhpstormProjects\untitled13\includes\cls_template.php
+
+  库文件也是模板文件
+
+write_static_cache('shop_config', $arr);将变量存放在static_caches
+
+   添加库文件<!-- #BeginLibraryItem "/library/index_lad.lbi" --><!-- #EndLibraryItem -->或者<!-- #BeginLibraryItem "/library/cat_goods.lbi" -->
+
+    <!--{foreach from=$cat_goods item=goods}--> <!--{/foreach}-->
+
+    cls_开头为类文件
+
+    ROOT_PATH为项目根目录
+
+    数据库配置文件在data/config.php
+
+    cls_ecshop.php类获取系统相关信息
+
+    cls_mysql.php数据库类
+
+    $GLOBALS['ecs']=$ecs
+
+    文件夹modules加载第三方插件
+
+   $user = init_users();$user为ecshop 类对象
+
+   shiping为快递模块插件
+
+   主页及列表页会缓存
+
+   $_CFG = load_config();/* 载入系统参数 */
+
+$smarty->assign('ecs_css_path', 'themes/' . $_CFG['template'] . '/style.css');默认css文件
+
+$smarty->is_cached('index.dwt', $cache_id)
+
+没有统一入口文件-需要require(dirname(__FILE__) . '/includes/init.php');
+
+`ecs_keywords`关键词表
+
+{insert name='history'}调用动态内容
+
+0~f个缓存文件夹
+
+/* 载入语言文件 */
+require(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/common.php');值为$_LANG[]
+
+ecs_shop_config商店配置表
+
+cookie保存1个月
+
+共有101个表
+
+浏览历史记录,使用cookie保存,牵涉到include/lib_insert.php
+
+$GLOBALS['ecs']->table('brand')  将指定的表名加上前缀后返回
+
+$smarty->assign('ur_here', $position['ur_here']);  // 当前位置
+
+assign_ur_here($cat = 0, $str = '')取得当前位置和页面标题
+
+/* 获得商品的信息 */ $goods = get_goods_info($goods_id);
+
+assign_template('c', $catlist);及assign_dynamic('goods');为模板变量赋值
+
+积分商城访问http://www.codeigniter2.com/exchange.php?act=list
+
+品牌访问//www.codeigniter2.com/brand.php
+
+modules--应该属于插件范畴
+
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+cls_exchange.php 该类用于与数据库数据进行交换
+
+lib_main.php 检查管理员权限，返回JSON格式数剧函数--check_authz_json($authz)
+
+***********积分商城列表样式切换-后台实现
+
+db_create_in($post_id, 'user_name');构建查询in
+
+build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size = 0)
+
+没有路由
+
+商城大体的功能结构：专题(topic)，文章，商品，积分兑换，商品所属品牌，商品比较，活动,拍卖，投票等
+
+模板缓存默认1小时
+
+goods_activity拍卖活动表
+
+商品回收站
+
+自定义导航栏--设置前端导航
+
+验证码--cls_captcha.php，使用背景图片'data/captcha'
+
+团购商品http://www.codeigniter2.com/group_buy.php
+
+缓存多种类型，static_caches下缓存变量
+
+$_CFG['show_order_type']控制分类列表页商品显示方式
+
+后台“商品类型”--用于添加分类筛选属性，“商品类型”添加属性列表
+
+分类筛选属性在goods_attr表
+
+temp文件夹下文件夹不能全部删除
+
+显示筛选属性：定义好商品属性，添加商品时，选择“商品属性”
+
+数据库类cls_mysql.php
+
+ECSHOP 管理中心--设置模板
+
+分类页排序筛选跳转使用链接
+
+筛选属性使用点的格式6.8.0
+
+assign_template('c', array($cat_id));assign_dynamic('category');模板变量赋值
+
+类变量使用var定义
+
+flow.php购物流程程序
+{include file="./library/test.lbi"}include标签使用
+
+邮件服务器设置用与提交订单、注册等发送邮件、
+
+/* 调查 */$vote = get_vote();在线调查无法用
+
+购物车商品保存在cart数据库
+
+sys_msg()后台输出信息
+
+调用数据库sql使用公共函数
+
+inc_constant.php保存常量，例如define('GBS_SUCCEED',               3); // 团购成功（可以发货了）
+
+ecs_mail_templates表
+
+主页$cat_goods赋值:lib_template.php里面的/* 动态库项目 */ $dyna_libs = array('cat_goods', 'brand_goods', 'cat_articles', 'ad_position',);将{assign var="cat_goods" value=$cat_goods_' .$row['id']. '}
+
+<!-- {if $nav.opennew eq 1} -->    <!-- {else} --><!-- {/if} -->
+
+分类：商品分类与文章分类
+
+添加分类时，是否添加导航，添加到nav数据表，url存储地址，由build_uri()构建
+
+重写 URL 地址 ： lib_common.php  function build_uri（）
+
+分类页除了品牌，其他属性传递"filter_attr=0.318.0"
+
+用户中心user.php
+
+商店设置-》url重写；$GLOBALS['_CFG']['rewrite']配置url规则
+
+会员管理-》会员整合
+
+assign_template($ctype = '', $catlist = array())加载商店设置
+
+很多函数文件
