@@ -168,3 +168,11 @@ ecs_mail_templates表
 assign_template($ctype = '', $catlist = array())加载商店设置
 
 很多函数文件
+
+多级筛选及商品排序使用链接
+
+编辑分类可指定分类页css文件
+
+查询属性空缺数组0赋值"全部“属性，其他属性依次从1开始
+
+/* 载入语言文件 */require(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/common.php');
