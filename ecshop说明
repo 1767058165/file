@@ -176,3 +176,17 @@ assign_template($ctype = '', $catlist = array())加载商店设置
 查询属性空缺数组0赋值"全部“属性，其他属性依次从1开始
 
 /* 载入语言文件 */require(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/common.php');
+
+get_children($cat = 0)获得指定分类下所有底层分类的ID
+
+ecs_attribute表存储商品类型属性，ecs_goods_attr、ecs_goods_attr表之间相互联系
+
+品牌与价格不在filter_attr属性
+
+添加筛选属性可在编辑“商品分类-筛选属性”中添加
+
+筛选属性添加到分类表filter_attr字段
+
+图片上传根目录images/下
+
+个人设置-清除缓存
