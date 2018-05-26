@@ -1,0 +1,302 @@
+最为核心的是：MVVM、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。
+
+AngularJS 可以构建一个单一页面应用程序（SPAs：Single Page Applications）。
+
+ng-model与{{}}对应
+
+<div ng-app="" ng-init="quantity=1;cost=5">
+
+HTML 文档中只允许有一个 ng-app 指令，如果有多个 ng-app 指令，则只有第一个会被使用。
+
+ng-repeat 指令会重复一个 HTML 元素：
+
+在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。
+AngularJS 内建了30 多个服务。
+
+var app =angular.module('myApp', []); myApp 对应ng-app
+
+使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 - 分割, runoob-directive:
+
+所有的应用都有一个 $rootScope，它可以作用在 ng-app 指令包含的所有 HTML 元素中。
+$rootScope 可作用于整个应用中。是各个 controller 中 scope 的桥梁。用 rootscope 定义的值，可以在各个 controller 中使用。
+
+
+后面控制器中定义的rootScope变量，在它前面的控制器中访问不到。
+
+在大型的应用程序中，通常是把控制器存储在外部单独文件中。
+
+过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中。
+
+AngularJS ng 模块的 function组件
+
+$http 是 AngularJS 应用中最常用的服务。 服务向服务器发送请求，应用响应服务器传送过来的数据。
+
+AngularJS 可以使用数组或对象创建一个下拉列表选项。
+
+ng-include 指令除了可以包含 HTML 文件外，还可以包含 AngularJS 代码，包含的文件 "sites.htm" 中有 AngularJS 代码，它将被正常执行：
+
+跨域包含
+默认情况下， ng-include 指令不允许包含其他域名的文件。 如果你需要包含其他域名的文件，你需要设置域名访问白名单，此外，你还需要设置服务端允许跨域访问
+
+ngAnimate 模型并不能使 HTML 元素产生动画，但是 ngAnimate 会监测事件，类似隐藏显示 HTML 元素 ，如果事件发生 ngAnimate 就会使用预定义的 class 来设置 HTML 元素的动画。
+
+AngularJS 提供很好的依赖注入机制。以下5个核心组件用来作为依赖注入： value factory service provider constant
+——————————————————————————————————————————————
+Value 是一个简单的 javascript 对象，用于向控制器传递值（配置阶段）：例如
+var mainApp = angular.module("mainApp", []);
+mainApp.value("defaultInput", 5)
+
+——————————————————————————————————、
+factory 是一个函数用于返回值。在 service 和 controller 需要时创建。
+通常我们使用 factory 函数来计算或返回值。
+
+
+用angular.module()来注册和检索模块。
+
+
+当我们点击http://runoob.com/#/third链接时，向服务端请的地址都是一样的 (http://runoob.com/)。 因为 # 号之后的内容在向服务端请求时会被浏览器忽略掉。 所以我们就需要在客户端实现 # 号后面内容的功能实现。 AngularJS 路由 就通过 # + 标记 帮助我们区分不同的逻辑页面并将不同的页面绑定到对应的控制器上。
+
+路由设置对象参数规则：
+$routeProvider.when(url,{
+template:string, //在ng-view中插入简单的html内容
+templateUrl:string, //在ng-view中插入html模版文件
+controller:string,function / array, //在当前模版上执行的controller函数
+controllerAs:string, //为controller指定别名
+redirectTo:string,function, //重定向的地址
+resolve:object<key,function> //指定当前controller所依赖的其他模块
+});
+
+
+************************
+ng-switch/ng-switch-when:
+<select ng-model="myVar">
+<option value="runoob">www.runoob.com
+<option value="google">www.google.com
+<option value="taobao">www.taobao.com
+</select>
+
+<hr>
+<div ng-switch="myVar">
+<div ng-switch-when="runoob">
+ <h1>菜鸟教程</h1>
+ <p>欢迎访问菜鸟教程</p>
+</div>
+<div ng-switch-when="google">
+ <h1>Google</h1>
+ <p>欢迎访问Google</p>
+</div>
+<div ng-switch-when="taobao">
+ <h1>淘宝</h1>
+ <p>欢迎访问淘宝</p>
+</div>
+<div ng-switch-default>
+ <h1>切换</h1>
+ <p>选择不同选项显示对应的值。</p>
+</div>
+</div>
+
+
+$watch主要用来监听变量与对象（第三个参数改为true），例如：$scope.$watch('text', function() {$scope.test2();});
+********************************
+run  方法初始化全局的数据 , 只对全局作用域起作用  如 $rootScope，局部的$scope不管用
+run可以像controlle一样注入service,例如配置公共变量等
+
+[javascript] view plain copy
+var m1 = angular.module('myApp',[]);
+m1.run(['$rootScope',function($rootScope){
+$rootScope.name = 'hello';
+}]);
+****************************
+简单的说一下就是ng启动阶段是 config-->run-->compile/link
+
+AngularJS模块可以在被加载和执行之前对模块自身进行配置。当你需要在AngularJS模块加载之前进行配置，就要用到config。只有提供者(Provider)和常量(constant)才能注入到config中。
+*******************************
+background:#ddd;
+AngularJS 依赖注入$inject程序会自动加载依赖，不需要写代码
+
+控制器格式：
+1、myApp.controller('DoubleCtrl', ['$scope', function($scope) {
+    $scope.double = function(value) { return value * 2; };
+}]);
+
+2、app.controller('myCtrl', function($scope) {
+   $scope.firstName = "John";
+   $scope.lastName = "Doe";
+});
+**************************
+$log这个服务最主要的目的是简化调试和排除故障
+方法: log(); - 打印日志消息 info(); - 打印信息消息
+********************
+ng-click 指令告诉了 AngularJS HTML 元素被点击后需要执行的操作。
+语法:
+<element ng-click="expression"></element>
+
+
+AngularJS是一个开发动态Web应用的框架。它让你可以使用HTML作为模板语言并且可以通过扩展的HTML语法来使应用组件更加清晰和简洁。
+
+ngular考虑的是构建CRUD应用。幸运的是，绝大多数WEB应用都是CRUD应用。
+*****************
+AngularJS 引导程序启动方式：自动、手动、延迟启动
+如果你想要你的应用自动启动 Angular 的话，那就把 ng-app 放在应用的根结点中，通常情况下是 <html> 标签中，像下面这样：
+<html ng-app>
+如果你的应用需要支持 IE7 ，那么加上 id="ng-app"
+<html ng-app id="ng-app">
+*****************
+AngularJS 概念概述：注入器(Injector)	用来实现依赖注入(Injection)的容器；服务(Service)	独立于视图(View)的、可复用的业务逻辑
+
+如果你需要直接访问DOM，那么你就应该为此写一个自定义指令。
+
+Angular提供了动态(live)的绑定： 当input元素的值变化的时候，表达式的值也会自动重新计算，并且DOM所呈现的内容也会随着这些值的变化而自动更新。 这种模型(model)与视图(view)的联动就叫做“双向数据绑定”。
+
+************************
+Angular 的 HTML compiler 让开发者可以教浏览器一些新的语法技能。编译器允许你往现有的HTML元素或属性添加更多的操作逻辑，甚至可以让你自己创建新的带有自定义行为操作的HTML元素或属性。Angular 把这些操作扩展称之为 指令。
+
+指令其实就是在编译器遍历DOM时碰到就需要执行的函数。
+
+作用域(Scope)
+*是一个存储应用数据模型的对象
+*为 表达式 提供了一个执行上下文
+*作用域的层级结构对应于 DOM 树结构
+*作用域可以监听 表达式 的变化并传播事件
+
+scope生命周期拆解
+
+作用域是Web应用的控制器和视图之间的粘结剂。
+
+在Angular中，控制器就像 JavaScript 中的构造函数一般，是用来增强 Angular作用域(scope) 的。
+
+一般情况下，我们使用控制器做两件事：
+*初始化 $scope 对象
+*为 $scope 对象添加行为（方法）
+
+Scope 继承
+
+在模板中使用过滤器,在控制器和服务中使用过滤器
+
+其中 novalidate 属性用于禁用浏览器自带的表单验证功能。
+
+实现自定义form控件(使用 'ngModel')
+
+定义你自己的验证器可以首先定义一个指令，这个指令为 'ngModel' 控制器添加自定义验证方法。
+
+为了允许对表单和控件自定义样式， ngModel 增加了如下的CSS类： - ng-valid - ng-invalid - ng-pristine - ng-dirty
+接下来的例子中使用这些CSS类来表明每一个表单控件是否有效。 在例子中，user.name 和 user.email 都是必需的（required），它们仅在成为脏数据(dirty)时才会显示红色背景，但不会在初始状态下（也为空）显示。
+
+如果你想调用在'window'上定义的'alert()'方法，在表达式中，你必须使用'$window.alert()'。
+
+ <body ng-controller="DemoController as demo">控制器重命名
+
+$location服务只允许你修改URL，却不会帮你重新加载页面。如果你需要修改地址并重新加载页面，或者需要导航到其他页面， 请使用底层API：$window.location.href。
+
+如果你想你的AJAX应用被web爬虫索引到，你需要添加下列meta标签到你文档中的HEAD区：
+<meta name="fragment" content="!" />
+
+Hash 与 Hashbang
+
+代码运行错误，可能是版本原因
+
+调用方法{{total('EUR')}}
+
+通常只能使用AngularJS的核心模块,Ng模块
+AngularJS还提供了各种功能丰富的模块，如ngRoute，ngAnimate，ngCookies，ngTouch，等等，只要引入相应头文件，在依赖注入你所在的工作模块，则可使用。
+
+AngularJS为部分常见的指令提供了动画钩子，比如 ngRepeat, ngSwitch 和 ngView, 而自定义指令则可以通过$animate服务来实现。
+
+AngularJS的动画完全基于CSS class来工作。只要在你网页中的HTML元素加上了特定的class，你就得到了动画效果。
+
+ng-class 指令用于给 HTML 元素动态绑定一个或多个 CSS 类。
+
+要想让你的Ajax应用能够被搜索引擎找到，你必须在HTML文档的head部分添加一个特殊的meta标记：
+<meta name="fragment" content="!" />
+这将导致爬虫机器人使用_escaped_fragment_参数请求你的链接，以便你的服务器能识别出爬虫，并且给他一个HTML快照。
+**********************************
+$route路由服务
+angular.module('myApp.view1', ['ngRoute'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/view1', {
+    templateUrl: 'view1/view1.html',
+    controller: 'View1Ctrl'
+  });
+}])
+
+angular每一个模块貌似都有与angular同样的构成：指令、控制器
+
+<div ng-view></div>ng-view指令在angular-route.js
+
+Angular是如何将生命周期划分为配置阶段和运行阶段
+
+定义事件：
+  1、$scope.$on('event',function(){
+        window.alert(123);
+        console.log(123);
+
+    })
+
+  2、   <button ng-click="$emit('event')">事件</button>
+
+
+ng-class 指令用于给 HTML 元素动态绑定一个或多个 CSS 类。
+ng-selected 指令用于设置 <select> 列表中的 <option> 元素的 selected 属性。
+ng-init 指令执行给定的表达式。
+angular.forEach
+服务是对象，而这些对象的API是由编写服务的开发人员所决定的。
+
+ng-init="t='Sky'">单双引号
+
+自定义服务传参不需要添加$
+
+provider后缀提供者传参给config(),配置provider;
+服务者后缀传参给controller(),配置provider;
+
+创建好的服务一般比较复杂，如果后期需要修改，往往面临很高的风险，Angular为服务添加了一些设置项，如装饰器(decorator)，可以在不修改原代码的情况下为服务添加其他功能
+
+ 监听属性：$scope.$watch('user',function(){
+        console.log(123);
+
+    });
+
+ng-if 指令用于在表达式为 false 时移除 HTML 元素。
+
+template因为一段HTML文本，阅读跟维护起来都是很麻烦的，所用通常会使用templateUrl这个。
+
+使用动画前，引入angular-animate.js
+模板接收数据{{}}、ng-bind
+脏值检测--用于查看变量是否发生变化
+******************************
+1.value不可以在config里注入，但是constant可以
+
+2.value可以修改，但是constant不可以修改，一般直接用constant配置一些需要经常使用的数据。
+用于传参给控制器：
+*.constant('apiKey','123123123')
+.controller('View', ['$scope','apiKey',function($scope,apiKey) {
+    $scope.btn = true;
+    $scope.apiKey= apiKey;
+    }])
+;
+**********
+AngularJS 添加/移除 class 的指令:
+
+ng-show
+ng-hide
+ng-class
+ng-view
+ng-include
+ng-repeat
+ng-if
+ng-switch
+ng-show 和 ng-hide 指令用于添加或移除 ng-hide class 的值。
+
+其他指令会在进入 DOM 会添加 ng-enter 类，移除 DOM 会添加 ng-leave 属性。
+
+当 HTML 元素位置改变时，ng-repeat 指令同样可以添加 ng-move 类 。
+
+此外， 在动画完成后，HTML 元素的类集合将被移除。例如： ng-hide 指令会添加一下类：
+
+ng-animate
+ng-hide-animate
+ng-hide-add (如果元素将被隐藏)
+ng-hide-remove (如果元素将显示)
+ng-hide-add-active (如果元素将隐藏)
+ng-hide-remove-active (如果元素将显示)
+******************
