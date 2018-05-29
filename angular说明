@@ -351,3 +351,51 @@ true: 从父作用域继承 ，并创建一个新的作用域对象 ，指令 �
 ——————————————————————
 指令link: function(scope, elm, attrs, ctrl)参数没有$
 指令controller: function($scope, $element, $attrs, $transclude)有$
+
+url传递参数 /:id
+
+
+PHP Ajax 跨域问题最佳解决方案：
+1、允许单个域名访问
+指定某域名（http://client.runoob.com）跨域访问，则只需在http://server.runoob.com/server.php文件头部添加如下代码：
+header('Access-Control-Allow-Origin:http://client.runoob.com');
+
+$rootScope写法
+————————————————
+使用$routeParams获取参数：
+ $routeProvider.when('/view1/:id', {
+        templateUrl: 'view1/view1-2.html',
+        controller: 'View1Ctrl'
+    });
+
+    ...
+    .controller('View1Ctrl', ['$scope','$routeParams','$rootScope','$http',function($scope,$routeParams,$rootScope,$http)
+
+    $rootScope.h=$routeParams.id;
+    var t3=null;
+
+    if($rootScope.h===undefined){
+        t3='http://www.codeigniter2.com/api/angular/';
+    }
+    else{
+        t3='http://www.codeigniter2.com/api/angular/'+$rootScope.h;
+    }
+
+——————————————————————
+使用路由：
+angular.module('myApp.view1', ['ngRoute'])
+
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/view1', {
+    templateUrl: 'view1/view1.html',
+    controller: 'View1Ctrl'
+  });
+————————————
+$scope.$apply()
+$scope.$watch()
+
+angular 1.x,2 ,4
+
+$location服务有两种配置模式，它将控制浏览器地址栏中的地址显示格式：Hashbang模式（默认）和HTML5模式
+
+css框架pure.css
