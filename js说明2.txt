@@ -1,0 +1,332 @@
+js
+
+***********************
+注释：setTime()该方法总是结合一个 Date 对象来使用。
+实例
+例子 1
+在本例中，我们将向 1970/01/01 添加 77771564221 毫秒，并显示新的日期和时间：
+<script type="text/javascript">
+
+var d = new Date()
+d.setTime(77771564221)
+document.write(d)
+
+</script>
+***************************
+列表直接编辑 -利用js框构建input,keyCode == 27代表esc, keyCode == 13代表enter
+
+e.preventDefault()阻止元素默认行为;
+
+js支持三元运算符
+
+{*Uncaught SyntaxError: missing ) after argument list 错误多为js函数参数字符串加引号*}
+
+
+ d1= c.replace(/[+]/g,"");/!*字符串替换，去除字符内+
+
+parseInt()将字符串转换为整形
+
+js NaN---NaN 属性是代表非数字值的特殊值。该属性用于指示某个值不是数字。可以把 Number 对象设置为该值，来指示其不是数字值。
+提示：请使用 isNaN() 全局函数来判断一个值是否是 NaN 值。
+
+ {*对重要js需要输出提示信息的像session,要放在文档其他js末尾,防止没有出现提示*}
+
+————————————————————————————
+javascript:是伪协议，表示url的内容通过javascript执行。例如：<a href="javascript:t()">
+void(0)表示不作任何操作，这样会防止链接跳转到其他页面。
+
+————————————————————
+/*js重定向使用location.href="url"*/
+
+
+/*location.reload()刷新文档*/
+
+t=Math.random()随机数
+
+/*判断字符串是否为空，使用length属性*/
+
+js获取php变量的实现代码：var arr="<?php echo $arr;?>"，注意加双引号
+
+/*js程序不能终止执行*/
+
+/*js调试断点和debugger功能相似*/
+
+js对象2种创建方式：1、var k3=new Object(); 注释：Object O大写，2、person={firstname:"John",lastname:"Doe",age:50,eyecolor:"blue"};
+
+js每一个对象都有prototype 属性使您有能力向对象添加属性和方法
+——————————————————————————————————
+
+var a=(function(){
+
+     var i=0;
+   return   function(){
+        return ++i;
+    }
+
+})();/*外面括号执行里面函数*/
+
+——————————————————————————
+
+
+JavaScript、ES5和ES6的介绍和区别
+
+************************************************************************************************
+数据库写类型的语句INSERT、UPDATE 等
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jquery
+closest（）用法：
+ $(this).addClass("sec").closest(this).parent().siblings().children("a").removeClass("sec");
+*********************
+
+$.Callbacks()--一个多用途的回调列表对象，提供了强大的的方式来管理回调函数列表。
+
+ /*jquery清空textarea等输入框$("#textarea").val('');*/
+
+
+$("#form3").submit();--------form提交事件
+
+
+jquery操作form属性需要注意的是form标签一定要有name属性，光有id没有name不起作用
+
+选择a元素--- $("[href='#assignment']")
+————————————————————————————
+  a=window.location.href;  /*菜单不因为刷新而关闭，可以使用js获取url,split()字符串，获取控制器方法值*/
+  b=a.split('/');
+——————————————————————————
+jQuery获取select元素option的文本值和value值
+分类：jquery学习
+
+ （3898）  （0）
+
+$('#list option:selected').text()
+$('#list option:selected').val()
+——————————————————————————————————————
+   $(this).attr("selected",true);/*下拉项jquery选中attr()*/
+——————————————————————
+选择a元素--- $("[href='#config']").removeClass('collapsed');
+————————————————————————————————
+[selector1][selector2][selectorN]复合属性选择器，需要同时满足多个条件时使用。
+设置单选按钮选中--$("input[name='choose'][value='1']").attr("checked",true);
+————————————————————
+/*node.js使用解释器环境，是一个允许开发人员使用 JavaScript 语言编写服务器端代码的框架*/
+
+Node 的目标是帮助程序员构建高度可伸缩的应用程序，编写能够处理数万条同时连接到一个物理机的连接代码。处理高并发和异步I/O是Node受到开发人员的关注的原因之一。
+
+编写 ES6 代码并使用源到源的编译器如 Babel 或者 Traceur 来转换成标准 ES5 代码
+————————————————————————————
+javascript中的每个对象都有prototype属性，Javascript中对象的prototype属性的解释是：返回对象类型原型的引用。
+
+A.prototype = new B();
+
+理解prototype不应把它和继承混淆。A的prototype为B的一个实例，可以理解A将B中的方法和属性全部克隆了一遍。A能使用B的方法和属性。这里强调的是克隆而不是继承。可以出现这种情况：A的prototype是B的实例，同时B的prototype也是A的实例。
+——————————————————————————————————————————————
+/*extendClass.prototype = new baseClass();
+ 可以理解为new baseClass()生成一个extendClass对象，
+new extendClass()生成一个baseClass对象*/
+————————————————————————————
+js constructor 属性返回对创建此对象的数组函数的引用。
+
+ JSONP跨域方式，很方便，同时也支持大多部分浏览器，但是唯一缺点是，只支持GET提交方式，不支持其他POST提交。一般用于获取数据）
+
+————————————————
+/* jquery跨域$.getJSON(url,[data],[fn])*/与 $.getScript()
+————————————————————————————
+单选按钮选中----  /*<input type="radio" name="choose" value="1"/>*/
+$("input[name=choose]").click(function(){ var t= $(this).attr('value');}
+
+
+/*使用val()判断textarea内容是否为空【$("#t2").val()==""】*/
+——————————————————————————————————————————————
+$(document).ready(function(){
+ 
+   // 开始写 jQuery 代码...
+ 
+});
+
+简写：
+$(function(){
+ 
+   // 开始写 jQuery 代码...
+ 
+});
+————————————————————————————————————————
+clone(true)--布尔值（true 或者 false）指示事件处理函数是否会被复制。
+
+stop()--停止所有在指定元素上正在运行的动画。
+
+ <!-- jquery选择器不能连缀，$().$(),需用筛选 -->
+
+————————————————————
+js设置cookie:document.cookie="name="+username;
+___________________________________________________
+var dtd = $.Deferred(); //新建一个Deferred对象
+
+deferred对象的最大优点，就是它把这一套回调函数接口，从ajax操作扩展到了所有操作。也就是说，任何一个操作----不管是ajax操作还是本地操作，也不管是异步操作还是同步操作----都可以使用deferred对象的各种方法，指定回调函数。
+
+
+    （1） $.Deferred() 生成一个deferred对象。
+
+　　（2） deferred.done() 指定操作成功时的回调函数
+
+　　（3） deferred.fail() 指定操作失败时的回调函数
+
+　　（4） deferred.promise() 没有参数时，返回一个新的deferred对象，该对象的运行状态无法被改变；接受参数时，作用为在参数对象上部署deferred接口。
+
+　　（5） deferred.resolve() 手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。
+
+　　（6）deferred.reject() 这个方法与deferred.resolve()正好相反，调用后将deferred对象的运行状态变为"已失败"，从而立即触发fail()方法。
+
+　　（7） $.when() 为多个操作指定回调函数。
+除了这些方法以外，deferred对象还有二个重要方法，上面的教程中没有涉及到。
+
+　　（8）deferred.then()
+有时为了省事，可以把done()和fail()合在一起写，这就是then()方法。
+
+　　$.when($.ajax( "/main.php" ))
+　　.then(successFunc, failureFunc );
+
+如果then()有两个参数，那么第一个参数是done()方法的回调函数，第二个参数是fail()方法的回调方法。如果then()只有一个参数，那么等同于done()。
+
+　　（9）deferred.always()
+这个方法也是用来指定回调函数的，它的作用是，不管调用的是deferred.resolve()还是deferred.reject()，最后总是执行。
+————————————————————————————————————————
+.queue()--执行队列函数Show or manipulate the queue of functions to be executed on the matched elements，使动画停止后，继续停止点动画执行。
+
+//清空队列
+$(document).queue("myAnimation",[]);
+
+——————————————————————————
+delay(duration,[queueName])---设置一个延时来推迟执行队列中之后的项目。
+
+duration:延时时间，单位：毫秒
+queueName:队列名词，默认是Fx，动画队列。
+——————————————————————————————
+.promise()----: Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.
+<script>
+$( "button" ).on( "click", function() {
+  $( "p" ).append( "Started..." );
+ 
+  $( "div" ).each(function( i ) {
+    $( this ).fadeIn().fadeOut( 1000 * ( i + 1 ) );
+  });
+ 
+  $( "div" ).promise().done(function() {
+    $( "p" ).append( " Finished! " );
+  });
+});
+</script>
+——————————————————————————————————
+.dequeue()---用dequeue来结束自定义队列函数，并让队列继续进行下去。
+
+.map()--将一个数组中的元素转换到另一个数组中。
+——————————————————————————————————————
+.on（）传递参数--   注意event参数使用
+ function greet( event ) {
+        alert( "Hello " + event.data.name );
+    }
+    var h=123;
+$( "#t" ).on( "click", { name: h }, greet );
+$( "#t" ).on( "click", { name: "Addy" }, greet );
+
+trigger()触发on事件可传递对象与数组：
+1、
+$( "div" ).on( "click", function( event, person ) {
+  alert( "Hello, " + person.name );
+});
+$( "div" ).trigger( "click", { name: "Jim" } );
+
+2、
+$( "div" ).on( "click", function( event, salutation, name ) {
+  alert( salutation + ", " + name );
+});
+$( "div" ).trigger( "click", [ "Goodbye", "Jim" ] );
+————————————————————————————————
+var foo = function() {
+  // Code to handle some kind of event
+};
+ 
+// ... Now foo will be called when paragraphs are clicked ...
+$( "body" ).on( "click", "p", foo );
+ 
+// ... Foo will no longer be called.
+$( "body" ).off( "click", "p", foo );
+——————————————————————————————
+$.proxy()返回一个新函数，可以改变对象this上下文环境，将对象参数传递给另一个对象方法
+
+var you = {
+  type: "person",
+  test: function( event ) {
+    $( "#log" ).append( this.type + " " );
+  }
+};
+ 
+// Execute you.test() in the context of the `you` object
+// no matter where it is called
+// i.e. the `this` keyword will refer to `you`
+var youClick = $.proxy( you.test, you );
+——————————————————————————————
+筛选：
+.hasClass()--检查当前的元素是否含有某个特定的类，如果有，则返回true。
+
+.is(）返回true/false
+
+.end(）返回上一元素
+
+.next()--找到每个段落的后面紧邻的同辈元素。
+——————————————————————
+.add()在已有元素上附件元素：
+例如：
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li>list item 3</li>
+</ul>
+<p>a paragraph</p>
+
+$( "li" ).add( "p" ).css( "background-color", "red" );  //li,p背景色都为红色
+——————————————————————————————————————
+$.ajax()传递数据data：
+
+ $.ajax({
+                type: "POST",
+                url: "<?=base_url("assignment/hang")?>",
+                dataType: "json",
+                data:"t3=1",
+                success: function(data) {}}）;
+————————————————————
+可使用attr(）赋予元素事件，例如：$("#msg_btn_no").attr('onclick',"judge({$data->aid})");
+
+closest()从自身开始向上遍历，直到找到一个适合的节点，返回的jQuery对象包含0个或者1个对象；
+
+parents()从自身的父节点开始向上遍历，返回所有祖先节点，并根据选择器对这些节点进行筛选，最终返回的jQuery对象可能包含0、1或者多个对象。
+***********************************
+ $(".sidebar-nav ul li a");写法
+********************************
+输出对象节点名---$(this).context.nodeName
+***********************
+定义jquery插件格式:
+$.fn.h3=function(){
+    
+    alert(123);
+
+}
+***************
+ delay()--主要用来延迟动画与队列
+ 
+ ajax执行失败，如果没有其它问题，可能地址没有权限访问
+ 
+ js去除字符串所有空格$.trim（）
