@@ -1,4 +1,3 @@
-无限加载-下拉加载
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,18 +35,22 @@
     //检测滚动条是否滚动到页面底部
     function isScrollToPageBottom(){
         //文档高度
-        var documentHeight = document.documentElement.offsetHeight;
+//        var documentHeight = document.documentElement.offsetHeight;
+        var documentHeight=document.body.scrollHeight||document.documentElement.scrollHeight;
+        
         var viewPortHeight = getViewportSize().h;
         var scrollHeight = window.pageYOffset ||
                 document.documentElement.scrollTop ||
                 document.body.scrollTop || 0;
-
+        
+        console.log(documentHeight +"-"+viewPortHeight+"-"+scrollHeight);
+               
         return documentHeight - viewPortHeight - scrollHeight < 20;
     }
 
     //商品模板
     function getGoodsTemplate(goods){
-        return "<li>" +
+        return "<li class='clearfix'>" +
                 "<div class='pic-wrap leftFloat'>" +
                 "<img src='" + goods.portrait_id + "'>" +
                 "</div>" +
@@ -64,7 +67,7 @@
     }
 
     //初始化的时候默给list加载100条数据
-    $.ajax({url:"http://192.168.8.71/api/index/1",dataType:"json"}).done(function(result){
+    $.ajax({url:"http://www.codeigniter2.com/index/1",dataType:"json"}).done(function(result){
         if(result){
             var html = "";
             
@@ -82,7 +85,7 @@
         
         //先显示正在加载中
         if( $("#loadingLi").length === 0)
-             $("#list").append("<li id='loadingLi' class='loading'>正在加载...</li>");
+             $("#list").append("<li id='loadingLi' class='loading '>正在加载...</li>");
         else{
             $("#loadingLi").text("正在加载...").removeClass("space");
         }
@@ -90,7 +93,7 @@
         loadingLi.scrollIntoView();
         //加载数据,数据加载完成后需要移除加载提示
         var hasData = false, msg = "";
-         var h="http://192.168.8.71/api/index/" + k;
+         var h="http://www.codeigniter2.com/api/index/" + k;
         $.ajax({url:h,dataType:"json"}).done(function(result){
             console.log(result);
              if(result!==null){
@@ -134,14 +137,14 @@
             return;            }
             
             else{
-            
             k++;
+         
             loadDataDynamic(k);
         }
        
     }
 
-    var k=1;
+    var k=0;
     //开始检测滚动条
     watchScroll();
 
