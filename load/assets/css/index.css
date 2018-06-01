@@ -87,3 +87,6 @@ li.space{
     font-style: italic;
     color: #bebebe;
 }
+
+.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+.clearfix:after{clear:both;}
