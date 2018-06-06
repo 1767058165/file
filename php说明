@@ -1,0 +1,67 @@
+getservbyname（0 — 获取互联网服务协议对应的端口
+gethostbyname()  — 返回主机名对应的 IPv4地址。
+php手册-网络 函数
+socket_accept — Accepts a connection on a socket，Returns a new socket resource on success, or FALSE on error
+********************************
+(is_object($function)){
+$function($this,$uid,$err);
+}
+
+echo is_object(function(){return "hello";}); //Returns true (1)
+*****************************
+error_log（） — 发送错误信息到某个地方，（可以记录日志到文件）
+
+Cygwin软件--Get that Linux feeling - on Windows
+
+getservbyname() — 获取互联网服务协议对应的端口
+
+opendir()打开一个目录句柄，可用于之后的 closedir()，readdir() 和 rewinddir() 调用中。
+stat() — 给出文件的信息
+
+$val="test";
+echo $val{0};return;输出字符串单个字符
+
+DEBUG_MODE & 2逻辑与运行
+
+$t=basename('index.dwt', strrchr('index.dwt', '.'));
+var_dump($t);return;//输出‘index’
+
+   clearstatcache();当使用 stat()，lstat() 或者任何列在受影响函数表（见下面）中的函数时，PHP 将缓存这些函数的返回信息以提供更快的性能。然而在某些情况下，你可能想清除被缓存的信息。例如如果在一个脚本中多次检查同一个文件，而该文件在此脚本执行期间有被删除或修改的危险时，你需要清除文件状态缓存。这种情况下，可以用 clearstatcache() 函数来清除被 PHP 缓存的该文件信息。
+
+   缓存变量
+
+   eval — 把字符串作为PHP代码执行
+
+    setcookie（）---注意：在发送 Cookie 时，值的部分会被自动 urlencode 编码。value汉字编码会不同，英语单词编码前后一样，收到 Cookie 时，会自动解码，并赋值到可变的 Cookie 名称上。 如果不想被编码，可以使用 setrawcookie() 代替——如果你的 PHP 版本是 5 及以上。
+
+      setcookie();过期时间设置为0，浏览器过期时间显示为session
+
+      crc32 — 计算一个字符串的 crc32 多项式
+
+      文件中的换行符号：
+
+      linux,unix: \r\n
+      windows: \n
+      Mac OS ： \r
+
+      在php中fsockopen函数可以模仿用户去访问一些网站并且还可以带一些常用的信息，如果浏览器，IP，post,get 等等数据
+
+      数组索引从0开始
+	  
+	  
+	PHP 默认并不支持多线程，要使用多线程需要安装 pthread 扩展，而要安装 pthread 扩展，
+
+PHP 将线程 封装成了 Thread 类，线程的创建通过实例化一个线程对象来实现，由于类的封装性，变量的使用只能通过构造函数传入，而线程运算结果也需要通过类变量传出。
+
+同时 PHP 开启线程安全选项后，使用 TSRM 机制分配和使用变量时也会有额外的损耗，所以在不需要多线程的 PHP 环境中，使用 PHP 的 ZTS （非线程安全） 版本就好。
+下面介绍几个常用的 Thread 类方法：
+
+run()：此方法是一个抽象方法，每个线程都要实现此方法，线程开始运行后，此方法中的代码会自动执行；
+start()：在主线程内调用此方法以开始运行一个线程；
+join()：各个线程相对于主线程都是异步执行，调用此方法会等待线程执行结束；
+kill()：强制线程结束；
+isRunning()：返回线程的运行状态，线程正在执行run()方法的代码时会返回 true；
+
+php向上取整ceil()  
+
+(string)(123)强制类型放在变量前面
