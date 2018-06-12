@@ -1,0 +1,123 @@
+优化url，地址栏直接访问url
+angular各个js文件说明
+——————————————————————
+
+
+api接口可使用php框架调用
+******************************
+对一些开发者而言，WebKit就是一个黑盒子。丢进去HTML、CSS、JS等一连串的东西，而WebKit就能变魔术一般显示出一个很棒的网页出来。
+WebGL（全写Web Graphics Library）是一种3D绘图协议
+
+IaaS：基础设施服务，Infrastructure-as-a-service
+PaaS：平台服务，Platform-as-a-service                                 
+SaaS：软件服务，Software-as-a-service
+
+
+Hadoop是一个开源的框架，可编写和运行分布式应用处理大规模数据，是专为离线和大规模数据分析而设计的
+
+云平台-架构主要分为4层，从底层到上层分别是资源层、虚拟层、中间件层、应用层。
+
+中间件层:监控/预警
+应用层：软件服务
+
+openstack
+
+iis添加组件可以支持php
+
+
+OpenStack与VMware优劣对比
+
+Windows server2008/2003/Windows Server 2012 R2
+
+ifconfig -a 查看IP
+
+登陆mysql数据库可以通过如下命令：mysql -u root -p
+
+使用 service 启动mysql：$:service mysql start
+
+*****************************************************
+ubuntu普通用户切换到root用户
+
+登录ubuntu后，按上组合键CTRL+ALT+T进入终端界面，一般终端界面默认为普通用户权限模式，如何从普通用户进入root用户，有如下方法：
+
+1、按上su，然后按照提示输入相应的root密码，就可登录到root权限下。
+
+2、按上sudo su，然后按照提示输入相应的root密码，就可登录到root权限下(这个命令下，一般不需要输入相应的root密码)。
+
+3、按上su root，然后按照提示输入相应的root密码，就可登录到root权限下。
+***********
+# whereis iptables #查看系统是否安装防火墙可以看到:
+iptables: /sbin/iptables /usr/share/iptables /usr/share/man/man8/iptables.8.gz #表示已经安装iptables
+apt-get install iptables #如果默认没有安装，请运行此命令安装防火墙
+
+在Windows系统中，计算机的分区是用磁盘0，磁盘1，磁盘2，磁盘3来表示多块硬盘的，比如磁盘0表示第一块硬盘，磁盘2表示第二块硬盘，以此类推...
+
+而在Linux系统中：
+
+如果是IDE类型的硬盘，那么是用hd来表示,hda,hdb,hdc...来表示多块IDE硬盘。hda1表示IDE类型硬盘的第一块硬盘的第一分区，hdc3表示IDE类型硬盘的第三块硬盘的第三个分区；
+
+如果是SATA或者SCSI类型的硬盘，那么是用sd来表示，sda,sdb,sdc...来表示多块SATA或者SCSI类型的硬盘，sda1表示SATA或者SCSI类型硬盘的第一块硬盘的第一分区，sdc6表示SATA或者SCSI类型硬盘的第三块硬盘的第六分区；
+只不过在Linux系统中，只有这个“/”才能当盘符（所以说，在安装linux系统时，这个“/”目录必须划分），其它任何字母都不能当盘符。
+
+文件系统tmpfs:一种基于内存的文件系统，在Linux中，有一种特殊的块设备叫loop device,这种loop device设备是通过影射操作系统上的正常的文件而形成的虚拟块设备。
+
+挂载：根文件系统外通过关联至根文件系统上的某个目录来实现访问
+
+
+
+互联网数据中心（Internet Data Center）简称IDC，就是电信部门利用已有的互联网通信线路、带宽资源，建立标准化的电信专业级机房环境，为企业、政府提供服务器托管、租用以及相关增值等方面的全方位服务。
+
+首先查看80服务是否开启，命令操作如下： netstat -anltp|grep  80
+
+防火墙，其实说白了讲，就是用于实现Linux下访问控制的功能的，它分为硬件的或者软件的防火墙两种。无论是在哪个网络中，防火墙工作的地方一定是在网络的边缘。而我们的任务就是需要去定义到底防火墙如何工作，这就是防火墙的策略，规则，以达到让它对出入网络的IP、数据进行检测。
+
+目前市面上比较常见的有3、4层的防火墙，叫网络层的防火墙，还有7层的防火墙，其实是代理层的网关。
+
+公网IP：全球唯一IP地址。
+
+有这么一种情况：拉的联通的带宽，分配的IP只能在联通内部访问，移动网络不能访问。这个IP最多只能算是“联通内的公网IP”，不是真的公网IP。
+
+apache的httpd.conf文件中ServerAdmin 是管理员的邮箱，这个邮箱地址是在网站出现的问题的时候显示在浏览器上,让查看网站的人联系你用的,你可以随便输入一个地址
+
+使用root用户操作和sudo提权操作的区别是什么:
+
+1. 使用sudo提权，只需要输入用户密码，不需要root密码
+
+2. 可执行sudo指令的用户都规范在/etc/sudoers这个文件中，root可以很容易地掌控整个系统
+——————————————————————————————————————————
+ip获取/WDCP/免流服务器/vps设置IP与域名
+win 10代理/ 域名
+
+
+
+————————————————————————————
+[root@localhost ~]# 代表root根目录
+[root@localhost /]# 代表/根目录
+linux防火墙
+查看命令是否存在：which 命令，很多时候大部分命令需要自己按照安装
+Linux find 命令用法详解:在指定目录下查找文件
+
+cat查看文件/
+两个网卡桥接是为了共享网络资源上网。
+ubuntu使用命令：lsb_release -a 查看系统版本
+man 命令：显示命令用法
+hostname    //显示主机名
+less的功能和more相似，但是使用more无法向前翻页，只能向后翻，而less可以任意切换，下面就着重介绍下less命令的具体用法：
+语法：
+less [参数] 文件ping
+ubuntu可以使用vim命令
+
+
+***********************
+centos:
+哪个包提供了ifconfig命令。要完成这项任务，输入以下命令： yum provides ifconfig
+让我们安装net-tools包来使用ifconfig命令。 yum install net-tools
+
+CentOS自带vi编辑器，功能没有vim强大，我么再安装一个vim编辑器: yum install -y vim-enhanced
+
+查看系统版本cat /proc/version
+
+大部分Linux发行版的默认账户是普通用户，而更改系统文件或者执行某些命令，需要root身份才能进行，这就需要从当前用户切换到root用户
+*****************************
+
+
