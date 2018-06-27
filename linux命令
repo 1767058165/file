@@ -9,3 +9,20 @@ cp命令主要用于复制文件或目录。
 mv命令用来为文件或目录改名、或将文件或目录移入其它位置。
 
 vim
+
+Curl是Linux下一个很强大的http命令行工具，其功能十分强大
+
+linux下使用curl访问网址
+
+linux >> 是追加内容 > 是覆盖原有内容
+
+组的概念主要用于文件权限所有者，用户属于某组，进而限制其他用户的权限，并不是定义组，就要赋予什么权限
+
+crontab -e编辑
+crontab -l
+
+如果你的PHP脚本可以通过URL触发，你可以使用lynx或curl或wget来配置你的Crontab。
+* * * * * curl>>temp.txt    http://www.tcp123.com/back/login/cron
+curl -o 会覆盖之前的temp.txt文件，不利于记录log信息可以采用curl >> temp.txt来代替
+
+计划任务分系统计划任务和网站计划任务。
