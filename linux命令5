@@ -1,0 +1,94 @@
+PHP并发读写文件实现队列
+flock() 函数对文件锁定或释放文件。
+chown 普通用户 目录名  ：root下给普通用户赋予某个文件夹使用权限
+ls -l
+
+IEEE 802.3 通常指局域网网络协议。
+IEEE 802.3x是全双工以太网数据链路层的流控方法。当客户终端向服务器发出请求后,自身系统或网络产生拥塞时,它会向服务器发出PAUSE帧,以延缓服务器向客户终端的数据传输。
+非网管交换机和网管交换机的区别
+service vsftpd status
+************************
+ ll不是命令,是ls -l的别名
+
+vsftpd 修改配置文件记得重启服务：systemctl start vsftpd
+
+vsftpd配置文件位置/etc/vsftpd.conf
+注意：
+使用匿名登入时, 所登入的目录默认值为/var/ftp, ftp默认目录不能是777权限, 匿名用户
+要想上传文件就需要在/var/ftp(vsftp默认目录, 可以在vsftpd.conf中设置anon_root来指定)目录
+下新建一个目录例如pub, 然后将pub目录的权限设置为777。
+
+ 在FTP服务器中，匿名用户的用户名和密码都是ftp ；这个用户可以在您的操作系统中的 /etc/passwd 中能找得到
+
+匿名用户：
+1、打开配置文件, 修改如下内容：
+vi /etc/vsftp/vsftpd.conf
+anonymous_enable=YES 允许匿名用户访问
+write_enable=YES 允许登录用户有写权限。属于全局设置
+anon_root=var/ftp 指定匿名用户登录的目录
+anon_upload_enable=YES 允许匿名用户有上传文件的权限
+anon_mkdir_write_enable=YES 允许匿名用户有新增目录的权限
+chown_uploads=YES 设置是否改变匿名用户上传文件的属主。默认为NO。
+chown_username=username 设置匿名用户上传文件的属主名
+
+2、查看vsftp默认目录：
+cat /etc/passwd | grep ftp
+
+3、给vsftp目录授权, 让匿名用户能够上传文件到此目录
+chmod 777 -R /var/ftp/pub
+/etc/group查看用户组
+*****************************
+
+(chrown -R 用户：组 目录)例如 chown -R root:ftp /home/wwwroot/wordpress123.com
+r=4，w=2，x=1
+-R或——recursive：递归处理，将指定目录下的所有文件及子目录一并处理；
+
+chmod:[ugoa...][[+-=][rwxX]...][,...]
+u 表示该文件的拥有者，g 表示与该文件的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是。
++ 表示增加权限、- 表示取消权限、= 表示唯一设定权限。
+chmod ugo+r file1.txt
+ubuntu环境直接运行sudo passwd root命令就可以直接更改root密码。
+
+创建用户：
+【1. 在root权限下，useradd只是创建了一个用户名，如 （useradd  +用户名 ），它并没有在/home目录下创建同名文件夹，也没有创建密码，因此利用这个用户登录系统，是登录不了的，为了避免这样的情况出现，可以用 （useradd -m +用户名）的方式创建，它会在/home目录下创建同名文件夹，然后利用（ passwd + 用户名）为指定的用户名设置密码。
+
+      2. 可以直接利用adduser创建新用户（adduser +用户名）这样在/home目录下会自动创建同名文件夹
+      】
+
+systemctl命令是系统服务管理器指令
+2.设置开机自启动 systemctl enable nfs-server.service
+6.查看所有已启动的服务 systemctl  --type=service
+5.重新启动某服务 systemctl restart nfs-server.service
+
+{以下2种都可以成为ftp本地用户
+1、用户为普通用户，有系统登陆权限
+ #adduser 用户名<———-你要加的用户名
+ #passwd 用户名<———-你要设置密码的用户名
+
+ 2、用户也是普通用户,但这个用户是不能登入系统的
+  adduser -g ftp -s /sbin/nologin srsman
+}
+
+tee命令用于将数据重定向到文件，另一方面还可以提供一份重定向数据的副本作为后续命令的stdin。简单的说就是把数据重定向到给定文件和屏幕上。例如：cat 4.txt|tee 5.txt
+
+重定向 > 不要忘记2边空格
+wget命令用来从指定的URL下载文件。wget非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它会再次联到服务器上从停止的地方继续下载。这对从那些限定了链接时间的服务器上下载大文件非常有用。
+
+wget FTP下载
+dpkg命令是Debian Linux系统用来安装、创建和管理软件包的实用工具。dpkg包与rpm包
+apt-get update 更新软件源中的所有软件列表。
+apt-get upgrade 更新软件。
+
+grep命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。
+ps auxw 显示进程及kill 进程号：终止进程
+
+apt-get upgrade后面不加包名就是更新全部软件包
+
+history：用于显示已执行的命令序号及命令本身
+/etc/init.d/查看安装的服务
+软件名 -v ：查看软件版本
+
+常见的硬盘一般分为三类。IDE硬盘，SCSI硬盘和SATA硬盘。通常我们电脑上的硬盘都是IDE和SATA，而服务器一般用SCSI硬盘。SCSI的硬盘接口设备叫sd，第一块硬盘就是sda，第二块硬盘是sdb...以此类推。Linux规定，一块硬盘上最多存在四个主分区。命名方式分别是sd1，sd2，sd3，sd4。而逻辑分区从sd5开始，没有数量限制，命名方式为sd5，sd6...sd无穷大。主分区可以简单的理解为windows下的C盘，也就是系统分区，是引导操作系统必要的分区。而逻辑分区可以简单的理解为windows下的CDE盘等等。
+
+理论上来说我们可以为linux所有的目录都划分一个分区。没划分的文件和目录以及空余的硬盘一般都自动存放挂载到/根目录。因此如果你分区分的足够细，根目录所需的空间就很小。
+rpm/yum适用于Redhat、CentOS、Suse等平台；apt-get/dpkg适用于Debian、Ubuntu等平台；zypper适合于Suse平台。
