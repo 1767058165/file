@@ -5,3 +5,6 @@
 phpstudy本地路径添加域名，需添加http://,才能访问到
 
 定义登录 cookie 的有效期--修改library/config.default.php ,默认$cfg['LoginCookieValidity'] = 1440;
+
+
+phpstudy 网站目录不能有中文
