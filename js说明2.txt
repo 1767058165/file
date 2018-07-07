@@ -330,3 +330,5 @@ $.fn.h3=function(){
  ajax执行失败，如果没有其它问题，可能地址没有权限访问
  
  js去除字符串所有空格$.trim（）
+ 
+ js replace()加g全部替换: str.replace(/Microsoft/g, "W3School")
