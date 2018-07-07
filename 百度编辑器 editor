@@ -1,0 +1,14 @@
+修改配置文件:
+  ,allowDivTransToP:false      //允许进入编辑器的div标签自动变成p标签
+
+
+  	// xss 过滤是否开启,inserthtml等操作
+  		,xssFilterRules: false
+  		//input xss过滤
+  		,inputXssFilter: false
+  		//output xss过滤
+  		,outputXssFilter:false
+
+ enterTag:''取消enter前后自动加上p
+
+让图片失去焦点，Esc重新获取焦点
