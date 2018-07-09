@@ -1,1 +1,11 @@
 mysql命令语句需加分号
+
+2.本地登录MySQL
+
+命令：mysql -u root -p   //root是用户名，输入这条命令按回车键后系统会提示你输入密码
+
+3.指定端口号登录MySQL数据库
+将以上命令：mysql -u root -p改为 mysql -u root -p  -P 3306  即可，注意指定端口的字母P为大写，
+4.指定IP地址和端口号登录MySQL数据库
+
+命令格式为：mysql -h ip -u root -p -P 3306例如：mysql -h 127.0.0.1 -u root -p -P 3306
