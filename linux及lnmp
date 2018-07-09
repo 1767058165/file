@@ -1,0 +1,23 @@
+quota命令用于显示用户或者工作组的磁盘配额信息
+rm  -rf 目录1 目录2 ...:删除多个目录
+find / -name vsftpd* ：添加正则字符*
+sudo apt-get remove vsftpd :卸载vsftpd软件
+ls|grep vsftp
+Linux下useradd与adduser的区别
+本地用户登陆ftp不能访问某个文件夹时，可使用chmod、chown为本地用户赋予权限
+当父文件夹的子文件夹是由lnmp创建的时，子文件夹并不属于父文件夹所有者
+ll列出文件所有者、文件大小
+vi 跳到首行:1
+vi 跳到末尾:$
+***************
+apache ServerAlias配置:
+ServerName whathell.com
+ServerAlias *.whathell.com www.whathell.com
+*************************
+LNMP添加SSL证书小结
+
+1、LNMP一键包目前自带添加站点的时候可选安装SSL证书或者免费Let's Encrypt证书；
+
+2、我们也可以在没有添加SSL证书已经运行的网站，不动网站数据前提下单独添加SSL证书，不会影响网站运行。
+
+3、添加SSL证书之后，我们需要手动设置Nginx配置，强制HTTPS访问。
