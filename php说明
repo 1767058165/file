@@ -65,3 +65,6 @@ isRunning()：返回线程的运行状态，线程正在执行run()方法的代�
 php向上取整ceil()  
 
 (string)(123)强制类型放在变量前面
+
+php替代语法的基本形式：
+左花括号（{）换成冒号（:），把右花括号（}）分别换成 endif;，endwhile;，endfor;，endforeach; 以及 endswitch;
