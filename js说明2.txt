@@ -332,3 +332,5 @@ $.fn.h3=function(){
  js去除字符串所有空格$.trim（）
  
  js replace()加g全部替换: str.replace(/Microsoft/g, "W3School")
+
+console.log($.fn.jquery);输出jqury 版本
