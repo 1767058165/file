@@ -334,3 +334,5 @@ $.fn.h3=function(){
  js replace()加g全部替换: str.replace(/Microsoft/g, "W3School")
 
 console.log($.fn.jquery);输出jqury 版本
+
+script src加载的js,不起作用，由于对象未加载，将js放在文档底部
