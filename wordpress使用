@@ -558,3 +558,4 @@ TinyMCE Advanced 是一款用来增强和自定义WordPress默认编辑器 TinyM
 
 
 ******************************************
+add_theme_support( 'post-thumbnails');在添加文章特色图片丢失时，添加此代码到主题functions.php中
