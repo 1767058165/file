@@ -1,0 +1,560 @@
+链接日志并向他人推荐日志——这就是trackbacks和pingbacks。
+
+ WordPress 的固定链接模式
+
+wp-settings.php/** 设置WordPress变量和包含文件。 */
+
+$GLOBALS['wp'] = new WP();/$wp
+
+ 使用电子邮件写博客
+
+ 插件是程序脚本上很酷的“饰品”，可用增强博客的已有功能，或添加新功能。
+
+WordPress 是新鲜的软件，但是它的根源和开发可以追溯到2001年。它是一款成熟而且稳定的产品。
+
+所有的网页都是通过数据库和模板生成的，而且只有当观看者浏览时才会产生相应的页面。
+
+WordPress 使用模板来动态生成页面。你可以用模板编辑器和模板标签编辑模板从而控制内容的呈现方式。
+
+WordPress 有一个内置的搜索工具，它允许你博客的访问者搜索他们感兴趣的项目，搜索关键字插件装载在WordPress 上可以高亮显示他们的搜索词，这样就能够更容易地找到他们要搜索的内容。
+
+*************************
+导入
+如果你已经拥有一个链接列表的OPML（大纲处理标记语言）文件，可以把它导入你的WordPress。那些从其它博客工具而来的列表，可以从Blogrolling.com导入你的博客名单，无需使用第三方服务管理。
+**************************
+默认情况下，大部分FTP客户端，也包括FileZilla，都保留有隐藏文件，这些文件开头都带有一个句点(.)，这样一来就不会显示出来了。不过在某些情况下，你可能需要查看这些隐藏文件，因此你就需要对这些文件的权限进行修改。
+
+升级 WordPress:删除旧的wp-includes文件夹和wp-admin文件夹
+
+登录你的WordPress网站后台（/wp-admin）。如果这时需要升级数据库，WordPress会检测数据库信息并给出一个http://example.com/wordpress/wp-admin/upgrade.php这样的链接，让你升级。点击该链接，根据上面的说明进行操作。操作完毕后，升级后数据库就可以兼容于最新代码了。
+
+主题是相对于前端来说的
+
+　一个简单的WordPress网页由三个部分组成：头部结构、内容结构、底部结构。这些结构都是由你当前使用的WordPress主题模板文件生成的。
+*********************************
+一个WordPress主题是从位于你的主题所在路径里的index.php模板文件开始的。这个文件有两个主要功能：
+
+--包含或者调用其它模板文件；
+--包含WordPress主循环以从数据库获取信息（日志、页面、分类等等信息）。
+**********************************
+TEMPLATEPATH 是一个WordPress中的可以指向主题模板文件路径的特殊变量
+
+程序template-parts文件夹为内容页模板
+***********************
+用的是哪个模板文件？
+改变某人访问类别网页时所做的事之第一步是找出用的是哪个模板文件来呈现文章。称为模板层次.
+
+就类别而言，层次相当简单。比如，假设类别分块(slug)是news，其类别号(ID)为6。该模板层次表明了WordPress将使用在当前主题目录里、从如下列表中找到的第一个模板文件：
+
+1、	category-slug.php
+2、	category-ID.php
+3、	category.php
+4、	archive.php
+5、	index.php
+
+*************************
+一个简单的WordPress网页由三个部分组成：头部结构、内容结构、底部结构。这些结构都是由你当前使用的WordPress主题模板文件生成的。
+
+小工具用于添加前端组件
+
+一个完整的WP主题通常包含以下模板文件：
+
+404错误页 = 404.php
+存档页 = archive.php
+存档索引页 = archives.php
+评论页 = comments.php
+底部 = footer.php
+头部 = header.php
+链接 = links.php
+首页 = index.php
+静态页 = page.php
+弹出式评论页 = comments-popup.php
+单篇博文页 = single.php
+搜索表单 = searchform.php
+搜索 = search.php
+侧栏 = sidebar.php
+样式表 = style.css
+*************************
+模板文件中的模板文件:　　为了包含文件，我们可以使用PHP 命令include这个命令需要知道目标文件的具体路径（TEMPLATEPATH 是一个WordPress中的可以指向主题模板文件路径的特殊变量）。
+
+WordPress模板分级模式解决了以下问题
+
+?WordPress网站的网页有两种核心页面模式。单独日志模式用来显示一个单独的日志。多日志模式用来显示多个日志或日志摘要，这种模式同样适用于分类存档、日期存档、作者存档和（通常情况下）你博客主页的正常模式。
+
+外观--编辑:直接编辑前端主题
+
+包含header， 使用get_header().
+包含sidebar， 使用 get_sidebar().
+包含 footer， 使用 get_footer().
+包含 search form， 使用 get_search_form().
+
+自定义页面模板
+
+ __( 'Register' )
+
+WordPress 可以根据不同的查询类型加载不同的模板。 有两个办法: 根据模板层次命名你的模板文件，或者在循环中使用条件标签(if 语句).
+
+可以使用WordPress插件系统来定义你的个人模板。
+
+开发主题的时候，需要注意的是你的主题最好能和用户可能安装的任何插件共存。插件可以通过“动作钩子（Action Hooks, 查看 插件API）”为wordpress增加功能。
+
+页面由php模板文件动态生成
+
+不可靠的数据--你应该在主题中避免使用动态生成的内容，尤其是输出到 HTML 标签属性中的内容。依照WordPress 编程规范，属性中出现的文本需要经过 esc_attr处理，这样单引号和双引号才不会影响属性值结束，否则会导致无效代码和安全问题。一般要检查的地方有 title， alt， 和 value 属性.
+————————————————————————————
+Usage：
+
+<?php get_header( $name ); ?>
+
+Parameters：
+$name
+(string) (optional) Calls for header-name.php.
+Default: None
+——————————————————————————————
+插件钩子--用来开发插件
+
+bloginfo( string $show = '' )/模板标签使用
+
+Gravatar的概念首先是在国外的独立WordPress博客中兴起的，当你到任何一个支持Gravatar的网站留言时，这个网站都会根据你所提供的Email地址为你显示出匹配的头像。当然，这个头像，是需要你事先到Gravatar的网站注册并上传的，否则，在这个网站上，就只会显示成一个默认的头像。
+
+****************************
+WordPress 中有一种叫执行挂勾的机制，允许插件把一些功能“挂载”到 WordPress 当中。也就是说，在系统运行至某一个环节时，去调用插件内的一些函数。执行挂勾分为两种：
+
+-动作 (Action)： 动作是 WordPress 运行到某些环节，或者在某些事件发生时，就会被执行的一种挂钩。任何的插件都可以通过动作接口来指示系统在遇到这些环节或者事件的时候，就执行指定的 PHP 函数。
+-过滤器 (Filter)：过滤器的是 WordPress 用于修改即将要保存或者发送出去的数据的一种挂钩。任何的插件都可以通过过滤器接口来指示系统在遇到某些环节或者事件的时候，就执行指定的 PHP 函数去修改特定的数据。
+————————————————————————————
+WordPress页面模板调用顺序：
+
+1. pagetemplate.php——pagetemplate.php是页面模板分配给页面的模板文件
+
+2. page.php
+
+3. index.php
+——————————————————————————
+WordPress 主循环（The Loop）是用来显示日志列表，和在单篇日志页面页显示留言列表的。
+
+WordPress工具栏和菜单模板文件中经常可以看到模板标签wp_list_cats()。该模板标签列出网站的所有分类。
+
+分类中显示日志总数，例如：Story Telling (21)
+
+布尔型模板标签，例如：wp_list_cats('use_desc_for_title=0&children=0');
+————————————————————————————
+WordPress主循环将以下代码作为开始部分：
+
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+循环中的模板标签必须出现在代码中间部分，在循环结束部分前：
+
+<?php endwhile; else: ?>
+<p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+<?php endif; ?>
+————————————————————————
+模板调用顺序
+
+WordPress为不同查询类型调用模板文件，顺序如下：
+
+查询主页时
+
+1. home.php
+
+2. index.php
+
+查询某篇日志时
+
+1. single.php
+
+2. index.php
+
+查询页面时
+
+WordPress页面：
+
+1. pagetemplate.php——pagetemplate.php是页面模板分配给页面的模板文件
+
+2. page.php
+
+3. index.php
+
+查询类别时
+
+类别模板：
+
+1. category-id.php——例如，若类别ID为6，WordPress查找category-6.php文件
+
+2. category.php
+
+3. archive.php
+
+4. index.php
+
+查询标签时
+
+标签模板：
+
+1. tag-slug.php——例如，若标签的别名为sometag，WordPress会查找tag-sometag.php文件
+
+2. tag.php
+
+3. archive.php
+
+4. index.php
+
+查询作者时
+
+作者模板：
+
+1. author.php
+
+2. archive.php
+
+3. index.php
+
+查询日期时
+
+存档（日期）模板
+
+1. date.php
+
+2. archive.php
+
+3. index.php
+
+查询搜索结果时
+
+创建搜索页面：
+
+1. search.php
+
+2. index.php
+
+404页面未找到
+
+生成404错误页面：
+
+1. 404.php
+
+2. index.php
+
+查询附件时
+
+附件模板：
+
+1. image.php, video.php, audio.php, application.php以及其它MIME类型的第一部分
+
+2. attachment.php
+
+3. single.php
+
+4. index.php
+——————————————————————————————
+模板更多是调用函数，没有标签
+ post 博客通常称为日志
+// Load the theme template.
+require_once( ABSPATH . WPINC . '/template-loader.php' );
+
+WP_Query类是一个强大的丰富的工具，它可以让你自定义页面上的查询，使你的Wordpress网站展现成你所需要的内容。
+
+index.php ： 主页模板，一般用来做网站的首页
+archive.php ： Archive/Category模板，用来显示分类下的文章目录
+single.php ： 内容页（Post）模板
+page.php ： 内容页（Page）模板
+——————————————————————
+WordPress主题 – 判断标签
+
+is_home() ： 是否为主页，首页使用的是 index.php
+is_front_page() ：是否为指定的首页，如果首页不是默认的index.php，比如你在后台 – 设置 – 阅读，指定了首页，就要用这个来判断
+
+<?php wp_head(); ?> ： 头部挂钩（hook），非常重要的函数，基本上每一个主题都要用到，因为它是用来让其他插件或功能函数在网站头部输出css、js等文件的，如果主题没有这个函数，可能会造成很多插件无法正常使用，一般添加在 header.php 文件中
+
+wp-settings.php加载类
+
+页面：
+
+ 页面是你可以单独建立一个固定页面，可以作为留言板，或者通知的单页面，发布之后是固定的网址。
+
+页面并不能被分类、亦不能拥有标签，但是它们可以有层级关系。您可将页面附属在另一个页面之下。
+
+ 对应模板：page.php
+
+ 如：关于我们、公司简介、联系方式、公司地址
+
+文章：
+
+文章可以通过标签实现相关文章的链接，可以放评论和评论框来实现与用户的互动，而页面没有。
+
+文章有栏目可以归档，还有标签，而页面没有。
+
+编辑文章时可选不同的形式，而页面没有。
+
+文章形式这个功能就是定义某一篇文章在列表中展现的形式，样式可以自己随便的 DIY，以后发表文章时，可以选择发表的形式，可以只写一句话像微博一样，可以单独分享一个图片、视频或者音乐，而且因为展现形式区别于其他文章的形式，往往关注量也会高些。
+
+Breadcrumb navigation links are different than the default navigation menu system in WordPress.--Breadcrumb插件
+————————————————————————————————————————
+WordPress使用了下面几个函数来方便语言本地化: __() _e() _x() _ex() _n()
+
+__() 和 _e() 都是用来返回对应当前语言的字符串内容，如果字符串是返回给其他函数调用，不打印出来，就用 __() ；直接打印输出到 html 中的字符串，就用 _e() 。
+
+如果要翻译的字符串是根据上下文来决定的，就需要用到 _x()
+
+_ex() 区别于 _x() 的地方，和 _e() 区别于__() 是一样的。前者是用于直接打印输出到html的字符串，后者用于返回字符串以供其他函数调用，不打印输出。
+
+_n() 是用来进行单复数编译的。比较常见于 WordPress 的评论功能模块。
+
+含有变量的翻译--拆分内容/使用 printf() 或 sprintf()
+————————————————————————
+http://www.wp123.com/category/name/--分类页访问，name分类名，可修改
+http://www.wp123.com/2018/07/11/name/--文章页访问，年月日跟name文章名，可修改
+自定义主题，前端部分提示编写主题文件
+后台setting-固定链接设置--可自定义修改url访问
+wp文章图片上传--可使用特色图片
+————————————————————————————
+wp_terms分类表
+
+wp_posts
+ID：自增唯一ID
+post_author：对应作者ID
+post_date：发布时间
+post_date_gmt：发布时间（GMT+0时间）
+post_content：正文
+post_title：标题
+post_excerpt：摘录
+post_status：文章状态（publish/auto-draft/inherit等）
+comment_status：评论状态（open/closed）
+ping_status：PING状态（open/closed）
+post_password：文章密码
+post_name：文章缩略名
+to_ping：未知
+pinged：已经PING过的链接
+post_modified：修改时间
+post_modified_gmt：修改时间（GMT+0时间）
+post_content_filtered：未知
+post_parent：父文章，主要用于PAGE
+guid：未知
+menu_order：排序ID
+post_type：文章类型（post/page等）
+post_mime_type：MIME类型
+comment_count：评论总数
+————————————————————————
+固定链接，在写文章时，自动生成
+发布文章时，顶部“显示选项”可显示文章摘要
+the_excerpt();调用文章摘要
+ get_sidebar()---如果主题没有 sidebar.php 文件，就会引入默认的 wp-includes/theme-compat/sidebar.php 。
+general-template.php可在模板使用当中函数，调用相关数据
+Main WordPress API--wp-includes/funnctions.php
+themes/主题/functions.php
+不同模板用"-"号连接
+
+循环下使用:
+if(have_posts()) – 检查博客是否有日志。
+while(have_posts()) – 如果有日志，那么当博客有日志的时候，执行下面 the_post() 这个函数。
+the_post() – 调用具体的日志来显示。
+ the_content() 函数调用了 日志的内容
+ the_title();  调用日志标题。
+the_time('Y年n月j日')
+<?php the_date('Y-m-d H:i l'); ?>
+the_permalink() 是用来调用每篇日志地址的 PHP 函数。
+the_category() 是用来调用日志的在的所有类别
+the_post_thumbnail( 'large' );调用特色图
+the_post_thumbnail( 'full' )--获取特色图像(取值thumbnail,medium ,large)
+<?php the_author(); ?> – 它是输出当前日志作者的名字。
+get_the_excerpt()获取摘要字符串
+<?php echo get_comments_number();?>获取列表文章评论数
+get_the_post_thumbnail_url()获取缩略图url
+
+
+默认情况下，如果没有超过10篇日志的话，是不会显示导航链接，如果没有超过10篇日志，依然想看到导航链接，登录到管理界面，在 设置 > 阅读 页面，把它设置为比所有日志少一篇。如，有6篇日志，就设置为5。
+posts_nav_link() – 调用后一页和前一页的链接。
+wp_list_pages()/get_pages();调用页面链接
+wp_list_categories()– 调用分类链接列表
+
+post.php
+post-template.php--WordPress Post Template Functions.，Gets content for the current post in the loop.
+友情链接plugin-blogroll
+<?php get_calendar()  ?>增加日历
+TEMPLATEPATH 常量
+rtl.css文件是专门为那些习惯文字和排版顺序自右向左的人准备的
+wp_list_categories('title_li="目录2"&child_of=5')显示分类id=5子分类
+get_posts('category=2&numberposts=6');获取分类下文章
+wp_list_categories('depth=1&title_li=')depth显示顶级分类,如果该分类下没有文章，分类名不会在分类列表显示
+
+循环-- 用来显示博客文章列表
+标签循环与直接调用
+主循环(
+<?php
+get_header();
+if (have_posts()) :
+   while (have_posts()) :
+      the_post();
+      the_content();
+   endwhile;
+endif;
+get_sidebar();
+get_footer();
+?>
+
+)
+
+根据判断不同分类id,加载不同页面
+--------------------------------------------------------------
+get option——获取设置选项值
+<?php wp_get_archives( 'type=alpha&limit=6') ?>通常用来制作一个日期归档页。
+wp_tag_cloud() 函数的作用是用来标签云的，可以根据每个标签所关联的文章次数来定义字体大小、标签排序等属性。
+Simple Tags显示彩色tags,后台设置
+****************************************
+wordpress调用随机文章：
+<?php
+                $rand_posts = get_posts(‘numberposts=10&orderby=rand’);
+
+                foreach( $rand_posts as $post ) :
+
+                ?>
+
+                <!–下面是你想自定义的Loop–>
+
+                <li><a href=”<?php the_permalink(); ?>”><?php the_title(); ?></a></li>
+
+                <?php endforeach; ?>
+********************************************************
+
+
+
+<?php get_search_form( ); ?>显示搜索表单
+	<?php get_sidebar('5'); ?>调用侧边栏sidebar-5
+————————————————————————————
+加载评论：
+if ( comments_open() || get_comments_number() ) :
+    comments_template();
+endif;
+——————————————————————
+post_class():为div添加样式类
+wp-includes\theme.php模板函数
+主题的functions.php中通过WP自带的函数wp_enqueue_scripts来加载JS文件，通过wp_enqueue_style来加载Css样式。
+图片上传会有4张图片
+默认调用文章特色原图
+将页面改造为专题，页面继承关系
+______________________________________________
+获取主题目录也同样很简单，三种方法如下：
+
+//第一种方法
+<?php bloginfo('template_url');?>
+//第二种方法
+<?php bloginfo('template_directory'); ?>
+//第三种方法
+<?php echo get_template_directory_uri(); ?>
+——————————————————
+标签、分类存一个表wp_terms
+rewind_posts()重置循环指针
+附件保存posts表--post_parent链接
+WordPress中我们通常使用判断文章所属分类函数 in_category
+章形式的判断语句：<?php if( has_post_format(‘gallery’)){//相册}?>如果文章形式为相册的判断语句。或者get_post_format()（Standard类型不属于post format类型。）
+'standard' => _x( 'Standard', 'Post format' ),
+'aside'    => _x( 'Aside',    'Post format' ),
+'chat'     => _x( 'Chat',     'Post format' ),
+'gallery'  => _x( 'Gallery',  'Post format' ),
+'link'     => _x( 'Link',     'Post format' ),
+'image'    => _x( 'Image',    'Post format' ),
+'quote'    => _x( 'Quote',    'Post format' ),
+'status'   => _x( 'Status',   'Post format' ),
+'video'    => _x( 'Video',    'Post format' ),
+'audio'    => _x( 'Audio',    'Post format' ),)
+
+————————————————————————————————
+调用指导分类，have_posts()前使用
+            $cat_1 = get_cat_ID('23');
+	        $cat_2 = get_cat_ID('24');
+//	        $limit = get_option('posts_per_page');
+	        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	        query_posts('cat=' . $cat_1 . ',' . $cat_2 . '&showposts=' . $limit=9 . '&paged=' . $paged);
+——————————————————————————————
+<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>--Display or retrieve the current post title with optional markup
+       wp_list_pages();显示页面树
+	    wp_page_menu();显示页面树
+——--------------------------------------------------
+query_posts('&showposts=' . $limit=3 . '&paged=1'.'&post_type=page&post_parent=0');调用页面图片
+
+while ( have_posts()) : the_post();
+    get_template_part( 'template-parts/page/content', 'page-1' );
+
+?>
+——————————————————————————
+get_the_content()
+<!--	    --><?php //wp_list_bookmarks(); ?>获取友情链接
+
+$wp_query->current_post获取循环指针
+wp专题不需要图片时，可看作特殊文章分类
+ query_posts('cat=' . $cat_1 . ','  . '&showposts=' . $limit=4 . '&offset=1&paged=' . 1);
+
+
+$cat_ID = get_query_var('cat');分类页获取分类id
+$k= get_category($cat_ID);
+echo $k->name;分类页获取分类名
+wordpress 获取当前文章的tag标签:<?php echo get_the_tag_list('',', ','</p>'); ?>
+is_sticky()是否置顶
+启用评论嵌套--开启评论回复功能
+
+*************************************
+wordpress调用相关文章：
+ <ul id="cat_related">
+		                     <?php
+		                     global $post;
+		                     $cats = wp_get_post_categories($post->ID);
+		                     if ($cats) {
+			                     $args = array(
+				                     'category__in' => array( $cats[0] ),
+				                     'post__not_in' => array( $post->ID ),
+				                     'showposts' => 6,
+			                     );
+			                     query_posts($args);
+
+			                     if (have_posts()) {
+				                     while (have_posts()) {
+					                     the_post();
+					                     get_template_part( 'template-parts/post/single', '1' );
+				                     }
+			                     }
+			                     else {
+				                     echo '<li>* 暂无相关文章</li>';
+			                     }
+			                     wp_reset_query();
+		                     }
+		                     else {
+			                     echo '<li>* 暂无相关文章</li>';
+		                     }
+		                     ?>
+                         </ul>
+*************************************
+<?php get_template_part( 'template-parts/post/content', get_post_format() );get_post_format() 判断文章类型，加载模板文件
+
+wp_reset_query();  内容页多个循环时，重置到当前查询，会影响评论输出
+使用WP_Query 而不是 query_posts 自定义 WordPress 主循环
+
+原来真正起作用的是 Zh_cn.mo ，由于wordpress的中文语言包经过编译后生成为.mo（.po）为后缀的文件，我们无法通过常规方法（如记事本，文本编辑器等）进行直接打开编辑。这是我们就需要一个反向编译该工具po-edit,借助这个工具我们可以实现对wordpress的中文语言包进行修改。
+Categories Images 是一个专门为分类添加一个图片的 WordPress 插件
+get_categories('parent=49&hide_empty=0')获取子分类
+使用WP-PageNavi方便，实用，对于"分类列表"、文章分页等都可以使用---实现"分类分页"
+后台-阅读设置-博客页面至多显示文章数，会影响have_posts()数量输出,及分类页分页show_posts应相等,
+自定义分页数/最终根据文章定的
+修改class-wp.php里面 handle_404() ，实现自定义分页，避免跳转
+
+{添加设置项：
+后台提交：wp-admin/options.php--if ( 'update' == $action )处添加的moban设置字段 update_option('moban',$_POST['moban']);
+后台页面：修改options-general.php
+}
+ 定义在模板function.php函数可在模板中使用
+TinyMCE Advanced 是一款用来增强和自定义WordPress默认编辑器 TinyMCE 的插件。
+——————————————————————————————
+调用标题：
+   <title><?php
+		global $page, $paged;
+		wp_title( '|', true, 'right' );
+		bloginfo( 'name' );
+		$site_description = get_bloginfo( 'description', 'display' );
+		if ( $site_description && ( is_home() || is_front_page() ) )
+			echo " | $site_description";
+		if ( $paged >= 2 || $page >= 2 )
+			echo ' | ' . sprintf( __( 'Page %s', 'twentyseventeen' ), max( $paged, $page ) );
+		?></title>
+
+
+
+
+******************************************
