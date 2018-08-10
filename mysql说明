@@ -9,3 +9,11 @@ mysql命令语句需加分号
 4.指定IP地址和端口号登录MySQL数据库
 
 命令格式为：mysql -h ip -u root -p -P 3306例如：mysql -h 127.0.0.1 -u root -p -P 3306
+
+mysql全文索引：查看创建表时用的哪种引擎，如果是InnoDB，改为MyISAM，InnoDB不支持FULLTEXT类型的索引
+ mysql建立全文索引，使用全文检索
+ 注意：如果我们是第一次启动 mysql 服务，mysql 服务器首先会进行初始化的配置。
+ 此外,你也可以使用 MariaDB 代替，MariaDB 数据库管理系统是 MySQL 的一个分支，主要由开源社区在维护，采用 GPL 授权许可。开发这个分支的原因之一是：甲骨文公司收购了 MySQL 后，有将 MySQL 闭源的潜在风险，因此社区采用分支的方式来避开这个风险。
+ MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。
+
+ mysql_data_seek（$result,$row_number） — 移动内部结果的指针,指针从0开始，。row_number 的取值范围应该从 0 到 mysql_num_rows - 1
