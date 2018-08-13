@@ -122,3 +122,5 @@ ls -a|grep php:筛选php
 黄色是设备文件，包括block, char, fifo。
 
 linux下 查看vsftp是否启动状态，使用service命令： service vsftpd status
+
+ ps -ef | grep 软件名:判断软件是否安装
