@@ -1,0 +1,7 @@
+jQuery 事件 - ready() 方法:
+语法 1
+$(document).ready(function)
+语法 2
+$().ready(function)
+语法 3
+$(function)
