@@ -2,3 +2,5 @@
 
 修改想要的背景色：phpMyAdmin\themes\pmahomme\css\common.css.php里面的 background: <?php echo $GLOBALS['cfg']['MainBackground']; ?>
 及navigation.css.php删除#pma_navigation背景色属性;
+
+有效期：$cfg['LoginCookieValidity'] = 86400;
