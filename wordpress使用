@@ -559,3 +559,92 @@ TinyMCE Advanced 是一款用来增强和自定义WordPress默认编辑器 TinyM
 
 ******************************************
 add_theme_support( 'post-thumbnails');在添加文章特色图片丢失时，添加此代码到主题functions.php中
+
+wp-config.php修改数据库配置
+<?php bloginfo(‘name’); ?> 网站标题
+<?php wp_title(); ?> 日志或页面标题
+
+1、按照字母排序，并只显示 ID 为16、3、9和5的指定分类：
+
+<ul>
+<?php
+wp_list_categories(‘orderby=name&include=3,5,9,16‘); ?>
+</ul>
+2、按照字母排序，显示每个分类的日志数，但不显示 ID 为10的分类
+
+<ul>
+<?php
+wp_list_categories(‘orderby=name&show_count=1&exclude=10‘); ?>
+</ul>
+
+4、仅显示某个分类下的子分类，下面的示例代码生成了 ID 为8的父分类下的子分类根据其 ID 进行排序的链接列表（读起来真绕口 -__-|||），它会显示每个分类下的文章数，并且隐藏链接的 title 标签中的分类描述，注意：如果父分类下没有任何文章，那么父分类将不会显示
+
+<ul>
+<?php wp_list_categories(‘orderby=id&show_count=1
+&use_desc_for_title=0&child_of=8‘); ?>
+</ul>
+
+7、style
+（字符串）分类列表显示的样式。将分类列表的方式显示（使用<br >标签分隔列表项）。默认设置为列表（无序列表）。有效值：
+list – 默认
+none
+例子：
+
+<ul>
+<?php
+wp_list_categories(‘orderby=name&style=none‘); ?>
+</ul>
+
+——————————————————————————————————————
+<?php next_post_link(‘ %link ‘) ?> 下一篇日志的URL地址
+
+<?php previous_post_link(‘%link’) ?> 上一篇日志的URL地址
+
+<!–next page–> 在日志或页面中插入分页
+
+<!–more–> 截断日志
+
+————————————————————————————
+判断是否翻页，比如你当前的blog是http://domain.com 显示http://domain.com?paged=2的时候，这个判断将返 回真，通过这个函数可以配合is_home来控制某些只能在首页显示的界面，
+
+例如：
+
+<?php if(is_single()):?>
+//这里写你想显示的内容，包括函数
+
+<?php endif;?>
+
+或者：
+
+<?php if(is_home() && !is_paged() ):?>
+
+//这里写你想显示的内容，包括函数
+
+<?php endif;?>
+设置-固定链接：修改url样式
+——————————————————————
+同类型插件可能会相互影响，造成不起作用
+taxonomy:分类
+wp_term_taxonomy表存储分类类型
+ get_categories(array( 'taxonomy' => 'series' ))获取专题列表页
+ 专题与分类使用插件获取信息
+ get_query_var('series');列表页获取专题别名
+ get_term_by( 'slug', $cat_ID, 'series' );根据别名获取专题对象
+ get_option()获取系统属性;
+  文章类型发布与不发布
+  !is_paged()判断是否第一页
+  get_post();/get_post()区别
+
+  single_tag_title("",false)--获取标签名
+  tag_description()--获取标签描述
+  wp_get_post_categories($post->ID);根据文章id获取分类信息
+ _________________________________________________________
+   $args = array(
+ 		            'tax_query' => $tax_query,
+ 		            'orderby' => 'menu_order', //date
+ 		            'order' => 'ASC',
+ 		            'numberposts' => -1, //获取所有
+ 		            'post_type'=> series_posttype_support()
+ 	            );
+ 	            $the_posts = get_posts($args);
+******************************************
