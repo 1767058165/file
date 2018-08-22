@@ -5,3 +5,7 @@ $(document).ready(function)
 $().ready(function)
 语法 3
 $(function)
+————————————————————
+获取页面的文档宽度 ：
+$(document).width(); 
+浏览器当前窗口文档body的高度：  
