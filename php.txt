@@ -76,3 +76,25 @@ intval（） — 获取变量的整数值
 ***********************************************************************************
 对于在php代码中的js代码，并不会在网页查看源代码出现。
 ——————————————————————————
+sprintf('<a href="%1$s"%2$s class="%3$s" style="color:%4$s;font-size: %5$s;"%6$s>%7$s%8$s</a>',$t);用法，顺序不能变
+preg_quote — 转义正则表达式字符
+preg_filter()可对数组执行正则表达式
+func_get_args() — 返回一个包含函数参数列表的数组
+phpize是用来扩展php扩展模块的，通过phpize可以建立php的外挂模块
+array_column()从多维数组中返回单列数组。
+array_rand() 返回随机单元的键名。
+;PHP的array_walk和array_map函数实现数组值UTF-8转GBK编码
+range() — 根据范围创建数组，包含指定的元素
+shuffle() — 打乱数组
+sprintf()函数把格式化的字符串写入变量中。
+addslashes() — 使用反斜线引用字符串
+preg_quote() — 转义正则表达式字符
+parse_url() - 解析 URL，返回其组成部分
+pathinfo() - 返回文件路径的信息
+parse_str() — 将含有“=”字符串解析成多个变量
+strrchr( $url, " . " );  //得到图片的扩展名
+根据表单上传方式的不同，$_FILES是一个三维数组，也可以是二维数组
+magic_quotes_gpc函数在php中的作用是判断解析用户提示的数据，如包括有:post、get、cookie过来的数据增加转义字符“\”，以确保这些数据不会引起程序，特别是数据库语句因为特殊字符引起的污染而出现致命的错误，已废弃
+strip_tags（） — 从字符串中去除 HTML 和 PHP 标记
+  linux 与wimdow file_exists（）路径使用/
+  ini_set("display_errors","On"); error_reporting(E_ALL);查找错误位置
