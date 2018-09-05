@@ -648,3 +648,32 @@ wp_term_taxonomy表存储分类类型
  	            );
  	            $the_posts = get_posts($args);
 ******************************************
+ 插件代码可放模板functions.php
+  WordPress post types are 'post', 'pages', and 'attachments'.
+get_posts（）代码最多
+避免插入媒体库内图片尺寸多样，用于获取缩略图用于特色图，媒体库设置各项参数为0
+  特色图片地址一些信息是保存在 wp_postmeta 数据表中，一些保存在wp_post数据表中
+  生成.htaccess
+  url解析，根据规则查询数据库获取数据，然后为数据加载模板
+  wp_term_relationships存储分类关系
+  get_template_part()--需要用到$post
+   has_post_thumbnail( $post = null ) --Check if post has an image attached.
+  guid为文章附件地址
+  当选择现有图片时，为特色图片时，添加的文章信息，只有2行
+  WordPress 2.6 引入了文章修订历史记录（revision）功能，Wordpress 会把你改动之前的文章内容存成 revision。 这一功能可以用作数据备份，不小心改错了文章还可以恢复。但这一功能对多数个人博客毫无用处，还往数据库中写入了一些毫无用武之地的内容，而且随着时间，数据库会越来越大。因此，可以考虑禁用此功能。
+  wp_insert_attachment()为posts添加附件post,增加新行
+  wp-admin\includes\ajax-actions.php--wp_ajax_upload_attachment()  上传附件
+  有附件post添加3行，否则，添加2行
+  get_parent_theme_file_path()返回主题路径
+  附件保存在wp_posts表
+  文章edit_post动作在linux系统，貌似函数接收不到2个参数
+   get_the_content();会影响之前设置的$page，置为1
+get_post($h, OBJECT, 'edit');获取当时编辑器更新
+   setup_postdata()---这里的查询变量我们需要从get_post()或是get_posts查询获得，当然只要是标准的文章对象，你都可以用setup_postdata来声明到全局去，不仅限于这两个函数
+query_posts();--定义$paged,需定义$posts_per_page,offset有效
+   WP CN Excerpt 是WordPress高级摘要插件。--需修改插件，当摘要不为空时，会被替换
+过滤器与钩子定义在general-template.php
+ 禁用文章修改（revision）记录:打开 WordPress 根目录下的 wp-config.php 文件，添加如下行即可：define('WP_POST_REVISIONS', false);
+_wp_post_thumbnail_html()后台显示特色图片html
+  easy-add-thumbnail插件--* Description: Checks if you defined the featured image, and if not it sets the featured image to the first uploaded image into that post. So easy like that...
+
