@@ -1,0 +1,15 @@
+clone()克隆匹配的DOM元素并且选中这些克隆的副本。
+event.result用于多个相同事件函数获取返回值
+事件对象event
+event.which针对键盘和鼠标事件，这个属性能确定你到底按的是哪个键或按钮。
+ $("p").on("click", {foo: "bar"}, myHandler)事件传值
+ jquery migrate应用迁移辅助插件(jQuery高级版本兼容低级版本辅助插件)
+$(document).scrollTop();jq网页卷去高度 ;$(window).scroll()
+js字符串替换，使用替换变量new RegExp,全局/g
+jQuery.noop一个空函数
+——————————————————————
+遍历数组：var k2 = $("img");//数组
+ for (var i = 0; i < k; i++) {
+        imgs.push(k2[i].src);
+    }
+——————————————————————
