@@ -677,3 +677,5 @@ query_posts();--定义$paged,需定义$posts_per_page,offset有效
 _wp_post_thumbnail_html()后台显示特色图片html
   easy-add-thumbnail插件--* Description: Checks if you defined the featured image, and if not it sets the featured image to the first uploaded image into that post. So easy like that...
 
+wordpress里有个函数wp_link_pages是给文章内容分页的
+WP SEO TDK：简单免费的WordPres SEO插件(首页与分类页需要自己添加，文章可自动获取)
