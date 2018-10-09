@@ -1,0 +1,51 @@
+Linux平台上推荐使用RPM包来安装Mysql
+linux安装软件的内容分散在根目录各个文件夹
+ls -R--linux列出文件夹下子文件夹文件-
+命令行输入：99999跳到结尾
+echo $PATH输出环境变量
+phpize --clean
+ps auxw查看所有进程
+【如果apache安装成为linux的服务的话，可以用以下命令操作：
+service httpd start 启动
+service httpd restart 重新启动
+service httpd stop 停止服务】
+sh 是 bash的子集，bash是sh的进一步扩展。在linux中sh是bash的一个软连接。
+【cat主要有三大功能：
+1.一次显示整个文件。
+$ cat   filename
+2.从键盘创建一个文件。
+$ cat  >  filename
+只能创建新文件,不能编辑已有文件.
+3.将几个文件合并为一个文件。】
+ash shell中bash、sh、source及“.”点等五种执行脚本方式
+【Linux下程序大都是由以下几部分组成：
+
+ 　　　　　　二进制文件：也就是可以运行的程序文件
+
+ 　　　　　　库文件：就是通常我们见到的lib目录下的文件
+
+ 　　　　　　配置文件：这个不必多说，都知道
+
+ 　　　　　　帮助文档：通常是我们在linux下用man命令查看的命令的文档】
+ [Linux源码安装步骤
+  1获取源码
+  将软件的源码下载至/usr/local/，并解压。
+  2查看INSTALL与README文件
+  解压后查看INSTALL与README文件，这两个文件中详细介绍了本软件的安装方法和注意事项。
+  创建Makefile文件
+  3执行configure命令，生成Makefile文件。
+  4编译
+  执行make clean;make命令将源码编译成二进制文件。
+  PS:make clean命令用来清除上一次编译生成的目标文件。这个步骤可有可无，但为了确保编译的成功，还是加上为好。防止由于软件中含有残留的目标文件导致编译失败。
+  5安装
+  执行make install命令将上一步编译好的二进制文件安装到指定的目录中去。]
+源码卸载：make uninstall 或 手动删除
+如果您想把软件安装到指定目录，应该用#./configure --prefix=/您自己指定的目录
+whereis 就可以帮我查找文件安装路径在哪里了。
+which查询运行文件所在路径
+ls使用grep:ls|grep my.cnf
+ /etc目录  包含很多文件.许多网络配置文件也在/etc 中.
+grep查找文件指定字符串
+目录查找文件:ls 文件名
+mysql -uroot -p连接本机mysql
+目录查找文件:ls 文件名
