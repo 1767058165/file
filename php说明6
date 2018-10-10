@@ -1,0 +1,22 @@
+include使用：   $h2 = include( 'code.php' );如果code.php没有返回值，$h2值为1，否则为返回值内容
+uasort() — 使用用户自定义的比较函数对数组中的值进行排序并保持索引关联
+后端程序也会遇到有兼容性
+gettype()用来取得变量的类型。
+PHP fsockopen模拟POST/GET方法
+fputs — fwrite() 的别名写入文件
+fsockopen — 打开一个网络连接或者一个Unix套接字连接
+fgets() — 从文件指针中读取一行
+map()将一组元素转换成其他数组（不论是否是元素数组）
+$.Callbacks是在版本1.7中新加入的。它是一个多用途的回调函数列表对象，提供了一种强大的方法来管理回调函数队列。
+对每个参数，compact() 在当前的符号表中查找该变量名并将它添加到输出的数组中，变量名成为键名而变量的内容成为该键的值。简单说，它做的事和 extract() 正好相反。返回将所有变量添加进去后的数组。
+is_callable() — 检测参数是否为合法的可调用结构
+$HTTP_RAW_POST_DATA — 原生POST数据,php://input 是个可以访问请求的原始数据的只读流。 一般而言，使用 php://input 代替 $HTTP_RAW_POST_DATA。格式：file_get_contents( 'php://input' );
+feof（$fp） — 测试文件指针是否到了文件结束的位置,如果出错或者文件指针到了文件末尾（EOF）则返回 TRUE，否则返回 FALSE。feof() 函数对遍历长度未知的数据很有用。
+$row['Value']{2}获取第几字符串;
+定义类数组访问对象属性-ArrayAccess（数组式访问）接口：提供像访问数组一样访问对象的能力的接口。
+get_class() — 返回对象的类名
+is_scalar($a)-标量变量是指那些包含了 integer、float、string 或 boolean的变量，而 array、object 和 resource 则不是标量。
+linux,unix: \r\n windows: \n Mac OS ： \r
+ 当给函数传递多余定义的参数时，func_get_args()可获取函数参数列表
+ nl2br("\n".Z_IMAGE_PLACEHOLDER);用法
+phpize -linux环境加载php扩展
