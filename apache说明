@@ -1,2 +1,3 @@
 vhost在apache 下的conf文件夹
 vhost在也在nginx下的conf文件夹
+其中当 Options 设置为 FollowSymLinks 时，为禁止显示Apache目录列表。
