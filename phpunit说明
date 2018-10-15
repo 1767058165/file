@@ -1,0 +1,2 @@
+window安装：
+echo @php "%~dp0+下载文件名" %* > phpunit.cmd
