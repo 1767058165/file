@@ -1,1 +1,2 @@
 由于J2EE是分布式程序平台，它以RMI机制实现程序组件在不同操作系统之间的通信。比如，一个EJB可以通过RMI调用Web上另一台机器上的EJB远程方法。
+JNI是Java Native Interface的缩写，它提供了若干的API实现了Java和其他语言的通信（主要是C&C++）。从Java1.1开始，JNI标准成为java平台的一部分，它允许Java代码和其他语言写的代码进行交互。
