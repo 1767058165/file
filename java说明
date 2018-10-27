@@ -227,4 +227,26 @@ DAO (DataAccessobjects 数据存取对象)是指位于业务逻辑和持久化�
   3、实体类：用于存放与传输对象数据。
   4、数据库连接和关闭工具类： 避免了数据库连接和关闭代码的重复使用，方便修改。】
 ————————————————
-
+大部分函数使用需实例化对象
+SP+Servlet+JavaBean 模式(JSP Model2) 这种模式即就是典型的MVC模式,JSP负责与用户的人机交互,Servlet负责流程控制,JavaBean负责数据操作
+错误: 编码 GBK 的不可映射字符 (0xB2) 解决： javac -encoding UTF-8 FileName.java
+javac -d ./src  -encoding UTF-8 Helloworld.java--编译java文件到其他目录
+java -classpath ./src Helloworld -- 执行不在当前目录class文件
+jstl标签库
+也就是说StringBuffer是线程安全的。
+深入理解String、StringBuffer、StringBuilder-当字符串相加操作较多的情况下，建议使用StringBuilder，如果采用了多线程，则使用StringBuffer。
+守护线程有一个应用场景，就是当主线程结束时，结束其余的子线程（守护线程）自动关闭，就免去了还要继续关闭子线程的麻烦。不过博主推荐，如果真有这种场景，还是用中断的方式实现比较合理。
+java默认导入lang包
+还有补充一点，不是说当子线程是守护线程，主线程结束，子线程就跟着结束，这里的前提条件是：当前jvm应用实例中没有用户线程继续执行，如果有其他用户线程继续执行，那么后台线程不会中断
+所有重写的方法都是虚方法
+软件编程-创建工程-创建项目
+Maven/gradle是一个项目管理工具，报告和文档的项目管理工具软件。maven仓库https://mvnrepository.com
+Maven标准目录布局
+热部署
+热加载不重启tomcat,不重新打包
+Tomcat的所有配置都放在conf文件夹之中，里面的server.xml文件是配置的核心文件。
+java方法后边加上throws Exception的作用是抛出异常。其中Exception可以理解为所有异常，也可以抛出指定异常。如果方法后边不加throws Exception，方法出了异常就会向上传递抛出(如果方法有调用者，那就交给调用者处理，如果调用者继续一层层抛出，最终交给虚拟机，虚拟机处理，整个程序会中断！ 如果在程序中捕获  还可以继续进行。)。
+使用命令java -jar <JARFILE>运行JAR文件
+jetty
+SpringBoot内部提供了特有的注解@
+Maven在设计之初的理念就是Conversion over configuration（约定大于配置）。其制定了一套项目目录结构作为标准的Java项目结构。
