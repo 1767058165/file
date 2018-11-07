@@ -398,3 +398,4 @@ background:#ff0000;
 
 
     框架：<a href="users.php?act=list" target="main-frame">框架跳转使用target=“框架名”
+    无缘无故浮动左边多出大空隙，多是由于上层浮动元素换行引起的
