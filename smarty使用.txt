@@ -119,3 +119,4 @@ smarty没有switch结构，使用if代替
 	id: {$curr_id}<br>
 {/foreach}
 ******************
+ smarty默认缓存1小时
