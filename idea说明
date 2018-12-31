@@ -1,0 +1,89 @@
+File->Project Structure设置sdk
+运行/调试配置：配置web服务器
+主要提供与外部软件的接口，链接web服务器与其他软件，需下载软件到本地，并进行配置
+
+artifact--神器
+包在idea下相应解析为文件夹，java包文件夹带有点号，源码结构，编译后输出class类目录结构不变
+idea新建jsp--打开模块设置-module-web，，创建类似webapp文件夹结构
+Intellij IDEA 将工程转换成maven工程(两种方法): 第一种网上普遍的: 项目上右键 Add Framework Support，选择maven 1 但是我在项目右键 Add Framework Support 找不到 maven 选项
+
+项目文件夹--右击-打开模块设置
+
+依赖添加粘贴到pom.xml自动加载
+idea 中maven 插件在本地仓库.m2
+ 运行项目：项目名右键运行
+ 类生成get/set方法先设置属性
+
+ artifact是打包用的，这是maven里的概念，就是这个资源包含了哪些内容，当用package时，生成相应的jar或war，用instal(maven里用于发布资源)时，这个包会连同其它必要的文件（如.pom文件），最后放在repository（maven的仓库）中。
+ 右上方文件夹图标，打开项目结构
+
+ 之前一直不能新建目录只能新建包，多是项目模块文件夹被特殊标记了，右键取消标记即可
+
+ 有时候代码中的红色，并不代表有错误，程序不能正常执行
+
+ 取消代码覆盖：Ctrl + Alt + F6，然后取消勾选，中间的那个No Coverage
+
+ idea小锤子图标:maven编译已有源文件程序源码到classes
+ spring boot运行中项目浏览器刷新，源文件夹文件自动编译
+ 红色提示使用alt+enter ,import class
+
+在编写代码的时候直接输入psv就会看到一个psvm的提示，此时点击tab键一个main方法就写好了。
+ psvm 也就是public static void main的首字母。
+
+使用到的类自动导入类
+
+写一个System.out.println();就是sout
+
+/ctrl+j查看快捷键//右键生成-构造方法
+
+.idea-library保存包文件依赖
+
+idea f代表field
+
+show in explorer打开路径窗口
+
+导入已有项目  ： File>Open…>选取自己的项目位置,可能需要一段时间，一些文件夹才能显示出来
+
+ctrl+alt+T添加异常
+
+// 修改文件后，锤子图标生成与recompile 作用类似，执行后sprng boot会重启
+
+增加一些自定义的快捷操作：编辑器-活动模板-out(定义使用范围)
+
+自定义代码输出--exit: 快速输出System.exit(0)
+
+  //data数据连接面板：可切换数据库(小鱼图标最右边区域点击)及修改表查看表，作用同phpadmin，但同时可数据库断开连接
+
+  //移动代码,选中代码，直接鼠标拖动
+
+  //实例化当前类idea会提示错误，但不影响执行，导入当前类提示取消，然后可删除导入
+
+java可直接调试:添加断点，右键调试，php不可以
+
+ctrl+alt+F6：关闭文件夹coverage
+
+ 可添加断点调试，以调试运行
+
+ ;//打开文件定位位置(齿轮图标：autoscroll from source，文件打开的同时显示位置)
+
+ //右键生成-方法，按住ctrl多选
+
+ //自动侦测错误
+
+ //添加测试--右键：转到-测试,//测试方法添加@Test
+
+ //调试程序添加断点
+
+  //修改一个文件recompile,多个项目“生成项目”
+
+  //自定义活动模板-输出方法，按func输出
+
+  idea快速新建java类:选中文件夹，alt + insert
+
+  /show diagram显示包中类结构
+
+  //菜单-导航：查看层次结构：ctrl+H类层次 ctrl+alt+H方法层次
+
+  //文件-右键-可选择标签放置
+
+   //粘贴自动导入包：编辑器-general-自动导入-勾选下面2项
