@@ -1,0 +1,66 @@
+Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
+
+使用 Servlet，您可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态创建网页。
+可以通过 sockets 和 RMI 机制与 applets、数据库或其他软件进行交互。
+
+Java Servlet 是运行在带有支持 Java Servlet 规范的解释器的 web 服务器上的 Java 类。
+
+Servlet 可以使用 javax.servlet 和 javax.servlet.http 包创建，它是 Java 企业版的标准组成部分，Java 企业版是支持大型开发项目的 Java 类库的扩展版本。
+
+Servlet 创有三种方式：1、实现 Servlet 接口2、继承 GenericServlet 类3、继承 HttpServlet 类
+_____________________————————————————————————
+Servlet 生命周期可被定义为从创建直到毁灭的整个过程。以下是 Servlet 遵循的过程：
+
+Servlet 通过调用 init () 方法进行初始化。
+Servlet 调用 service() 方法来处理客户端的请求。
+Servlet 通过调用 destroy() 方法终止（结束）。
+最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。
+_________——————————————————————————
+类所在的多级包，对应tomcat类所在的多级文件夹
+找不到包：javax.servlet.annotation.WebServlet:在下载的Tomcat 7.0包解压\lib\servlet-api.jar文件拷贝到项目的lib目录
+
+使用 Servlet 读取表单数据
+Servlet 处理表单数据，这些数据会根据不同的情况使用不同的方法自动解析：
+
+getParameter()：您可以调用 request.getParameter() 方法来获取表单参数的值。
+getParameterValues()：如果参数出现一次以上，则调用该方法，并返回多个值，例如复选框。
+getParameterNames()：如果您想要得到当前请求中的所有参数的完整列表，则调用该方法。
+
+servlet 浏览器访问路径配置:1、java 类里的注解2、配置文件（web.xml）里对应的浏览器访问路径
+
+当你想用servlet获取checkbox的值时,有时你会出现获取选中的值为on,原因是你的value值没有写
+
+读取 HTTP 头的方法
+设置 HTTP 状态代码的方法
+当 Web 容器启动 Web 应用程序时，它会为您在部署描述符中声明的每一个过滤器创建一个实例。
+
+Filter的执行顺序与在web.xml配置文件中的配置顺序一致，一般把Filter配置在所有的Servlet之前。
+过滤器是一个实现了 javax.servlet.Filter 接口的 Java 类。javax.servlet.Filter 接口定义了三个方法
+过滤器与servlet都需要做相应配置才能生效
+
+Servlet 异常处理-- 当一个 Servlet 抛出一个异常时，Web 容器在使用了 exception-type 元素的 web.xml 中搜索与抛出异常类型相匹配的配置。 您必须在 web.xml 中使用 error-page 元素来指定对特定异常 或 HTTP 状态码 作出相应的 Servlet 调用。
+Servlet 网页重定向--当文档移动到新的位置，我们需要向客户端发送这个新位置时，我们需要用到网页重定向。该方法把响应连同状态码和新的网页位置发送回浏览器。您也可以通过把 setStatus() 和 setHeader() 方法一起使用来达到同样的效果(....
+                                                                                                                                 String site = "http://www.runoob.com" ;
+                                                                                                                                 response.setStatus(response.SC_MOVED_TEMPORARILY);
+                                                                                                                                 response.setHeader("Location", site);
+                                                                                                                                 ....)
+Servlet 就能够通过请求方法 request.getCookies() 访问 Cookie，该方法将返回一个 Cookie 对象的数组。
+要读取 Cookie，您需要通过调用 HttpServletRequest 的 getCookies( ) 方法创建一个 javax.servlet.http.Cookie 对象的数组。然后循环遍历数组，并使用 getName() 和 getValue() 方法来访问每个 cookie 和关联的值。
+删除 Cookie 是非常简单的。如果您想删除一个 cookie，那么您只需要按照以下三个步骤进行： 1读取一个现有的 cookie，并把它存储在 Cookie 对象中。 2使用 setMaxAge() 方法设置 cookie 的年龄为零，来删除现有的 cookie。 3把这个 cookie 添加到响应头。
+Servlet 容器使用这个接口来创建一个 HTTP 客户端和 HTTP 服务器之间的 session 会话。会话持续一个指定的时间段，跨多个连接或页面请求。 您会通过调用 HttpServletRequest 的公共方法 getSession() 来获取 HttpSession 对象，如下所示： HttpSession session = request.getSession();
+Servlet 数据库访问--当执行 Class.forName("com.mysql.jdbc.Driver");时 不会去查找驱动的。所以本实例中我们需要把 mysql-connector-java-5.1.39-bin.jar 拷贝到 tomcat 下 lib 目录。
+servlet正确执行，需要将必要的jar包放入lib文件夹
+
+Servlet 处理日期
+java Servlet 提供了一个机制，使得网页会在给定的时间间隔自动刷新。 刷新网页的最简单的方式是使用响应对象的方法 setIntHeader()。
+
+Servlet 打包部署
+WEB-INF 子目录的 Web 应用程序结构是所有的 Java web 应用程序的标准，并由 Servlet API 规范指定。
+
+默认情况下，Servlet 应用程序位于路径 <Tomcat-installation-directory>/webapps/ROOT 下
+
+log()简单的输出信息到日志只能在servlet使用;
+
+Servlet 国际化:三个重要术语： 国际化（i18n） 本地化（l10n） 区域设置（locale）
+
+
