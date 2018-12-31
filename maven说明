@@ -1,0 +1,53 @@
+ mvn site生成站点依赖信息
+ 最为复杂和强大的打包插件就是maven-assembly-plugin
+ 作为一款”打包工具“，Maven自然有义务帮助用户创建各种各样的包，规范的JAR包和WAR包自然不再话下，略微复杂的自定义打包格式也必须支持，本文就介绍一些常用的打包案例以及相关的实现方式，除了前面提到的一些包以外，你还能看到如何生成源码包、Javadoc包、以及从命令行可直接运行的CLI包。
+ 如果你将Jar中的META-INF文件夹删除，那么jar文件里边就没有MANIFEST.MF文件。那么，java -jar就找不到main class.
+
+ 没有META-INF你仍然可以创建一个Jar文件。但是，当你想要执行jar文件的时候，这个jar是需要具备 META-INF/MANIFEST.MF的。
+ POM是项目对象模型(Project Object Model)的简称,它是Maven项目中的文件，使用XML表示，名称叫做pom.xml。作用类似ant的build.xml文件，功能更强大。该文件用于管理：源代码、配置文件、开发者的信息和角色、问题追踪系统、组织信息、项目授权、项目的url、项目的依赖关系等等。事实上，在Maven世界中，project可以什么都没有，甚至没有代码，但是必须包含pom.xml文件。
+
+创建web项目：文件-新建项目--create from archetype （选择webapp）
+
+执行任务或目标时，Maven 会在当前目录中查找 POM。它读取 POM，获取所需的配置信息，然后执行目标。
+
+配置文件在 pom.xml 文件中使用 activeProfiles 或者 profiles 元素指定，并且可以通过各种方式触发。配置文件在构建时修改 POM，并且用来给参数设定不同的目标环境（比如说，开发（Development）、测试（Testing）和生产环境（Producation）中数据库服务器的地址）。
+
+在 Maven 中，任何一个依赖、插件或者项目构建的输出，都可以称之为构件。
+
+Maven 仓库能帮助我们管理构件（主要是JAR），它就是放置所有JAR文件（WAR，ZIP，POM等等）的地方。
+
+Maven 仓库有三种类型： 本地（local） 中央（central） 远程（remote）
+
+Maven 仓库默认在国外， 国内使用难免很慢，我们可以更换为阿里云的仓库。
+
+Maven 生命周期的每一个阶段的具体实现都是由 Maven 插件实现的。
+
+Maven 引入外部依赖-将依赖添加到pom.xml
+Maven 项目模板
+Maven 使用 archetype(原型) 来创建自定义的项目结构，形成 Maven 项目模板。
+
+Maven 项目文档:mvn site
+快照是一种特殊的版本，指定了某个当前的开发进度的副本。
+
+Maven 目录结构是标准的，各个目录作用如下表所示:
+
+文件夹结构	描述
+trucks	包含 src 文件夹和 pom.xml 文件。
+src/main/webapp	包含 index.jsp 文件和 WEB-INF 文件夹.
+src/main/webapp/WEB-INF	包含 web.xml 文件
+src/main/resources	包含图片、properties资源文件。
+$ mvn -v
+重新生成class maven编译
+
+Maven 工具栏 图标显示项目依赖的结构图
+
+groupID：是项目组织唯一的标识符，实际对应Java的包的结构，是main目录里Java的目录结构。
+
+artifactID：是项目的唯一标识符，实际对应项目的名称，就是项目根目录的名称。
+
+Ant是软件构建工具，Maven的定位是软件项目管理和理解工具。Maven除了具备Ant的功能外，还增加了以下主要的功能
+
+//ctrl+F12类sort by visiblity,按文档结构排序//按字母顺序sort by alphabetically
+
+//install失败，重新启动程序，再次安装install
+
