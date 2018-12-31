@@ -1,0 +1,175 @@
+JSP全称Java Server Pages，是一种动态网页开发技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以<%开头以%>结束。
+JSP开发的WEB应用可以跨平台使用，既可以运行在 Linux 上也能运行在 Windows 上。
+
+JSP 网页就是用另一种方式来编写 Servlet 而不用成为 Java 编程高手。除了解释阶段外，JSP 网页几乎可以被当成一个普通的 Servlet 来对待。
+
+JSP标签有多种功能，比如访问数据库、记录用户选择信息、访问JavaBeans组件等，还可以在不同的网页中传递控制信息和共享信息。
+
+JSP程序与CGI程序有着相似的功能
+网络服务器需要一个 JSP 引擎，也就是一个容器来处理 JSP 页面。容器负责截获对 JSP 页面的请求。本教程使用内嵌 JSP 容器的 Apache 来支持 JSP 开发。
+JSP 网页就是用另一种方式来编写 Servlet 而不用成为 Java 编程高手。除了解释阶段外，JSP 网页几乎可以被当成一个普通的 Servlet 来对待。
+
+脚本程序可以包含任意量的Java语句、变量、方法或表达式
+
+如果我们要在页面正常显示中文，我们需要在 JSP 文件头部添加以下代码：<>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    ——————————————————————————
+    <% 代码片段 %>
+    或者，您也可以编写与其等价的XML语句，就像下面这样：
+
+    <jsp:scriptlet>
+       代码片段
+    </jsp:scriptlet>
+    ——————————————————
+    JSP声明的语法格式：
+
+    <%! declaration; [ declaration; ]+ ... %>
+    或者，您也可以编写与其等价的XML语句，就像下面这样：
+
+    <jsp:declaration>
+       代码片段
+    </jsp:declaration>
+    ————————————————
+    JSP表达式的语法格式：
+
+    <%= 表达式 %>
+    同样，您也可以编写与之等价的XML语句：
+
+    <jsp:expression>
+       表达式
+    </jsp:expression>
+    ____——————————————————
+    JSP指令
+    JSP指令用来设置与整个JSP页面相关的属性。
+    这里有三种指令标签：
+
+    指令	描述
+    <%@ page ... %>	定义页面的依赖属性，比如脚本语言、error页面、缓存需求等等
+    <%@ include ... %>	包含其他文件
+    <%@ taglib ... %>	引入标签库的定义，可以是自定义标签
+
+Taglib指令的语法：
+
+<%@ taglib uri="uri" prefix="prefixOfTag" %>
+uri属性确定标签库的位置，prefix属性指定标签库的前缀
+    ————————————————————————
+    JSP行为
+    JSP行为标签使用XML语法结构来控制servlet引擎。它能够动态插入一个文件，重用JavaBean组件，引导用户去另一个页面，为Java插件产生相关的HTML等等。
+
+    行为标签只有一种语法格式，它严格遵守XML标准：
+
+    <jsp:action_name attribute="value" />
+
+    可用的JSP行为标签：：
+
+    语法	描述
+    jsp:include	用于在当前页面中包含静态或动态资源
+    jsp:useBean	寻找和初始化一个JavaBean组件
+    jsp:setProperty	设置 JavaBean组件的值
+    jsp:getProperty	将 JavaBean组件的值插入到 output中
+    jsp:forward	从一个JSP文件向另一个文件传递一个包含用户请求的request对象
+    jsp:plugin	用于在生成的HTML页面中包含Applet和JavaBean对象
+    jsp:element	动态创建一个XML元素
+    jsp:attribute	定义动态创建的XML元素的属性
+    jsp:body	定义动态创建的XML元素的主体
+    jsp:text	用于封装模板数据
+    ————————————————————————
+    JSP隐含对象
+    对象	描述
+    request	HttpServletRequest类的实例
+    response	HttpServletResponse类的实例
+    out	PrintWriter类的实例，用于把结果输出至网页上
+    session	HttpSession类的实例
+    application	ServletContext类的实例，与应用上下文有关
+    config	ServletConfig类的实例
+    pageContext	PageContext类的实例，提供对JSP页面所有对象以及命名空间的访问
+    page	类似于Java类中的this关键字
+    Exception	Exception类的对象，代表发生错误的JSP页面中对应的异常对象
+    ————————————————
+    控制流语句
+    JSP提供对Java语言的全面支持。您可以在JSP程序中使用Java API甚至建立Java代码块，包括判断语句和循环语句等等。
+
+    JSP 字面量
+    JSP语言定义了以下几个字面量：
+
+    布尔值(boolean)：true 和 false;
+    整型(int)：与 Java 中的一样;
+    浮点型(float)：与 Java 中的一样;
+    字符串(string)：以单引号或双引号开始和结束;
+    Null：null。
+
+jsp:forward动作把请求转到另外的页面。jsp:forward标记只有一个属性page。语法格式如下所示： <jsp:forward page="相对 URL 地址" />
+
+page 对象 --这个对象就是页面实例的引用。它可以被看做是整个JSP页面的代表。 page 对象就是this对象的同义词。
+application对象，config对象，session对象，out对象可以通过访问这个pageContext 对象的属性来导出。
+
+javabean应用于jsp
+jsp设置HTTP状态码的方法
+
+——————————————————————————————————
+JSP 高级教程
+
+SP标准标签库（JSTL）是一个JSP标签集合，它封装了JSP应用的通用核心功能。
+
+JSTL支持通用的、结构化的任务，比如迭代，条件判断，XML文档操作，国际化标签，SQL标签。 除了这些，它还提供了一个框架来使用集成JSTL的自定义标签。
+
+根据JSTL标签所提供的功能，可以将其分为5个类别：核心标签 格式化标签 SQL 标签 XML 标签 JSTL 函数
+
+JSTL 库安装：下载jakarta-taglibs-standard-1.1.2.zip 包并解压，将jakarta-taglibs-standard-1.1.2/lib/下的两个jar文件：standard.jar和jstl.jar文件拷贝到/WEB-INF/lib/下。 接下来我们在 web.xml 文件中添加配置
+
+使用任何库，你必须在每个JSP文件中的头部包含<taglib>标签。
+
+核心标签是最常用的JSTL标签。引用核心标签库的语法如下： <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>，prefix的值对应库前缀，url对应web.xml配置的<taglib-uri>
+scope 的作用域大小依次为： application > session > request > page(默认)
+
+JSP 连接数据库与servlet有所不同
+
+使用JSP发送XML
+使用JSP发送XML内容就和发送HTML内容一样。唯一的不同就是您需要把页面的context属性设置为text/xml。要设置context属性，使用<%@page % >命令，就像这样： <%@ page contentType="text/xml" %>
+
+JavaBean是特殊的Java类，使用J ava语言书写，并且遵守JavaBean API规范。
+
+接下来给出的是JavaBean与其它Java类相比而言独一无二的特征：
+
+提供一个默认的无参构造函数。
+需要被序列化并且实现了Serializable接口。
+可能有一系列可读写属性。
+可能有一系列的"getter"或"setter"方法。
+
+JSP 自定义标签
+自定义标签是用户定义的JSP语言元素。当JSP页面包含一个自定义标签时将被转化为servlet，标签转化为对被 称为tag handler的对象的操作，即当servlet执行时Web container调用那些操作。
+
+JSP标签扩展可以让你创建新的标签并且可以直接插入到一个JSP页面。 JSP 2.0规范中引入Simple Tag Handlers来编写这些自定义标记。
+
+你可以继承SimpleTagSupport类并重写的doTag()方法来开发一个最简单的自定义标签。
+——————————————————————————
+JSP 表达式语言
+jSP表达式语言（EL）使得访问存储在JavaBean中的数据变得非常简单。JSP EL既可以用来创建算术表达式也可以用来创建逻辑表达式。在JSP EL表达式内可以使用整型数，浮点数，字符串，常量true、false，还有null。
+
+JSP EL允许您指定一个表达式来表示属性值。一个简单的表达式语法如下： ${expr}
+
+out	JspWriter类的实例，用于把结果输出至网页上-out.println(p);
+
+在JSP EL中通用的操作符是 . 和 {} 。这两个操作符允许您通过内嵌的JSP对象访问各种各样的JavaBean属性。
+想要停用对EL表达式的评估的话，需要使用page指令将isELIgnored属性值设为true： <%@ page isELIgnored ="true|false" %> 这样，EL表达式就会被忽略。若设为false，则容器将会计算EL表达式。
+JSP EL隐含对象
+JSP EL允许您在表达式中使用函数。这些函数必须被定义在自定义标签库中。
+JSP提供了可选项来为每个JSP页面指定错误页面。无论何时页面抛出了异常，JSP容器都会自动地调用错误页面。使用<%@page errorPage="XXXXX"%>指令指定一个错误页面。
+
+【ServletConfig
+ 代表当前Servlet在web.xml中的配置信息
+ 在Servlet的配置文件中，可以使用一个或多个标签为servlet配置一些初始化参数。
+ 当servlet配置了初始化参数后，web容器在创建servlet实例对象时，会自动将这些初始化参数封装到ServletConfig对象中，并在调用servlet的init方法时，将ServletConfig对象传递给servlet。进而，程序员通过ServletConfig对象就可以得到当前servlet的初始化参数信息。
+
+ 这样做的好处是：如果将数据库信息、编码方式等配置信息放在web.xml中，如果以后数据库的用户名、密码改变了，则直接很方便地修改web.xml就行了，避免了直接修改源代码的麻烦。
+】
+
+【WEB容器在启动时，它会为每个WEB应用程序都创建一个对应的ServletContext对象，它代表当前web应用。
+
+ ServletConfig对象中维护了ServletContext对象的引用，开发人员在编写servlet时，可以通过ServletConfig().getServletContext()方法获得ServletContext对象。
+
+ 由于一个WEB应用中的所有Servlet共享同一个ServletContext对象，因此Servlet对象之间可以通过ServletContext对象来实现通讯。ServletContext对象通常也被称之为context域对象。
+】
+
