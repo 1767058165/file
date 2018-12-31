@@ -1,0 +1,27 @@
+iBATIS一词于2010年6月16号被谷歌托管，改名为MyBatis。
+
+MyBatis发生器(MBG)是一个代码生成器为MyBatis MyBatis和iBATIS。它将为所有版本的MyBatis生成代码,和版本2.2.0 iBATIS的版本
+
+【xml配置，生成完文件，还需application.properties配置，比如
+ mybatis.mapper-locations=classpath:com/example/demo3/lcw/mapping/*Mapper.xml
+ mybatis.type-aliases-package=com.example.demo3.lcw.model(这句可以没有)
+
+ 】
+
+在Spring Boot中集成MyBatis，可以选用基于注解的方式，也可以选择xml文件配置的方式。通过对两者进行实际的使用，还是建议使用XML的方式（官方也建议使用XML）
+【spring boot mybatis基于注解:
+      @Select("SELECT * from websites where id = #{id,jdbcType=INTEGER}")
+  Messgae selectByPrimaryKey(@Param("id") Integer id);】
+
+ //在使用mybatis generator生成映射文件后，在spring boot使用时需在mapper文件添加@Mapper注解，同时application.properties配置地址(例如mybatis.mapper-locations=classpath:com/example/demo3/lcw/mapping/*Mapper.xml)
+
+ *.XML里面的jdbcType取值VARCHAR或者INTEGER
+
+ mybatis查不到返回为null，可判断变量
+
+  //根据主键更新数据，需将主键存入对象
+
+  mybatis sql返回整形，0失败，1为成功
+
+
+
