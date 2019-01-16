@@ -1,0 +1,180 @@
+bootstrap-table是一款非常有名的开源表格插件
+
+bootStrap table获取数据有两种方式，一是通过table 的data-url属性指定数据源，二是通过JavaScript初始化表格时指定url来获取数据
+
+Bootstrap-Table显示数据到表格的方式有两种，一种是客户端（client）模式，一种是服务器（server）模式。
+
+　　客户端模式：指的是在服务器中把要显示到表格的数据一次性加载出来，然后转换成JSON格式传到要显示的界面中，客户端模式较为简单，它是把数据一次性加载出来放到界面上，然后根据你设置的每页记录数，自动生成分页。当点击第二页时，会自动加载出数据，不会再向服务器发送请求。同时用户可以使用其自带的搜索功能，可以实现全数据搜索。对于数据量较少的时候，可以使用这个方法。
+
+　　服务器模式：指的是根据设定的每页记录数和当前要显示的页码，发送数据到服务器进行查询，然后再显示到表格中。该方法可以根据用户的需要动态的加载数据，节省了服务器的资源，但是不能使用其自带的全数据搜索功能。
+
+//jquery 分页插件一般是后台返回json格式的数据到前面处理
+
+sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）,设置 ‘server’时，必须设置 服务器数据地址（url）或者重写ajax方法
+
+
+配置项：
+dataField：后台返回json行数据键名，Detail: Key in incoming json containing 'rows' data list. Default: 'rows'
+
+【后台分页设置：
+sidePagination: 'server',//设置为服务器端分页
+queryParamsType: "",
+queryParams: queryParams,//参数】
+
+
+【
+使用html引入<table id="table_server" ></table>
+
+案例后台json格式：
+{
+"pageNum": 1,
+"pageSize": 5,
+"size": 5,
+"orderBy": null,
+"startRow": 1,
+"endRow": 5,
+"total": 14,
+"pages": 3,
+"list": [
+{
+"id": 1,
+"username": "213",
+"password": "kjkl",
+"age": 23
+},
+{
+"id": 2,
+"username": "ty",
+"password": "123",
+"age": 34
+},
+{
+"id": 4,
+"username": "34523",
+"password": "5646",
+"age": 342
+},
+{
+"id": 6,
+"username": "用户1",
+"password": "56",
+"age": 42
+},
+{
+"id": 8,
+"username": "观鱼亭3",
+"password": "5646",
+"age": 45
+}
+],
+"firstPage": 1,
+"prePage": 0,
+"nextPage": 2,
+"lastPage": 3,
+"isFirstPage": true,
+"isLastPage": false,
+"hasPreviousPage": false,
+"hasNextPage": true,
+"navigatePages": 8,
+"navigatepageNums": [
+1,
+2,
+3
+]
+}
+
+相应js:
+<script type="text/javascript">
+    $(function(){
+        var t = $("#table_server").bootstrapTable({
+            url: 'http://localhost:8080/itemsPage2',
+            method: 'get',
+            dataType: "json",
+            striped: true,//设置为 true 会有隔行变色效果
+            undefinedText: "空",//当数据为 undefined 时显示的字符\
+            showRefresh:true,
+            // responseHandler:function(res){
+            //     //在ajax获取到数据，渲染表格之前，修改数据源
+            //     return res;
+            // },
+            pagination: true, //分页
+            // paginationLoop:true,//设置为 true 启用分页条无限循环的功能。
+            showToggle: "true",//是否显示 切换试图（table/card）按钮
+            showColumns: "true",//是否显示 内容列下拉框
+            // pageNumber: 1,//如果设置了分页，首页页码
+            queryParamsType:'',//查询参数组织方式
+            // queryParams:queryParams,//请求服务器时所传的参数
+
+            // showPaginationSwitch:true,//是否显示 数据条数选择框
+            pageSize: 5,//如果设置了分页，页面数据条数
+            pageList: [5, 10, 20, 40],	//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
+            paginationPreText: '‹',//指定分页条中上一页按钮的图标或文字,这里是<
+            paginationNextText: '›',//指定分页条中下一页按钮的图标或文字,这里是>
+            // singleSelect: false,//设置True 将禁止多选
+            search: false, //显示搜索框
+        dataField:'list',
+            local: 'zh-CN',//表格汉化
+            sidePagination:'server',//服务端处理分页
+            queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的
+                return {//这里的params是table提供的
+                    currentPage:params.pageNumber,
+                    pageSize:params.pageSize
+
+                    // cp: params.offset,//从数据库第几条记录开始
+                    // ps: params.limit//找多少条
+                }
+            },
+            idField: "id",//指定主键列
+            columns: [
+                {
+                    title: '序列号',//表的列名
+                    field: 'id',//json数据中rows数组中的属性名
+                    align: 'center'//水平居中
+                },
+
+                {
+                    title: '姓名',
+                    field: 'username',
+                    align: 'center'
+                },
+                {
+                    //EMAIL
+                    title: '密码',
+                    field: 'password',
+                    align: 'center'
+                },
+                {
+                    //部门名字
+                    title: '年龄',
+                    field: 'age',//可以直接取到属性里面的属性，赞
+                    align: 'center'
+                },
+
+                {
+                    title: '操作',
+                    field: 'userId',
+                    align: 'center',
+                    formatter: function (value, row, index) {//自定义显示可以写标签哦~
+                        return '<a href="#" mce_href="#" onclick="edit(\'' + row.userId + '\')">操作</a> ';
+                    }
+                }
+
+            ]
+        });
+
+
+        t.on('load-success.bs.table', function (data) {//table加载成功后的监听函数
+            console.log("load success");
+            $(".pull-right").css("display", "block");
+        });
+
+    });
+</script>
+
+
+
+】
+
+使用分页，server端返回的数据必须包括rows和total
+
+//客户端分页直接传输集合对象
