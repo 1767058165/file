@@ -1,0 +1,94 @@
+打包测试，就是新增一个类，然后将我们写好的其他测试类配置在一起，然后直接运行这个类就达到同时运行其他几个测试的目的。
+
+junit还剩下最后两个Runner，分别是ErrorReportingRunner和IgnoredClassRunner
+//运行方法会随着鼠标单击类名或者方法名位置不同而不同
+
+测试方法添加@Test
+
+
+JUnit4常用的几个annotation：
+@BeforeClass-修饰的方法会在所有方法被调用前执行，且该方法时静态的，所以当测试类被加载后就接着运行它，而且在内存中他只会存在一份实例，他比较适合加载配置文件（针对所有测试，只执行一次）
+
+@AfterClass-所修饰的方法通常用来对资源管理，如关闭数据库连接（针对所有测试，只执行一次 ）
+
+@Before和@After-会在每个测试方法前后各执行一次
+
+@Test：测试方法，在这里可以测试期望异常和超时时间
+
+@Ignore：忽略的测试方法 
+
+　　@Test：测试方法，在这里可以测试期望异常和超时时间
+　　@Test(expected=ArithmeticException.class)检查被测方法是否抛出ArithmeticException异常
+　　@Ignore：忽略的测试方法
+　　
+　　一个JUnit4的单元测试用例执行顺序为：@BeforeClass->@Before->@Test->@After->@AfterClass;
+　　每一个测试方法的调用顺序为：@Before->@Test->@After;
+
+springboot测试service测试类添加类注解：@SpringBootTest(classes=启动类.class)@RunWith(SpringRunner.class)
+springboot测试dao测试类添加类注解：@RunWith(SpringRunner.class)@MybatisTest@AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
+
+【springboot测试controller测试类添加类注解案例：
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc //使用MockMvc
+public class HelloControllerTest {
+    @Autowired
+    private MockMvc mockMvc;
+    @Test
+    public void index() {
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/hello9").accept(MediaType.APPLICATION_JSON))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+}
+
+】
+
+
+
+
+
+使用PHPUnit进行PHP的单元测试
+
+junit有断言功能，如果测试结果不通过会告诉我们哪个测试不通过，为什么，而如果是像以前的一般做法是写一些测试代码看其输出结果，然后再由自己来判断结果是否正确，使用junit的好处就是这个结果是否正确的判断是它来完成的，我们只需要看看它告诉我们结果是否正确就可以了
+
+@RunWith：可以更改测试运行器org.junit.runner.Runner
+Parameters：参数化注解
+
+测试套件
+如果要同时测试多个类，可以新增一个测试套件，将多个所有测试类包含进去，每次执行测试套件类的时候，就会把包含的测试类全都执行一遍
+
+断言是编写测试用例的核心实现方式，即期望值是多少，测试的结果是多少，以此来判断测试是否通过。断言核心方法
+assertArrayEquals(expecteds,actuals) 查看两个数组是否相等。
+assertEquals(expected,actual)        查看两个对象是否相等。类似于字符串比较使用的equals()方法
+assertNotEquals(first,second)         查看两个对象是否不相等。
+assertNull(object)                     查看对象是否为空。
+assertNotNull(object)                  查看对象是否不为空。
+assertSame(expected,actual)         查看两个对象的引用是否相等。类似于使用“==”比较两个对象
+assertNotSame(unexpected,actual)    查看两个对象的引用是否不相等。类似于使用“!=”比较两个对象
+assertTrue(condition)                 查看运行结果是否为true。
+assertFalse(condition)                查看运行结果是否为false。
+assertThat(actual,matcher)            查看实际值是否满足指定的条件
+fail()                   让测试失败
+
+
+
+// Assert.assertEquals(1参数,2参数,3参数):第一个参数为不相等时，输出的错误信息
+
+在做单元测试的时候，我们会发现我们要测试的方法会引用很多外部依赖的对象，比如：（发送邮件，网络通讯，记录Log, 文件系统 之类的）。 而我们没法控制这些外部依赖的对象。  为了解决这个问题，我们需要用到Stub和Mock来模拟这些外部依赖的对象,从而控制它们。
+
+JUnit是单元测试框架，可以轻松的完成关联依赖关系少或者比较简单的类的单元测试，但是对于关联到其它比较复杂的类或对运行环境有要求的类的单元测试，模拟环境或者配置环境会非常耗时，实施单元测试比较困难。而这些“mock框架”（Mockito 、jmock 、 powermock、EasyMock），可以通过mock框架模拟一个对象的行为，从而隔离开我们不关心的其他对象，使得测试变得简单。（例如service调用dao，即service依赖dao，我们可以通过mock dao来模拟真实的dao调用，从而能达到测试service的目的。）
+
+模拟对象（Mock Object）可以取代真实对象的位置，用于测试一些与真实对象进行交互或依赖于真实对象的功能，模拟对象的背后目的就是创建一个轻量级的、可控制的对象来代替测试中需要的真实对象，模拟真实对象的行为和功能。
+
+ //dao层测试添加：mybatis-spring-boot-starter-test依赖
+
+ 超时处理
+
