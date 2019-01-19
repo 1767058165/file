@@ -1,0 +1,49 @@
+Visual Studio 2015微软应用开发工具
+
+.NET什么都能做，做桌面他最精
+
+asp.net只是.net框架里的一个组成部分
+
+visual studio 2017 /visual studio code
+
+WinForm是·Net开发平台中对Windows Form的一种称谓。
+
+ASP.Net中这种拖ASP.Net控件的开发技术就叫做WebForm
+
+.Net目前主要的开发方向是：Web开发、桌面系统开发、移动开发。
+
+VC：Visual C++，微软公司高级可视化计算机程序开发语言。
+
+集成开发环境和编译器又不是一回事情。通常集成开发环境可以搭配一种或多种编译器。编译器的功能是将C++源程序转变成可执行的程序，而集成开发环境则是一系列代码编辑、调试和管理工具。目前Windows操作系统下使用比较广泛的集成开发环境有微软的Visual Studio（包括6.0版、2010版和2012版等）、Dev-C++、Eclipse、Code::Blocks等。从集成开发环境的界面友好程度来看，微软的Visual Studio有着不小的优势。
+
+
+，C++有多种实现，比如早期的cfront, 曾经的Turbo C++，现在流行的Visual C++和GCC。
+
+但是单纯的语言实现是解决不了实际需求的，因此许多实现都提供了额外的程序库，初期各种实现所带的库都是不同的，这就导致了同一语言不同实现之前移植的难度，因此业界就形成了一个标准委员会，为C++制订一套标准库，包含IO库, STL等。除去标准库外，还需要各种程序库来实现各个领域的需求，就有了各种各样的界面库，网络库等，比如C++常见的界面库有MFC，WTL，wxWidgets, GTK+，Qt，为了方便程序员使用这些库，工具厂商便将一些库直接集成到工具包中一起发售，比如Visual C++中除了对STL的支持外，还包含了MFC和ATL两个程序库。
+
+     所以说，C++是语言，Visual C++是工具集，MFC是程序库。要解决实际问题，开发应用程序，语言、工具和程序库三方面的学习是缺一不可的，而在程序库的学习中，标准库又是重中之重。
+
+     VS是开发C#常用的工具
+
+
+     Nuget是一个.NET平台下的开源的项目，它是Visual Studio的扩展。在使用Visual Studio开发基于.NET Framework的应用时，Nuget能把在项目中添加、移除和更新引用的工作变得更加快捷方便。
+
+     在.NET的实现上有了三个.NET Framework，Mono和.NET Core
+
+     .NET Framework将成为.NET Core在Windows上的一个发行版，Mono将成为.NET Core的一个跨平台发行版。
+
+     NET Standard Library 是 .NET Core 和 .NET Framework 共有的基础
+
+     C#是微软公司发布的一种面向对象的、运行于.NET Framework之上的高级程序设计语言。
+
+     软件介绍：Microsoft .NET Framework 2.0 版可再发行组件包将安装运行针对 .NET Framework 2.0 版开发的应用程序时所需的 .NET Framework 运行库及相关文件。
+
+     持续集成是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。
+
+     .NET Framework就是.NET 技术框架组成在Windows系统下的具体的实现，和Windows系统高度耦合
+
+     .net运行原理
+
+     C/C++，一般来说这种对性能要求高的软件都是用C/C++之类开发的
+
+     //ios开发需使用mac电脑
