@@ -1,0 +1,125 @@
+Spring MVC框架，与其他很多web的MVC框架一样：请求驱动；所有设计都围绕着一个中央Servlet来展开，它负责把所有请求分发到控制器；同时提供其他web应用开发所需要的功能。不过Spring的中央处理器，DispatcherServlet，能做的比这更多。它与Spring IoC容器做到了无缝集成，这意味着，Spring提供的任何特性，在Spring MVC中你都可以使用。
+
+Spring的DispatcherServlet使用了特殊的bean来处理请求、渲染视图等，这些特定的bean是Spring MVC框架的一部分。
+
+@Controller注解可以认为是被标注类的原型（stereotype），表明了这个类所承担的角色。分派器（DispatcherServlet）会扫描所有注解了@Controller的类，检测其中通过@RequestMapping注解配置的方法
+
+当今让控制器实现一个REST API是非常常见的，这种场景下控制器只需要提供JSON、XML或其他自定义的媒体类型内容即可。你不需要在每个@RequestMapping方法上都增加一个@ResponseBody注解，更简明的做法是，给你的控制器加上一个@RestController的注解。
+
+@RestController是一个原生内置的注解，它结合了@ResponseBody与@Controller注解的功能。
+@ControllerAdvice是一个组件注解，它使得其实现类能够被classpath扫描自动发现。
+类的原型（stereotype）-类类型
+使用@RequestBody注解映射请求体
+
+使用@RequestMapping注解的处理方法可以拥有非常灵活的方法签名，它支持的方法参数及返回值类型将在接下来的小节讲述。大多数参数都可以任意的次序出现，除了唯一的一个例外：BindingResult参数。
+在请求之间使用@SessionAttributes注解，使用HTTP会话保存模型数据
+
+使用@RequestHeader注解映射请求头属性
+视图技术-将数据与模板进行结合
+
+有时，我们想要在视图渲染之前，先把一个HTTP重定向请求发送回客户端。比如，当一个控制器成功地接受到了POST过来的数据，而响应仅仅是委托另一个控制器来处理（比如一次成功的表单提交）时，我们希望发生一次重定向。在这种场景下，如果只是简单地使用内部转发，那么意味着下一个控制器也能看到这次POST请求携带的数据，这可能导致一些潜在的问题，比如可能会与其他期望的数据混淆，等。此外，另一种在渲染视图前对请求进行重定向的需求是，防止用户多次提交表单的数据。此时若使用重定向，则浏览器会先发送第一个POST请求；请求被处理后浏览器会收到一个重定向响应，然后浏览器直接被重定向到一个不同的URL，最后浏览器会使用重定向响应中携带的URL发起一次GET请求。因此，从浏览器的角度看，当前所见的页面并不是POST请求的结果，而是一次GET请求的结果。这就防止了用户因刷新等原因意外地提交了多次同样的数据。此时刷新会重新GET一次结果页，而不是把同样的POST数据再发送一遍。
+重定向前缀——redirect:映射路径
+
+【@ResponseBody
+ 作用：该注解用于将Controller的方法返回的对象，根据HTTP Request Header的Accept的内容,通过适当的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。
+
+ 使用时机： 返回的数据不是html标签的页面，而是其他某种格式的数据时（如json、xml等）使用；】
+
+AcceptHeaderLocaleResolver解析器会检查客户端（比如，浏览器，等）所发送的请求中是否携带accept-language请求头。通常，该请求头字段中包含了客户端操作系统的地区信息。
+
+Spring MVC 对"约定优于配置"的支持
+
+[在MVC Java编程配置方式下，如果你想对默认配置进行定制，你可以自己实现WebMvcConfigurer接口，要么继承WebMvcConfigurerAdapter类并覆写你需要定制的方法：
+
+ @Configuration
+ @EnableWebMvc
+ public class WebConfig extends WebMvcConfigurerAdapter {
+
+     // Override configuration methods...
+
+ }]
+
+ Java编程配置和xml配置,起源于spring
+
+ SpringMVC整合Shiro，Shiro是一个强大易用的Java安全框架,提供了认证、授权、加密和会话管理等功能。
+
+ Spring Data JPA是Spring Data的子模块，JPA默认使用hibernate作为ORM实现，所以，一般使用Spring Data JPA即会使用hibernate。
+ JPA是一套规范，不是一套产品，那么像Hibernate,TopLink,JDO他们是一套产品，如果说这些产品实现了这个JPA规范，那么我们就可以叫他们为JPA的实现产品。
+
+ Hibernate 与Mybatis都是流行的持久层开发框架
+
+很多框架具有模块自动生成工具--Spring initializr 是Spring 官方提供的一个很好的工具,用来初始化一个Spring boot 的项目
+
+  spring jpa使用继承，框架为我们提供好的接口 Repository 或 CrudRepository，操作数据库
+
+  那么在Spring 框架中还提供一个视图组件ViewResolver，该组件根据Controller 返回的标示，找到对应的视图，将响应response 返回给用户。
+
+  Spring对很多难用的Java EE API（如JDBC，JavaMail，远程调用等）提供了一个薄薄的封装层，通过Spring的简易封装，这些Java EE API的使用难度大为降低。
+
+  Spring的源码设计精妙、结构清晰、匠心独运，处处体现着大师对Java设计模式灵活运用以及对Java技术的高深造诣。
+  AOP 的核心构造是方面，它将那些影响多个类的行为封装到可重用的模块中。
+
+  Spring Data JPA 是 Spring 基于 ORM 框架、JPA 规范的基础上封装的一套JPA应用框架，可使开发者用极简的代码即可实现对数据的访问和操作。它提供了包括增删改查等在内的常用功能，且易于扩展
+
+模板传参： 除了了使用ModelAndView方式外。还可以使用Map、Model和ModelMap来向前台页面创造 　　使用后面3种方式，都是在方法参数中，指定一个该类型的参数。ModelAndView的实例是由用户手动创建的，方法体自定义
+
+AOP
+
+AOP（Aspect Oriented Programming），即面向切面编程，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不过OOP允许开发者定义纵向的关系，但并不适合定义横向的关系，例如日志功能。日志代码往往横向地散布在所有对象层次中，而与它对应的对象的核心功能毫无关系对于其他类型的代码，如安全性、异常处理和透明的持续性也都是如此，这种散布在各处的无关的代码被称为横切（cross cutting），在OOP设计中，它导致了大量代码的重复，而不利于各个模块的重用。
+
+AOP技术恰恰相反，它利用一种称为"横切"的技术，剖解开封装的对象内部，并将那些影响了多个类的公共行为封装到一个可重用模块，并将其命名为"Aspect"，即切面。所谓"切面"，简单说就是那些与业务无关，却为业务模块所共同调用的逻辑或责任封装起来，便于减少系统的重复代码，降低模块之间的耦合度，并有利于未来的可操作性和可维护性。
+
+使用"横切"技术，AOP把软件系统分为两个部分：核心关注点和横切关注点。业务处理的主要流程是核心关注点，与之关系不大的部分是横切关注点。横切关注点的一个特点是，他们经常发生在核心关注点的多处，而各处基本相似，比如权限认证、日志、事物。AOP的作用在于分离系统中的各种关注点，将核心关注点和横切关注点分离开来。
+
+ //spring框架由类文件与接口文件、配置文件构成
+
+ Spring3中功能丰富强大的表达式语言，简称SpEL。SpEL是类似于OGNL和JSF EL的表达式语言，能够在运行时构建复杂表达式，存取对象属性、对象方法调用等。所有的SpEL都支持XML和Annotation两种方式，格式：#{ SpEL expression }
+
+ //@Scope限定这个bean使用范围,实体类存储对象时，设置为session
+
+ Spring中的@scope注解
+ 默认是单例模式，即scope="singleton"。另外scope还有prototype、request、session、global session作用域。scope="prototype"多例
+
+ //@RequestParam("k")获取请求参数(例如&k=5)
+
+ spring Environment获取配置
+
+ @bean 即对象实例
+
+ //一个包可能依赖多个包
+
+ sping缓存位置与形式：SpringBoot支持很多种缓存方式：redis、guava、ehcahe、jcache等等
+
+ Spring REST Docs2.0.3 helps you to document RESTful services.
+
+Spring Cloud是一个微服务框架，相比Dubbo等RPC框架, Spring Cloud提供的全套的分布式系统解决方案。
+
+ Sping Cloud是Spring的一个顶级项目，Spring的顶级项目列表如下：
+
+  Spring IO platform:用于系统部署，是可集成的，构建现代化应用的版本平台，具体来说当你使用maven dependency引入spring jar包时它就在工作了。
+  Spring Boot:旨在简化创建产品级的 Spring 应用和服务，简化了配置文件，使用嵌入式web服务器，含有诸多开箱即用微服务功能，可以和spring cloud联合部署。
+  Spring Framework:即通常所说的spring 框架，是一个开源的Java/Java EE全功能栈应用程序框架，其它spring项目如spring boot也依赖于此框架。
+  Spring Cloud：微服务工具包，为开发者提供了在分布式系统的配置管理、服务发现、断路器、智能路由、微代理、控制总线等开发工具包。
+  Spring XD：是一种运行时环境（服务器软件，非开发框架），组合spring技术，如spring batch、spring boot、spring data，采集大数据并处理。
+  Spring Data：是一个数据访问及操作的工具包，封装了很多种数据及数据库的访问相关技术，包括：jdbc、Redis、MongoDB、Neo4j等。
+  Spring Batch：批处理框架，或说是批量任务执行管理器，功能包括任务调度、日志记录/跟踪等。
+  Spring Security：是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。
+  Spring Integration：面向企业应用集成（EAI/ESB）的编程框架，支持的通信方式包括HTTP、FTP、TCP/UDP、JMS、RabbitMQ、Email等。
+  Spring Social：一组工具包，一组连接社交服务API，如Twitter、Facebook、LinkedIn、GitHub等，有几十个。
+  Spring AMQP：消息队列操作的工具包，主要是封装了RabbitMQ的操作。
+  Spring HATEOAS：是一个用于支持实现超文本驱动的 REST Web 服务的开发库。
+  Spring Mobile：是Spring MVC的扩展，用来简化手机上的Web应用开发。
+  Spring for Android：是Spring框架的一个扩展，其主要目的在乎简化Android本地应用的开发，提供RestTemplate来访问Rest服务。
+  Spring Web Flow：目标是成为管理Web应用页面流程的最佳方案，将页面跳转流程单独管理，并可配置。
+  Spring LDAP：是一个用于操作LDAP的Java工具包，基于Spring的JdbcTemplate模式，简化LDAP访问。
+  Spring Session：session管理的开发工具包，让你可以把session保存到redis等，进行集群化session管理。
+  Spring Web Services：是基于Spring的Web服务框架，提供SOAP服务开发，允许通过多种方式创建Web服务。
+  Spring Shell：提供交互式的Shell可让你使用简单的基于Spring的编程模型来开发命令，比如Spring Roo命令。
+  Spring Roo：是一种Spring开发的辅助工具，使用命令行操作来生成自动化项目，操作非常类似于Rails。
+  Spring Scala：为Scala语言编程提供的spring框架的封装（新的编程语言，Java平台的Scala于2003年底/2004年初发布）。
+  Spring BlazeDS Integration：一个开发RIA工具包，可以集成Adobe Flex、BlazeDS、Spring以及Java技术创建RIA。
+  Spring Loaded：用于实现java程序和web应用的热部署的开源工具。
+  Spring REST Shell：可以调用Rest服务的命令行工具，敲命令行操作Rest服务。
+
+     //注入普通字符串 another="其他类的属性"
+      @Value("其他类的属性") private String another;
