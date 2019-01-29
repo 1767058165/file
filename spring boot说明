@@ -1,0 +1,387 @@
+注意：我们之所以在上面的项目中没有手动的去配置 Tomcat 服务器，是因为 Spring Boot 内置了 Tomcat
+
+继承org.springframework.boot
+
+什么是 Spring Boot
+它使用 “习惯优于配置” （项目中存在大量的配置，此外还内置一个习惯性的配置，让你无须）的理念让你的项目快速运行起来。
+它并不是什么新的框架，而是默认配置了很多框架的使用方式，就像 Maven 整合了所有的 jar 包一样，Spring Boot 整合了所有框架（引自：springboot(一)：入门篇——纯洁的微笑）
+
+Spring Boot 项目通常有一个名为 *Application 的入口类，入口类里有一个 main 方法， 这个 main 方法其实就是一个标准的 Javay 应用的入口方法。
+
+@SpringBootApplication 是 Spring Boot 的核心注解，它是一个组合注解
+
+Spring Boot 还会自动扫描 @SpringBootApplication 所在类的同级包(在同级包下创建子包,对源文件进行分类)以及下级包里的 Bean ，所以入口类建议就配置在 grounpID + arctifactID 组合的包名下（这里为 cn.wmyskxz.springboot 包）
+
+Spring Boot 使用一个全局的配置文件 application.properties 或 application.yml，放置在【src/main/resources】目录或者类路径的 /config 下。
+
+[pring Boot 热部署
+ 在目前的 Spring Boot 项目中，当发生了任何修改之后我们都需要重新启动才能够正确的得到效果，这样会略显麻烦，Spring Boot 提供了热部署的方式，当发现任何类发生了改变，就会通过 JVM 类加载的方式，加载最新的类到虚拟机中，这样就不需要重新启动也能看到修改后的效果了。
+
+ 做法也很简单，修改 pom.xml 即可！
+ 我们往 pom.xml 中添加一个依赖就可以了：
+
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-devtools</artifactId>
+     <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+ </dependency>
+ 重新启动 Spring Boot ，然后修改任意代码(需重新编译class)，就能观察到控制台的自动重启现象
+
+]
+
+Springboot支持thymeleaf、freemarker、JSP，但是官方不建议使用JSP,因为有些功能会受限制，这里介绍thymeleaf和freemarker
+
+/*@Controller控制器return方法即为模板名*/
+@Controller/@RestController注解不同：@Controller必须配合模版来使用
+Spring Boot 推荐采用基于 Java 注解的配置方式，而不是传统的 XML。只需要在主配置 Java 类上添加“@EnableAutoConfiguration”注解就可以启用自动配置。Spring Boot 的自动配置功能是没有侵入性的，只是作为一种基本的默认实现。开发人员可以通过定义其他 bean 来替代自动配置所提供的功能
+
+Spring Boot应用程序部署到任何Servlet 3.0+兼容容器。
+
+
+/*freemaker模板后缀可以html,貌似不可以,尽量使用.ftl*/
+
+如果你看看target目录，你应该看到myproject-0.0.1-SNAPSHOT.jar。 该文件的大小约为10 MB。 如果你想查看里面，可以使用jar tvf： $ jar tvf target/myproject-0.0.1-SNAPSHOT.jar
+
+    Spring实现了一种机制，叫做单例模式
+
+    Spring是靠什么来了解究竟哪些类需要帮我们创建呢，这里介绍最常用的两种方式——JAVA注解配置，JAVA代码配置。之前的还有XML配置，groovy配置等，但是我们现在已经不推荐使用了。
+    控制反转得意思是指，调用者不再手动创建一个类得实例（对象/Bean），而是由Spring来帮我们创建。
+
+    Spring中为了减少XML配置，可以声明一个配置类类对bean进行配置，主要用到两个注解@Configuration和@bean
+
+    定义一个配置类，用@Configuration注解该类，等价于XML里的<beans>，用@Bean注解方法，等价于XML配置的<bean>，方法名等于beanId
+    SpringBean的创建和注入有三种，XML、注解、java配置文件。 因为XML配置较为繁琐，现在大部分开始用注解和java配置，一般什么时候用注解或者java配置呢？ 基本原则是：全局配置用java配置（如数据库配置，MVC，redis等相关配置），业务Bean的配置用注解（@Service @Component@Repository@Controlle）。
+    @Bean标注在方法上(返回某个实例的方法)，等价于spring的xml配置文件中的<bean>，作用为：注册bean对象
+
+     MyBatis-Spring-Boot-Starter/MyBatis-Spring
+     mybatis generator/安装完mybatis Generator下载完之后刷新一下
+     //?serverTimezone=UTC
+
+     Starters and Auto-configuration: Auto-configuration is designed to work well with “Starters”, but the two concepts are not directly tied. You are free to pick and choose jar dependencies outside of the starters. Spring Boot still does its best to auto-configure your application.
+$ mvn spring-boot:run
+
+您还应该在目标目录中看到名为myproject-0.0.1-SNAPSHOT.jar.original的小得多的文件。 这是Maven在Spring Boot重新打包之前创建的原始jar文件。
+
+第二个类级注释是@EnableAutoConfiguration。
+starter启动器包含许多依赖项，这些依赖项是使项目快速启动和运行所需的依赖项，以及一组受支持的托管传递依赖项。
+Spring Beans
+All of your application components (@Component, @Service, @Repository, @Controller etc.) are automatically registered as .
+
+Property values can be injected directly into your beans by using the @Value annotation
+
+您还可以选择使用spring-boot-starter-webflux模块构建响应式Web应用程序。
+
+Spring Boot支持静态和模板化欢迎页面。 它首先在配置的静态内容static位置中查找index.html文件。 如果找不到，则查找索引模板。 如果找到任何一个，它将自动用作应用程序的欢迎页面。
+
+Spring Boot在配置的静态内容位置和类路径的根（按此顺序）中查找favicon.ico。 如果存在这样的文件，它将自动用作应用程序的favicon
+
+spring boot 以spring为基础，spring mvc是spring core
+
+跨源资源共享（CORS）是大多数浏览器实现的W3C规范，允许您以灵活的方式指定哪种跨域请求被授权
+JNDI可以把java应用程序访问数据库管理和配置交给存放java应用的服务器（tomcat）。
+
+Spring为各种支持的持久化技术，都提供了简单操作的模板和回调
+
+ORM持久化技术	模板类
+JDBC	org.springframework.jdbc.core.JdbcTemplate
+Hibernate5.0	org.springframework.orm.hibernate5.HibernateTemplate
+IBatis(MyBatis)	org.springframework.orm.ibatis.SqlMapClientTemplate
+JPA	org.springfrmaework.orm.jpa.JpaTemplate
+
+默认情况下，如果您正在运行Web应用程序，则会话将绑定到线程以进行整个请求处理（即，它使用“在视图中打开会话”模式）。 如果您不想要此行为，请将以下行添加到application.properties文件中
+Neo4j是一个高性能的,NOSQL图形数据库
+GemFire是什么? 如果你了解Redis或memCached,那么恭喜,你很快就能理解GemFire是什么,没错,你可以把它理解为一个增强版的Redis
+Solr是一个独立的企业级搜索应用服务器，
+
+热部署需重新编译类
+
+starter系列包可看作spring boot 启动依赖类
+
+实际项目中，是不建议这样做的，IScoreDao 的所属角色是数据库持久，我们还应当有 Service（如ScoreService） 来调用 IScoreDao 的方法，然后在Controller 中调用 Service 中的方法。原因是因为，我们数据库访问层，都是接口定义方法，上面注解注入SQL和参数，没有具体的代码逻辑处理。如果我们想在执行SQL之前或之后执行逻辑处理，只能在 Service 中或者Controller（不建议）中。
+
+说个题外话，SpringBoot默认使用 org.apache.tomcat.jdbc.pool.DataSource
+现在有个叫 HikariCP 的JDBC连接池组件，据说其性能比常用的 c3p0、tomcat、bone、vibur 这些要高很多。
+
+thymeleaf与freemaker可在spring boot共存
+thymeleaf和freemarker 可以并存
+
+#修改启动端口 server.port=8004
+@Autowired  注入对象
+
+Spring Boot 不仅支持常规的 properties 配置文件，还支持 yaml 语言的配置文件。
+
+使用@Value读取配置文件里的配置内容:
+例如my.name=pzr.pro
+
+@Value("${my.name}")
+ private String myName;
+
+ 【问题： 这样写配置文件繁琐而且可能会造成类的臃肿，因为有许许多多的 @Value 注解。
+ 封装配置信息:我们可以把配置信息封装成一个类，首先在我们的 name 和 age 前加一个 student 前缀，然后新建一个 StudentProperties 的类用来封装这些信息，并用上两个注解：
+
+        @Component：表明当前类是一个 Java Bean
+        @ConfigurationProperties(prefix = "student")：表示获取前缀为 sutdent 的配置信息】
+可将数据赋值给类中定义属性
+任何文件有错误，类加载时都启动不起来
+
+数据模型传递给前端模板，需定义在方法参数中
+
+修改模板文件需重启sping boot ,不会热加载
+
+包命名entity/model 意思一样
+
+ 启动端口默认为8080
+
+ Whitelabel Error Page--说明没有输出错误
+
+ 　Scope描述的是Spring容器如何新建Bean实例的。Spring的Scope有以下几种，通过@Scope注解来实现。
+
+ 　　（1）Singleton：一个Spring容器中只有一个Bean的实例，此为Spring的默认配置，全容器共享一个实例。
+
+ 　　（2）Prototype：每次调用新建一个Bean实例。
+
+ 　　（3）Request：Web项目中，给每一个 http request 新建一个Bean实例。
+
+ 　　（4）Session：Web项目中，给每一个 http session 新建一个Bean实例。
+
+ 　　（5）GlobalSession：这个只在portal应用中有用，给每一个 global http session 新建一个Bean实例。
+
+ @responseBody注解使用时注意返回值JSON数据或者是XML
+
+ spring boot 模板传参--方法参数
+
+ //配置文件使用配置类加载配置，并执行
+
+ 注入bean，需要编写配置类(连接池HikariCP)
+
+ 那么如何使用HikariCP呢？如果你的springboot版本是2.X，当你使用spring-boot-starter-jdbc或者spring-boot-starter-data-jpa依赖，springboot就会自动引入HikariCP的依赖了。
+
+ 数据库连接池负责分配,管理和释放数据库连接,它允许应用程序重复使用一个现有的数据库连接,而不是重新建立一个。
+ 【现在很多WEB服务器(Weblogic, WebSphere, Tomcat)都提供了DataSoruce的实现，即连接池的实现。通常我们把DataSource的实现，按其英文含义称之为数据源，数据源中都包含了数据库连接池的实现。
+  　　也有一些开源组织提供了数据源的独立实现：
+
+  DBCP 数据库连接池
+  C3P0 数据库连接池
+  　　在使用了数据库连接池之后，在项目的实际开发中就不需要编写连接数据库的代码了，直接从数据源获得数据库的连接。】
+
+  【JDBC已经能够满足大部分用户最基本的需求，
+   但是在使用JDBC时，必须自己来管理数据库资源如：获取
+   PreparedStatement，设置SQL语句参数，关闭连接等步骤。
+   JDBCTemplate就是Spring对JDBC的封装，目的是使JDBC更加易于使用。】
+
+   Spring Data JPA 框架，主要针对的就是 Spring 唯一没有简化到的业务逻辑代码，至此，开发者连仅剩的实现持久层业务逻辑的工作都省了，唯一要做的，就只是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！（只需定义方法）
+
+   jdbc是java连接数据库操作的原生接口
+
+   jpa是java持久化规范，是orm框架的标准，主流orm框架都实现了这个标准
+
+   spring data jpa是对jpa规范的再次抽象，底层还是用的实现jpa的hibernate技术
+
+   hibernate是一个标准的orm框架，实现了jpa
+
+   mybatis也是一个持久化框架，但不完全是一个orm框架，不是依照的jpa规范。
+
+Spring Boot 连接MySql数据库：一种是集成Mybatis，另一种用JdbcTemplate（属性文件都需要配置连接信息）
+
+@PathVariable 用于接收路径参数，比如@RequestMapping(“/hello/{name}”)申明的路径，将注解放在参数中前，即可获取该值，通常作为Restful的接口实现方法。
+
+@Configuration底层是含有@Component ，所以@Configuration 具有和 @Component 的作用。
+
+@Configuration可理解为用spring的时候xml里面的<beans>标签。
+
+【Spring 的 Bean 和 JavaBean比较
+
+ 规范：Spring容器对Bean 没有特殊要求，不像JavaBean 一样遵循一些规范（为每个属性提供相应的setter 和 getter 方法），不过对于设值注入的Bean,一定要提供setter 方法。
+ 作用：Spring 中的Bean 是 java 实例，java组件，它的作用几乎无所不包，任何应用组件都被称为Bean，而传统的Java应用中的JavaBean通常作为DTO（数据传输对象），来封装值对象，在各层之间传递数据。
+ 生命周期：传统的JavaBean作为值对象传递，不接受任何容器管理其生命周期，Spring中的Bean有Spring管理其生命周期行为。】
+
+ 启动类，主要是用于自动扫描并实例化所有的bean，而启动类的扫描默认是扫描与该启动类同包以及其子包下的类，有时候我们还需要修改或者说是添加自动扫描的包的位置
+
+ 改变启动类自动扫描的包
+ 改变启动类自动扫描的包的原理其实很简单，就是通过ComponentScan注解来指定需要扫描的包basePackages，也可以直接指定需要扫描的类basePackageClasses
+
+ (当启动类在本包时)在修改了自动扫描的包的情况下，默认的自动扫描与启动类同包以及子包下的注解类就不生效了，如果还想要自动扫描与启动类同包以及子包下的注解类的话，就需要手动加上本包
+
+ //@bean注解并不常用，在对类注入配置时使用，一般类bean自动生成
+
+ 【 //@PathVariable使用，路径名与参数名相同//
+      @RequestMapping("/users/{username}")
+      @ResponseBody
+      public String userProfile(@PathVariable String username){
+  //        return String.format("user %s", username);
+          return "user" + username;
+      }】
+
+
+ //启动失败错误，处理错误提示，貌似看最下面Caused by
+
+ //调试启动，或者运行启动，相应按钮会有一个点标识，表示程序运行环境（调试/运行）
+
+ 数据库表修改后，勿忘提交，点击db图标
+
+ @Transactional //声明式事务
+
+  SpringBoot 内部日志系统使用的是 Commons Logging 并且 SpringBoot 给 JDKLogging , Log4j2(Log4j也是支持的) , Logback 都提供了默认配置，并且如果使用了 Starters ，那么默认使用 Logback ,也可输出为文件
+
+   @ResponseBody 返回json格式
+
+   【设置全局变量---ServletContext使用：
+
+       @Autowired
+       private ServletContext applicationScope;
+
+       @RequestMapping("/apply")
+       public String p3() {
+           applicationScope.setAttribute("url","http://localhost:8123/Search_Link_Res");
+           return "test";
+       }
+
+
+   】
+
+   【@Scope(value="session",proxyMode= ScopedProxyMode.TARGET_CLASS)  //@Scope限定这个bean使用范围,实体类存储对象时，设置为session】
+
+   singleton是默认的作用域，当一个bean的 作用域设置为singleton, 那么Spring IOC容器中只会存在一个共享的bean实例，
+
+   @Repository用于标注数据访问组件，即DAO组件
+
+   @Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。
+
+   //@Component("customerBean")为组件定义名字
+
+   【2，@Scope注解怎么使用
+    直接在bean对象方法上增加@Scope注解就可以如下：
+
+    /**
+         * 定义一个bean对象
+         * @return
+         */
+        @Scope
+        @Bean(value="user0",name="user0",initMethod="initUser",destroyMethod="destroyUser")
+        public User getUser(){
+            System.out.println("创建user实例");
+            return new User("张三",26);
+        }】
+
+
+      SLF4J，即简单日志门面（Simple Logging Facade for Java），不是具体的日志解决方案，它只服务于各种各样的日志系统。按照官方的说法，SLF4J是一个用于日志系统的简单Facade，允许最终用户在部署其应用时使用其所希望的日志System
+
+      //springboot的jar打包方式:jar包直接执行启动，附带tomcat服务器，不需要放在tomcat根目录
+
+      Spring可使用Profile决定程序在不同环境下执行情况，包含配置、加载Bean、依赖等。
+      Spring的Profile一般项目包含：dev(开发), test(单元测试), qa(集成测试), prod(生产环境)。由spring.profiles.active属性决定启用的profile。
+      SpringBoot的配置文件默认为 application.properties(或yaml，此外仅以properties配置为说明)。不同Profile下的配置文件由application-{profile}.properties管理，同时独立的 Profile配置文件会覆盖默认文件下的属性。
+
+      缓存实现sprin-gcontext-support.jar
+
+      Spring Boot Admin 是一个针对spring-boot的actuator接口进行UI美化封装的监控工具。
+
+      //Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.错误：application.properties默认在classes文件夹下，可能不在
+
+      Spring Boot Admin用于监控基于 Spring Boot 的应用
+spring bot执行控制器方法,使用反射
+
+【可以总结下Spring Boot应用的启动流程：
+
+ 1、spring boot应用打包之后，生成一个fat jar，里面包含了应用依赖的jar包，还有Spring boot loader相关的类
+ 2、Fat jar的启动Main函数是JarLauncher，它负责创建一个LaunchedURLClassLoader来加载/lib下面的jar，并以一个新线程启动应用的Main函数。】
+
+ Spring4.3中引进了｛@GetMapping、@PostMapping、@PutMapping、@DeleteMapping、@PatchMapping｝，来帮助简化常用的HTTP方法的映射，并更好地表达被注解方法的语义。
+
+  
+
+  @RequestMapping如果没有指定请求方式，将接收Get,Post,Head,Options等所有的请求方式
+
+  
+
+ @GetMapping是一个组合注解，是@RequestMapping(method = RequestMethod.GET)的缩写。
+
+  Spring Boot是如何工作的？Spring Boot会根据使用@EnableAutoConfiguration批注添加到项目中的依赖项自动配置应用程序。 例如，如果MySQL数据库在类路径上，但尚未配置任何数据库连接，则Spring Boot会自动配置内存数据库。spring boot应用程序的入口点是包含@SpringBootApplication注释和main方法的类。
+  Spring Boot使用@ComponentScan注释自动扫描项目中包含的所有组件。Spring Boot Starters处理依赖管理对于大项目来说是一项艰巨的任务。 Spring Boot通过提供一组依赖项来解决此问题，以方便开发人员。例如，如果要使用Spring和JPA进行数据库访问，则在项目中包含spring-boot-starter-data-jpa依赖项就足够了。请注意，所有Spring Boot启动程序都遵循相同的命名模式spring-boot-starter-*，其中*表示它是应用程序的一种类型。
+  com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure：数据库链接失败
+
+ @PostMapping是一个组合注解，是@RequestMapping(method = RequestMethod.POST)的缩写。
+ ---------------------
+ @RequestMapping如果没有指定请求方式，将接收Get,Post,Head,Options等所有的请求方式
+
+ //spring boot控制器方法参数声明,自动注入对象
+
+ /@Test注解方法可以执行
+  //类添加测试：右键-生成-测试
+
+  SpringBoot基本操作——SpringBoot使用RedisTemplate整合Redis（有demo）
+
+  （五）SpringBoot基本操作——SpringBoot使用Jedis整合Redis（有demo）
+
+  RedisTemplate是对Jedis做了封装，官方推荐使用Redistemplate方式
+
+  //pom.xml使用到的依赖来自多个项目的组成jar包，spring实现某种功能的家族项目由各个jar包组成
+
+  //spring boot对功能进行封装，依赖包类在其他项目
+
+  使用restful,注意method,方法添加@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
+
+   //定时类添加@Configurable @EnableScheduling，方法添加@Scheduled(cron表达式)注解，方法体为执行job
+   cron表达式
+
+   spring4.3新注解之：@RequestMapping变种（@GetMapping,@PostMapping,@PutMapping,@DeleteMapping,@PatchMapping）
+
+   //ServletContext代替Model或者hashmap
+
+   @RequestParam用法：
+   public String getUserBlog(@RequestParam("id") int blogId) {
+           return "blogId = " + blogId;
+       }
+
+spring boot 函数参数默认值@RequestParam(defaultValue = "1",value = "currentPage") Integer currentPage
+
+  //@RequestParam不要求请求参数与变量相同
+
+   SpringBoot 默认使用 Jackson 作为 Json 序列化工具
+
+Java下常见的Json类库有Gson、JSON-lib和Jackson等，Jackson相对来说比较高效，在项目中主要使用Jackson进行JSON和Java对象转换
+
+
+
+除了使用Java类进行映射之外，我们还可以直接使用Map和List等Java集合组织JSON数据，在需要的时候可以使用readTree方法直接读取JSON中的某个属性值。
+
+//Jackson构建json数据的方式有：类、集合对象、数组、一般数据、beans转换成json代码
+
+//获取json,使用集合类与@ResponseBody
+
+spring MVC九大组件
+
+
+@Autowired //当@Bean使用@Scope定义为single时，导入的实例是单例
+
+//导入Bean使用构造函数或者@Autowired
+
+【aop使用：添加依赖
+<dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-aop</artifactId>
+ </dependency>
+定义一个类包含如下内容:
+
+ 定义切面
+
+ @Aspect
+ @Configuration
+ public class AopConfiguration {
+
+ }
+定义切入点
+
+定义行为@
+
+ 】
+ /aop实现插件/拦截机制
+
+ //@RequestMapping取值不能重复
+
+ AMQP，即Advanced Message Queuing Protocol,一个提供统一消息服务的应用层标准高级消息队列协议
+
+ //spring boot使用消息队列中间件需使用amqp依赖
+
+SpringBoot 定时任务实现原理：启动Spring 会扫描@Scheduled 注解，读取注解配置信息。
+获取定时任务，解析，注册成可执行的定时任务。
